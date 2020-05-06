@@ -148,12 +148,7 @@
 
 ---
 
-<div class="alert alert-block alert-danger">
-<b>This material still has to be prepared for the 2020 lectures.</b>
-</div>
-
 ### 7th May - Scaling Up / Big Data
-
  - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/11-ScalingUp.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb)
 
  - [Lecture Video](https://www.youtube.com/)
@@ -161,5 +156,7 @@
 #### Exercises
 - [Kaggle DAG Notebook for Filtering with Tensorflow](https://www.kaggle.com/kmader/simple-dags-in-tensorflow)
 - [Block-based 3D Image Analysis in Dask](https://www.kaggle.com/kmader/3d-image-analysis-using-dask)
+
+---
 
 ### 14th May - Project Presentations
