@@ -154,19 +154,12 @@
 
 ### 7th May - Scaling Up / Big Data
 
- - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/kmader/Quantitative-Big-Imaging-2018/blob/master/Lectures/11-ScalingUp.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/kmader/quantitative-big-imaging-2018/master?filepath=Lectures/11-ScalingUp.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/kmader/Quantitative-Big-Imaging-2018/blob/master/Lectures/11-ScalingUp.ipynb)
+ - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/11-ScalingUp.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb)
 
- - [Lecture Video](https://www.youtube.com/watch?v=1cSkd2O9bYE&list=PLTWuXgjdOrnmXVVQG5DRkVeOIGOcTmCIw&index=20)
+ - [Lecture Video](https://www.youtube.com/)
 
 #### Exercises
-
-- [KNIME / Spark Exercises](https://github.com/Quantitative-Big-Imaging/Quantitative-Big-Imaging-2017/blob/master/Exercises/10-Description.md)
 - [Kaggle DAG Notebook for Filtering with Tensorflow](https://www.kaggle.com/kmader/simple-dags-in-tensorflow)
 - [Block-based 3D Image Analysis in Dask](https://www.kaggle.com/kmader/3d-image-analysis-using-dask)
-
-- [Spark Example on Databricks Cloud](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/1698738444120167/3665298589504346/4750003467380621/latest.html)
-
-
-
 
 ### 14th May - Project Presentations
