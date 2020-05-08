@@ -3,7 +3,9 @@
 Please provide the following information per email before Wednesday _morning_ May 13th, 9:00AM:
 - Presentation title
 - Name of presenters
-- If you permit reconding your presentation and uploading on youtube
+- If you permit 
+  - your presentation to be uploaded as pdf on the QBI repos.
+  - reconding your presentation and uploading on youtube.
 
 Also:
 - Upload Preliminary slides to switch drive share folder ProjectPresentations/Preliminary. It should be clear from the file name who uploaded the file. 
