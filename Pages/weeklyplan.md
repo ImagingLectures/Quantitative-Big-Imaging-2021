@@ -163,3 +163,6 @@
 ---
 
 ### 14th May - Project Presentations
+[Info before the presentations](../Projects/Presentations.md)
+#### Presentations
+- to be completed
