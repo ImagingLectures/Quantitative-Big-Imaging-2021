@@ -3,7 +3,7 @@
 Please provide the following information per email before Wednesday _morning_ May 13th, 9:00AM:
 - Presentation title
 - Name of presenters
-- If you permit 
+- If you permit:
   - your presentation to be uploaded as pdf on the QBI repos.
   - reconding your presentation and uploading on youtube.
 
