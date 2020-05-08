@@ -6,7 +6,7 @@ Please provide the following information per email before Wednesday _morning_ Ma
 - If you permit reconding your presentation and uploading on youtube
 
 Also:
-- Upload Preliminary slides to switch drive share. It should be clear from the file name who uploaded the file. 
+- Upload Preliminary slides to switch drive share folder ProjectPresentations/Preliminary. It should be clear from the file name who uploaded the file. 
 
 
 ## Presentation
@@ -19,5 +19,5 @@ Also:
   - Results: Key findings
   
 ## Other information
-- Upload your slides after presentation to switch drive. It should be clear from the file name who uploaded the file. 
+- Upload your slides after presentation to switch drive folder ProjectPresentations/Final. It should be clear from the file name who uploaded the file. 
 - The presenation can be used as starting point for the exam. Please tell me if you want to use this option before July 1st. 
