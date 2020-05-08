@@ -22,4 +22,4 @@ Also:
   
 ## Other information
 - Upload your slides after presentation to switch drive folder ProjectPresentations/Final. It should be clear from the file name who uploaded the file. 
-- The presenation can be used as starting point for the exam. Please tell me if you want to use this option before July 1st. 
+- The presentation can be used as starting point for the exam. Please tell me if you want to use this option before July 1st. 
