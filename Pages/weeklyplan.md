@@ -165,4 +165,12 @@
 ### 14th May - Project Presentations
 [Info before the presentations](../Projects/Presentations.md)
 #### Presentations
-- to be completed
+| Presenter(s)  | Title.        | Recording OK |
+| ------------- | ------------- |--------------|
+| Cameron Bogon  | Analysing Bacteria patterned on surfaces | yes |
+| Yves Haag, Nemanja Kostic and Tobias Stauffer| Segmentation method to detect microcalcifications  | no |
+| Jack Kendall| Identification of Distal Radius Fractures using Time-Lapse HR-pQCT Imaging | yes|
+| Alix Pham, Eylül Ceylan, and Lucien Stöcklin| Cardiomyocyte Segmentation and Morphological Analysis |yes|
+| Christoph Gäbelein | QBI of Bacteria | yes |
+| Richardo Carreon Ruiz | 2D Mapping of Ionic Transport in Lithium-ion Batteries: In-situ Quantification | no |
+
