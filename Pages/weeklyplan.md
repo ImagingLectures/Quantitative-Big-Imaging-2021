@@ -168,7 +168,7 @@
 | Presenter(s)  | Title.        | Recording OK |
 | ------------- | ------------- |--------------|
 | Cameron Bogon  | Analysing Bacteria patterned on surfaces | yes |
-| Yves Haag, Nemanja Kostic and Tobias Stauffer| Segmentation method to detect microcalcifications  | no |
+| Yves Haag, Nemanja Kostic and Tobias Stauffer| Segmentation method to detect microcalcifications  | yes |
 | Jack Kendall| Identification of Distal Radius Fractures using Time-Lapse HR-pQCT Imaging | yes|
 | Alix Pham, Eylül Ceylan, and Lucien Stöcklin| Cardiomyocyte Segmentation and Morphological Analysis |yes|
 | Christoph Gäbelein | QBI of Bacteria | yes |
