@@ -1,11 +1,7 @@
-[![Build Status](https://travis-ci.org/ImagingLectures/Quantitative-Big-Imaging-2020.svg?branch=master)](https://travis-ci.org/ImagingLectures/Quantitative-Big-Imaging-2020)
-![](https://github.com/imaginglectures/Quantitative-Big-Imaging-2020/workflows/build_notebooks/badge.svg)
-[![Make PDF](https://github.com/imaginglectures/Quantitative-Big-Imaging-2020/workflows/make_pdfs/badge.svg)](https://github.com/imaginglectures/Quantitative-Big-Imaging-2020/releases)
-<!--
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/kmader/Quantitative-Big-Imaging-2019.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kmader/Quantitative-Big-Imaging-2019/context:python)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/kmader/Quantitative-Big-Imaging-2019.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kmader/Quantitative-Big-Imaging-2019/alerts/)
--->
-## Quantitative Big Imaging Course 2020 [![Binder with JupyterLab](https://img.shields.io/badge/launch-jupyterlab-red.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?urlpath=lab)
+[![Build Status](https://travis-ci.org/ImagingLectures/Quantitative-Big-Imaging-2021.svg?branch=master)](https://travis-ci.org/ImagingLectures/Quantitative-Big-Imaging-2021)
+![](https://github.com/imaginglectures/Quantitative-Big-Imaging-2021/workflows/build_notebooks/badge.svg)
+[![Make PDF](https://github.com/imaginglectures/Quantitative-Big-Imaging-2020/workflows/make_pdfs/badge.svg)](https://github.com/imaginglectures/Quantitative-Big-Imaging-2021/releases)
+## Quantitative Big Imaging Course 2021 [![Binder with JupyterLab](https://img.shields.io/badge/launch-jupyterlab-red.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/master?urlpath=lab)
 
 ---
 
@@ -14,7 +10,7 @@ __Important information:__
 
 --- 
 
-Here are the lectures, exercises, and additional course materials corresponding to the spring semester 2020 course at ETH Zurich, [227-0966-00L](http://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=136177&semkez=2020S&lang=en): Quantitative Big Imaging.
+Here are the lectures, exercises, and additional course materials corresponding to the spring semester 2021 course at ETH Zurich, [227-0966-00L](http://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=136177&semkez=2021S&lang=en): Quantitative Big Imaging.
 
 The lectures were orignally prepared by Kevin Mader and are now given by Anders Kaestner and associated guest lecturers. Please note the Lecture Slides and PDF do not contain source code, this is only available in the handout file. Some of the lectures will be recorded and placed on YouTube on the [QBI 2020 Playlist](https://www.youtube.com/playlist?list=PLcDfeQH_rVdbu7VooFvWA6F9gctY-UUwN). The lectures are meant to be followed in chronological order and each lecture has a corresponding hands-on exercise. The entire lecture set is available as a single PDF file available in the [releases section](https://github.com/imaginglectures/Quantitative-Big-Imaging-2020/releases)
 
