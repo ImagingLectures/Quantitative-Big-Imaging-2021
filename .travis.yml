@@ -31,6 +31,7 @@ install:
   #  - jupyter kernelspec list
 
 script:
+  - jupyter-book build Lectures/Lecture-01 --builder pdflatex
   # - shopt -s globstar
   # - for nb in **/*ipynb; do
   #   if [[ $nb = *"Kaggle"* ]]; then
