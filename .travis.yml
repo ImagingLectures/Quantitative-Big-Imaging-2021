@@ -31,7 +31,8 @@ install:
   #  - jupyter kernelspec list
 
 script:
-  - jupyter-book build Lectures/Lecture-01 --builder pdflatex
+   - jupyter-book build Lectures/Lecture-01 --builder pdflatex
+   - cp Lectures/Lecture-01/_build/latex/QBI-Lecture01-Introduction.pdf docs/
   # - shopt -s globstar
   # - for nb in **/*ipynb; do
   #   if [[ $nb = *"Kaggle"* ]]; then
@@ -44,3 +45,13 @@ script:
   #     fi;
   #   fi;
   #   done
+
+deploy:
+   provider: pages
+   skip_cleanup: true
+   github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+   keep_history: true
+   file: "Lectures/Lecture-01/_build/latex/QBI-Lecture01-Introduction.pdf"
+   target_branch: gh-pages
+   on:
+     branch: main

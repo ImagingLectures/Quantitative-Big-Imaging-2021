@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="564pt" height="143pt" viewBox="0.00 0.00 563.50 142.87">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 138.8701)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-138.8701 559.5005,-138.8701 559.5005,4 -4,4"/>
+<!-- 0000 -->
+<g id="node1" class="node">
+<title>0000</title>
+<ellipse fill="#ffd700" stroke="#000000" cx="53.7401" cy="-108" rx="53.9813" ry="26.7407"/>
+<text text-anchor="middle" x="53.7401" y="-111.8" font-family="Times,serif" font-size="14.00" fill="#000000">Buy</text>
+<text text-anchor="middle" x="53.7401" y="-96.8" font-family="Times,serif" font-size="14.00" fill="#000000">vegetables</text>
+</g>
+<!-- 0002 -->
+<g id="node3" class="node">
+<title>0002</title>
+<ellipse fill="#ffd700" stroke="#000000" cx="197.2203" cy="-108" rx="53.9813" ry="26.7407"/>
+<text text-anchor="middle" x="197.2203" y="-111.8" font-family="Times,serif" font-size="14.00" fill="#000000">Chop</text>
+<text text-anchor="middle" x="197.2203" y="-96.8" font-family="Times,serif" font-size="14.00" fill="#000000">vegetables</text>
+</g>
+<!-- 0000&#45;&gt;0002 -->
+<g id="edge1" class="edge">
+<title>0000-&gt;0002</title>
+<path fill="none" stroke="#000000" d="M107.5751,-108C115.8288,-108 124.4203,-108 132.8734,-108"/>
+<polygon fill="#000000" stroke="#000000" points="133.0837,-111.5001 143.0837,-108 133.0836,-104.5001 133.0837,-111.5001"/>
+</g>
+<!-- 0001 -->
+<g id="node2" class="node">
+<title>0001</title>
+<ellipse fill="#1e90ff" stroke="#000000" cx="355.8543" cy="-18" rx="46.2923" ry="18"/>
+<text text-anchor="middle" x="355.8543" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">Buy meat</text>
+</g>
+<!-- 0006 -->
+<g id="node7" class="node">
+<title>0006</title>
+<ellipse fill="#1e90ff" stroke="#000000" cx="508.1244" cy="-45" rx="47.2526" ry="26.7407"/>
+<text text-anchor="middle" x="508.1244" y="-48.8" font-family="Times,serif" font-size="14.00" fill="#000000">Wait 5</text>
+<text text-anchor="middle" x="508.1244" y="-33.8" font-family="Times,serif" font-size="14.00" fill="#000000">add meat</text>
+</g>
+<!-- 0001&#45;&gt;0006 -->
+<g id="edge6" class="edge">
+<title>0001-&gt;0006</title>
+<path fill="none" stroke="#000000" d="M397.8659,-25.4493C414.8748,-28.4653 434.7486,-31.9893 452.9027,-35.2083"/>
+<polygon fill="#000000" stroke="#000000" points="452.3247,-38.6603 462.7823,-36.9601 453.5469,-31.7678 452.3247,-38.6603"/>
+</g>
+<!-- 0004 -->
+<g id="node5" class="node">
+<title>0004</title>
+<ellipse fill="#ffa500" stroke="#000000" cx="355.8543" cy="-72" rx="68.7879" ry="18"/>
+<text text-anchor="middle" x="355.8543" y="-68.3" font-family="Times,serif" font-size="14.00" fill="#000000">Add Vegetables</text>
+</g>
+<!-- 0002&#45;&gt;0004 -->
+<g id="edge2" class="edge">
+<title>0002-&gt;0004</title>
+<path fill="none" stroke="#000000" d="M246.5436,-96.8067C261.4654,-93.4204 278.0481,-89.6572 293.6952,-86.1062"/>
+<polygon fill="#000000" stroke="#000000" points="294.8381,-89.4359 303.8155,-83.8096 293.2889,-82.6095 294.8381,-89.4359"/>
+</g>
+<!-- 0003 -->
+<g id="node4" class="node">
+<title>0003</title>
+<ellipse fill="#00ff7f" stroke="#000000" cx="53.7401" cy="-36" rx="50.8918" ry="18"/>
+<text text-anchor="middle" x="53.7401" y="-32.3" font-family="Times,serif" font-size="14.00" fill="#000000">Heat water</text>
+</g>
+<!-- 0005 -->
+<g id="node6" class="node">
+<title>0005</title>
+<ellipse fill="#00ff7f" stroke="#000000" cx="197.2203" cy="-36" rx="45.011" ry="26.7407"/>
+<text text-anchor="middle" x="197.2203" y="-39.8" font-family="Times,serif" font-size="14.00" fill="#000000">Wait for</text>
+<text text-anchor="middle" x="197.2203" y="-24.8" font-family="Times,serif" font-size="14.00" fill="#000000">boiling</text>
+</g>
+<!-- 0003&#45;&gt;0005 -->
+<g id="edge3" class="edge">
+<title>0003-&gt;0005</title>
+<path fill="none" stroke="#000000" d="M104.7299,-36C116.6861,-36 129.4838,-36 141.6299,-36"/>
+<polygon fill="#000000" stroke="#000000" points="141.6468,-39.5001 151.6467,-36 141.6467,-32.5001 141.6468,-39.5001"/>
+</g>
+<!-- 0004&#45;&gt;0006 -->
+<g id="edge5" class="edge">
+<title>0004-&gt;0006</title>
+<path fill="none" stroke="#000000" d="M412.9873,-61.8694C425.9054,-59.5788 439.6033,-57.1499 452.4599,-54.8702"/>
+<polygon fill="#000000" stroke="#000000" points="453.3239,-58.2717 462.5592,-53.0795 452.1017,-51.3792 453.3239,-58.2717"/>
+</g>
+<!-- 0005&#45;&gt;0004 -->
+<g id="edge4" class="edge">
+<title>0005-&gt;0004</title>
+<path fill="none" stroke="#000000" d="M239.7313,-45.6473C256.3026,-49.408 275.628,-53.7936 293.704,-57.8958"/>
+<polygon fill="#000000" stroke="#000000" points="293.0656,-61.3398 303.5923,-60.1398 294.6149,-54.5134 293.0656,-61.3398"/>
+</g>
+</g>
+</svg>
