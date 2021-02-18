@@ -21,4 +21,5 @@ dependencies:
   - keras
   - tifffile
   - pip
+  - dask-ndfilters
 prefix: /Users/kaestner/opt/anaconda3
