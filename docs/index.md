@@ -15,7 +15,7 @@ Here are the lectures, exercises, and additional course materials corresponding 
 
 ---
 
-The lectures were orignally prepared by Kevin Mader and are now given by Anders Kaestner and associated guest lecturers. Please note the Lecture Slides and PDF do not contain source code, this is only available in the handout file. Some of the lectures will be recorded and placed on YouTube on the [QBI 2020 Playlist](https://www.youtube.com/playlist?list=PLcDfeQH_rVdbu7VooFvWA6F9gctY-UUwN). The lectures are meant to be followed in chronological order and each lecture has a corresponding hands-on exercise.
+Please note the Lecture Slides and PDF do not contain source code, this is only available in the handout file. Some of the lectures will be recorded and placed on YouTube on the [QBI 2020 Playlist](https://www.youtube.com/playlist?list=PLcDfeQH_rVdbu7VooFvWA6F9gctY-UUwN). The lectures are meant to be followed in chronological order and each lecture has a corresponding hands-on exercise.
 
 ## Learning Objectives
 
