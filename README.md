@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/ImagingLectures/Quantitative-Big-Imaging-2021.svg?branch=master)](https://travis-ci.org/ImagingLectures/Quantitative-Big-Imaging-2021)
+[![Build Status](https://travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021.svg?token=yKDxiqCwAHCp8qzqpcFZ&branch=master)](https://travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021)
+
 ![](https://github.com/imaginglectures/Quantitative-Big-Imaging-2021/workflows/build_notebooks/badge.svg)
 [![Make PDF](https://github.com/imaginglectures/Quantitative-Big-Imaging-2020/workflows/make_pdfs/badge.svg)](https://github.com/imaginglectures/Quantitative-Big-Imaging-2021/releases)
 ## Quantitative Big Imaging Course 2021 [![Binder with JupyterLab](https://img.shields.io/badge/launch-jupyterlab-red.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/master?urlpath=lab)
