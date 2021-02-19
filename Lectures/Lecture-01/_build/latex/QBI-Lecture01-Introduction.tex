@@ -73,7 +73,7 @@
 
 
 \title{Quantitative Big Imaging - Introduction}
-\date{Feb 18, 2021}
+\date{Feb 19, 2021}
 \release{}
 \author{Anders Kaestner}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -103,6 +103,10 @@ About the course
 
 \item {} 
 \sphinxAtStartPar
+Motivating the use of quantitive methods in imaging
+
+\item {} 
+\sphinxAtStartPar
 What is an image?
 
 \item {} 
@@ -122,14 +126,21 @@ Workflows
 
 \section{We need some python modules}
 \label{\detokenize{01-Introduction:we-need-some-python-modules}}
+\sphinxAtStartPar
+Python is a modular scripting language with limited functionality. Features are added through modules that are imported.
+These are the modules that are needed for this lecture. Please run this cell before you start using the notebook.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
 \PYG{k+kn}{from} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{ndimage} \PYG{k+kn}{import} \PYG{n}{convolve}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{disk}
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{transform} \PYG{k+kn}{import} \PYG{n}{resize}
+\PYG{k+kn}{from} \PYG{n+nn}{itertools} \PYG{k+kn}{import} \PYG{n}{product}
 \PYG{k+kn}{import} \PYG{n+nn}{os}
 \end{sphinxVerbatim}
 
@@ -172,7 +183,10 @@ Course outline
 
 
 \sphinxAtStartPar
-Lectures and exercises
+\sphinxstylestrong{Anders Kaestner}
+
+\sphinxAtStartPar
+You will hear me a lot during this course. I am the lecturer and I will also support you with problems during the exercises.
 
 
 \begin{itemize}
@@ -206,7 +220,10 @@ Lectures and exercises
 
 
 \sphinxAtStartPar
-Exercises
+\sphinxstylestrong{Stefano van Gogh}
+
+\sphinxAtStartPar
+Will help you during the exercise sessions.
 
 
 \begin{itemize}
@@ -226,30 +243,65 @@ Teaching assistant
 
 \section{Who are you?}
 \label{\detokenize{01-Introduction:who-are-you}}
+\sphinxAtStartPar
+This course is targeting a wide range of students with different levels of experience. In the table you’ll see were students came from in previos years. Some have a technical background others are merely producing images in the line of their project and have never seen much more than photoshop and similar programs for processing image data. Using some kind of programming is nescessary to perform quantitative image analysis on large data sets. A single or a few images can easily be handled with interactive software, but taking it beyond that is hard without writing some lines of code.
+
+\sphinxAtStartPar
+Now, some of you have little to no programming experience while others have been programming since they got their first computer in the hand.
+
 
 \begin{savenotes}\sphinxattablestart
 \centering
-\begin{tabulary}{\linewidth}[t]{|T|T|T|}
+\begin{tabulary}{\linewidth}[t]{|T|T|}
 \hline
 \sphinxstyletheadfamily 
 \sphinxAtStartPar
 A wide spectrum of backgrounds
-&
-\sphinxAtStartPar
-
 &\sphinxstyletheadfamily 
 \sphinxAtStartPar
 A wide range of skills
 \\
 \hline
 \sphinxAtStartPar
-Biomedical Engineers  Physicists  Chemists  Art History Researchers  Mechanical Engineers  and Computer Scientists
+Biomedical Engineers
 &
 \sphinxAtStartPar
-\sphinxincludegraphics{{arrowsign}.png}
+
+\\
+\hline
+\sphinxAtStartPar
+Physicists
 &
 \sphinxAtStartPar
-I think I’ve heard of python before    I write template C++ code and hand optimize it afterwards
+I think I’ve heard of python before
+\\
+\hline
+\sphinxAtStartPar
+Chemists
+&
+\sphinxAtStartPar
+.
+\\
+\hline
+\sphinxAtStartPar
+Art History Researchers
+&
+\sphinxAtStartPar
+.
+\\
+\hline
+\sphinxAtStartPar
+Mechanical Engineers
+&
+\sphinxAtStartPar
+I write template C++ code and hand optimize it afterwards
+\\
+\hline
+\sphinxAtStartPar
+and Computer Scientists
+&
+\sphinxAtStartPar
+
 \\
 \hline
 \end{tabulary}
@@ -257,8 +309,16 @@ I think I’ve heard of python before    I write template C++ code and hand opti
 \sphinxattableend\end{savenotes}
 
 
+
+
 \section{So how will this ever work?}
 \label{\detokenize{01-Introduction:so-how-will-this-ever-work}}
+\sphinxAtStartPar
+Now you maybe start to get worried! The purpose of this course is not to teach you programming but rather to provide you with a bag full recipes that you can use in your projects. Most of these recipes are just a list of the commands from different python moduls that you need to perform your analysis. A side\sphinxhyphen{}effect will probably be that you learn one or two programming tricks on the way.
+
+\sphinxAtStartPar
+In the lectures, there will be small code pieces on the slides. Some of these are there to illustrate how an operation works, while other parts are there for the nice presentation of the results (this is mostly the second half of the code cell). Presenting the results is important. In the end, you want to show your results to the scinetific community. So even though the plotting clutters the slide, there is something to learn there as well.
+
 \sphinxAtStartPar
 \sphinxstylestrong{Adaptive assignments}
 \begin{itemize}
@@ -285,463 +345,105 @@ Emphasis on performance, customizing analysis, and scalability
 \end{itemize}
 
 
-\chapter{Course Expectations}
+\section{Course Expectations}
 \label{\detokenize{01-Introduction:course-expectations}}
+\sphinxAtStartPar
+The practical part of the course has two parts. None of these are mandatory, but they will help you to better understand use the material you have learnt in the lectures.
 
 
-
-\section{Exercises}
-\label{\detokenize{01-Introduction:center-exercises-center}}
-
-
-
-\section{Science Project}
-\label{\detokenize{01-Introduction:center-science-project-center}}
-
-
-
-\begin{itemize}
-\item {} 
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Exercises
+\\
+\hline
 \sphinxAtStartPar
 Usually 1 set per lecture
-
-\item {} 
+\\
+\hline
 \sphinxAtStartPar
 Optional (but recommended!)
-
-\item {} 
+\\
+\hline
 \sphinxAtStartPar
-Easy \sphinxhyphen{} using GUIs (KNIME and ImageJ) and completing Matlab Scripts (just lecture 2)
-
-\item {} 
+Easy \sphinxhyphen{} jupyter notebooks are prepared for the exercises
+\\
+\hline
 \sphinxAtStartPar
-Advanced \sphinxhyphen{} Writing Python, Java, Scala, …
+Advanced \sphinxhyphen{} Writing Python, Java, C++, …
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
 
-\end{itemize}
+\sphinxAtStartPar
+The exercises are prepared in a way that you learn step by step what you need to do and guids you through the problems. We will be using jupyter notebooks for the lectures. This is a very common way to work with image data these days.
 
 
-\begin{itemize}
-\item {} 
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Science project
+\\
+\hline
 \sphinxAtStartPar
 Optional (but strongly recommended)
-
-\item {} 
+\\
+\hline
 \sphinxAtStartPar
 Applying Techniques to answer scientific question!
-
-\item {} 
+\\
+\hline
 \sphinxAtStartPar
 Ideally use on a topic relevant for your current project, thesis, or personal activities
-
-\item {} 
+\\
+\hline
 \sphinxAtStartPar
 or choose from one of ours (will be online, soon)
-
-\item {} 
+\\
+\hline
 \sphinxAtStartPar
 Present approach, analysis, and results
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+In the optional science projects you will have to opportunity to test what you have learned during the course on real problems. This is the place for your creativity.
 
 
+\section{Projects}
+\label{\detokenize{01-Introduction:projects}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+A small image processing project
+
+\item {} 
+\sphinxAtStartPar
+Can be related to you Master or PhD project
+
+\item {} 
+\sphinxAtStartPar
+You will get input and ideas for your own projects
+
+\item {} 
+\sphinxAtStartPar
+You will get hands on experience on the techniques you learn here
+
+\item {} 
+\sphinxAtStartPar
+Can be used as discussion base for your exam
 
 \end{itemize}
-
-
-
-
-\chapter{Literature / Useful References}
-\label{\detokenize{01-Introduction:literature-useful-references}}
-
-\section{General Material}
-\label{\detokenize{01-Introduction:general-material}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Jean Claude, Morphometry with R
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://link.springer.com/book/10.1007\%2F978-0-387-77789-4}{Online} through ETHZ
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://www.amazon.com/Morphometrics-R-Use-Julien-Claude/dp/038777789X}{Buy it}
-
-\item {} 
-\sphinxAtStartPar
-John C. Russ, “The Image Processing Handbook”,(Boca Raton, CRC Press)
-
-\item {} 
-\sphinxAtStartPar
-Available \sphinxhref{http://dx.doi.org/10.1201/9780203881095}{online} within domain \sphinxhref{http://ethz.ch}{ethz.ch} (or \sphinxhref{http://proxy.ethz.ch}{proxy.ethz.ch} / public VPN)
-
-\item {} 
-\sphinxAtStartPar
-J. Weickert, Visualization and Processing of Tensor Fields
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{https://doi.org/10.1007/978-3-540-88378-4}{Online} through ETHZ
-
-\end{itemize}
-
-
-\section{Today’s Material}
-\label{\detokenize{01-Introduction:today-s-material}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Imaging
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://www.slideshare.net/CurtisRueden/imagej-and-the-scijava-software-stack}{ImageJ and SciJava}
-
-\item {} 
-\sphinxAtStartPar
-Cloud Computing
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://www-inst.eecs.berkeley.edu/~cs61c/sp14/}{The Case for Energy\sphinxhyphen{}Proportional Computing} \_ Luiz André Barroso, Urs Hölzle, IEEE Computer, December 2007\_
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://www.gotw.ca/publications/concurrency-ddj.htm}{Concurrency}
-
-\item {} 
-\sphinxAtStartPar
-Reproducibility
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble}{Trouble at the lab} \sphinxstyleemphasis{Scientists like to think of science as self\sphinxhyphen{}correcting. To an alarming degree, it is not}
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://simplystatistics.org/2014/06/06/the-real-reason-reproducible-research-is-important/}{Why is reproducible research important?} \sphinxstyleemphasis{The Real Reason Reproducible Research is Important}
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://software-carpentry.org/blog/2011/10/the-science-code-manifestos-five-cs.html}{Science Code Manifesto}
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{https://www.coursera.org/course/repdata}{Reproducible Research Class} @ Johns Hopkins University
-
-\end{itemize}
-
-
-\section{Motivation \sphinxhyphen{} You have data!}
-\label{\detokenize{01-Introduction:motivation-you-have-data}}
-
-\subsection{Imaging experiments produce a lot of data}
-\label{\detokenize{01-Introduction:imaging-experiments-produce-a-lot-of-data}}
-\sphinxAtStartPar
-\sphinxincludegraphics{{yougotdata}.png}
-
-
-\section{Motivation \sphinxhyphen{} how to proceed?}
-\label{\detokenize{01-Introduction:motivation-how-to-proceed}}
-\sphinxAtStartPar
-\sphinxincludegraphics{{crazyworkflow}.png}
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-To understand what, why and how from the moment an image is produced until it is finished (published, used in a report, …)
-
-\item {} 
-\sphinxAtStartPar
-To learn how to go from one analysis on one image to 10, 100, or 1000 images (without working 10, 100, or 1000X harder)
-
-\end{itemize}
-
-
-\section{High acquisition rates}
-\label{\detokenize{01-Introduction:high-acquisition-rates}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Detectors are getting bigger and faster constantly
-
-\item {} 
-\sphinxAtStartPar
-Todays detectors are really fast
-
-\item {} 
-\sphinxAtStartPar
-2560 x 2160 images @ 1500+ times a second = 8GB/s
-
-\item {} 
-\sphinxAtStartPar
-Matlab / Avizo / Python / … are saturated after 60 seconds
-
-\item {} 
-\sphinxAtStartPar
-A single camera
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://news.cnet.com/8301-1023\_3-57498531-93/facebook-processes-more-than-500-tb-of-data-daily/}{More information per day than Facebook}
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://techcrunch.com/2013/01/17/instagram-reports-90m-monthly-active-users-40m-photos-per-day-and-8500-likes-per-second/}{Three times as many images per second as Instagram}
-
-\end{itemize}
-
-
-\section{Different sources of images}
-\label{\detokenize{01-Introduction:different-sources-of-images}}
-
-\subsection{X\sphinxhyphen{}Ray}
-\label{\detokenize{01-Introduction:x-ray}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-SRXTM images at (\textgreater{}1000fps) \(\rightarrow\) 8GB/s
-
-\item {} 
-\sphinxAtStartPar
-cSAXS diffraction patterns at 30GB/s
-
-\item {} 
-\sphinxAtStartPar
-Nanoscopium Beamline, 10TB/day, 10\sphinxhyphen{}500GB file sizes
-
-\end{itemize}
-
-
-\subsection{Optical}
-\label{\detokenize{01-Introduction:optical}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Light\sphinxhyphen{}sheet microscopy (see talk of Jeremy Freeman) produces images \(\rightarrow\) 500MB/s
-
-\item {} 
-\sphinxAtStartPar
-High\sphinxhyphen{}speed confocal images at (\textgreater{}200fps) \(\rightarrow\) 78Mb/s
-
-\end{itemize}
-
-
-\subsection{Personal}
-\label{\detokenize{01-Introduction:personal}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-GoPro 4 Black \sphinxhyphen{} 60MB/s (3840 x 2160 x 30fps) for \$600
-
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{https://www.kickstarter.com/projects/1623255426/fps1000-the-low-cost-high-frame-rate-camera}{fps1000} \sphinxhyphen{} 400MB/s (640 x 480 x 840 fps) for \$400
-
-\end{itemize}
-
-
-\section{Motivation}
-\label{\detokenize{01-Introduction:motivation}}\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
-\sphinxAtStartPar
-\sphinxstylestrong{Experimental Design} finding the right technique, picking the right dyes and samples has stayed relatively consistent, better techniques lead to more demanding scientists.
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstylestrong{Measurements} the actual acquisition speed of the data has increased wildly due to better detectors, parallel measurement, and new higher intensity sources
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstylestrong{Management} storing, backing up, setting up databases, these processes have become easier and more automated as data magnitudes have increased
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstylestrong{Post Processing} this portion has is the most time\sphinxhyphen{}consuming and difficult and has seen minimal improvements over the last years
-
-\end{enumerate}
-
-
-\bigskip\hrule\bigskip
-
-
-
-\section{How is time used during the experiment life cycle?}
-\label{\detokenize{01-Introduction:how-is-time-used-during-the-experiment-life-cycle}}
-
-
-
-\section{So… how much is a TB, really?}
-\label{\detokenize{01-Introduction:so-how-much-is-a-tb-really}}
-\sphinxAtStartPar
-If \sphinxstylestrong{you} looked at one 1000 x 1000 sized image
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{n}{size} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{l+m+mi}{1000}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} 
-           \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{01-Introduction_19_0}.png}
-
-\sphinxAtStartPar
-every second, it would take you
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} assuming 16 bit images and a \PYGZsq{}metric\PYGZsq{} terabyte}
-\PYG{n}{time\PYGZus{}per\PYGZus{}tb}\PYG{o}{=}\PYG{l+m+mf}{1e12}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{o}{*}\PYG{l+m+mi}{1000}\PYG{o}{*}\PYG{l+m+mi}{16}\PYG{o}{/}\PYG{l+m+mi}{8}\PYG{p}{)} \PYG{o}{/} \PYG{p}{(}\PYG{l+m+mi}{60}\PYG{o}{*}\PYG{l+m+mi}{60}\PYG{p}{)}
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZpc{}04.1f}\PYG{l+s+s2}{ hours to view a terabyte}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{n}{time\PYGZus{}per\PYGZus{}tb}\PYG{p}{)}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-138.9 hours to view a terabyte
-\end{sphinxVerbatim}
-
-
-\section{Overwhelmed scientist}
-\label{\detokenize{01-Introduction:overwhelmed-scientist}}
-
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Count how many cells are in the bone slice
-
-\item {} 
-\sphinxAtStartPar
-Ignore the ones that are ‘too big’ or shaped ‘strangely’
-
-\item {} 
-\sphinxAtStartPar
-Are there more on the right side or left side?
-
-\item {} 
-\sphinxAtStartPar
-Are the ones on the right or left bigger, top or bottom?
-
-\end{itemize}
-
-
-
-\sphinxAtStartPar
-\sphinxincludegraphics{{bone-cells}.png}
-
-
-
-
-\section{More overwhelmed}
-\label{\detokenize{01-Introduction:more-overwhelmed}}
-
-
-
-\subsection{Many samples are needed}
-\label{\detokenize{01-Introduction:many-samples-are-needed}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Do it all over again for 96 more samples
-
-\item {} 
-\sphinxAtStartPar
-this time in 3D with 2000 slices instead of just one!
-
-\end{itemize}
-
-
-
-\sphinxAtStartPar
-\sphinxincludegraphics{{96-samples}.png}
-
-
-
-
-\section{Bring on the pain}
-\label{\detokenize{01-Introduction:bring-on-the-pain}}
-
-
-
-\subsection{Great variations in the population}
-\label{\detokenize{01-Introduction:great-variations-in-the-population}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Now again with 1090 samples!
-
-\item {} 
-\sphinxAtStartPar
-How to measure?
-
-\item {} 
-\sphinxAtStartPar
-How to analyze?
-
-\end{itemize}
-
-
-
-\sphinxAtStartPar
-\sphinxincludegraphics{{1090-samples}.png}
-
-
-
-
-\section{It gets better}
-\label{\detokenize{01-Introduction:it-gets-better}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Those metrics were quantitative and could be easily visually extracted from the images
-
-\item {} 
-\sphinxAtStartPar
-What happens if you have \sphinxstyleemphasis{softer} metrics
-
-\end{itemize}
-
-
-
-\sphinxAtStartPar
-\sphinxincludegraphics{{alignment-figure}.png}
-
-
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-How aligned are these cells?
-
-\item {} 
-\sphinxAtStartPar
-Is the group on the left more or less aligned than the right?
-
-\item {} 
-\sphinxAtStartPar
-errr?
-
-\end{itemize}
-
-
-\section{Dynamic Information}
-\label{\detokenize{01-Introduction:dynamic-information}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-How many bubbles are here?
-
-\item {} 
-\sphinxAtStartPar
-How fast are they moving?
-
-\item {} 
-\sphinxAtStartPar
-Do they all move the same speed?
-
-\item {} 
-\sphinxAtStartPar
-Do bigger bubbles move faster?
-
-\item {} 
-\sphinxAtStartPar
-Do bubbles near the edge move slower?
-
-\item {} 
-\sphinxAtStartPar
-Are they rearranging?
-
-\end{itemize}
-
-\sphinxAtStartPar
-
 
 
 \section{Course Overview}
@@ -782,7 +484,7 @@ Basic overview of the course, introduction to …
 \sphinxstylestrong{Data}
 &
 \sphinxAtStartPar
-5th March
+4th March
 &
 \sphinxAtStartPar
 Image Enhancement
@@ -795,7 +497,7 @@ Overview of what techniques are available for …
 
 &
 \sphinxAtStartPar
-March
+11th March
 &
 \sphinxAtStartPar
 Ground Truth: Building and Augmenting Datasets
@@ -808,7 +510,7 @@ Examples of large datasets, how they were buil…
 \sphinxstylestrong{Segmentation}
 &
 \sphinxAtStartPar
-March
+18th March
 &
 \sphinxAtStartPar
 Basic Segmentation, Discrete Binary Structures
@@ -821,7 +523,7 @@ How to convert images into structures, startin…
 
 &
 \sphinxAtStartPar
-19th March
+25th March
 &
 \sphinxAtStartPar
 Advanced Segmentation
@@ -834,7 +536,7 @@ More advanced techniques for extracting struct…
 
 &
 \sphinxAtStartPar
-26th March
+1st April
 &
 \sphinxAtStartPar
 Supervised Problems and Segmentation
@@ -844,10 +546,23 @@ More advanced techniques for extracting struct…
 \\
 \hline
 \sphinxAtStartPar
+
+&
+\sphinxAtStartPar
+8th April
+&
+\sphinxAtStartPar
+Easter break
+&
+\sphinxAtStartPar
+Search for eggs
+\\
+\hline
+\sphinxAtStartPar
 \sphinxstylestrong{Analysis}
 &
 \sphinxAtStartPar
-2nd April
+15th April
 &
 \sphinxAtStartPar
 Analyzing Single Objects, Shape, and Texture
@@ -860,7 +575,7 @@ The analysis and characterization of single st…
 
 &
 \sphinxAtStartPar
-9th April
+22th April
 &
 \sphinxAtStartPar
 Analyzing Complex Objects and Distributions
@@ -873,7 +588,7 @@ What techniques are available to analyze more …
 
 &
 \sphinxAtStartPar
-16th April
+29th April
 &
 \sphinxAtStartPar
 Dynamic Experiments
@@ -886,46 +601,46 @@ Performing tracking and registration in dynami…
 \sphinxstylestrong{Big Imaging}
 &
 \sphinxAtStartPar
-23rd April
+6th May
 &
 \sphinxAtStartPar
-Statistics, Prediction, and Reproducibility
+Imaging with multiple modalities
 &
 \sphinxAtStartPar
-Making a statistical analysis from quantified …
+Combining information from different sources
 \\
 \hline
 \sphinxAtStartPar
 
 &
 \sphinxAtStartPar
-30th April
+13th May
 &
 \sphinxAtStartPar
-Guest Lectures
+Ascension
 &
 \sphinxAtStartPar
-How Roche does Microscopy at Scale with High C…
+Enjoy a lovely early summers day
 \\
 \hline
 \sphinxAtStartPar
 
 &
 \sphinxAtStartPar
-7th May
+20th May
 &
 \sphinxAtStartPar
 Scaling Up / Big Data
 &
 \sphinxAtStartPar
-Performing large scale analyses on clusters an…
+Performing large scale analyses on clusters
 \\
 \hline
 \sphinxAtStartPar
 \sphinxstylestrong{Wrapping up}
 &
 \sphinxAtStartPar
-14th May
+27th May
 &
 \sphinxAtStartPar
 Project Presentations
@@ -939,29 +654,474 @@ You present your projects
 \sphinxattableend\end{savenotes}
 
 
-\section{Projects}
-\label{\detokenize{01-Introduction:projects}}\begin{itemize}
+\section{Today’s  Reading Material}
+\label{\detokenize{01-Introduction:today-s-reading-material}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-A small image processing project
+Some book on image processing with python (to be updated)
 
 \item {} 
 \sphinxAtStartPar
-Can be related to you Master or PhD project
+Cloud Computing
 
 \item {} 
 \sphinxAtStartPar
-You will get input and ideas for your own projects
+\sphinxhref{http://www-inst.eecs.berkeley.edu/~cs61c/sp14/}{The Case for Energy\sphinxhyphen{}Proportional Computing} \_ Luiz André Barroso, Urs Hölzle, IEEE Computer, December 2007\_
 
 \item {} 
 \sphinxAtStartPar
-You will get hands on experience on the techniques you learn here
+\sphinxhref{http://www.gotw.ca/publications/concurrency-ddj.htm}{Concurrency}
 
 \item {} 
 \sphinxAtStartPar
-Can be used as discussion base for your exam
+Reproducibility
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble}{Trouble at the lab} \sphinxstyleemphasis{Scientists like to think of science as self\sphinxhyphen{}correcting. To an alarming degree, it is not}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{http://simplystatistics.org/2014/06/06/the-real-reason-reproducible-research-is-important/}{Why is reproducible research important?} \sphinxstyleemphasis{The Real Reason Reproducible Research is Important}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{http://software-carpentry.org/blog/2011/10/the-science-code-manifestos-five-cs.html}{Science Code Manifesto}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{https://www.coursera.org/course/repdata}{Reproducible Research Class} @ Johns Hopkins University
 
 \end{itemize}
+
+
+\section{Literature / Useful References}
+\label{\detokenize{01-Introduction:literature-useful-references}}
+\sphinxAtStartPar
+These are books that are useful in many of the lectures. In particular the Image processing hand book by John Russ shows you an overview of typical image processing techniques.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+John C. Russ, “The Image Processing Handbook”,(Boca Raton, CRC Press)
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Available \sphinxhref{http://dx.doi.org/10.1201/9780203881095}{online} within domain \sphinxhref{http://ethz.ch}{ethz.ch} (or \sphinxhref{http://proxy.ethz.ch}{proxy.ethz.ch} / public VPN)
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+Jean Claude, Morphometry with R
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{http://link.springer.com/book/10.1007\%2F978-0-387-77789-4}{Online} through ETHZ
+
+\end{itemize}
+
+\end{itemize}
+
+
+\chapter{Motivation \sphinxhyphen{} You have data!}
+\label{\detokenize{01-Introduction:motivation-you-have-data}}
+
+\section{Imaging experiments produce a lot of data}
+\label{\detokenize{01-Introduction:imaging-experiments-produce-a-lot-of-data}}
+\sphinxAtStartPar
+Working with imaging techniques you will get a lot of images that shows the sample in the eye of the technique you are using. The experiment were you acquire these images is only a small fraction of the complete workflow from idea to the final scientific publiction. The amout of data can also be overwhelming for many scientist with the consequence that the data is never analyzed properly, and then also not published in the way it really deserves.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.8]{{yougotdata}.png}
+\caption{A typical imaging experiment produces large amounts of data.}\label{\detokenize{01-Introduction:id7}}\end{figure}
+
+
+
+
+\section{Motivation \sphinxhyphen{} how to proceed?}
+\label{\detokenize{01-Introduction:motivation-how-to-proceed}}
+\sphinxAtStartPar
+Now is the question how to proceed towards a working analysis workflow that results in repeatable analyses for your data.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{crazyworkflow}.png}
+\caption{A crazy unstructured and unclear work flow to analyze images from your experiment.}\label{\detokenize{01-Introduction:id8}}\end{figure}
+
+
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+To understand what, why and how from the moment an image is produced until it is finished (published, used in a report, …)
+
+\item {} 
+\sphinxAtStartPar
+To learn how to go from one analysis on one image to 10, 100, or 1000 images (without working 10, 100, or 1000X harder)
+
+\end{itemize}
+
+
+\section{High acquisition rates}
+\label{\detokenize{01-Introduction:high-acquisition-rates}}
+\sphinxAtStartPar
+The trend in imaging is that experimentalist want to follow faster and faster processes. This wish can be supported the technical development of new detectors that provide very high acqisition rates. Here, we can also see that some cameras are able to produce more data than is uploaded per day on facebook and instagram!
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Detectors are getting bigger and faster constantly
+
+\item {} 
+\sphinxAtStartPar
+Todays detectors are really fast
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+2560 x 2160 images @ 1500+ times a second = 8GB/s
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+Matlab / Avizo / Python / … are saturated after 60 seconds
+
+\end{itemize}
+
+\sphinxAtStartPar
+Many of the analysis platforms are already overwhelmed with handling the data rates produced by typical detector systems at imaging instrument. This restriction is partly due to hardware limitations. The memory is to small, hard drives are not sufficiently fast. The other side of the problem is that these tools are not prepared to work with large data streams.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+A single camera
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{http://news.cnet.com/8301-1023\_3-57498531-93/facebook-processes-more-than-500-tb-of-data-daily/}{More information per day than Facebook}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{http://techcrunch.com/2013/01/17/instagram-reports-90m-monthly-active-users-40m-photos-per-day-and-8500-likes-per-second/}{Three times as many images per second as Instagram}
+
+\end{itemize}
+
+\end{itemize}
+
+
+\section{Different sources of images}
+\label{\detokenize{01-Introduction:different-sources-of-images}}
+\sphinxAtStartPar
+Images are produced by many different detectors and in some cases they are even the output from simulations. In the next sections we see some different imaging modalities and the data rates they produce.
+
+
+\subsection{X\sphinxhyphen{}Ray}
+\label{\detokenize{01-Introduction:x-ray}}
+\sphinxAtStartPar
+X\sphinxhyphen{}ray imaging at syncrotron light sources produces very high frame rates thanks to the high brilliance of the source. Here are some examples of data rates from some instruments.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+SRXTM images at (\textgreater{}1000fps) \(\rightarrow\) 8GB/s
+
+\item {} 
+\sphinxAtStartPar
+cSAXS diffraction patterns at 30GB/s
+
+\item {} 
+\sphinxAtStartPar
+Nanoscopium Beamline, 10TB/day, 10\sphinxhyphen{}500GB file sizes
+
+\end{itemize}
+
+
+\subsection{Optical}
+\label{\detokenize{01-Introduction:optical}}
+\sphinxAtStartPar
+Optical imaging methods are more modest than the X\sphinxhyphen{}ray techniques, but still they produce data in the order of some hundred Mb per second.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Light\sphinxhyphen{}sheet microscopy (see talk of Jeremy Freeman) produces images \(\rightarrow\) 500MB/s
+
+\item {} 
+\sphinxAtStartPar
+High\sphinxhyphen{}speed confocal images at (\textgreater{}200fps) \(\rightarrow\) 78Mb/s
+
+\end{itemize}
+
+
+\subsection{Personal}
+\label{\detokenize{01-Introduction:personal}}
+\sphinxAtStartPar
+Finally, we also take a look at cameras on the consumer market and see that these devices also produce relatively high data rates. This data must mostly be handled by normal household computers, which can be a challenging task…
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+GoPro 4 Black \sphinxhyphen{} 60MB/s (3840 x 2160 x 30fps) for \$600
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{https://www.kickstarter.com/projects/1623255426/fps1000-the-low-cost-high-frame-rate-camera}{fps1000} \sphinxhyphen{} 400MB/s (640 x 480 x 840 fps) for \$400
+
+\end{itemize}
+
+
+\section{The experiment life cycle}
+\label{\detokenize{01-Introduction:the-experiment-life-cycle}}
+\sphinxAtStartPar
+Now we have seen that there is a wish to obtain data at high rates and that there are technological solutions to provide this. The remainging part to develop is the post processing.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Experimental Design} finding the right technique, picking the right dyes and samples has stayed relatively consistent, better techniques lead to more demanding scientists.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Measurements} the actual acquisition speed of the data has increased wildly due to better detectors, parallel measurement, and new higher intensity sources
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Management} storing, backing up, setting up databases, these processes have become easier and more automated as data magnitudes have increased
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Post Processing} this portion has is the most time\sphinxhyphen{}consuming and difficult and has seen minimal improvements over the last years
+
+\end{enumerate}
+
+
+\bigskip\hrule\bigskip
+
+
+\sphinxAtStartPar
+The post processing is the least trivial part to generalize. The initial steps are often posible to generalize as these are operations that all types of imaging experiments need to go through. When it comes to the experiment specific analysis the degree of generalization decreases and the scientists are left to develop their own procedure to extract the quantitative information from the images.
+
+
+\subsection{How is time used during the experiment life cycle?}
+\label{\detokenize{01-Introduction:how-is-time-used-during-the-experiment-life-cycle}}
+\sphinxAtStartPar
+With the development of faster acquisision systems there has been a change in the ratio between
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Exeperiment design and preparation
+
+\item {} 
+\sphinxAtStartPar
+Measurements
+
+\item {} 
+\sphinxAtStartPar
+Data management
+
+\item {} 
+\sphinxAtStartPar
+and post processing
+
+\end{itemize}
+
+\sphinxAtStartPar
+over the years. This in particular the case for X\sphinxhyphen{}ray imaging where the flux is high and the acquisition is limited by the detector technology. In other modalities, where the measurement is flux limited we see a different distribution.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.5]{{qmia-014}.png}
+\caption{The ratio of how much time is spent on different tasks during the lifecycle of an imaging experiment.}\label{\detokenize{01-Introduction:id9}}\end{figure}
+
+\sphinxAtStartPar
+What also increases the post processing time is that the experiments have become more complicated over the years. Twenty years ago, it was sufficient to show qualitative information a beautify volume rendering or a movie of the sample. Meanwhile, it has become a requirement that you provide quantitative results from the images.
+
+
+
+
+\section{Handling masses of images}
+\label{\detokenize{01-Introduction:handling-masses-of-images}}
+
+\subsection{So… how much is a TB, really?}
+\label{\detokenize{01-Introduction:so-how-much-is-a-tb-really}}
+\sphinxAtStartPar
+We have been talking about different data amounts of MB, GB, and TB. But, what does that really mean in reality? Let us explore what is a TB.
+
+\sphinxAtStartPar
+If \sphinxstylestrong{you} looked at one image with 1000 x 1000 pixels (1 Mpixels)
+
+\sphinxAtStartPar
+Here we create one image with 1000x1000 pixels with random values form a uniform distribution {[}0,1{]} and show it.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{n}{size} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{l+m+mi}{1000}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} 
+           \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{01-Introduction_62_0}.png}
+
+\sphinxAtStartPar
+every second, it would take you
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} assuming 16 bit images and a \PYGZsq{}metric\PYGZsq{} terabyte}
+\PYG{n}{OneTB}     \PYG{o}{=} \PYG{l+m+mf}{1e12}
+\PYG{n}{ImageSize} \PYG{o}{=} \PYG{l+m+mi}{1000}\PYG{o}{*}\PYG{l+m+mi}{1000}\PYG{o}{*}\PYG{l+m+mi}{16}\PYG{o}{/}\PYG{l+m+mi}{8}
+\PYG{n}{hour}      \PYG{o}{=} \PYG{l+m+mi}{60}\PYG{o}{*}\PYG{l+m+mi}{60}
+
+\PYG{n}{time\PYGZus{}per\PYGZus{}tb} \PYG{o}{=} \PYG{n}{OneTB}\PYG{o}{/}\PYG{n}{ImageSize}\PYG{o}{/}\PYG{n}{hour}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}0:0.1f\PYGZcb{}}\PYG{l+s+s2}{ hours to view a terabyte}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{time\PYGZus{}per\PYGZus{}tb}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+138.9 hours to view a terabyte
+\end{sphinxVerbatim}
+
+
+\subsection{Overwhelmed scientist}
+\label{\detokenize{01-Introduction:overwhelmed-scientist}}
+\sphinxAtStartPar
+Providing quantitative statements about image data is often very hard. You can may manage to do it on a single images like the bone image below.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics{{bone-cells}.png}
+\caption{A slice image show bone cells.}\label{\detokenize{01-Introduction:id10}}\end{figure}
+
+\sphinxAtStartPar
+You would like to know:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Count how many cells are in the bone slice.
+
+\item {} 
+\sphinxAtStartPar
+Ignore the ones that are ‘too big’ or shaped ‘strangely’.
+
+\item {} 
+\sphinxAtStartPar
+Are there more on the right side or left side?
+
+\item {} 
+\sphinxAtStartPar
+Are the ones on the right or left bigger, top or bottom?
+
+\end{itemize}
+
+
+
+
+\subsection{More overwhelmed scientist}
+\label{\detokenize{01-Introduction:more-overwhelmed-scientist}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Statistical} \PYG{n}{analysis} \PYG{n}{requires} \PYG{n}{that} \PYG{n}{you} \PYG{n}{study} \PYG{n}{many} \PYG{n}{samples} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{just} \PYG{n}{a} \PYG{n}{single} \PYG{n}{one}\PYG{o}{.} \PYG{n}{Furthermore}\PYG{p}{,} \PYG{n}{the} 
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Many samples are needed:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Do it all over again for 96 more samples
+
+\item {} 
+\sphinxAtStartPar
+This time in 3D with 2000 slices instead of just one!
+
+\end{itemize}
+
+
+
+
+\subsection{Bring on the pain}
+\label{\detokenize{01-Introduction:bring-on-the-pain}}
+\sphinxAtStartPar
+Great variations in the population
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Now again with 1090 samples!
+
+\item {} 
+\sphinxAtStartPar
+How to measure?
+
+\item {} 
+\sphinxAtStartPar
+How to analyze?
+
+\end{itemize}
+
+
+
+
+\section{It gets better}
+\label{\detokenize{01-Introduction:it-gets-better}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Those metrics were quantitative and could be easily visually extracted from the images
+
+\item {} 
+\sphinxAtStartPar
+What happens if you have \sphinxstyleemphasis{softer} metrics
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+How aligned are these cells?
+
+\item {} 
+\sphinxAtStartPar
+Is the group on the left more or less aligned than the right?
+
+\item {} 
+\sphinxAtStartPar
+errr?
+
+\end{itemize}
+
+\end{itemize}
+
+
+
+
+\section{Dynamic Information}
+\label{\detokenize{01-Introduction:dynamic-information}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+How many bubbles are here?
+
+\item {} 
+\sphinxAtStartPar
+How fast are they moving?
+
+\item {} 
+\sphinxAtStartPar
+Do they all move the same speed?
+
+\item {} 
+\sphinxAtStartPar
+Do bigger bubbles move faster?
+
+\item {} 
+\sphinxAtStartPar
+Do bubbles near the edge move slower?
+
+\item {} 
+\sphinxAtStartPar
+Are they rearranging?
+
+\end{itemize}
+
+\sphinxAtStartPar
+
 
 
 \chapter{Images}
@@ -970,12 +1130,8 @@ Can be used as discussion base for your exam
 \section{An introduction to images}
 \label{\detokenize{01-Introduction:an-introduction-to-images}}
 
-\chapter{What is an image?}
+\subsection{What is an image?}
 \label{\detokenize{01-Introduction:what-is-an-image}}
-
-\bigskip\hrule\bigskip
-
-
 \sphinxAtStartPar
 A very abstract definition:
 \begin{itemize}
@@ -993,50 +1149,52 @@ A very abstract definition:
 In most cases this is a 2\sphinxhyphen{} or 3\sphinxhyphen{}dimensional position (x,y,z coordinates) and a numeric value (intensity)
 
 
-\section{Image sampling}
+\subsection{Image sampling}
 \label{\detokenize{01-Introduction:image-sampling}}
 
-
-
-\begin{itemize}
-\item {} 
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+The world is
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+The computer needs
+\\
+\hline
 \sphinxAtStartPar
 Continuous
-
-\item {} 
-\sphinxAtStartPar
-No boundaries
-
-\end{itemize}
-
-
-\begin{itemize}
-\item {} 
+&
 \sphinxAtStartPar
 Discrete levels
-
-\item {} 
+\\
+\hline
+\sphinxAtStartPar
+No boundaries
+&
 \sphinxAtStartPar
 Limited extent
-
-\end{itemize}
-
-
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
 
 \begin{figure}[htbp]
 \centering
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{grid}.pdf}
-\caption{The real world is sampled into discrete images with limited extent.}\label{\detokenize{01-Introduction:id7}}\end{figure}
+\caption{The real world is sampled into discrete images with limited extent.}\label{\detokenize{01-Introduction:id11}}\end{figure}
 
 
 
+
+\subsection{What does sampling mean}
+\label{\detokenize{01-Introduction:what-does-sampling-mean}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{transform} \PYG{k+kn}{import} \PYG{n}{resize}
-
 \PYG{n}{img}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../common/data/wood.npy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -1046,15 +1204,15 @@ Limited extent
 \PYG{n}{levels}   \PYG{o}{=} \PYG{l+m+mi}{4} \PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{floor}\PYG{p}{(}\PYG{n}{img}\PYG{o}{*}\PYG{n}{levels}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{ Levels}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{levels}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_34_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_82_0}.png}
 
 
 \chapter{Let’s create a small image}
 \label{\detokenize{01-Introduction:let-s-create-a-small-image}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{n}{basic\PYGZus{}image} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{choice}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{xx}\PYG{p}{,} \PYG{n}{yy} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n}{xx}\PYG{p}{,} \PYG{n}{yy}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{image\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n+nb}{dict}\PYG{p}{(}\PYG{n}{x} \PYG{o}{=} \PYG{n}{xx}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
                  \PYG{n}{y} \PYG{o}{=} \PYG{n}{yy}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
                  \PYG{n}{Intensity} \PYG{o}{=} \PYG{n}{basic\PYGZus{}image}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
@@ -1063,11 +1221,11 @@ Limited extent
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
    x  y  Intensity
-0  0  0         96
-1  1  0         39
-2  2  0         49
-3  3  0         17
-4  4  0         55
+0  0  0         31
+1  1  0         43
+2  2  0         44
+3  3  0          6
+4  4  0         52
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -1076,7 +1234,7 @@ Limited extent
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} 
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_37_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_85_0}.png}
 
 
 \section{2D Intensity Images}
@@ -1103,37 +1261,37 @@ some features are easier to detect \sphinxhref{https://doi.org/10.1063/1.4822401
     \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{n}{c\PYGZus{}row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{c\PYGZus{}row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}02d}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{c\PYGZus{}row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{fontdict} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{n}{color} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_39_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_87_0}.png}
 
+
+\subsection{Different colormaps}
+\label{\detokenize{01-Introduction:different-colormaps}}
 \sphinxAtStartPar
 Color maps can be arbitrarily defined based on how we would like to visualize the information in the image
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{n}{plot\PYGZus{}image} \PYG{o}{=} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{jet}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plot\PYGZus{}image} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{jet}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{plot\PYGZus{}image}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_41_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_89_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}
-
-\PYG{n}{plot\PYGZus{}image} \PYG{o}{=} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plot\PYGZus{}image} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{plot\PYGZus{}image}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_42_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_90_0}.png}
 
 
-\section{Lookup Tables}
+\subsection{Lookup Tables}
 \label{\detokenize{01-Introduction:lookup-tables}}
 \sphinxAtStartPar
-Formally a lookup table is a function which
+Formally a color map is lookup table or a function which
 \$\( f(\textrm{Intensity}) \rightarrow \textrm{Color} \)\$
 
 
-\subsection{Matplotlib’s color maps}
+\subsubsection{Matplotlib’s color maps}
 \label{\detokenize{01-Introduction:matplotlib-s-color-maps}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1201,22 +1359,25 @@ Formally a lookup table is a function which
     
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_44_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_92_0}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_44_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_92_1}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_44_2}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_92_2}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_44_3}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_92_3}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_44_4}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_92_4}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_44_5}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_92_5}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_44_6}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_92_6}.png}
 
 
 
+
+\subsection{How are the colors combined}
+\label{\detokenize{01-Introduction:how-are-the-colors-combined}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1242,7 +1403,7 @@ Formally a lookup table is a function which
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{ Component}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{colors}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_46_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_95_0}.png}
 
 
 \section{Applied LUTs}
@@ -1267,8 +1428,11 @@ These transformations can also be non\sphinxhyphen{}linear as is the case of the
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xscale}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{log}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Red Component}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_48_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_97_0}.png}
 
+
+\subsection{LUTs on real images}
+\label{\detokenize{01-Introduction:luts-on-real-images}}
 \sphinxAtStartPar
 On a real image the difference is even clearer
 
@@ -1288,7 +1452,7 @@ On a real image the difference is even clearer
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{grayscale\PYGZhy{}log LUT}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_50_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_99_0}.png}
 
 
 \section{3D Images}
@@ -1303,15 +1467,18 @@ For a 3D image, the position or spatial component has a 3rd dimension (z if it i
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{cube_10x10x10}.pdf}
-\caption{Three\sphinxhyphen{}dimensional data can be a volume in space.}\label{\detokenize{01-Introduction:id8}}\end{figure}
+\caption{Three\sphinxhyphen{}dimensional data can be a volume in space.}\label{\detokenize{01-Introduction:id12}}\end{figure}
 
 \begin{figure}[htbp]
 \centering
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{timeseries_visualization}.pdf}
-\caption{A movie can also be seen as a three\sphinxhyphen{}dimensional image.}\label{\detokenize{01-Introduction:id9}}\end{figure}
+\caption{A movie can also be seen as a three\sphinxhyphen{}dimensional image.}\label{\detokenize{01-Introduction:id13}}\end{figure}
 
+
+\subsection{A 3D image as array}
+\label{\detokenize{01-Introduction:a-3d-image-as-array}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{n}{vol\PYGZus{}image} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{27}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
@@ -1332,6 +1499,9 @@ For a 3D image, the position or spatial component has a 3rd dimension (z if it i
   [24 25 26]]]
 \end{sphinxVerbatim}
 
+
+\subsection{Showing 2D slices from volume}
+\label{\detokenize{01-Introduction:showing-2d-slices-from-volume}}
 \sphinxAtStartPar
 This can then be rearranged from a table form into an array form and displayed as a series of slices
 
@@ -1352,7 +1522,7 @@ This can then be rearranged from a table form into an array form and displayed a
  [24 25 26  0  0  0]]
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_55_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_108_1}.png}
 
 
 \section{Multiple Values}
@@ -1361,9 +1531,6 @@ This can then be rearranged from a table form into an array form and displayed a
 In the images thus far, we have had one value per position, but there is no reason there cannot be multiple values. In fact this is what color images are (red, green, and blue) values and even 4 channels with transparency (alpha) as a different. For clarity we call the \sphinxstylestrong{dimensionality} of the image the number of dimensions in the spatial position, and the \sphinxstylestrong{depth} the number in the value.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
-\PYG{k+kn}{from} \PYG{n+nn}{itertools} \PYG{k+kn}{import} \PYG{n}{product}
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{n}{base\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{dict}\PYG{p}{(}\PYG{n}{x} \PYG{o}{=} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n}{y}\PYG{p}{)} \PYG{k}{for} \PYG{n}{x}\PYG{p}{,}\PYG{n}{y} \PYG{o+ow}{in} \PYG{n}{product}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{25}\PYG{p}{)}
 \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Transparency}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{25}\PYG{p}{)}
@@ -1392,7 +1559,7 @@ This can then be rearranged from a table form into an array form and displayed a
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Transparency}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_59_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_113_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
@@ -1400,7 +1567,7 @@ This can then be rearranged from a table form into an array form and displayed a
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_60_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_114_0}.png}
 
 
 \section{Hyperspectral Imaging}
@@ -1422,7 +1589,7 @@ At each point in the image (black dot), instead of having just a single value, t
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{im\PYGZus{}pos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{im\PYGZus{}pos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{c} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{blue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_62_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_116_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{full\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../common/data/full\PYGZus{}img.csv}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{query}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{wavenum\PYGZlt{}1200}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -1451,13 +1618,22 @@ At each point in the image (black dot), instead of having just a single value, t
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{c\PYGZus{}rows}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{wavenum}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{c\PYGZus{}rows}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{val}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r.}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_64_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_118_0}.png}
 
 
 \chapter{Image Formation}
 \label{\detokenize{01-Introduction:image-formation}}
 \sphinxAtStartPar
-\sphinxincludegraphics{{image-formation}.png}
+The image formation process is the process to use some kind of excitation or impulse probe a sample. This requires the interaction of four parts.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics{{image-formation}.pdf}
+\caption{The parts involved in the image formation process probing a sample.}\label{\detokenize{01-Introduction:id14}}\end{figure}
+
+
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -1667,7 +1843,7 @@ Optical imaging, microscopy
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{real}\PYG{p}{(}\PYG{n}{rec\PYGZus{}img}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{l+m+mi}{255}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Reconstructed}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_68_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_124_0}.png}
 
 
 \section{Indirect / Computational imaging}
@@ -1700,7 +1876,7 @@ Response must be transformed (usually computationally) to produce an image
 1.146423838816545 6.61125552595089 3.3563935033662253
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_70_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_126_1}.png}
 
 
 \section{Traditional Imaging}
@@ -1996,7 +2172,7 @@ Which center square seems brighter?
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{img\PYGZus{}b}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_81_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_137_0}.png}
 
 
 \section{Intensity gradients}
@@ -2019,7 +2195,7 @@ Are the intensities constant in the image?
 \PYGZlt{}matplotlib.image.AxesImage at 0x1c5b4853d0\PYGZgt{}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_83_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_139_1}.png}
 
 
 \section{Reproducibility vs. Repeatability}
@@ -2032,7 +2208,7 @@ Are the intensities constant in the image?
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{reproducibility}.pdf}
-\caption{A workflow describing the concept of reproducibility.}\label{\detokenize{01-Introduction:id10}}\end{figure}
+\caption{A workflow describing the concept of reproducibility.}\label{\detokenize{01-Introduction:id15}}\end{figure}
 
 
 
@@ -2044,7 +2220,7 @@ Are the intensities constant in the image?
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{repeatability}.pdf}
-\caption{A workflow describing the concept of reproducibility.}\label{\detokenize{01-Introduction:id11}}\end{figure}
+\caption{A workflow describing the concept of reproducibility.}\label{\detokenize{01-Introduction:id16}}\end{figure}
 
 
 
@@ -2140,7 +2316,7 @@ Write clear and understandable code
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{semilogy}\PYG{p}{(}\PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Count(1000s)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{b.\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1000s of transitiors}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{semilogy}\PYG{p}{(}\PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Clock(MHz)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r.\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Clockspeed (MHz)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{p}{;}\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_92_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_148_0}.png}
 
 \sphinxAtStartPar
 \sphinxstyleemphasis{Based on data from \sphinxurl{https://gist.github.com/humberto-ortiz/de4b3a621602b78bf90d}}
@@ -2436,21 +2612,21 @@ What is a DAG good for?
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_106_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_162_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}3} \PYG{o}{=} \PYG{n}{image\PYGZus{}1} \PYG{o}{+} \PYG{n}{image\PYGZus{}2}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}3}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_107_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_163_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}4} \PYG{o}{=} \PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{image\PYGZus{}2}\PYG{o}{*}\PYG{l+m+mi}{50}\PYG{p}{)}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}4}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_108_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_164_0}.png}
 
 
 \chapter{Let’s go big}
@@ -2466,28 +2642,28 @@ Now let’s see where this can be really useful
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_110_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_166_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}4} \PYG{o}{=} \PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{image\PYGZus{}2}\PYG{o}{*}\PYG{l+m+mi}{50}\PYG{p}{)}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}4}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_111_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_167_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}5} \PYG{o}{=} \PYG{n}{da}\PYG{o}{.}\PYG{n}{matmul}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{p}{,} \PYG{n}{image\PYGZus{}2}\PYG{p}{)}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}5}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_112_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_168_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}6} \PYG{o}{=} \PYG{p}{(}\PYG{n}{da}\PYG{o}{.}\PYG{n}{matmul}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{p}{,} \PYG{n}{image\PYGZus{}2}\PYG{p}{)}\PYG{o}{+}\PYG{n}{image\PYGZus{}1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{image\PYGZus{}2}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}6}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_113_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_169_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{dask\PYGZus{}ndfilters} \PYG{k}{as} \PYG{n+nn}{da\PYGZus{}ndfilt}
@@ -2495,7 +2671,7 @@ Now let’s see where this can be really useful
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}7}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_114_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_170_0}.png}
 
 
 \chapter{Deep Learning}

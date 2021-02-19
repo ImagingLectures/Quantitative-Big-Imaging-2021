@@ -10,6 +10,7 @@ __Quantitative Big Imaging__ ETHZ: 227-0966-00L
 ## Todays lecture
 
 - About the course
+- Motivating the use of quantitive methods in imaging
 - What is an image?
 - Where do images come from?
 - Science and Reproducibility
@@ -17,13 +18,19 @@ __Quantitative Big Imaging__ ETHZ: 227-0966-00L
 
 ### We need some python modules
 
+Python is a modular scripting language with limited functionality. Features are added through modules that are imported.
+These are the modules that are needed for this lecture. Please run this cell before you start using the notebook.
+
 %matplotlib inline
-import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+
 from skimage.io import imread
 from scipy.ndimage import convolve
 from skimage.morphology import disk
-import numpy as np
+from skimage.transform import resize
+from itertools import product
 import os
 
 
@@ -40,7 +47,9 @@ import os
 ## Who are we?
 <p style="font-size:1.5em;padding-bottom: 0.25em;">Anders Kaestner, PhD</p>  
 
-Lectures and exercises
+__Anders Kaestner__
+
+You will hear me a lot during this course. I am the lecturer and I will also support you with problems during the exercises.
 
 <img src="figures/anders.jpeg" style="height:250px">
 
@@ -55,7 +64,9 @@ anders.kaestner@psi.ch
 
 <p style="font-size:1.5em;padding-bottom: 0.25em;">Stefano van Gogh</p> 
 
-Exercises
+__Stefano van Gogh__
+
+Will help you during the exercise sessions. 
 
  <img src="https://www.psi.ch/sites/default/files/styles/primer_teaser_square_scale/public/2019-06/picture.jpg?itok=t9wRh5Yb" style="height:250px">
 
@@ -66,73 +77,92 @@ stefano.van-gogh@psi.ch
 
 ## Who are you?
 
+This course is targeting a wide range of students with different levels of experience. In the table you'll see were students came from in previos years. Some have a technical background others are merely producing images in the line of their project and have never seen much more than photoshop and similar programs for processing image data. Using some kind of programming is nescessary to perform quantitative image analysis on large data sets. A single or a few images can easily be handled with interactive software, but taking it beyond that is hard without writing some lines of code. 
 
-|A wide spectrum of backgrounds| | A wide range of skills|
-|:---:|:---:|:---:|
-| Biomedical Engineers <br /> Physicists <br /> Chemists <br /> Art History Researchers <br /> Mechanical Engineers <br /> and Computer Scientists| ![](figures/arrowsign.png) |I think I've heard of python before <br /> <br /> <br /> I write template C++ code and hand optimize it afterwards|
+Now, some of you have little to no programming experience while others have been programming since they got their first computer in the hand.
 
+|A wide spectrum of backgrounds|  A wide range of skills|
+|:---:|:---:|
+| Biomedical Engineers | |
+| Physicists | I think I've heard of python before|
+|Chemists | . |
+|Art History Researchers | .|
+|Mechanical Engineers | I write template C++ code and hand optimize it afterwards |
+| and Computer Scientists|  |
+
+<img src='figures/arrowsign.svg'>
 
 ## So how will this ever work?
+
+Now you maybe start to get worried! The purpose of this course is not to teach you programming but rather to provide you with a bag full recipes that you can use in your projects. Most of these recipes are just a list of the commands from different python moduls that you need to perform your analysis. A side-effect will probably be that you learn one or two programming tricks on the way.
+
+In the lectures, there will be small code pieces on the slides. Some of these are there to illustrate how an operation works, while other parts are there for the nice presentation of the results (this is mostly the second half of the code cell). Presenting the results is important. In the end, you want to show your results to the scinetific community. So even though the plotting clutters the slide, there is something to learn there as well. 
 
 __Adaptive assignments__
 
 - Conceptual, graphical assignments with practical examples
   - Emphasis on chosing correct steps and understanding workflow
 
+
+
 - Opportunities to create custom implementations, and perform more complicated analysis on larger datasets if interested
   - Emphasis on performance, customizing analysis, and scalability
 
-# Course Expectations
-<table>
-<tr><td>
-        
-## <center>Exercises</center>
-               
-</td>    
-<td>
-    
-## <center>Science Project</center>
-    
-</td></tr>
-    
-<tr>
-<td>
-    
-- Usually 1 set per lecture
-- Optional (but recommended!)
-- Easy - using GUIs (KNIME and ImageJ) and completing Matlab Scripts (just lecture 2)
-- Advanced - Writing Python, Java, Scala, ...
+## Course Expectations
 
-</td>
-<td>
-    
-- Optional (but strongly recommended)
-- Applying Techniques to answer scientific question!
- - Ideally use on a topic relevant for your current project, thesis, or personal activities
- - or choose from one of ours (will be online, soon)
-- Present approach, analysis, and results
+The practical part of the course has two parts. None of these are mandatory, but they will help you to better understand use the material you have learnt in the lectures.
+
+| Exercises |
+|:---:|
+| Usually 1 set per lecture |
+| Optional (but recommended!) |
+| Easy - jupyter notebooks are prepared for the exercises |
+| Advanced - Writing Python, Java, C++, ... |
+
+The exercises are prepared in a way that you learn step by step what you need to do and guids you through the problems. We will be using jupyter notebooks for the lectures. This is a very common way to work with image data these days.
+
+| Science project |
+|:---:|
+| Optional (but strongly recommended) |
+| Applying Techniques to answer scientific question! |
+| Ideally use on a topic relevant for your current project, thesis, or personal activities |
+| or choose from one of ours (will be online, soon) |
+| Present approach, analysis, and results |
    
-    </td> 
-    </tr>
-</table>
 
-# Literature / Useful References
+In the optional science projects you will have to opportunity to test what you have learned during the course on real problems. This is the place for your creativity. 
 
+## Projects
 
-## General Material
-- Jean Claude, Morphometry with R
- - [Online](http://link.springer.com/book/10.1007%2F978-0-387-77789-4) through ETHZ
- - [Buy it](http://www.amazon.com/Morphometrics-R-Use-Julien-Claude/dp/038777789X)
-- John C. Russ, “The Image Processing Handbook”,(Boca Raton, CRC Press)
- - Available [online](http://dx.doi.org/10.1201/9780203881095) within domain ethz.ch (or proxy.ethz.ch / public VPN)
-- J. Weickert, Visualization and Processing of Tensor Fields
- - [Online](https://doi.org/10.1007/978-3-540-88378-4) through ETHZ
-
-## Today's Material
+- A small image processing project
+- Can be related to you Master or PhD project
+- You will get input and ideas for your own projects
+- You will get hands on experience on the techniques you learn here
+- Can be used as discussion base for your exam
 
 
-- Imaging
- - [ImageJ and SciJava](http://www.slideshare.net/CurtisRueden/imagej-and-the-scijava-software-stack)
+## Course Overview
+
+|Topic| Date| Title | Description |
+|:---:|:---|:---|:---|
+| __Introduction__ | 25th February| Introduction and Workflows | Basic overview of the course, introduction to ...|
+| __Data__         | 4th March | Image Enhancement |	Overview of what techniques are available for ...|
+|                  | 11th March | Ground Truth: Building and Augmenting Datasets | Examples of large datasets, how they were buil... |
+|__Segmentation__  | 18th March | Basic Segmentation, Discrete Binary Structures | How to convert images into structures, startin... |	
+|                  | 25th March	   | Advanced Segmentation	| More advanced techniques for extracting struct... |
+|                  | 1st April      | Supervised Problems and Segmentation	| More advanced techniques for extracting struct...|
+|                  | 8th April  | Easter break | Search for eggs|
+| __Analysis__     | 15th April	| Analyzing Single Objects, Shape, and Texture |	The analysis and characterization of single st...|
+|                  | 22th April	| Analyzing Complex Objects and Distributions	| What techniques are available to analyze more ...|
+|                  | 29th April	| Dynamic Experiments	| Performing tracking and registration in dynami...|
+|__Big Imaging__   | 6th May	| Imaging with multiple modalities | Combining information from different sources |
+|                  | 13th May	| Ascension | Enjoy a lovely early summers day |
+|                  | 20th May   | Scaling Up / Big Data	|Performing large scale analyses on clusters |	
+|__Wrapping up__   | 27th May   | Project Presentations |	You present your projects|
+
+## Today's  Reading Material
+
+- Some book on image processing with python (to be updated)
 - Cloud Computing
  - [The Case for Energy-Proportional Computing](http://www-inst.eecs.berkeley.edu/~cs61c/sp14/) _ Luiz André Barroso, Urs Hölzle, IEEE Computer, December 2007_
  - [Concurrency](http://www.gotw.ca/publications/concurrency-ddj.htm)
@@ -142,42 +172,90 @@ __Adaptive assignments__
  - [Science Code Manifesto](http://software-carpentry.org/blog/2011/10/the-science-code-manifestos-five-cs.html)
  - [Reproducible Research Class](https://www.coursera.org/course/repdata) @ Johns Hopkins University
 
-## Motivation - You have data!
+## Literature / Useful References
 
-### Imaging experiments produce a lot of data
-![](figures/yougotdata.png)
+These are books that are useful in many of the lectures. In particular the Image processing hand book by John Russ shows you an overview of typical image processing techniques. 
+
+
+- John C. Russ, “The Image Processing Handbook”,(Boca Raton, CRC Press)
+    - Available [online](http://dx.doi.org/10.1201/9780203881095) within domain ethz.ch (or proxy.ethz.ch / public VPN)
+- Jean Claude, Morphometry with R
+    - [Online](http://link.springer.com/book/10.1007%2F978-0-387-77789-4) through ETHZ
+
+
+# Motivation - You have data!
+
+## Imaging experiments produce a lot of data
+
+Working with imaging techniques you will get a lot of images that shows the sample in the eye of the technique you are using. The experiment were you acquire these images is only a small fraction of the complete workflow from idea to the final scientific publiction. The amout of data can also be overwhelming for many scientist with the consequence that the data is never analyzed properly, and then also not published in the way it really deserves. 
+```{figure} figures/yougotdata.png
+---
+scale: 80%
+---
+A typical imaging experiment produces large amounts of data.
+```
+
+<img src="figures/yougotdata.png" />
 
 ## Motivation - how to proceed?
 
-![Crazy Workflow](figures/crazyworkflow.png)
+Now is the question how to proceed towards a working analysis workflow that results in repeatable analyses for your data.
+```{figure} figures/crazyworkflow.png
+---
+scale: 100%
+---
+A crazy unstructured and unclear work flow to analyze images from your experiment.
+```
+
+<img src="figures/crazyworkflow.png">
+
 - To understand what, why and how from the moment an image is produced until it is finished (published, used in a report, …)
 - To learn how to go from one analysis on one image to 10, 100, or 1000 images (without working 10, 100, or 1000X harder)
 
 ## High acquisition rates
+
+The trend in imaging is that experimentalist want to follow faster and faster processes. This wish can be supported the technical development of new detectors that provide very high acqisition rates. Here, we can also see that some cameras are able to produce more data than is uploaded per day on facebook and instagram!
+
 - Detectors are getting bigger and faster constantly
 - Todays detectors are really fast
- - 2560 x 2160 images @ 1500+ times a second = 8GB/s
+    - 2560 x 2160 images @ 1500+ times a second = 8GB/s
 - Matlab / Avizo / Python / … are saturated after 60 seconds
+
+Many of the analysis platforms are already overwhelmed with handling the data rates produced by typical detector systems at imaging instrument. This restriction is partly due to hardware limitations. The memory is to small, hard drives are not sufficiently fast. The other side of the problem is that these tools are not prepared to work with large data streams.
+
 - A single camera
- - [More information per day than Facebook](http://news.cnet.com/8301-1023_3-57498531-93/facebook-processes-more-than-500-tb-of-data-daily/)
- - [Three times as many images per second as Instagram](http://techcrunch.com/2013/01/17/instagram-reports-90m-monthly-active-users-40m-photos-per-day-and-8500-likes-per-second/)
+    - [More information per day than Facebook](http://news.cnet.com/8301-1023_3-57498531-93/facebook-processes-more-than-500-tb-of-data-daily/)
+    - [Three times as many images per second as Instagram](http://techcrunch.com/2013/01/17/instagram-reports-90m-monthly-active-users-40m-photos-per-day-and-8500-likes-per-second/)
 
 ## Different sources of images
+
+Images are produced by many different detectors and in some cases they are even the output from simulations. In the next sections we see some different imaging modalities and the data rates they produce.
+
 ### X-Ray
+
+X-ray imaging at syncrotron light sources produces very high frame rates thanks to the high brilliance of the source. Here are some examples of data rates from some instruments.
+
  - SRXTM images at (>1000fps) → 8GB/s
  - cSAXS diffraction patterns at 30GB/s
  - Nanoscopium Beamline, 10TB/day, 10-500GB file sizes
 
 ### Optical
+
+Optical imaging methods are more modest than the X-ray techniques, but still they produce data in the order of some hundred Mb per second.
+
  - Light-sheet microscopy (see talk of Jeremy Freeman) produces images → 500MB/s
  - High-speed confocal images at (>200fps) → 78Mb/s
 
 ### Personal
- - GoPro 4 Black - 60MB/s (3840 x 2160 x 30fps) for \$600
- - [fps1000](https://www.kickstarter.com/projects/1623255426/fps1000-the-low-cost-high-frame-rate-camera) - 400MB/s (640 x 480 x 840 fps) for $400
 
-## Motivation
+Finally, we also take a look at cameras on the consumer market and see that these devices also produce relatively high data rates. This data must mostly be handled by normal household computers, which can be a challenging task...
 
+- GoPro 4 Black - 60MB/s (3840 x 2160 x 30fps) for \$600
+- [fps1000](https://www.kickstarter.com/projects/1623255426/fps1000-the-low-cost-high-frame-rate-camera) - 400MB/s (640 x 480 x 840 fps) for $400
+
+## The experiment life cycle
+
+Now we have seen that there is a wish to obtain data at high rates and that there are technological solutions to provide this. The remainging part to develop is the post processing.
 
 1. __Experimental Design__ finding the right technique, picking the right dyes and samples has stayed relatively consistent, better techniques lead to more demanding scientists.
 
@@ -189,15 +267,38 @@ __Adaptive assignments__
 
 ----
 
-## How is time used during the experiment life cycle?
-<img src="https://4quant.com/images/slides/qmia/qmia-014.png" style="height:500px">
+The post processing is the least trivial part to generalize. The initial steps are often posible to generalize as these are operations that all types of imaging experiments need to go through. When it comes to the experiment specific analysis the degree of generalization decreases and the scientists are left to develop their own procedure to extract the quantitative information from the images.
 
+### How is time used during the experiment life cycle?
 
-## So... how much is a TB, really?
+With the development of faster acquisision systems there has been a change in the ratio between 
+- Exeperiment design and preparation
+- Measurements
+- Data management
+- and post processing
 
+over the years. This in particular the case for X-ray imaging where the flux is high and the acquisition is limited by the detector technology. In other modalities, where the measurement is flux limited we see a different distribution. 
 
-If __you__ looked at one 1000 x 1000 sized image
+```{figure} figures/qmia-014.png
+---
+scale: 50%
+--- 
+The ratio of how much time is spent on different tasks during the lifecycle of an imaging experiment.
+```
 
+What also increases the post processing time is that the experiments have become more complicated over the years. Twenty years ago, it was sufficient to show qualitative information a beautify volume rendering or a movie of the sample. Meanwhile, it has become a requirement that you provide quantitative results from the images.
+
+<img src="figures/qmia-014.png" style="height:500px">
+
+## Handling masses of images
+
+### So... how much is a TB, really?
+
+We have been talking about different data amounts of MB, GB, and TB. But, what does that really mean in reality? Let us explore what is a TB.
+
+If __you__ looked at one image with 1000 x 1000 pixels (1 Mpixels)
+
+Here we create one image with 1000x1000 pixels with random values form a uniform distribution [0,1] and show it.
 
 %matplotlib inline
 import matplotlib.pyplot as plt
@@ -210,74 +311,68 @@ every second, it would take you
 
 
 # assuming 16 bit images and a 'metric' terabyte
-time_per_tb=1e12/(1000*1000*16/8) / (60*60)
-print("%04.1f hours to view a terabyte" % (time_per_tb))
+OneTB     = 1e12
+ImageSize = 1000*1000*16/8
+hour      = 60*60
 
-## Overwhelmed scientist
+time_per_tb = OneTB/ImageSize/hour
+print("{0:0.1f} hours to view a terabyte".format(time_per_tb))
 
-<table>
-    <tr><td>
+### Overwhelmed scientist
+
+Providing quantitative statements about image data is often very hard. You can may manage to do it on a single images like the bone image below.
+
+```{figure} figures/bone-cells.png
+---
+---
+A slice image show bone cells. 
+```
+
+You would like to know:
+- Count how many cells are in the bone slice.
         
-- Count how many cells are in the bone slice
-        
-- Ignore the ones that are ‘too big’ or shaped ‘strangely’
+- Ignore the ones that are ‘too big’ or shaped ‘strangely’.
         
 - Are there more on the right side or left side?
         
 - Are the ones on the right or left bigger, top or bottom?
 
-</td><td>
+<img src="figures/bone-cells.png" style="height:50%"/>
 
-![cells in bone tissue](figures/bone-cells.png)
-        
-</td></tr>
-</table>
+### More overwhelmed scientist
 
-## More overwhelmed
-<table>
-    <tr><td>
-        
-### Many samples are needed
+Statistical analysis requires that you study many samples and not just a single one. Furthermore, the 
+
+Many samples are needed:
 - Do it all over again for 96 more samples
-- this time in 3D with 2000 slices instead of just one!
-</td><td>
+- This time in 3D with 2000 slices instead of just one!
 
-![more samples](figures/96-samples.png)
-        </td></tr>
-    </table>
+<img src="figures/96-samples.png" style="height:50%" />
 
-## Bring on the pain
+### Bring on the pain
 
-<table>
-<tr><td>
-    
-### Great variations in the population   
+
+
+Great variations in the population   
 - Now again with 1090 samples!
 - How to measure?
 - How to analyze?
 
-</td><td>
-    
-![even more samples](figures/1090-samples.png)
-    
-   </td></tr> 
-</table>    
+<img src="figures/1090-samples.png" style="height:50%"/> 
 
 ## It gets better
 
 
 - Those metrics were quantitative and could be easily visually extracted from the images
 - What happens if you have _softer_ metrics
-
-<center>
+    - How aligned are these cells?
+    - Is the group on the left more or less aligned than the right?
+    - errr?
     
-![alignment](figures/alignment-figure.png)
+  
+<img src="figures/alignment-figure.png" />
 
-</center>
 
-- How aligned are these cells?
-- Is the group on the left more or less aligned than the right?
-- errr?
 
 ## Dynamic Information
 
@@ -292,41 +387,12 @@ print("%04.1f hours to view a terabyte" % (time_per_tb))
 
 
 
-
-## Course Overview
-
-|Topic| Date| Title | Description |
-|:---:|:---|:---|:---|
-| __Introduction__ | 25th February| Introduction and Workflows | Basic overview of the course, introduction to ...|
-| __Data__ | 5th March | Image Enhancement |	Overview of what techniques are available for ...|
-| | March | Ground Truth: Building and Augmenting Datasets | Examples of large datasets, how they were buil... |
-|__Segmentation__| March | Basic Segmentation, Discrete Binary Structures | How to convert images into structures, startin... |	
-||	19th March	| Advanced Segmentation	| More advanced techniques for extracting struct... |
-|| 26th March| Supervised Problems and Segmentation	| More advanced techniques for extracting struct...|
-| __Analysis__ |2nd April	| Analyzing Single Objects, Shape, and Texture |	The analysis and characterization of single st...|
-||	9th April	| Analyzing Complex Objects and Distributions	| What techniques are available to analyze more ...|
-||	16th April	| Dynamic Experiments	| Performing tracking and registration in dynami...|
-|__Big Imaging__ |	23rd April	| Statistics, Prediction, and Reproducibility |	Making a statistical analysis from quantified ...|
-||	30th April	| Guest Lectures	| How Roche does Microscopy at Scale with High C...|
-||	7th May|	Scaling Up / Big Data	|Performing large scale analyses on clusters an...|
-|__Wrapping up__|	14th May |	Project Presentations |	You present your projects|
-
-## Projects
-
-- A small image processing project
-- Can be related to you Master or PhD project
-- You will get input and ideas for your own projects
-- You will get hands on experience on the techniques you learn here
-- Can be used as discussion base for your exam
-
 # Images 
 
 ## An introduction to images
 
 
-# What is an image?
-
-----
+### What is an image?
 
 A very abstract definition: 
 - __A pairing between spatial information (position)__
@@ -335,27 +401,17 @@ A very abstract definition:
 In most cases this is a 2- or 3-dimensional position (x,y,z coordinates) and a numeric value (intensity)
 
 
-
-## Image sampling
-<table style="margin-bottom:3cm">
-<tr><td width="300px">The world is</td><td width="400px">The computer needs</td></tr>
-   
-<tr><td  width="300px">
-
-- Continuous 
-- No boundaries
+### Image sampling
+| The world is | The computer needs|
+|:---:|:---:|
+| Continuous    | Discrete levels |
+| No boundaries | Limited extent | 
     
-</td>
-<td  width="300px">
-
-- Discrete levels
-- Limited extent
- 
-</td></tr></table>
 
 ```{figure} figures/grid.pdf
 ---
 scale: 75%
+
 ---
 The real world is sampled into discrete images with limited extent.
 ```
@@ -364,9 +420,7 @@ The real world is sampled into discrete images with limited extent.
 <img src="figures/grid.svg" style="height:400px">
 </center>
 
-import numpy as np
-import matplotlib.pyplot as plt
-from skimage.transform import resize
+### What does sampling mean
 
 img=np.load('../../common/data/wood.npy');
 plt.figure(figsize=[15,7])
@@ -378,9 +432,9 @@ levels   = 4 ; plt.subplot(2,3,6); plt.imshow(np.floor(img*levels)); plt.title('
 
 # Let's create a small image
 
-import numpy as np
 basic_image = np.random.choice(range(100), size = (5,5))
-xx, yy = np.meshgrid(range(basic_image.shape[1]), range(basic_image.shape[0]))
+
+xx, yy   = np.meshgrid(range(basic_image.shape[1]), range(basic_image.shape[0]))
 image_df = pd.DataFrame(dict(x = xx.ravel(),
                  y = yy.ravel(),
                  Intensity = basic_image.ravel()))
@@ -406,21 +460,20 @@ plt.colorbar(plot_image)
 for _, c_row in image_df.iterrows():
     ax1.text(c_row['x'], c_row['y'], s = '%02d' % c_row['Intensity'], fontdict = dict(color = 'r'))
 
+### Different colormaps
+
 Color maps can be arbitrarily defined based on how we would like to visualize the information in the image
 
-fig, ax1 = plt.subplots(1,1)
-plot_image = ax1.matshow(basic_image, cmap = 'jet')
+plot_image = plt.matshow(basic_image, cmap = 'jet')
 plt.colorbar(plot_image);
 
-fig, ax1 = plt.subplots(1,1)
-
-plot_image = ax1.matshow(basic_image, cmap = 'hot')
+plot_image = plt.matshow(basic_image, cmap = 'hot')
 plt.colorbar(plot_image);
 
 
-## Lookup Tables
+### Lookup Tables
 
-Formally a lookup table is a function which
+Formally a color map is lookup table or a function which
 $$ f(\textrm{Intensity}) \rightarrow \textrm{Color} $$
 
 #### Matplotlib's color maps
@@ -494,6 +547,8 @@ for cmap_category, cmap_list in cmaps.items():
 <center>Never use rainbox maps like jet, see <a href="https://agilescientific.com/blog/2017/12/14/no-more-rainbows">No more rainbows!</a></center>
 </div>
 
+### How are the colors combined
+
 %matplotlib inline
 import matplotlib.pyplot as plt
 import numpy as np
@@ -535,6 +590,7 @@ ax1.scatter(xlin, plt.cm.hot(xlin/xlin.max())[:,0],
             c = plt.cm.hot(norm_xlin))
 ax1.set_xscale('log');ax1.set_xlabel('Intensity');ax1.set_ylabel('Red Component');
 
+### LUTs on real images
 
 On a real image the difference is even clearer
 
@@ -556,11 +612,13 @@ ax3.set_title('grayscale-log LUT');
 ## 3D Images
 
 For a 3D image, the position or spatial component has a 3rd dimension (z if it is a spatial, or t if it is a movie)
+
+
 <table><tr><td>Volume</td><td>Time series</td></tr>
     <tr>
     <td><img src="figures/cube_10x10x10.svg"></td>
-    <td><img src="figures/timeseries_visualization.svg"></td><tr></table>
-
+    <td><img src="figures/timeseries_visualization.svg">
+</td><tr></table>
 
 ```{figure} figures/cube_10x10x10.pdf
 ---
@@ -576,9 +634,13 @@ A movie can also be seen as a three-dimensional image.
 ```
 
 
+### A 3D image as array
+
 import numpy as np
 vol_image = np.arange(27).reshape((3,3,3))
 print(vol_image)
+
+### Showing 2D slices from volume
 
 
 
@@ -597,11 +659,6 @@ plt.matshow(montage2d(vol_image, fill = 0), cmap = 'jet');
 
 In the images thus far, we have had one value per position, but there is no reason there cannot be multiple values. In fact this is what color images are (red, green, and blue) values and even 4 channels with transparency (alpha) as a different. For clarity we call the __dimensionality__ of the image the number of dimensions in the spatial position, and the __depth__ the number in the value.
 
-
-
-import pandas as pd
-from itertools import product
-import numpy as np
 base_df = pd.DataFrame([dict(x = x, y = y) for x,y in product(range(5), range(5))])
 base_df['Intensity'] = np.random.uniform(0, 1, 25)
 base_df['Transparency'] = np.random.uniform(0, 1, 25)
@@ -654,8 +711,14 @@ for ((g_x, g_y), c_rows), c_ax in zip(full_df.sort_values(['x','y']).groupby(['g
 
 # Image Formation
 
+The image formation process is the process to use some kind of excitation or impulse probe a sample. This requires the interaction of four parts.
+ ```{figure} figures/image-formation.pdf
+ ---
+ ---
+ The parts involved in the image formation process probing a sample.
+ ```
 
-![Traditional Imaging](figures/image-formation.png)
+<img src="figures/image-formation.svg" />
 
 - __Impulses__ Light, X-Rays, Electrons, A sharp point, Magnetic field, Sound wave
 - __Characteristics__ Electron Shell Levels, Electron Density, Phonons energy levels, Electronic, Spins, Molecular mobility
@@ -663,6 +726,8 @@ for ((g_x, g_y), c_rows), c_ax in zip(full_df.sort_values(['x','y']).groupby(['g
 - __Detection__ Your eye, Light sensitive film, CCD / CMOS, Scintillator, Transducer
 
 ## Where do images come from?
+
+
 
 | Modality | Impulse | Characteristic | Response | Detection |
 |:---:|:---:|:---:|:---:|:---:|
