@@ -1,6 +1,6 @@
 # Weekly Plan
 
-### 20th February - Introduction and Workflows
+## 25th February - Introduction and Workflows
 - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/01-Introduction.ipynb) [![Slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/01-Introduction.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/01-Introduction.ipynb)
 #### Lecture Videos
 - [Part 1](https://youtu.be/J8kzUU7gUTM)
@@ -15,8 +15,10 @@
 - [Introduction to Python and Jupyter for Data-Science](https://github.com/jakevdp/PythonDataScienceHandbook)
 
 ---
+---
+Last years material - not yet updated
 
-### 27th February - Image Enhancement 
+## 4th March - Image Enhancement 
 - [Slides (static)](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/02-ImageEnhancement.ipynb) [![Slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/02-ImageEnhancement.ipynb) [Lecture Handout](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/02-ImageEnhancement.ipynb)
 
 - [Slides on non-local means (static)](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Exercises/02-ImageEnhancement/02-NonLocalMeansStudy.ipynb)[![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Exercises/02-ImageEnhancement/02-NonLocalMeansStudy.ipynb) [Lecture Handout](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Exercises/02-ImageEnhancement/02-NonLocalMeansStudy.ipynb)
@@ -28,7 +30,7 @@
 - [![slides](https://img.shields.io/badge/Launch-image_enhancement_tool-yellow.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Exercises/02-ImageEnhancement/ImageEnhancementPlayground.ipynb)
 
 ---
-### 5th March - Ground Truth: Building and Augmenting Datasets
+## 11th March - Ground Truth: Building and Augmenting Datasets
 
 - [Slides (static)](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/03-Datasets.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/02-Datasets.ipynb) [Lecture Handout](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/03-Datasets.ipynb)
 
@@ -42,7 +44,7 @@
 
 ---
 
-### 12th March - Basic Segmentation, Discrete Binary Structures
+## 18th March - Basic Segmentation, Discrete Binary Structures
 
 - Part 1: [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/04-BasicSegmentation.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/04-BasicSegmentation.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/04-BasicSegmentation.ipynb)
  - Part 2: [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/04-BasicSegmentation_Part2.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/04-BasicSegmentation_Part2.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/04-BasicSegmentation_Part2.ipynb)
@@ -57,7 +59,7 @@
 
 ---
 
-### 19th March - Advanced Segmentation
+## 25th March - Advanced Segmentation
 
 -  Part 1: Advanced segmentation [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/05-AdvancedSegmentation.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/05-AdvancedSegmentation.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/05-AdvancedSegmentation.ipynb)
 
@@ -73,7 +75,7 @@
 
 ---
 
-### 26th March - Analyzing Single Objects, Shape and Texture
+## 1st April - Analyzing Single Objects, Shape and Texture
 
  - Part 1: [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/06-ShapeAnalysis.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/06-ShapeAnalysis.ipynb) [Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/06-ShapeAnalysis.ipynb)
 
@@ -89,7 +91,9 @@
 
 ---
 
-### 2th April - Analyzing Complex Objects
+## 8th April - Easter break
+
+## 15th April - Analyzing Complex Objects
 
  - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/07-ComplexObjects.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/07-ComplexObjects.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/07-ComplexObjects.ipynb)
  
@@ -103,7 +107,7 @@
 
 --- 
 
-### 9th April - Dynamic Experiments
+## 29th April - Dynamic Experiments
 
  - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/08-DynamicExperiments.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/08-DynamicExperiments.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/08-DynamicExperiments.ipynb)
 
@@ -117,10 +121,7 @@
 - [Overview](../Exercises/08-DynamicExperiments/08-Overview.md)
 
 --- 
-### 16th April - Easter break
----
-
-### 23rd April - Statistics, Prediction, and Reproducibility
+## 6th May - Statistics, Prediction, and Reproducibility
 
  - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/09-Statistics.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/09-Statistics.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/09-Statistics.ipynb)
 
@@ -135,8 +136,9 @@
 - Will come later in python once we know more about Pandas: [KNIME Exercises](https://rawgithub.com/kmader/Quantitative-Big-Imaging-2016/master/Exercises/08-Description.html)
 
 ---
+## 13th May - Ascension 
 
-### 30th April - Imaging with multiple modalities 
+## 20th May - Imaging with multiple modalities 
 - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/10-BimodalExperiments.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/10-BimodalExperiments.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/10-BimodalExperiments.ipynb)
 
 #### Lecture videos
@@ -148,7 +150,7 @@
 
 ---
 
-### 7th May - Scaling Up / Big Data
+## 27th May - Scaling Up / Big Data
  - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/11-ScalingUp.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb)
 
 #### Lecture videos
@@ -162,7 +164,7 @@
 
 ---
 
-### 14th May - Project Presentations
+### 3rd June - Project Presentations
 [Info before the presentations](../Projects/Presentations.md)
 #### Presentations
 | Presenter(s)  | Title.        | Recording OK |
