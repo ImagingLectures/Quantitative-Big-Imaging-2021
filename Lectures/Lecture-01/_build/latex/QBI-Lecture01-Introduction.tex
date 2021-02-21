@@ -73,7 +73,7 @@
 
 
 \title{Quantitative Big Imaging - Introduction}
-\date{Feb 20, 2021}
+\date{Feb 21, 2021}
 \release{}
 \author{Anders Kaestner}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1021,9 +1021,8 @@ Are the ones on the right or left bigger, top or bottom?
 
 \subsection{More overwhelmed scientist}
 \label{\detokenize{01-Introduction:more-overwhelmed-scientist}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{Statistical} \PYG{n}{analysis} \PYG{n}{requires} \PYG{n}{that} \PYG{n}{you} \PYG{n}{study} \PYG{n}{many} \PYG{n}{samples} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n}{just} \PYG{n}{a} \PYG{n}{single} \PYG{n}{one}\PYG{o}{.} \PYG{n}{Furthermore}\PYG{p}{,} \PYG{n}{the} 
-\end{sphinxVerbatim}
+\sphinxAtStartPar
+Statistical analysis requires that you study many samples and not just a single one. The samples are also objects which requires 3D data instead of a single 2D slice.
 
 \sphinxAtStartPar
 Many samples are needed:
@@ -1040,9 +1039,15 @@ This time in 3D with 2000 slices instead of just one!
 
 
 
+\sphinxAtStartPar
+Working with multiple 3D images is not feasible anymore to do manually. We need some kind of automated process to perform the analysis.
+
 
 \subsection{Bring on the pain}
 \label{\detokenize{01-Introduction:bring-on-the-pain}}
+\sphinxAtStartPar
+The 96 samples only represented one of our cases in the study. Now, if we want to study different ages, healthy/diseased, etc, we need to add a sample batch for each case. Maybe we even need to increase the number of samples in each test group. With all these variations, we can easily end up in a thousand samples to analyze.
+
 \sphinxAtStartPar
 Great variations in the population
 \begin{itemize}
@@ -1062,9 +1067,22 @@ How to analyze?
 
 
 
+\begin{figure}[htbp]
+\centering
+\capstart
 
-\section{It gets better}
-\label{\detokenize{01-Introduction:it-gets-better}}\begin{itemize}
+\noindent\sphinxincludegraphics{{1090-samples}.png}
+\caption{A collection of 1090 samples. This is a massive task to analyze!}\label{\detokenize{01-Introduction:id11}}\end{figure}
+
+\sphinxAtStartPar
+With so many samples we stand in front of a logistic problem to measure the data and once the data is there we have to analyze it. As a first step, we have to specify how to analyze these images to obtain results that may or may not support a hypothesis.
+
+
+\subsection{It gets better}
+\label{\detokenize{01-Introduction:it-gets-better}}
+\sphinxAtStartPar
+The metrics we specified in the previous example are easy to observe and also to measure. What if we now want to make more complicated inquiries even
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Those metrics were quantitative and could be easily visually extracted from the images
@@ -1092,7 +1110,7 @@ errr?
 
 
 
-\section{Dynamic Information}
+\subsection{Dynamic Information}
 \label{\detokenize{01-Introduction:dynamic-information}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -1187,7 +1205,7 @@ Limited extent
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{grid}.pdf}
-\caption{The real world is sampled into discrete images with limited extent.}\label{\detokenize{01-Introduction:id11}}\end{figure}
+\caption{The real world is sampled into discrete images with limited extent.}\label{\detokenize{01-Introduction:id12}}\end{figure}
 
 
 
@@ -1204,10 +1222,21 @@ Limited extent
 \PYG{n}{levels}   \PYG{o}{=} \PYG{l+m+mi}{4} \PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{floor}\PYG{p}{(}\PYG{n}{img}\PYG{o}{*}\PYG{n}{levels}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{ Levels}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{levels}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_82_0}.png}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n+ne}{NameError}\PYG{g+gWhitespace}{                                 }Traceback (most recent call last)
+\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{31}\PYG{n}{c4761dca2d}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
+\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{1} \PYG{n}{img}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../common/data/wood.npy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{2} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{)}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{3} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{4} \PYG{n}{downsize} \PYG{o}{=}  \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{resize}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{p}{(}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{/}\PYG{o}{/} \PYG{n}{downsize}\PYG{p}{,} \PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{/}\PYG{o}{/} \PYG{n}{downsize}\PYG{p}{)}\PYG{p}{,} \PYG{n}{anti\PYGZus{}aliasing}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Downsize }\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{x}\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{downsize}\PYG{p}{)}\PYG{p}{)}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{5} \PYG{n}{downsize} \PYG{o}{=} \PYG{l+m+mi}{32}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{resize}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{p}{(}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{/}\PYG{o}{/} \PYG{n}{downsize}\PYG{p}{,} \PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{/}\PYG{o}{/} \PYG{n}{downsize}\PYG{p}{)}\PYG{p}{,}\PYG{n}{anti\PYGZus{}aliasing}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Downsize }\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{x}\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{downsize}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n+ne}{NameError}: name \PYGZsq{}np\PYGZsq{} is not defined
+\end{sphinxVerbatim}
 
 
-\chapter{Let’s create a small image}
+\section{Let’s create a small image}
 \label{\detokenize{01-Introduction:let-s-create-a-small-image}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{basic\PYGZus{}image} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{choice}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
@@ -1234,7 +1263,7 @@ Limited extent
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} 
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_85_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_89_0}.png}
 
 
 \section{2D Intensity Images}
@@ -1261,7 +1290,7 @@ some features are easier to detect \sphinxhref{https://doi.org/10.1063/1.4822401
     \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{n}{c\PYGZus{}row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{c\PYGZus{}row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}02d}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{c\PYGZus{}row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{fontdict} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{n}{color} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_87_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_91_0}.png}
 
 
 \subsection{Different colormaps}
@@ -1274,14 +1303,14 @@ Color maps can be arbitrarily defined based on how we would like to visualize th
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{plot\PYGZus{}image}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_89_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_93_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{plot\PYGZus{}image} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{basic\PYGZus{}image}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{plot\PYGZus{}image}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_90_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_94_0}.png}
 
 
 \subsection{Lookup Tables}
@@ -1359,19 +1388,19 @@ Formally a color map is lookup table or a function which
     
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_92_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_96_0}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_92_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_96_1}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_92_2}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_96_2}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_92_3}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_96_3}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_92_4}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_96_4}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_92_5}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_96_5}.png}
 
-\noindent\sphinxincludegraphics{{01-Introduction_92_6}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_96_6}.png}
 
 
 
@@ -1403,10 +1432,10 @@ Formally a color map is lookup table or a function which
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{ Component}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{colors}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_95_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_99_0}.png}
 
 
-\section{Applied LUTs}
+\subsection{Applied LUTs}
 \label{\detokenize{01-Introduction:applied-luts}}
 \sphinxAtStartPar
 These transformations can also be non\sphinxhyphen{}linear as is the case of the graph below where the mapping between the intensity and the color is a \(\log\) relationship meaning the the difference between the lower values is much clearer than the higher ones
@@ -1428,7 +1457,7 @@ These transformations can also be non\sphinxhyphen{}linear as is the case of the
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xscale}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{log}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Red Component}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_97_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_101_0}.png}
 
 
 \subsection{LUTs on real images}
@@ -1452,7 +1481,7 @@ On a real image the difference is even clearer
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{grayscale\PYGZhy{}log LUT}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_99_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_103_0}.png}
 
 
 \section{3D Images}
@@ -1467,14 +1496,14 @@ For a 3D image, the position or spatial component has a 3rd dimension (z if it i
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{cube_10x10x10}.pdf}
-\caption{Three\sphinxhyphen{}dimensional data can be a volume in space.}\label{\detokenize{01-Introduction:id12}}\end{figure}
+\caption{Three\sphinxhyphen{}dimensional data can be a volume in space.}\label{\detokenize{01-Introduction:id13}}\end{figure}
 
 \begin{figure}[htbp]
 \centering
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{timeseries_visualization}.pdf}
-\caption{A movie can also be seen as a three\sphinxhyphen{}dimensional image.}\label{\detokenize{01-Introduction:id13}}\end{figure}
+\caption{A movie can also be seen as a three\sphinxhyphen{}dimensional image.}\label{\detokenize{01-Introduction:id14}}\end{figure}
 
 
 \subsection{A 3D image as array}
@@ -1522,11 +1551,11 @@ This can then be rearranged from a table form into an array form and displayed a
  [24 25 26  0  0  0]]
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_108_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_112_1}.png}
 
 
-\section{Multiple Values}
-\label{\detokenize{01-Introduction:multiple-values}}
+\section{Multiple Values per pixel}
+\label{\detokenize{01-Introduction:multiple-values-per-pixel}}
 \sphinxAtStartPar
 In the images thus far, we have had one value per position, but there is no reason there cannot be multiple values. In fact this is what color images are (red, green, and blue) values and even 4 channels with transparency (alpha) as a different. For clarity we call the \sphinxstylestrong{dimensionality} of the image the number of dimensions in the spatial position, and the \sphinxstylestrong{depth} the number in the value.
 
@@ -1539,19 +1568,23 @@ In the images thus far, we have had one value per position, but there is no reas
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
    x  y  Intensity  Transparency
-0  0  0   0.746783      0.607095
-1  0  1   0.347202      0.059656
-2  0  2   0.866183      0.301186
-3  0  3   0.402008      0.258386
-4  0  4   0.328629      0.589196
+0  0  0   0.672399      0.762643
+1  0  1   0.799740      0.521497
+2  0  2   0.319715      0.075374
+3  0  3   0.808644      0.248890
+4  0  4   0.788176      0.131853
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
 This can then be rearranged from a table form into an array form and displayed as a series of slices
 
+
+\subsection{Display multi\sphinxhyphen{}valued pixels separately}
+\label{\detokenize{01-Introduction:display-multi-valued-pixels-separately}}
+\sphinxAtStartPar
+The most straight forward way to display multiple pixel values is to display each value separately. This method is, however, mostly not very suitable as the values often are related in some sense. Therefore it is recommended to combine the values in the same plot.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{c} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{cm}\PYG{o}{.}\PYG{n}{gray}\PYG{p}{(}\PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{s} \PYG{o}{=} \PYG{l+m+mi}{1000}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -1559,7 +1592,10 @@ This can then be rearranged from a table form into an array form and displayed a
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Transparency}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_113_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_119_0}.png}
+
+\sphinxAtStartPar
+In this example we combined two values use one value to control the colormap and the other to control the size of the dots. How you combine the data is related to the to of data you want to combine. If the values are components of a vector it makes more sense to show arrows of different length and direction, etc.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
@@ -1567,7 +1603,7 @@ This can then be rearranged from a table form into an array form and displayed a
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_114_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_121_0}.png}
 
 
 \section{Hyperspectral Imaging}
@@ -1589,7 +1625,13 @@ At each point in the image (black dot), instead of having just a single value, t
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{im\PYGZus{}pos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{im\PYGZus{}pos}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{c} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{blue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_116_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_123_0}.png}
+
+
+\subsection{Looking at the pixel values}
+\label{\detokenize{01-Introduction:looking-at-the-pixel-values}}
+\sphinxAtStartPar
+Each pixel of this data set is represented by a full spectrum. This means that we have both wave numbers and intensity values. In many cases, the wavenumbers are the same for all pixels, which makes it possible to reduce the redundancy of the wave number vector using a single 1D array to represent this information.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{full\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../common/data/full\PYGZus{}img.csv}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{query}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{wavenum\PYGZlt{}1200}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -1618,10 +1660,10 @@ At each point in the image (black dot), instead of having just a single value, t
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{c\PYGZus{}rows}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{wavenum}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{c\PYGZus{}rows}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{val}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r.}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_118_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_127_0}.png}
 
 
-\chapter{Image Formation}
+\section{Image Formation}
 \label{\detokenize{01-Introduction:image-formation}}
 \sphinxAtStartPar
 The image formation process is the process to use some kind of excitation or impulse probe a sample. This requires the interaction of four parts.
@@ -1631,7 +1673,7 @@ The image formation process is the process to use some kind of excitation or imp
 \capstart
 
 \noindent\sphinxincludegraphics{{image-formation}.pdf}
-\caption{The parts involved in the image formation process probing a sample.}\label{\detokenize{01-Introduction:id14}}\end{figure}
+\caption{The parts involved in the image formation process probing a sample.}\label{\detokenize{01-Introduction:id15}}\end{figure}
 
 
 \begin{itemize}
@@ -1654,7 +1696,7 @@ The image formation process is the process to use some kind of excitation or imp
 \end{itemize}
 
 
-\section{Where do images come from?}
+\subsection{Where do images come from?}
 \label{\detokenize{01-Introduction:where-do-images-come-from}}
 
 \begin{savenotes}\sphinxattablestart
@@ -1811,10 +1853,10 @@ Deflection of a tiny mirror
 \sphinxattableend\end{savenotes}
 
 
-\chapter{Acquiring Images}
+\section{Acquiring Images}
 \label{\detokenize{01-Introduction:acquiring-images}}
 
-\section{Traditional / Direct imaging}
+\subsection{Traditional / Direct imaging}
 \label{\detokenize{01-Introduction:traditional-direct-imaging}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -1843,10 +1885,10 @@ Optical imaging, microscopy
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{real}\PYG{p}{(}\PYG{n}{rec\PYGZus{}img}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{l+m+mi}{255}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Reconstructed}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_124_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_133_0}.png}
 
 
-\section{Indirect / Computational imaging}
+\subsection{Indirect / Computational imaging}
 \label{\detokenize{01-Introduction:indirect-computational-imaging}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -1876,10 +1918,10 @@ Response must be transformed (usually computationally) to produce an image
 1.146423838816545 6.61125552595089 3.3563935033662253
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_126_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_135_1}.png}
 
 
-\section{Traditional Imaging}
+\subsection{Traditional Imaging}
 \label{\detokenize{01-Introduction:traditional-imaging}}
 
 
@@ -1905,7 +1947,7 @@ For color (non\sphinxhyphen{}monochromatic) images the problem becomes even more
 \)\$
 
 
-\section{Indirect Imaging (Computational Imaging)}
+\subsection{Indirect Imaging (Computational Imaging)}
 \label{\detokenize{01-Introduction:indirect-imaging-computational-imaging}}
 
 \begin{itemize}
@@ -1938,8 +1980,8 @@ Surface Topography with cantilevers (AFM)
 
 
 
-\section{Image Analysis}
-\label{\detokenize{01-Introduction:image-analysis}}
+\chapter{Different views on image Analysis}
+\label{\detokenize{01-Introduction:different-views-on-image-analysis}}
 
 \begin{itemize}
 \item {} 
@@ -2172,7 +2214,7 @@ Which center square seems brighter?
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{img\PYGZus{}b}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_137_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_146_0}.png}
 
 
 \section{Intensity gradients}
@@ -2195,7 +2237,7 @@ Are the intensities constant in the image?
 \PYGZlt{}matplotlib.image.AxesImage at 0x1c5b4853d0\PYGZgt{}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_139_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_148_1}.png}
 
 
 \section{Reproducibility vs. Repeatability}
@@ -2208,7 +2250,7 @@ Are the intensities constant in the image?
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{reproducibility}.pdf}
-\caption{A workflow describing the concept of reproducibility.}\label{\detokenize{01-Introduction:id15}}\end{figure}
+\caption{A workflow describing the concept of reproducibility.}\label{\detokenize{01-Introduction:id16}}\end{figure}
 
 
 
@@ -2220,7 +2262,7 @@ Are the intensities constant in the image?
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{repeatability}.pdf}
-\caption{A workflow describing the concept of reproducibility.}\label{\detokenize{01-Introduction:id16}}\end{figure}
+\caption{A workflow describing the concept of reproducibility.}\label{\detokenize{01-Introduction:id17}}\end{figure}
 
 
 
@@ -2316,7 +2358,7 @@ Write clear and understandable code
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{semilogy}\PYG{p}{(}\PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Count(1000s)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{b.\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1000s of transitiors}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{semilogy}\PYG{p}{(}\PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Clock(MHz)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r.\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Clockspeed (MHz)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{p}{;}\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_148_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_157_0}.png}
 
 \sphinxAtStartPar
 \sphinxstyleemphasis{Based on data from \sphinxurl{https://gist.github.com/humberto-ortiz/de4b3a621602b78bf90d}}
@@ -2407,22 +2449,22 @@ Many competitors keep prices low and offer flexibility
 
 
 
-\section{Cloud Computing Costs}
+\subsection{Cloud Computing Costs}
 \label{\detokenize{01-Introduction:cloud-computing-costs}}
 \sphinxAtStartPar
 The figure shows the range of cloud costs (determined by peak usage) compared to a local workstation with utilization shown as the average number of hours the computer is used each week.
 
 
-\section{Cloud: Equal Cost Point}
+\subsection{Cloud: Equal Cost Point}
 \label{\detokenize{01-Introduction:cloud-equal-cost-point}}
 \sphinxAtStartPar
 Here the equal cost point is shown where the cloud and local workstations have the same cost. The x\sphinxhyphen{}axis is the percentage of resources used at peak\sphinxhyphen{}time and the y shows the expected usable lifetime of the computer. The color indicates the utilization percentage and the text on the squares shows this as the numbers of hours used in a week.
 
 
-\chapter{Soup/Recipe Example}
+\section{Soup/Recipe Example}
 \label{\detokenize{01-Introduction:soup-recipe-example}}
 
-\section{Simple Soup}
+\subsection{Simple Soup}
 \label{\detokenize{01-Introduction:simple-soup}}
 \sphinxAtStartPar
 Easy to follow the list, anyone with the right steps can execute and repeat (if not reproduce) the soup
@@ -2459,13 +2501,13 @@ Buy \{carrots, peas, tomatoes\} at market
 \end{enumerate}
 
 
-\section{More complicated soup}
+\subsection{More complicated soup}
 \label{\detokenize{01-Introduction:more-complicated-soup}}
 \sphinxAtStartPar
 Here it is harder to follow and you need to carefully keep track of what is being performed
 
 
-\subsection{Steps 1\sphinxhyphen{}4}
+\subsubsection{Steps 1\sphinxhyphen{}4}
 \label{\detokenize{01-Introduction:steps-1-4}}\begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
@@ -2495,10 +2537,10 @@ Here it is harder to follow and you need to carefully keep track of what is bein
 \end{enumerate}
 
 
-\chapter{Using flow charts / workflows}
+\section{Using flow charts / workflows}
 \label{\detokenize{01-Introduction:using-flow-charts-workflows}}
 
-\section{Simple Soup}
+\subsection{Simple Soup}
 \label{\detokenize{01-Introduction:id6}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{IPython}\PYG{n+nn}{.}\PYG{n+nn}{display} \PYG{k+kn}{import} \PYG{n}{SVG}
@@ -2522,7 +2564,7 @@ Here it is harder to follow and you need to carefully keep track of what is bein
 \end{sphinxVerbatim}
 
 
-\section{Workflows}
+\subsection{Workflows}
 \label{\detokenize{01-Introduction:workflows}}
 \sphinxAtStartPar
 Clearly a linear set of instructions is ill\sphinxhyphen{}suited for even a fairly easy soup, it is then even more difficult when there are dozens of steps and different pathsways
@@ -2562,7 +2604,7 @@ Furthermore a clean workflow allows you to better parallelize the task since it 
 \end{sphinxVerbatim}
 
 
-\chapter{Directed Acyclical Graphs (DAG)}
+\section{Directed Acyclical Graphs (DAG)}
 \label{\detokenize{01-Introduction:directed-acyclical-graphs-dag}}
 \sphinxAtStartPar
 We can represent almost any computation without loops as DAG. What this allows us to do is now break down a computation into pieces which can be carried out independently. There are a number of tools which let us handle this issue.
@@ -2598,7 +2640,7 @@ Pytorch / Torch \sphinxhyphen{} \sphinxurl{http://pytorch.org/}
 \end{itemize}
 
 
-\chapter{Concrete example}
+\subsection{Concrete example}
 \label{\detokenize{01-Introduction:concrete-example}}
 \sphinxAtStartPar
 What is a DAG good for?
@@ -2612,21 +2654,21 @@ What is a DAG good for?
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_162_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_171_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}3} \PYG{o}{=} \PYG{n}{image\PYGZus{}1} \PYG{o}{+} \PYG{n}{image\PYGZus{}2}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}3}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_163_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_172_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}4} \PYG{o}{=} \PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{image\PYGZus{}2}\PYG{o}{*}\PYG{l+m+mi}{50}\PYG{p}{)}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}4}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_164_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_173_0}.png}
 
 
 \chapter{Let’s go big}
@@ -2642,28 +2684,28 @@ Now let’s see where this can be really useful
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_166_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_175_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}4} \PYG{o}{=} \PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{image\PYGZus{}2}\PYG{o}{*}\PYG{l+m+mi}{50}\PYG{p}{)}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}4}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_167_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_176_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}5} \PYG{o}{=} \PYG{n}{da}\PYG{o}{.}\PYG{n}{matmul}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{p}{,} \PYG{n}{image\PYGZus{}2}\PYG{p}{)}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}5}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_168_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_177_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}6} \PYG{o}{=} \PYG{p}{(}\PYG{n}{da}\PYG{o}{.}\PYG{n}{matmul}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{p}{,} \PYG{n}{image\PYGZus{}2}\PYG{p}{)}\PYG{o}{+}\PYG{n}{image\PYGZus{}1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{image\PYGZus{}2}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}6}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_169_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_178_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{dask\PYGZus{}ndfilters} \PYG{k}{as} \PYG{n+nn}{da\PYGZus{}ndfilt}
@@ -2671,10 +2713,10 @@ Now let’s see where this can be really useful
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}7}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_170_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_179_0}.png}
 
 
-\chapter{Deep Learning}
+\section{Deep Learning}
 \label{\detokenize{01-Introduction:deep-learning}}
 \sphinxAtStartPar
 We won’t talk too much about deep learning now, but it certainly shows why DAGs are so important.
@@ -2685,87 +2727,29 @@ The steps above are simple toys compared to what tools are already in use for ma
 \sphinxAtStartPar
 \sphinxurl{https://keras.io/api/utils/model\_plotting\_utils/}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{from} \PYG{n+nn}{IPython}\PYG{n+nn}{.}\PYG{n+nn}{display} \PYG{k+kn}{import} \PYG{n}{SVG}
-\PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{applications}\PYG{n+nn}{.}\PYG{n+nn}{resnet50} \PYG{k+kn}{import} \PYG{n}{ResNet50}
-\PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{utils}\PYG{n+nn}{.}\PYG{n+nn}{vis\PYGZus{}utils} \PYG{k+kn}{import} \PYG{n}{model\PYGZus{}to\PYGZus{}dot} 
-\PYG{n}{resnet} \PYG{o}{=} \PYG{n}{ResNet50}\PYG{p}{(}\PYG{n}{weights} \PYG{o}{=} \PYG{k+kc}{None}\PYG{p}{)}
-\PYG{n}{SVG}\PYG{p}{(}\PYG{n}{model\PYGZus{}to\PYGZus{}dot}\PYG{p}{(}\PYG{n}{resnet}\PYG{p}{,}\PYG{n}{rankdir}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{LR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{p}{)}\PYG{o}{.}\PYG{n}{create\PYGZus{}svg}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
-\end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}IPython.core.display.SVG object\PYGZgt{}
-\end{sphinxVerbatim}
+\chapter{Summary}
+\label{\detokenize{01-Introduction:summary}}
+\sphinxAtStartPar
+In this lecture we saw that:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Images revieal information about different samples
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{from} \PYG{n+nn}{IPython}\PYG{n+nn}{.}\PYG{n+nn}{display} \PYG{k+kn}{import} \PYG{n}{clear\PYGZus{}output}\PYG{p}{,} \PYG{n}{Image}\PYG{p}{,} \PYG{n}{display}\PYG{p}{,} \PYG{n}{HTML}
-\PYG{c+c1}{\PYGZsh{}import keras.backend as K}
-\PYG{k+kn}{import} \PYG{n+nn}{tensorflow}\PYG{n+nn}{.}\PYG{n+nn}{python}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{backend} \PYG{k}{as} \PYG{n+nn}{K}
-\PYG{k+kn}{import} \PYG{n+nn}{tensorflow} \PYG{k}{as} \PYG{n+nn}{tf}
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{k}{def} \PYG{n+nf}{strip\PYGZus{}consts}\PYG{p}{(}\PYG{n}{graph\PYGZus{}def}\PYG{p}{,} \PYG{n}{max\PYGZus{}const\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{32}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Strip large constant values from graph\PYGZus{}def.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-    \PYG{n}{strip\PYGZus{}def} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{GraphDef}\PYG{p}{(}\PYG{p}{)}
-    \PYG{k}{for} \PYG{n}{n0} \PYG{o+ow}{in} \PYG{n}{graph\PYGZus{}def}\PYG{o}{.}\PYG{n}{node}\PYG{p}{:}
-        \PYG{n}{n} \PYG{o}{=} \PYG{n}{strip\PYGZus{}def}\PYG{o}{.}\PYG{n}{node}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{p}{)} 
-        \PYG{n}{n}\PYG{o}{.}\PYG{n}{MergeFrom}\PYG{p}{(}\PYG{n}{n0}\PYG{p}{)}
-        \PYG{k}{if} \PYG{n}{n}\PYG{o}{.}\PYG{n}{op} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Const}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}
-            \PYG{n}{tensor} \PYG{o}{=} \PYG{n}{n}\PYG{o}{.}\PYG{n}{attr}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{value}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{tensor}
-            \PYG{n}{size} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{tensor}\PYG{o}{.}\PYG{n}{tensor\PYGZus{}content}\PYG{p}{)}
-            \PYG{k}{if} \PYG{n}{size} \PYG{o}{\PYGZgt{}} \PYG{n}{max\PYGZus{}const\PYGZus{}size}\PYG{p}{:}
-                \PYG{n}{tensor}\PYG{o}{.}\PYG{n}{tensor\PYGZus{}content} \PYG{o}{=} \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZlt{}stripped }\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s2}{ bytes\PYGZgt{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZpc{}}\PYG{k}{size}).encode(\PYGZsq{}ascii\PYGZsq{})
-    \PYG{k}{return} \PYG{n}{strip\PYGZus{}def}
+\item {} 
+\sphinxAtStartPar
+Images are a signals that needs to be quantitatively analyzed
 
-\PYG{k}{def} \PYG{n+nf}{show\PYGZus{}graph}\PYG{p}{(}\PYG{n}{graph\PYGZus{}def}\PYG{p}{,} \PYG{n}{max\PYGZus{}const\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{32}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Visualize TensorFlow graph.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-    \PYG{k}{if} \PYG{n+nb}{hasattr}\PYG{p}{(}\PYG{n}{graph\PYGZus{}def}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{as\PYGZus{}graph\PYGZus{}def}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{:}
-        \PYG{n}{graph\PYGZus{}def} \PYG{o}{=} \PYG{n}{graph\PYGZus{}def}\PYG{o}{.}\PYG{n}{as\PYGZus{}graph\PYGZus{}def}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{strip\PYGZus{}def} \PYG{o}{=} \PYG{n}{strip\PYGZus{}consts}\PYG{p}{(}\PYG{n}{graph\PYGZus{}def}\PYG{p}{,} \PYG{n}{max\PYGZus{}const\PYGZus{}size}\PYG{o}{=}\PYG{n}{max\PYGZus{}const\PYGZus{}size}\PYG{p}{)}
-    \PYG{n}{code} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+s2}{        \PYGZlt{}script\PYGZgt{}}
-\PYG{l+s+s2}{          function load() }\PYG{l+s+s2}{\PYGZob{}\PYGZob{}}
-\PYG{l+s+s2}{            document.getElementById(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}id\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{).pbtxt = }\PYG{l+s+si}{\PYGZob{}data\PYGZcb{}}\PYG{l+s+s2}{;}
-\PYG{l+s+s2}{          \PYGZcb{}\PYGZcb{}}
-\PYG{l+s+s2}{        \PYGZlt{}/script\PYGZgt{}}
-\PYG{l+s+s2}{        \PYGZlt{}link rel=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{import}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ href=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{https://tensorboard.appspot.com/tf\PYGZhy{}graph\PYGZhy{}basic.build.html}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ onload=load()\PYGZgt{}}
-\PYG{l+s+s2}{        \PYGZlt{}div style=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{height:600px}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZgt{}}
-\PYG{l+s+s2}{          \PYGZlt{}tf\PYGZhy{}graph\PYGZhy{}basic id=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}id\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZgt{}\PYGZlt{}/tf\PYGZhy{}graph\PYGZhy{}basic\PYGZgt{}}
-\PYG{l+s+s2}{        \PYGZlt{}/div\PYGZgt{}}
-\PYG{l+s+s2}{    }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n+nb}{repr}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{strip\PYGZus{}def}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n+nb}{id}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{graph}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{+}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{rand}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
+\item {} 
+\sphinxAtStartPar
+Science with images is a non\sphinxhyphen{}trivial task
 
-    \PYG{n}{iframe} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+s2}{        \PYGZlt{}iframe seamless style=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{width:1200px;height:620px;border:0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ srcdoc=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZgt{}\PYGZlt{}/iframe\PYGZgt{}}
-\PYG{l+s+s2}{    }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{code}\PYG{o}{.}\PYG{n}{replace}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZam{}quot;}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
-    \PYG{n}{display}\PYG{p}{(}\PYG{n}{HTML}\PYG{p}{(}\PYG{n}{iframe}\PYG{p}{)}\PYG{p}{)}
-    
-\PYG{n}{sess} \PYG{o}{=} \PYG{n}{K}\PYG{o}{.}\PYG{n}{get\PYGZus{}session}\PYG{p}{(}\PYG{p}{)}
-\PYG{n}{show\PYGZus{}graph}\PYG{p}{(}\PYG{n}{sess}\PYG{o}{.}\PYG{n}{graph}\PYG{p}{)}
-\end{sphinxVerbatim}
+\item {} 
+\sphinxAtStartPar
+Proper workflows are required for efficient analysis repeatable analysis.
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
-\PYG{n+ne}{AttributeError}\PYG{g+gWhitespace}{                            }Traceback (most recent call last)
-\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{75}\PYG{o}{\PYGZhy{}}\PYG{n}{f9fa486b2250}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{40} 
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{41} \PYG{n}{sess} \PYG{o}{=} \PYG{n}{K}\PYG{o}{.}\PYG{n}{get\PYGZus{}session}\PYG{p}{(}\PYG{p}{)}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{42} \PYG{n}{show\PYGZus{}graph}\PYG{p}{(}\PYG{n}{sess}\PYG{o}{.}\PYG{n}{graph}\PYG{p}{)}
-
-\PYG{n+nn}{\PYGZlt{}ipython\PYGZhy{}input\PYGZhy{}75\PYGZhy{}f9fa486b2250\PYGZgt{}} in \PYG{n+ni}{show\PYGZus{}graph}\PYG{n+nt}{(graph\PYGZus{}def, max\PYGZus{}const\PYGZus{}size)}
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{21}     \PYG{k}{if} \PYG{n+nb}{hasattr}\PYG{p}{(}\PYG{n}{graph\PYGZus{}def}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{as\PYGZus{}graph\PYGZus{}def}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{:}
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{22}         \PYG{n}{graph\PYGZus{}def} \PYG{o}{=} \PYG{n}{graph\PYGZus{}def}\PYG{o}{.}\PYG{n}{as\PYGZus{}graph\PYGZus{}def}\PYG{p}{(}\PYG{p}{)}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{23}     \PYG{n}{strip\PYGZus{}def} \PYG{o}{=} \PYG{n}{strip\PYGZus{}consts}\PYG{p}{(}\PYG{n}{graph\PYGZus{}def}\PYG{p}{,} \PYG{n}{max\PYGZus{}const\PYGZus{}size}\PYG{o}{=}\PYG{n}{max\PYGZus{}const\PYGZus{}size}\PYG{p}{)}
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{24}     \PYG{n}{code} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{25}\PYG{l+s+s2}{         \PYGZlt{}script\PYGZgt{}}
-
-\PYG{n+nn}{\PYGZlt{}ipython\PYGZhy{}input\PYGZhy{}75\PYGZhy{}f9fa486b2250\PYGZgt{}} in \PYG{n+ni}{strip\PYGZus{}consts}\PYG{n+nt}{(graph\PYGZus{}def, max\PYGZus{}const\PYGZus{}size)}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{6}\PYG{l+s+s2}{ def strip\PYGZus{}consts(graph\PYGZus{}def, max\PYGZus{}const\PYGZus{}size=32):}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{7}\PYG{l+s+s2}{     }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}\PYG{n}{Strip} \PYG{n}{large} \PYG{n}{constant} \PYG{n}{values} \PYG{k+kn}{from} \PYG{n+nn}{graph\PYGZus{}def}\PYG{n+nn}{.}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{8}\PYG{l+s+s2}{     strip\PYGZus{}def = tf.GraphDef()}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{9}\PYG{l+s+s2}{     for n0 in graph\PYGZus{}def.node:}
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{10}\PYG{l+s+s2}{         n = strip\PYGZus{}def.node.add()}
-
-\PYG{n+ne}{AttributeError}: module \PYGZsq{}tensorflow\PYGZsq{} has no attribute \PYGZsq{}GraphDef\PYGZsq{}
-\end{sphinxVerbatim}
+\end{itemize}
 
 
 

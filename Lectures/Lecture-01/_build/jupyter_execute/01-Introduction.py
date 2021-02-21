@@ -341,7 +341,7 @@ You would like to know:
 
 ### More overwhelmed scientist
 
-Statistical analysis requires that you study many samples and not just a single one. Furthermore, the 
+Statistical analysis requires that you study many samples and not just a single one. The samples are also objects which requires 3D data instead of a single 2D slice. 
 
 Many samples are needed:
 - Do it all over again for 96 more samples
@@ -349,9 +349,11 @@ Many samples are needed:
 
 <img src="figures/96-samples.png" style="height:50%" />
 
+Working with multiple 3D images is not feasible anymore to do manually. We need some kind of automated process to perform the analysis.
+
 ### Bring on the pain
 
-
+The 96 samples only represented one of our cases in the study. Now, if we want to study different ages, healthy/diseased, etc, we need to add a sample batch for each case. Maybe we even need to increase the number of samples in each test group. With all these variations, we can easily end up in a thousand samples to analyze.
 
 Great variations in the population   
 - Now again with 1090 samples!
@@ -360,8 +362,16 @@ Great variations in the population
 
 <img src="figures/1090-samples.png" style="height:50%"/> 
 
-## It gets better
+```{figure} figures/1090-samples.png
+---
+---
+A collection of 1090 samples. This is a massive task to analyze!
+```
+With so many samples we stand in front of a logistic problem to measure the data and once the data is there we have to analyze it. As a first step, we have to specify how to analyze these images to obtain results that may or may not support a hypothesis.
 
+### It gets better
+
+The metrics we specified in the previous example are easy to observe and also to measure. What if we now want to make more complicated inquiries even   
 
 - Those metrics were quantitative and could be easily visually extracted from the images
 - What happens if you have _softer_ metrics
@@ -372,9 +382,7 @@ Great variations in the population
   
 <img src="figures/alignment-figure.png" />
 
-
-
-## Dynamic Information
+### Dynamic Information
 
 - How many bubbles are here?
 - How fast are they moving?
@@ -430,7 +438,7 @@ downsize = 32; plt.subplot(2,3,3); plt.imshow(resize(img,(img.shape[0] // downsi
 levels   = 16; plt.subplot(2,3,5); plt.imshow(np.floor(img*levels)); plt.title('{0} Levels'.format(levels));
 levels   = 4 ; plt.subplot(2,3,6); plt.imshow(np.floor(img*levels)); plt.title('{0} Levels'.format(levels));
 
-# Let's create a small image
+## Let's create a small image
 
 basic_image = np.random.choice(range(100), size = (5,5))
 
@@ -572,7 +580,7 @@ for i in np.arange(0,3) :
     plt.xlabel('Intensity');
     plt.ylabel('{0} Component'.format(colors[i]));
 
-## Applied LUTs
+### Applied LUTs
 These transformations can also be non-linear as is the case of the graph below where the mapping between the intensity and the color is a $\log$ relationship meaning the the difference between the lower values is much clearer than the higher ones
 
 %matplotlib inline
@@ -655,7 +663,7 @@ from skimage.util import montage as montage2d
 print(montage2d(vol_image, fill = 0))
 plt.matshow(montage2d(vol_image, fill = 0), cmap = 'jet');
 
-## Multiple Values
+## Multiple Values per pixel
 
 In the images thus far, we have had one value per position, but there is no reason there cannot be multiple values. In fact this is what color images are (red, green, and blue) values and even 4 channels with transparency (alpha) as a different. For clarity we call the __dimensionality__ of the image the number of dimensions in the spatial position, and the __depth__ the number in the value.
 
@@ -668,13 +676,17 @@ base_df.head(5)
 This can then be rearranged from a table form into an array form and displayed as a series of slices
 
 
-%matplotlib inline
-import matplotlib.pyplot as plt
+### Display multi-valued pixels separately
+
+The most straight forward way to display multiple pixel values is to display each value separately. This method is, however, mostly not very suitable as the values often are related in some sense. Therefore it is recommended to combine the values in the same plot.
+
 fig, (ax1, ax2) = plt.subplots(1, 2)
 ax1.scatter(base_df['x'], base_df['y'], c = plt.cm.gray(base_df['Intensity']), s = 1000)
 ax1.set_title('Intensity')
 ax2.scatter(base_df['x'], base_df['y'], c = plt.cm.gray(base_df['Transparency']), s = 1000)
 ax2.set_title('Transparency');
+
+In this example we combined two values use one value to control the colormap and the other to control the size of the dots. How you combine the data is related to the to of data you want to combine. If the values are components of a vector it makes more sense to show arrows of different length and direction, etc.
 
 fig, (ax1) = plt.subplots(1, 1)
 ax1.scatter(base_df['x'], base_df['y'], c = plt.cm.jet(base_df['Intensity']), s = 1000*base_df['Transparency'])
@@ -699,6 +711,10 @@ fig, ax1 = plt.subplots(1,1, figsize = (8, 8));
 ax1.imshow(raw_img);
 ax1.scatter(im_pos['x'], im_pos['y'], s = 1, c = 'blue');
 
+### Looking at the pixel values
+
+Each pixel of this data set is represented by a full spectrum. This means that we have both wave numbers and intensity values. In many cases, the wavenumbers are the same for all pixels, which makes it possible to reduce the redundancy of the wave number vector using a single 1D array to represent this information.
+
 full_df = pd.read_csv('../../common/data/full_img.csv').query('wavenum<1200')
 print(full_df.shape[0], 'rows')
 full_df.head(5)
@@ -709,7 +725,7 @@ fig, m_axs = plt.subplots(9, 3, figsize = (15, 12)); m_axs=m_axs.ravel()
 for ((g_x, g_y), c_rows), c_ax in zip(full_df.sort_values(['x','y']).groupby(['g_x', 'g_y']),m_axs):
     c_ax.plot(c_rows['wavenum'], c_rows['val'], 'r.')
 
-# Image Formation
+## Image Formation
 
 The image formation process is the process to use some kind of excitation or impulse probe a sample. This requires the interaction of four parts.
  ```{figure} figures/image-formation.pdf
@@ -725,7 +741,7 @@ The image formation process is the process to use some kind of excitation or imp
 - __Response__ Absorption, Reflection, Phase Shift, Scattering, Emission
 - __Detection__ Your eye, Light sensitive film, CCD / CMOS, Scintillator, Transducer
 
-## Where do images come from?
+### Where do images come from?
 
 
 
@@ -741,9 +757,9 @@ The image formation process is the process to use some kind of excitation or imp
 | Atomic Force Microscopy | Sharp Point | Surface Contact | Contact, Repulsion | Deflection of a tiny mirror|
 
 
-# Acquiring Images
+## Acquiring Images
 
-## Traditional / Direct imaging
+### Traditional / Direct imaging
 - Visible images produced or can be easily made visible
 - Optical imaging, microscopy
 
@@ -764,7 +780,7 @@ ax1.imshow(np.real(meas_img), cmap = 'bone'); ax1.set_title('Measurement')
 ax2.imshow(np.real(rec_img), cmap = 'bone', vmin = 0, vmax = 255); ax2.set_title('Reconstructed');
 
 
-## Indirect / Computational imaging
+### Indirect / Computational imaging
 - Recorded information does not resemble object
 - Response must be transformed (usually computationally) to produce an image
 
@@ -783,7 +799,7 @@ ax1.imshow(meas_img, cmap = 'hot')
 ax1.set_title('Measurement');
 
 
-## Traditional Imaging
+### Traditional Imaging
 
 
 <img src="figures/traditional-imaging.png" style="height:500px"/>
@@ -809,7 +825,7 @@ $$
 \int_{0}^{\infty} {\left[\left([b(x,y,\lambda)*s_{ab}(x,y,\lambda)]\otimes h_{fs}(x,y,\lambda)\right)*h_{op}(x,y,\lambda)\right]*h_{det}(x,y,\lambda)}\mathrm{d}\lambda+d_{dark}(x,y)
 $$
 
-## Indirect Imaging (Computational Imaging)
+### Indirect Imaging (Computational Imaging)
 <table>
 <tr><td>
     
@@ -830,7 +846,7 @@ $$
 <td><img src="figures/surface-plot.png" style="height:300px"/></td>
 </tr></table>
 
-## Image Analysis
+# Different views on image Analysis
 
 
 <center><img src="figures/approaches.png" style="height:400px"></center>
@@ -1075,22 +1091,22 @@ There are now many more transistors inside a single computer but the processing 
 </tr><table>
 
 
-## Cloud Computing Costs
+### Cloud Computing Costs
 
 
 The figure shows the range of cloud costs (determined by peak usage) compared to a local workstation with utilization shown as the average number of hours the computer is used each week.
 
 
-## Cloud: Equal Cost Point
+### Cloud: Equal Cost Point
 
 Here the equal cost point is shown where the cloud and local workstations have the same cost. The x-axis is the percentage of resources used at peak-time and the y shows the expected usable lifetime of the computer. The color indicates the utilization percentage and the text on the squares shows this as the numbers of hours used in a week.
 
 
 
 
-# Soup/Recipe Example
+## Soup/Recipe Example
 
-## Simple Soup
+### Simple Soup
 Easy to follow the list, anyone with the right steps can execute and repeat (if not reproduce) the soup
 
 1. Buy {carrots, peas, tomatoes} at market
@@ -1101,10 +1117,10 @@ Easy to follow the list, anyone with the right steps can execute and repeat (if 
 1. _then_ Wait until boiling then add chopped vegetables
 1. _then_ Wait 5 minutes and add meat
 
-## More complicated soup
+### More complicated soup
 Here it is harder to follow and you need to carefully keep track of what is being performed
 
-### Steps 1-4
+#### Steps 1-4
 4. _then_ Mix carrots with potatos $\rightarrow  mix_1$
 4. _then_ add egg to $mix_1$ and fry for 20 minutes
 4. _then_ Tenderize meat for 20 minutes
@@ -1112,9 +1128,9 @@ Here it is harder to follow and you need to carefully keep track of what is bein
 5. _then_ Wait until boiling then add $mix_1$
 6. _then_ Wait 5 minutes and add $mix_2$
 
-# Using flow charts / workflows
+## Using flow charts / workflows
 
-## Simple Soup
+### Simple Soup
 
 from IPython.display import SVG
 import pydot
@@ -1132,7 +1148,7 @@ for (c_n, d_n) in zip(nodes, nodes[1:]):
 SVG(graph.create_svg())
 
 
-## Workflows
+### Workflows
 
 Clearly a linear set of instructions is ill-suited for even a fairly easy soup, it is then even more difficult when there are dozens of steps and different pathsways
 
@@ -1165,7 +1181,7 @@ e(0, 2, 'gold'); e(2, 4); e(3, -2, 'springgreen'); e(-2, 4, 'orange'); e(4, -1) 
 SVG(graph.create_svg())
 
 
-# Directed Acyclical Graphs (DAG)
+## Directed Acyclical Graphs (DAG)
 We can represent almost any computation without loops as DAG. What this allows us to do is now break down a computation into pieces which can be carried out independently. There are a number of tools which let us handle this issue.
 
 - PyData Dask - https://dask.pydata.org/en/latest/
@@ -1176,7 +1192,7 @@ We can represent almost any computation without loops as DAG. What this allows u
 - Google Tensorflow - https://www.tensorflow.org/
 - Pytorch / Torch - http://pytorch.org/
 
-# Concrete example
+### Concrete example
 What is a DAG good for?
 
 import dask.array as da
@@ -1215,59 +1231,18 @@ image_7 = da_ndfilt.convolve(image_6, image_1)
 dot_graph(image_7.dask)
 
 
-# Deep Learning
+## Deep Learning
 We won't talk too much about deep learning now, but it certainly shows why DAGs are so important. 
 
 The steps above are simple toys compared to what tools are already in use for machine learning
 
 https://keras.io/api/utils/model_plotting_utils/
 
-from IPython.display import SVG
-from keras.applications.resnet50 import ResNet50
-from keras.utils.vis_utils import model_to_dot 
-resnet = ResNet50(weights = None)
-SVG(model_to_dot(resnet,rankdir="LR",).create_svg())
+# Summary
 
-from IPython.display import clear_output, Image, display, HTML
-#import keras.backend as K
-import tensorflow.python.keras.backend as K
-import tensorflow as tf
-import numpy as np
-def strip_consts(graph_def, max_const_size=32):
-    """Strip large constant values from graph_def."""
-    strip_def = tf.GraphDef()
-    for n0 in graph_def.node:
-        n = strip_def.node.add() 
-        n.MergeFrom(n0)
-        if n.op == 'Const':
-            tensor = n.attr['value'].tensor
-            size = len(tensor.tensor_content)
-            if size > max_const_size:
-                tensor.tensor_content = ("<stripped %d bytes>"%size).encode('ascii')
-    return strip_def
-
-def show_graph(graph_def, max_const_size=32):
-    """Visualize TensorFlow graph."""
-    if hasattr(graph_def, 'as_graph_def'):
-        graph_def = graph_def.as_graph_def()
-    strip_def = strip_consts(graph_def, max_const_size=max_const_size)
-    code = """
-        <script>
-          function load() {{
-            document.getElementById("{id}").pbtxt = {data};
-          }}
-        </script>
-        <link rel="import" href="https://tensorboard.appspot.com/tf-graph-basic.build.html" onload=load()>
-        <div style="height:600px">
-          <tf-graph-basic id="{id}"></tf-graph-basic>
-        </div>
-    """.format(data=repr(str(strip_def)), id='graph'+str(np.random.rand()))
-
-    iframe = """
-        <iframe seamless style="width:1200px;height:620px;border:0" srcdoc="{}"></iframe>
-    """.format(code.replace('"', '&quot;'))
-    display(HTML(iframe))
-    
-sess = K.get_session()
-show_graph(sess.graph)
+In this lecture we saw that:
+- Images revieal information about different samples
+- Images are a signals that needs to be quantitatively analyzed
+- Science with images is a non-trivial task
+- Proper workflows are required for efficient analysis repeatable analysis.
 
