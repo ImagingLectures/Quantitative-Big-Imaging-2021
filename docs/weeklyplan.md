@@ -1,6 +1,23 @@
 # Weekly Plan
 
+
 ## 25th February - Introduction and Workflows
+<table>
+<tr><th>Downloads</th>
+ <th>Videos</th>
+</tr>
+<tr>
+<td><a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="50px"/></a>
+ <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/html/Lecture01/index.html"><img src="figures/np_presentation.svg" height="50px"/></a>
+ <a href="http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2021/blob/master/Lectures/Lecture-01/01-Introduction.ipynb"><img src="figures/Jupyter_logo.svg" height="50px"/></a>
+ </td>
+ <td><a href="https://youtu.be/J8kzUU7gUTM"><img src="figures/np_video.svg" alt="Part 1" height="50px"/></a> <a href="https://youtu.be/XO02aFf5tNo"><img src="figures/np_video.svg" alt="Part 2" height="50px"/></a>
+ </td>
+</tr>
+</table>
+ 
+
+
 - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/01-Introduction.ipynb) [![Slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/01-Introduction.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/01-Introduction.ipynb)
 #### Lecture Videos
 - [Part 1](https://youtu.be/J8kzUU7gUTM)
