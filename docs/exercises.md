@@ -2,10 +2,6 @@
 ## General Information
 The exercises are based on the lectures and take place in the same room after the lecture completes. Links to the exercises are provieded with the lecture slides in the [weekly plan](weeklyplan.md) The exercises are designed to offer a tiered level of understanding based on the background of the student. Most exercises are prepared as python notebooks that guides you step by step through the exercises. New python commands will be introduced when needed and links to the manual pages will be provided. This is not a course on python programming, you will learn to use this powerful language for different image processing tasks throughout the course. 
 
-### Alternatives to using python
-The is also the possiblity to use an open-source tool called KNIME (www.knime.org), with example workflows here (https://www.knime.org/example-workflows).  The basic exercises will require adding blocks in a workflow and adjusting parameters, while more advanced students will be able to write their own snippets, blocks or plugins to accomplish more complex tasks easily.
-The exercises from four years ago (available [here](http://kmader.github.io/Quantitative-Big-Imaging-2015/) are done entirely in ImageJ and Matlab for students who would prefer to stay in those environments (not recommended)
-
 ### Install Python
 
 If you use colab, kaggle or mybinder you won't need python on your own machine but if you want to set it up in the same way the class has you can follow the instructions shown in the video [here](https://youtu.be/bnTCLLSpyf0) and below
