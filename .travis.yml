@@ -33,6 +33,9 @@ install:
 script:
    - jupyter-book build Lectures/Lecture-01 --builder pdflatex
    - cp Lectures/Lecture-01/_build/latex/QBI-Lecture01-Introduction.pdf docs/
+   - mkdir ./docs/lectures/lecture-01
+   - jupyter nbconvert Lectures/Lecture-01/01-Introduction.ipynb --ExecutePreprocessor.timeout=600 --to slides --execute --output-dir='./docs/lectures/lecture-01'
+   - cp -r Lectures/Lecture-01/figures Lectures/Lecture-01/movies docs/lectures/lecture-01/
   # - shopt -s globstar
   # - for nb in **/*ipynb; do
   #   if [[ $nb = *"Kaggle"* ]]; then
