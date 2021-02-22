@@ -9,14 +9,14 @@ The exercises from four years ago (available [here](http://kmader.github.io/Quan
 ### Install Python
 
 If you use colab, kaggle or mybinder you won't need python on your own machine but if you want to set it up in the same way the class has you can follow the instructions shown in the video [here](https://youtu.be/bnTCLLSpyf0) and below
-1. Install Anaconda Python https://www.anaconda.com/distribution/#download-section
+1. Install Anaconda Python. You find instructions here: https://docs.anaconda.com/anaconda/install/
 1. Download the course from github as a zip file
 1. Extract the zip file
 1. Open a terminal (or command prompt on windows)
-1. Go to the binder folder inside the course directory (something like: `Downloads/Quantitative-Big-Imaging-2019-master/binder`)
+1. Go to the binder folder inside the course directory (something like: `Downloads/Quantitative-Big-Imaging-2021-master/binder`)
 1. Install the environment
-1. `conda env create -f environment.yml`
-1. Activate the environment `conda activate qbi2019` or `activate qbi2019`
+1. `conda env create -f environment.yml -n qbi2021`
+1. Activate the environment `conda activate qbi2021` or `activate qbi2021`
 1. Go up one directory to the root of the course `cd ..`
 1. Start python `jupyter notebook`
 
@@ -24,14 +24,14 @@ If you use colab, kaggle or mybinder you won't need python on your own machine b
 
 1. Follow the instructions to [install git](https://www.atlassian.com/git/tutorials/install-git).
 2. Clone the lecture repository.
-  1. Go to the github page for [QBI lecture material](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2020)
+  1. Go to the github page for [QBI lecture material](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021)
   2. Click the clone button ![clone button](figures/clonebutton.png)
   3. Copy the path ![clone dialog](figures/clonedialog.png)
   4. Windows: open 'git bash', MacOS/Linux: open a terminal.
   5. Go to the folder where you want to place the lecture material.
   6. Type: ```git clone <paste the repository path here> ```, press enter and wait...
   
-Now you should have a folder called Quantitative-Big-Imaging-2020 at location where you called the clone.
+Now you should have a folder called Quantitative-Big-Imaging-2021 at location where you called the clone.
 
 #### Update from git with the latest changes
 1. Open a terminal 
