@@ -1,4 +1,4 @@
-# Weekly Plan [![Build Status] (https://www.travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021.svg?branch=main)](https://www.travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021)
+# Weekly Plan [![Build Status](https://www.travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021.svg?branch=main)](https://www.travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021)
 
 ## 25th February - Introduction and Workflows
 
