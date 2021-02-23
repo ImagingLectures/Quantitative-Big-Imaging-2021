@@ -1025,7 +1025,7 @@ xlin = np.linspace(-1,1, 10)
 xx, yy = np.meshgrid(xlin, xlin)
 
 fig, ax1 = plt.subplots(1,1, figsize = (6, 6))
-ax1.matshow(xx, vmin = -1, vmax = 1, cmap = 'bone')
+ax1.matshow(xx, vmin = -1, vmax = 1, cmap = 'bone');
 
 ## Reproducibility vs. Repeatability
 
@@ -1072,13 +1072,12 @@ Science demands __repeatability__! and really wants __reproducability__
 
 # Workflows for image analysis
 
-# Computing has changed: Parallel
+## Computing has changed: Parallel
 
-
-## Moores Law
+### Moores Law
 $$ \textrm{Transistors} \propto 2^{T/(\textrm{18 months})} $$
 
-# stolen from https://gist.github.com/humberto-ortiz/de4b3a621602b78bf90d
+# Borrowed from https://gist.github.com/humberto-ortiz/de4b3a621602b78bf90d
 moores_txt=["Id Name  Year  Count(1000s)  Clock(MHz)\n",
         "0            MOS65XX  1975           3.51           14\n",
         "1          Intel8086  1978          29.00           10\n",
@@ -1099,20 +1098,29 @@ fig, ax1 = plt.subplots(1,1, figsize = (8, 4)); ax1.semilogy(moore_df['Year'], m
 
 <small>_Based on data from https://gist.github.com/humberto-ortiz/de4b3a621602b78bf90d_</small>
 
-----
+### Why doesn't the clock rate follow Moore's law?
 
-There are now many more transistors inside a single computer but the processing speed hasn't increased. How can this be?
+There are now many more transistors inside a single computer but the CPU clock rate hasn't increased. It is actually stagnating since the early 2000s. The reason for this is that the number of processing cores has started to increase. Each core is a CPU is an autonomous CPU which makes it possible to perform many individual tasks in parallel.
 
 - Multiple Core
- - Many machines have multiple cores for each processor which can perform tasks independently
 - Multiple CPUs
- - More than one chip is commonly present
 - New modalities
   - GPUs provide many cores which operate at slow speed
 
-### $\rightarrow$ Parallel Code is important
+The conclusion is that we need to make the processing on multiple Cores/CPUs possible. This can be done by chosing multithreaded modules for the processing. In the extreme case we need to implement new multi-process code for the analysis. How this is done depends in the target hardware. You will use different approaches for a CPU than you use in a cluster or in cloud computing. In general, we can conclude:
+
+__Parallel Code is important__
 
 ## Computing has changed: Cloud
+
+Cloud computing is a type of service that has evolved from the big data era. Large companies have built up their analysis resources to match the need at peak demand. These resources were often underused which resulted in a new business model. Providing computing resources to external customers. In this way the customers only pay for the computing time they need and let someone else handle investments and system maintenance.
+
+```{figure} figures/cloud-services.png
+---
+scale: 50%
+---
+Different cloud services where it is possible to buy CPU time.
+```
 
 - Computer, servers, workstations are _wildly underused_ (majority are <50%)
 - Buying a big computer that sits _idle most of the time_ is a waste of money
@@ -1125,13 +1133,16 @@ There are now many more transistors inside a single computer but the processing 
 - Many competitors keep prices low and offer flexibility
 
 
-<img src="figures/cloud-services.png" style="height:600">
+<img src="figures/cloud-services.png" style="height:400">
 
 
-## Soup/Recipe Example
+## Workflow analysis
+
+It sound like a great idea to perform tasks in parallel, but how do we bring the compoute to do so. The following example from real life is used to demonstrate how a greater task can be broken down into smaller piecese.
 
 ### Simple Soup
-Easy to follow the list, anyone with the right steps can execute and repeat (if not reproduce) the soup
+
+We want to cook a simple soup. There is already a recipe telling us what to do to produce a soup. It is easy to follow the list, anyone with the right steps can execute and repeat (if not reproduce) the soup
 
 1. Buy {carrots, peas, tomatoes} at market
 1. _then_ Buy meat at butcher
@@ -1141,10 +1152,13 @@ Easy to follow the list, anyone with the right steps can execute and repeat (if 
 1. _then_ Wait until boiling then add chopped vegetables
 1. _then_ Wait 5 minutes and add meat
 
-### More complicated soup
-Here it is harder to follow and you need to carefully keep track of what is being performed
+All steps are done in a sequence to produce this soup. This would correspond to performing the task on a single CPU. Now, how can we change this?
 
-#### Steps 1-4
+### More complicated soup
+
+The following recipe is harder to follow and you need to carefully keep track of what is being performed. If you look at it in detail, you will see that some of the steps can be performed independently of the others. This is our opportunity to dispatch parallel tasks that would be running on different CPUs. In the kitchen, you could delegate tasks to other people and thus shorten the time until the soup is ready.
+
+__Steps 1-4__
 4. _then_ Mix carrots with potatos $\rightarrow  mix_1$
 4. _then_ add egg to $mix_1$ and fry for 20 minutes
 4. _then_ Tenderize meat for 20 minutes
@@ -1269,3 +1283,10 @@ In this lecture we saw that:
 - Images are a signals that needs to be quantitatively analyzed
 - Science with images is a non-trivial task
 - Proper workflows are required for efficient analysis repeatable analysis.
+
+## Next weeks lecture
+
+- Noise 
+- Filters
+- Filter evaluation
+

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="936pt" height="59pt" viewBox="0.00 0.00 935.76 58.91">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 54.91)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-54.91 931.76,-54.91 931.76,4 -4,4"/>
+<!-- 0000 -->
+<g id="node1" class="node">
+<title>0000</title>
+<ellipse fill="none" stroke="black" cx="53.09" cy="-25.46" rx="53.18" ry="25.41"/>
+<text text-anchor="middle" x="53.09" y="-28.26" font-family="Times,serif" font-size="14.00">Buy</text>
+<text text-anchor="middle" x="53.09" y="-14.26" font-family="Times,serif" font-size="14.00">vegetables</text>
+</g>
+<!-- 0001 -->
+<g id="node2" class="node">
+<title>0001</title>
+<ellipse fill="none" stroke="black" cx="186.43" cy="-25.46" rx="44.49" ry="18"/>
+<text text-anchor="middle" x="186.43" y="-21.26" font-family="Times,serif" font-size="14.00">Buy meat</text>
+</g>
+<!-- 0000&#45;&gt;0001 -->
+<g id="edge1" class="edge">
+<title>0000-&gt;0001</title>
+<path fill="none" stroke="black" d="M106.38,-25.46C114.72,-25.46 123.36,-25.46 131.73,-25.46"/>
+<polygon fill="black" stroke="black" points="131.77,-28.96 141.77,-25.46 131.77,-21.96 131.77,-28.96"/>
+</g>
+<!-- 0002 -->
+<g id="node3" class="node">
+<title>0002</title>
+<ellipse fill="none" stroke="black" cx="319.77" cy="-25.46" rx="53.18" ry="25.41"/>
+<text text-anchor="middle" x="319.77" y="-28.26" font-family="Times,serif" font-size="14.00">Chop</text>
+<text text-anchor="middle" x="319.77" y="-14.26" font-family="Times,serif" font-size="14.00">vegetables</text>
+</g>
+<!-- 0001&#45;&gt;0002 -->
+<g id="edge2" class="edge">
+<title>0001-&gt;0002</title>
+<path fill="none" stroke="black" d="M230.8,-25.46C238.96,-25.46 247.65,-25.46 256.26,-25.46"/>
+<polygon fill="black" stroke="black" points="256.3,-28.96 266.3,-25.46 256.3,-21.96 256.3,-28.96"/>
+</g>
+<!-- 0003 -->
+<g id="node4" class="node">
+<title>0003</title>
+<ellipse fill="none" stroke="black" cx="457.51" cy="-25.46" rx="48.8" ry="18"/>
+<text text-anchor="middle" x="457.51" y="-21.26" font-family="Times,serif" font-size="14.00">Heat water</text>
+</g>
+<!-- 0002&#45;&gt;0003 -->
+<g id="edge3" class="edge">
+<title>0002-&gt;0003</title>
+<path fill="none" stroke="black" d="M372.86,-25.46C381.26,-25.46 390,-25.46 398.52,-25.46"/>
+<polygon fill="black" stroke="black" points="398.78,-28.96 408.78,-25.46 398.78,-21.96 398.78,-28.96"/>
+</g>
+<!-- 0004 -->
+<g id="node5" class="node">
+<title>0004</title>
+<ellipse fill="none" stroke="black" cx="607.86" cy="-25.46" rx="65.9" ry="18"/>
+<text text-anchor="middle" x="607.86" y="-21.26" font-family="Times,serif" font-size="14.00">Add Vegetables</text>
+</g>
+<!-- 0003&#45;&gt;0004 -->
+<g id="edge4" class="edge">
+<title>0003-&gt;0004</title>
+<path fill="none" stroke="black" d="M506.26,-25.46C514.48,-25.46 523.2,-25.46 531.93,-25.46"/>
+<polygon fill="black" stroke="black" points="532.15,-28.96 542.15,-25.46 532.15,-21.96 532.15,-28.96"/>
+</g>
+<!-- 0005 -->
+<g id="node6" class="node">
+<title>0005</title>
+<ellipse fill="none" stroke="black" cx="753.34" cy="-25.46" rx="43.56" ry="25.41"/>
+<text text-anchor="middle" x="753.34" y="-28.26" font-family="Times,serif" font-size="14.00">Wait for</text>
+<text text-anchor="middle" x="753.34" y="-14.26" font-family="Times,serif" font-size="14.00">boiling</text>
+</g>
+<!-- 0004&#45;&gt;0005 -->
+<g id="edge5" class="edge">
+<title>0004-&gt;0005</title>
+<path fill="none" stroke="black" d="M673.88,-25.46C682.33,-25.46 690.9,-25.46 699.12,-25.46"/>
+<polygon fill="black" stroke="black" points="699.31,-28.96 709.31,-25.46 699.31,-21.96 699.31,-28.96"/>
+</g>
+<!-- 0006 -->
+<g id="node7" class="node">
+<title>0006</title>
+<ellipse fill="none" stroke="black" cx="880.44" cy="-25.46" rx="47.14" ry="25.41"/>
+<text text-anchor="middle" x="880.44" y="-28.26" font-family="Times,serif" font-size="14.00">Wait 5</text>
+<text text-anchor="middle" x="880.44" y="-14.26" font-family="Times,serif" font-size="14.00">add meat</text>
+</g>
+<!-- 0005&#45;&gt;0006 -->
+<g id="edge6" class="edge">
+<title>0005-&gt;0006</title>
+<path fill="none" stroke="black" d="M797.39,-25.46C805.53,-25.46 814.16,-25.46 822.65,-25.46"/>
+<polygon fill="black" stroke="black" points="822.89,-28.96 832.89,-25.46 822.89,-21.96 822.89,-28.96"/>
+</g>
+</g>
+</svg>

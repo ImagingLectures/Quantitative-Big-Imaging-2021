@@ -23,78 +23,78 @@
 \contentsline {section}{\numberline {3.6}Handling masses of images}{14}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}So… how much is a TB, really?}{14}{subsection.3.6.1}%
 \contentsline {subsection}{\numberline {3.6.2}Overwhelmed scientist}{16}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}More overwhelmed scientist}{17}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Bring on the pain}{17}{subsection.3.6.4}%
-\contentsline {subsection}{\numberline {3.6.5}It gets better}{19}{subsection.3.6.5}%
-\contentsline {subsection}{\numberline {3.6.6}Dynamic Information}{20}{subsection.3.6.6}%
-\contentsline {chapter}{\numberline {4}Images}{21}{chapter.4}%
-\contentsline {section}{\numberline {4.1}An introduction to images}{21}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}What is an image?}{21}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Image sampling}{21}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}What does sampling mean}{22}{subsection.4.1.3}%
-\contentsline {section}{\numberline {4.2}Let’s create a small image}{22}{section.4.2}%
-\contentsline {section}{\numberline {4.3}2D Intensity Images}{22}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Different colormaps}{23}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Lookup Tables}{23}{subsection.4.3.2}%
-\contentsline {subsubsection}{Matplotlib’s color maps}{23}{subsubsection*.3}%
-\contentsline {subsection}{\numberline {4.3.3}How are the colors combined}{24}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Applied LUTs}{25}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}LUTs on real images}{25}{subsection.4.3.5}%
-\contentsline {section}{\numberline {4.4}3D Images}{25}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}A 3D image as array}{27}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Showing 2D slices from volume}{27}{subsection.4.4.2}%
-\contentsline {section}{\numberline {4.5}Multiple Values per pixel}{27}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Display multi\sphinxhyphen {}valued pixels separately}{27}{subsection.4.5.1}%
-\contentsline {section}{\numberline {4.6}Hyperspectral Imaging}{28}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}Looking at the pixel values}{28}{subsection.4.6.1}%
-\contentsline {section}{\numberline {4.7}Image Formation}{28}{section.4.7}%
-\contentsline {subsection}{\numberline {4.7.1}Where do images come from?}{29}{subsection.4.7.1}%
-\contentsline {section}{\numberline {4.8}Acquiring Images}{29}{section.4.8}%
-\contentsline {subsection}{\numberline {4.8.1}Traditional / Direct imaging}{29}{subsection.4.8.1}%
-\contentsline {subsection}{\numberline {4.8.2}Indirect / Computational imaging}{30}{subsection.4.8.2}%
-\contentsline {subsection}{\numberline {4.8.3}Traditional Imaging}{30}{subsection.4.8.3}%
-\contentsline {section}{\numberline {4.9}Traditional Imaging: Model}{30}{section.4.9}%
-\contentsline {subsection}{\numberline {4.9.1}Indirect Imaging (Computational Imaging)}{31}{subsection.4.9.1}%
-\contentsline {chapter}{\numberline {5}Different views on image Analysis}{33}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Image Analysis: Experimentalist}{33}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Characteristics}{33}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Examples}{33}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}Image Analysis: Computer Vision Approaches}{34}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Characteristics}{34}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Examples}{34}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Image Analysis: Deep Learning Approach}{34}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Characteristics}{34}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Examples}{35}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Summary analysis approaches}{35}{section.5.4}%
-\contentsline {chapter}{\numberline {6}On Science}{37}{chapter.6}%
-\contentsline {section}{\numberline {6.1}What is the purpose?}{37}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}How?}{37}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}Important Points}{37}{subsection.6.1.2}%
-\contentsline {section}{\numberline {6.2}Science and Imaging}{37}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Proper processing and quantitative analysis is however much more difficult with images.}{37}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Furthermore in image processing there is a plethora of tools available}{38}{subsection.6.2.2}%
-\contentsline {section}{\numberline {6.3}Why quantitative?}{38}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Human eyes have issues}{38}{subsection.6.3.1}%
-\contentsline {section}{\numberline {6.4}Intensity gradients}{38}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Reproducibility vs. Repeatability}{39}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Reproducibility}{39}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Repeatability}{39}{subsection.6.5.2}%
-\contentsline {section}{\numberline {6.6}Reproducibility vs. Repeatability}{39}{section.6.6}%
-\contentsline {section}{\numberline {6.7}How can we keep track of everything for ourselves and others?}{40}{section.6.7}%
-\contentsline {chapter}{\numberline {7}Workflows for image analysis}{41}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Computing has changed: Parallel}{43}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Moores Law}{43}{section.8.1}%
-\contentsline {subsection}{\numberline {8.1.1}\(\rightarrow \) Parallel Code is important}{44}{subsection.8.1.1}%
-\contentsline {section}{\numberline {8.2}Computing has changed: Cloud}{44}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Soup/Recipe Example}{44}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Simple Soup}{44}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}More complicated soup}{44}{subsection.8.3.2}%
-\contentsline {subsubsection}{Steps 1\sphinxhyphen {}4}{44}{subsubsection*.4}%
-\contentsline {section}{\numberline {8.4}Using flow charts / workflows}{45}{section.8.4}%
-\contentsline {subsection}{\numberline {8.4.1}Simple Soup}{45}{subsection.8.4.1}%
-\contentsline {subsection}{\numberline {8.4.2}Workflows}{45}{subsection.8.4.2}%
-\contentsline {section}{\numberline {8.5}Directed Acyclical Graphs (DAG)}{46}{section.8.5}%
-\contentsline {subsection}{\numberline {8.5.1}Concrete example}{46}{subsection.8.5.1}%
-\contentsline {chapter}{\numberline {9}Let’s go big}{47}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Deep Learning}{47}{section.9.1}%
-\contentsline {chapter}{\numberline {10}Summary}{49}{chapter.10}%
+\contentsline {subsection}{\numberline {3.6.3}More overwhelmed scientist}{18}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Bring on the pain}{18}{subsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.6.5}It gets better}{20}{subsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.6.6}Dynamic Information}{21}{subsection.3.6.6}%
+\contentsline {chapter}{\numberline {4}Images}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}An introduction to images}{23}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}What is an image?}{23}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Image sampling}{23}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}What does sampling mean}{24}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Let’s create a small image}{24}{section.4.2}%
+\contentsline {section}{\numberline {4.3}2D Intensity Images}{25}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Different colormaps}{26}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Lookup Tables}{27}{subsection.4.3.2}%
+\contentsline {subsubsection}{Matplotlib’s color maps}{27}{subsubsection*.3}%
+\contentsline {subsection}{\numberline {4.3.3}How are the colors combined}{32}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Applied LUTs}{33}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}LUTs on real images}{34}{subsection.4.3.5}%
+\contentsline {section}{\numberline {4.4}3D Images}{35}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}A 3D image as array}{36}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Showing 2D slices from volume}{36}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Multiple Values per pixel}{37}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Display multi\sphinxhyphen {}valued pixels separately}{38}{subsection.4.5.1}%
+\contentsline {section}{\numberline {4.6}Hyperspectral Imaging}{39}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Looking at the pixel values}{40}{subsection.4.6.1}%
+\contentsline {section}{\numberline {4.7}Image Formation}{41}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Where do images come from?}{42}{subsection.4.7.1}%
+\contentsline {section}{\numberline {4.8}Acquiring Images}{42}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Traditional / Direct imaging}{42}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Indirect / Computational imaging}{43}{subsection.4.8.2}%
+\contentsline {subsection}{\numberline {4.8.3}Traditional Imaging}{44}{subsection.4.8.3}%
+\contentsline {section}{\numberline {4.9}Traditional Imaging: Model}{44}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Indirect Imaging (Computational Imaging)}{45}{subsection.4.9.1}%
+\contentsline {chapter}{\numberline {5}Different views on image Analysis}{47}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Image Analysis: Experimentalist}{47}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Characteristics}{47}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Examples}{47}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Image Analysis: Computer Vision Approaches}{48}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Characteristics}{48}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Examples}{48}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Image Analysis: Deep Learning Approach}{48}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Characteristics}{48}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Examples}{49}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Summary analysis approaches}{49}{section.5.4}%
+\contentsline {chapter}{\numberline {6}On Science}{51}{chapter.6}%
+\contentsline {section}{\numberline {6.1}What is the purpose?}{51}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}How?}{51}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Important Points}{51}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Science and Imaging}{51}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Proper processing and quantitative analysis is however much more difficult with images.}{51}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Furthermore in image processing there is a plethora of tools available}{52}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}Why quantitative?}{52}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Human eyes have issues}{52}{subsection.6.3.1}%
+\contentsline {section}{\numberline {6.4}Intensity gradients}{53}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Reproducibility vs. Repeatability}{54}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Reproducibility}{54}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Repeatability}{54}{subsection.6.5.2}%
+\contentsline {section}{\numberline {6.6}Reproducibility vs. Repeatability}{54}{section.6.6}%
+\contentsline {section}{\numberline {6.7}How can we keep track of everything for ourselves and others?}{55}{section.6.7}%
+\contentsline {chapter}{\numberline {7}Workflows for image analysis}{57}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Computing has changed: Parallel}{57}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Moores Law}{57}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Why doesn’t the clock rate follow Moore’s law?}{58}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}Computing has changed: Cloud}{58}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Workflow analysis}{59}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Simple Soup}{59}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}More complicated soup}{60}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Using flow charts / workflows}{60}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Simple Soup}{60}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Workflows}{60}{subsection.7.4.2}%
+\contentsline {section}{\numberline {7.5}Directed Acyclical Graphs (DAG)}{61}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Concrete example}{61}{subsection.7.5.1}%
+\contentsline {chapter}{\numberline {8}Let’s go big}{65}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Deep Learning}{69}{section.8.1}%
+\contentsline {chapter}{\numberline {9}Summary}{71}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Next weeks lecture}{71}{section.9.1}%
