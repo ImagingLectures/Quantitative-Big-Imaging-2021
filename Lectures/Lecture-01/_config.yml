@@ -6,7 +6,7 @@ author: Anders Kaestner
 
 execute:
   timeout: -1
-  execute_notebooks: cache
+  execute_notebooks: auto
 
 latex:
   latex_documents:
