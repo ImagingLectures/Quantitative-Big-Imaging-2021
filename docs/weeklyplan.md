@@ -1,4 +1,4 @@
-# Weekly Plan
+# Weekly Plan [![Build Status](https://www.travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021.svg?branch=main)](https://www.travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021)
 
 
 ## 25th February - Introduction and Workflows
@@ -8,27 +8,14 @@
 </tr>
 <tr>
 <td><a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="50px"/></a>
- <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/html/Lecture01/index.html"><img src="figures/np_presentation.svg" height="50px"/></a>
- <a href="http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2021/blob/master/Lectures/Lecture-01/01-Introduction.ipynb"><img src="figures/Jupyter_logo.svg" height="50px"/></a>
- </td>
  <td><a href="https://youtu.be/J8kzUU7gUTM"><img src="figures/np_video.svg" alt="Part 1" height="50px"/></a> <a href="https://youtu.be/XO02aFf5tNo"><img src="figures/np_video.svg" alt="Part 2" height="50px"/></a>
  </td>
 </tr>
 </table>
  
-
-
-- [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/01-Introduction.ipynb) [![Slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/01-Introduction.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/01-Introduction.ipynb)
-#### Lecture Videos
-- [Part 1](https://youtu.be/J8kzUU7gUTM)
-- [Part 2](https://youtu.be/XO02aFf5tNo)
-
-
 #### Exercises
-- [Getting started with python for image processing](http://github.com/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Exercises/01-Images)[![Exercises](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Exercises/01-Images/Assignment_01_Images.ipynb) 
-- [Getting Started with KNIME](../Exercises/01-Description.md)
+- [Getting started with python for image processing](http://github.com/imaginglectures/Quantitative-Big-Imaging-2021/blob/master/Exercises/01-Images)[![Exercises](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/master?filepath=Exercises/01-Images/Assignment_01_Images.ipynb) 
 #### Supporting material for the exercises
-
 - [Introduction to Python and Jupyter for Data-Science](https://github.com/jakevdp/PythonDataScienceHandbook)
 
 ---
@@ -186,10 +173,9 @@ Last years material - not yet updated
 #### Presentations
 | Presenter(s)  | Title.        | Recording OK |
 | ------------- | ------------- |--------------|
-| Cameron Bogon  | Analysing Bacteria patterned on surfaces | yes |
-| Yves Haag, Nemanja Kostic and Tobias Stauffer| Segmentation method to detect microcalcifications  | yes |
-| Jack Kendall| Identification of Distal Radius Fractures using Time-Lapse HR-pQCT Imaging | yes|
-| Alix Pham, Eylül Ceylan, and Lucien Stöcklin| Cardiomyocyte Segmentation and Morphological Analysis |yes|
-| Christoph Gäbelein | QBI of Bacteria | yes |
-| Richardo Carreon Ruiz | 2D Mapping of Ionic Transport in Lithium-ion Batteries: In-situ Quantification | no |
+|N.N.| TBA| yes|
+
+<a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/html/Lecture01/index.html"><img src="figures/np_presentation.svg" height="50px"/></a>
+ <a href="http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2021/blob/master/Lectures/Lecture-01/01-Introduction.ipynb"><img src="figures/Jupyter_logo.svg" height="50px"/></a>
+ </td>
 
