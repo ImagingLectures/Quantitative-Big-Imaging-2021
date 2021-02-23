@@ -21,10 +21,10 @@ __Quantitative Big Imaging__ ETHZ: 227-0966-00L
 Python is a modular scripting language with limited functionality. Features are added through modules that are imported.
 These are the modules that are needed for this lecture. Please run this cell before you start using the notebook.
 
-%matplotlib inline
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+%matplotlib inline
 
 from skimage.io import imread
 from scipy.ndimage import convolve
@@ -32,6 +32,7 @@ from skimage.morphology import disk
 from skimage.transform import resize
 from itertools import product
 import os
+from io import StringIO
 
 
 # About the course
@@ -349,6 +350,12 @@ Many samples are needed:
 
 <img src="figures/96-samples.png" style="height:50%" />
 
+```{figure} figures/96-samples.png
+---
+scale: 75%
+---
+A collection of 96 volume images from different bone samples.
+``` 
 Working with multiple 3D images is not feasible anymore to do manually. We need some kind of automated process to perform the analysis.
 
 ### Bring on the pain
@@ -364,25 +371,34 @@ Great variations in the population
 
 ```{figure} figures/1090-samples.png
 ---
+scale: 75%
 ---
-A collection of 1090 samples. This is a massive task to analyze!
+A collection of 1090 bone samples. This is a massive task to analyze!
 ```
 With so many samples we stand in front of a logistic problem to measure the data and once the data is there we have to analyze it. As a first step, we have to specify how to analyze these images to obtain results that may or may not support a hypothesis.
 
 ### It gets better
 
-The metrics we specified in the previous example are easy to observe and also to measure. What if we now want to make more complicated inquiries even   
+The metrics we specified in the previous example are easy to observe and also to measure. They are direct measurements of pixels and positions. What if we now want to make more complicated inquiries even. Now how do we categorize the images or collections of features using soft metrics?
 
 - Those metrics were quantitative and could be easily visually extracted from the images
 - What happens if you have _softer_ metrics
     - How aligned are these cells?
     - Is the group on the left more or less aligned than the right?
     - errr?
-    
   
 <img src="figures/alignment-figure.png" />
 
+```{figure} figures/alignment-figure.png
+---
+scale: 50%
+---
+Close-up on different bone segments. How aligned are the cells in these images?
+```
+
 ### Dynamic Information
+
+Many experiments are on top of the spatial dimensions also studies over time. This brings us 4D data sets to analyze. How are we supposed to handle this? Looking at the movie we 
 
 - How many bubbles are here?
 - How fast are they moving?
@@ -391,9 +407,7 @@ The metrics we specified in the previous example are easy to observe and also to
 - Do bubbles near the edge move slower?
 - Are they rearranging?
 
-<video controls loop src="../../../common/movies/dk31-plat.avi" type="video/avi" height="350px"></video>
-
-
+<video controls loop src="movies/dk31_foam.mp4" type="video/mp4" height="350px"></video>
 
 # Images 
 
@@ -419,7 +433,6 @@ In most cases this is a 2- or 3-dimensional position (x,y,z coordinates) and a n
 ```{figure} figures/grid.pdf
 ---
 scale: 75%
-
 ---
 The real world is sampled into discrete images with limited extent.
 ```
@@ -634,6 +647,7 @@ scale: 75%
 ---
 Three-dimensional data can be a volume in space.
 ```
+
 ```{figure} figures/timeseries_visualization.pdf
 ---
 scale: 75%
@@ -826,6 +840,17 @@ $$
 $$
 
 ### Indirect Imaging (Computational Imaging)
+
+With indirect imaging you make acquisitions in a form that don't represent the information you want to have. It is needed to perform a numeric transformation to obtain images in observation space.
+
+Some examples are:
+- Tomography through projections
+- Microlenses [Light-field photography](https://en.wikipedia.org/wiki/Light-field_camera)
+- Diffraction patterns
+- Hyperspectral imaging with Raman, IR, CARS
+- Surface Topography with cantilevers (AFM)
+
+
 <table>
 <tr><td>
     
@@ -842,20 +867,31 @@ $$
 </td>
 </tr>
 <tr>
-<td><video controls loop src="../../common/movies/lightfield.mp4" height="300px" type="video/mp4"></video></td>
+<td><video controls loop src="movies/lightfield.mp4" height="300px" type="video/mp4"></video></td>
 <td><img src="figures/surface-plot.png" style="height:300px"/></td>
 </tr></table>
 
 # Different views on image Analysis
 
+Image analysis is a complex task and there are many ways to reach the quantitative results from the images. 
+```{figures} figures/approaches.png
+---
+scale: 75%
+---
+Your background often decides how you approach an image analysis problem.
+```
+We can make two initial statements:
 
 <center><img src="figures/approaches.png" style="height:400px"></center>
-
 
 - An image is a bucket of pixels.
 - How you choose to turn it into useful information is strongly dependent on your background
 
 ## Image Analysis: Experimentalist
+
+The experimentalist looks with a problem driven concept on the analysis task. It is often a top down approach aiming at solving the specific problem at hand. The solution is often reality driven and aims at finding models explaining the information presented in the images.
+
+Typical task the experimentalist tries to solve are very practical and specific like counting cells in the image or to measure the porosity of the sample.
 
 <table>
     <tr><td align="left"> 
@@ -872,10 +908,11 @@ $$
 <td><img src="figures/approaches.png" style="height:400px;"> </td>
 </tr></table>
 
-
 ## Image Analysis: Computer Vision Approaches
 
+The computer vision/signal processing scientist works to develop methods to solve a class of image processing problem. The approach is based on abstract features found in the image. The models are based on features and noise found in the images. The systematic appoach is even based on engineered image features to better test and evaluate the developed methods.
 
+The computer vision approach is typical looking to detect features like edges, structures, and also complicated features like faces. 
 
 <table>
     <tr><td align="left"> 
@@ -896,8 +933,13 @@ $$
 </td>
 </tr></table>
 
-
 ## Image Analysis: Deep Learning Approach
+
+Finally, the deep learning approach is data driven and inspired by the way nature solves the image analysis problem. This approach rebuilds the way image processing is done from scratch, but at the same time it also based on concepts developed in computer vision. The deep learning approaches doesn't require a specific model describing the images it is meant to analyze, but rather make conclusions based on the previous images it has been exposed to. 
+
+The deep learning appraoch is good handling rare events in the data and when it trained correctly it is also capable of generalizing to detect new features. This may sound like magic, but this is also a well founded and structured approach to analyzing images. Care most however be taken not to over fit or to genralize to much. The models are never better than the data they have been exposed to.
+
+Examples where deep learing is frequently used are to detect annomalies in the data or to label images based on their contents.
 
 <table>
     <tr>
@@ -916,6 +958,9 @@ $$
 <td><img src="figures/approaches.png" style="height:400px;"> </td>
 </tr></table>
 
+## Summary analysis approaches
+
+These three approaches have their own advantages and disadvantages, therefore it is good to know them all to be able to select the adquate method for the task you have to solve. It is not unusual that you will have to use a mix of the approaches. It is important to be open minded and think outside the box. In the end, what matters is that you can provide a reliable analysis of your data.
 
 # On Science
 
@@ -1025,17 +1070,15 @@ Science demands __repeatability__! and really wants __reproducability__
 - Document the analysis steps
 - Write clear and understandable code
 
+# Workflows for image analysis
+
 # Computing has changed: Parallel
 
 
 ## Moores Law
 $$ \textrm{Transistors} \propto 2^{T/(\textrm{18 months})} $$
 
-%matplotlib inline
 # stolen from https://gist.github.com/humberto-ortiz/de4b3a621602b78bf90d
-import pandas as pd
-import matplotlib.pyplot as plt
-from io import StringIO
 moores_txt=["Id Name  Year  Count(1000s)  Clock(MHz)\n",
         "0            MOS65XX  1975           3.51           14\n",
         "1          Intel8086  1978          29.00           10\n",
@@ -1071,37 +1114,18 @@ There are now many more transistors inside a single computer but the processing 
 
 ## Computing has changed: Cloud
 
-<table style="background-color: white;">
-    <tr>
-    <td>
-        
 - Computer, servers, workstations are _wildly underused_ (majority are <50%)
 - Buying a big computer that sits _idle most of the time_ is a waste of money
-
     - http://www-inst.eecs.berkeley.edu/~cs61c/sp14/
     - “The Case for Energy-Proportional Computing,” Luiz André Barroso, Urs Hölzle, IEEE Computer, December 2007
-
 - Traditionally the most important performance criteria was time, how fast can it be done
 - With Platform as a service servers can be _rented instead of bought_
 - Speed is still important but using cloud computing $ / Sample is the real metric
 - In Switzerland a PhD student is 400x as expensive per hour as an Amazon EC2 Machine
 - Many competitors keep prices low and offer flexibility
-</td>
-<td><img src="../common/figures/cloud-services.png" style="height:600"></td>
-</tr><table>
 
 
-### Cloud Computing Costs
-
-
-The figure shows the range of cloud costs (determined by peak usage) compared to a local workstation with utilization shown as the average number of hours the computer is used each week.
-
-
-### Cloud: Equal Cost Point
-
-Here the equal cost point is shown where the cloud and local workstations have the same cost. The x-axis is the percentage of resources used at peak-time and the y shows the expected usable lifetime of the computer. The color indicates the utilization percentage and the text on the squares shows this as the numbers of hours used in a week.
-
-
+<img src="figures/cloud-services.png" style="height:600">
 
 
 ## Soup/Recipe Example
@@ -1245,4 +1269,3 @@ In this lecture we saw that:
 - Images are a signals that needs to be quantitatively analyzed
 - Science with images is a non-trivial task
 - Proper workflows are required for efficient analysis repeatable analysis.
-
