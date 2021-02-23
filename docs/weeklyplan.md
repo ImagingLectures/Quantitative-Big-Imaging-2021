@@ -14,7 +14,7 @@
 </table>
  
 #### Exercises
-- [Getting started with python for image processing](http://github.com/imaginglectures/Quantitative-Big-Imaging-2021/blob/master/Exercises/01-Images)[![Exercises](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/master?filepath=Exercises/01-Images/Assignment_01_Images.ipynb) 
+- [Getting started with python for image processing](http://github.com/imaginglectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/01-Images)[![Exercises](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/main?filepath=Exercises/01-Images/Assignment_01_Images.ipynb) 
 #### Supporting material for the exercises
 - [Introduction to Python and Jupyter for Data-Science](https://github.com/jakevdp/PythonDataScienceHandbook)
 
