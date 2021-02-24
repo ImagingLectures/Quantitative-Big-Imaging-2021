@@ -65,3 +65,4 @@ The final examination (as originally stated in the course material) will be a 30
 The projects are optional, but highly recommended to do as they give better insight in practical problems occurring while analyzing real data. We provide a list of projects, but you can also take the opportunity to extract a fraction of your other ongoing projects like master's or PhD project. Please contact Anders Kaestner in advance if you choose to define your own project.
 - [Overview](Projects/Overview.md) of possible projects
 - [Here](https://docs.google.com/spreadsheets/d/1n7I2mzSC06tXu3g7NoeoL3LKtA3oFEOGRBHIHXHeGNs/edit?usp=sharing) you signup for your project with team members and a short title and description
+
