@@ -1168,9 +1168,13 @@ __Steps 1-4__
 
 ## Using flow charts / workflows
 
-### Simple Soup
+The processing task can be visualize using flow charts to better get an overview of the steps to be done. A sequence has a trivial shape, but it hard to get the big picture as soon as you start creating more complicated schemes .
 
-from IPython.display import SVG
+### Workflow of the Simple Soup
+
+In this example we use the graph plotting module graphviz to draw the flow chart of the soup example. Graphviz is only a plotting tool with no direct processing capacity.
+
+from IPython.display import Image, display
 import pydot
 graph = pydot.Dot(graph_type='digraph', rankdir="LR")
 node_names = ["Buy\nvegetables","Buy meat","Chop\nvegetables","Heat water", "Add Vegetables",
@@ -1183,21 +1187,15 @@ for c_n in nodes:
 for (c_n, d_n) in zip(nodes, nodes[1:]):
     graph.add_edge(pydot.Edge(c_n, d_n))
 
-SVG(graph.create_svg())
+plt = Image(graph.create_png()); display(plt);
 
+### Workflows - the complicated soup
 
-### Workflows
+Clearly a linear set of instructions is ill-suited for even a fairly easy soup, it is then even more difficult when there are dozens of steps and different pathsways.
 
-Clearly a linear set of instructions is ill-suited for even a fairly easy soup, it is then even more difficult when there are dozens of steps and different pathsways
+Furthermore a clean workflow allows you to better parallelize the task since it is clear which tasks can be performed independently.
 
-
-----
-
-Furthermore a clean workflow allows you to better parallelize the task since it is clear which tasks can be performed independently
-
-
-
-from IPython.display import SVG
+from IPython.display import Image, display
 import pydot
 graph = pydot.Dot(graph_type='digraph', rankdir="LR")
 node_names = ["Buy\nvegetables","Buy meat","Chop\nvegetables","Heat water", "Add Vegetables",
@@ -1215,12 +1213,14 @@ def e(i,j, col = None):
     graph.add_edge(pydot.Edge(nodes[i], nodes[j]))
 
 e(0, 2, 'gold'); e(2, 4); e(3, -2, 'springgreen'); e(-2, 4, 'orange'); e(4, -1) ; e(1, -1, 'dodgerblue')
-
-SVG(graph.create_svg())
+plt = Image(graph.create_png()); display(plt);
 
 
 ## Directed Acyclical Graphs (DAG)
-We can represent almost any computation without loops as DAG. What this allows us to do is now break down a computation into pieces which can be carried out independently. There are a number of tools which let us handle this issue.
+- We can represent almost any computation without loops as DAG. 
+- This allows us to break down a computation into pieces which can be carried out independently. 
+
+There are a number of tools which let us handle this issue.
 
 - PyData Dask - https://dask.pydata.org/en/latest/
 - Apache Spark - https://spark.apache.org/
@@ -1230,8 +1230,12 @@ We can represent almost any computation without loops as DAG. What this allows u
 - Google Tensorflow - https://www.tensorflow.org/
 - Pytorch / Torch - http://pytorch.org/
 
-### Concrete example
+### Concrete example - Creating a DAG
 What is a DAG good for?
+
+#### Create two variables
+
+Let create a DAG to demonstrate how it works. This first piece creates two small images (5x5 pixels) each containing either '0's or '1's. We still haven't started any calculations using this DAG.
 
 import dask.array as da
 
@@ -1240,14 +1244,30 @@ image_1 = da.zeros((5,5), chunks = (5,5))
 image_2 = da.ones((5,5), chunks = (5,5))
 dot_graph(image_1.dask)
 
+#### Add two variables
+
+Adding two variables in a DAG looks like the code to add any variables. Now if we look at the graph created by this operation, we that there is a directed flow of the data in this graph.
+
+$$Image_3 = Image_1 + Image_2$$
+
 image_3 = image_1 + image_2
 dot_graph(image_3.dask)
+
+#### A more complicated operation
+
+Now lets make a more complicated calculation like:
+$$Image_4=(image_1-10)+(image_2*50)$$
 
 image_4 = (image_1-10) + (image_2*50)
 dot_graph(image_4.dask)
 
-# Let's go big
-Now let's see where this can be really useful
+We can here see that there are two clear branches in the flow chart. This indicates that here is an opportunity to perform these tasks in parallel.
+
+### Let's go big
+
+Now let's see where this can be really useful. Dask allows you to split the data into smaller pieces (chunks). In the example below we have created a 1024x1024 pixels image and also told dask that this image should be divided into chunks of 512x512 pixels.
+
+#### Creating a large image with chunks
 
 import dask.array as da
 from dask.dot import dot_graph
@@ -1255,14 +1275,42 @@ image_1 = da.zeros((1024, 1024), chunks = (512, 512))
 image_2 = da.ones((1024 ,1024), chunks = (512, 512))
 dot_graph(image_1.dask)
 
+You see now that there are four graph created. The boxes on the top indicates the location of the chunk in the large image. 
+
+#### Computing something with a larger image
+
+If we now apply the "complicated" calculation 
+
+$$Image_4=(image_1-10)+(image_2*50)$$
+
+on the large image with chunks, we see that the code hasn't changed at all. When we look at the graph generated with this data, we see that there are four graphs repeating the same operations. One graph for each chunk we defined in the data.
+
 image_4 = (image_1-10) + (image_2*50)
 dot_graph(image_4.dask)
+
+### Matrix multiplication in a DAG
+
+A matrix multiplication is a more complicated operation than the previous exmaples. This operation needs information from all the other chunks to calulate the current chunk. This can also be seen in the wiring of the graph below. 
 
 image_5 = da.matmul(image_1, image_2)
 dot_graph(image_5.dask)
 
+### An even more complicated computation
+
+Combining different operations into a final calculation like
+
+$$Image_6=(Image_1\cdot{}Image_2+Image_1)\circ{}Image_2$$
+
 image_6 = (da.matmul(image_1, image_2)+image_1)*image_2
 dot_graph(image_6.dask)
+
+We see here that the convolution part connects all branches of the graph which mean all processing must be synchronized here. Afterwards there are no connections and each sub graph can work independently.
+
+### Convolution using a DAG
+
+Convolution makes life harder for a DAG. There is a need for an overlap between the chunks to avoid boundary effects. These boundary effects are something we will look into in next week's lecture about filters.
+
+$$Image_7=Image_6*Image_1$$
 
 import dask_ndfilters as da_ndfilt
 image_7 = da_ndfilt.convolve(image_6, image_1)
@@ -1271,6 +1319,8 @@ dot_graph(image_7.dask)
 
 ## Deep Learning
 We won't talk too much about deep learning now, but it certainly shows why DAGs are so important. 
+
+![DAG-NN](figures/DAG-shallow-NN.png)
 
 The steps above are simple toys compared to what tools are already in use for machine learning
 
@@ -1289,4 +1339,3 @@ In this lecture we saw that:
 - Noise 
 - Filters
 - Filter evaluation
-

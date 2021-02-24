@@ -90,11 +90,19 @@
 \contentsline {subsection}{\numberline {7.3.1}Simple Soup}{59}{subsection.7.3.1}%
 \contentsline {subsection}{\numberline {7.3.2}More complicated soup}{60}{subsection.7.3.2}%
 \contentsline {section}{\numberline {7.4}Using flow charts / workflows}{60}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Simple Soup}{60}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Workflows}{60}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.1}Workflow of the Simple Soup}{60}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Workflows \sphinxhyphen {} the complicated soup}{60}{subsection.7.4.2}%
 \contentsline {section}{\numberline {7.5}Directed Acyclical Graphs (DAG)}{61}{section.7.5}%
-\contentsline {subsection}{\numberline {7.5.1}Concrete example}{61}{subsection.7.5.1}%
-\contentsline {chapter}{\numberline {8}Let’s go big}{65}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Deep Learning}{69}{section.8.1}%
-\contentsline {chapter}{\numberline {9}Summary}{71}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Next weeks lecture}{71}{section.9.1}%
+\contentsline {subsection}{\numberline {7.5.1}Concrete example \sphinxhyphen {} Creating a DAG}{62}{subsection.7.5.1}%
+\contentsline {subsubsection}{Create two variables}{62}{subsubsection*.4}%
+\contentsline {subsubsection}{Add two variables}{62}{subsubsection*.5}%
+\contentsline {subsubsection}{A more complicated operation}{63}{subsubsection*.6}%
+\contentsline {subsection}{\numberline {7.5.2}Let’s go big}{65}{subsection.7.5.2}%
+\contentsline {subsubsection}{Creating a large image with chunks}{65}{subsubsection*.7}%
+\contentsline {subsubsection}{Computing something with a larger image}{65}{subsubsection*.8}%
+\contentsline {subsection}{\numberline {7.5.3}Matrix multiplication in a DAG}{66}{subsection.7.5.3}%
+\contentsline {subsection}{\numberline {7.5.4}An even more complicated computation}{67}{subsection.7.5.4}%
+\contentsline {subsection}{\numberline {7.5.5}Convolution using a DAG}{68}{subsection.7.5.5}%
+\contentsline {section}{\numberline {7.6}Deep Learning}{69}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Summary}{71}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Next weeks lecture}{71}{section.8.1}%
