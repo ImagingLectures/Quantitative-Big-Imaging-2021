@@ -1,21 +1,15 @@
 # Weekly Plan [![Build Status](https://www.travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021.svg?branch=main)](https://www.travis-ci.com/ImagingLectures/Quantitative-Big-Imaging-2021)
 
-
 ## 25th February - Introduction and Workflows
 
-<table>
-<tr><th>Downloads</th>
- <th>Videos</th>
-</tr>
-<tr>
-<td><a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>
- <td>Last years videos <a href="https://youtu.be/J8kzUU7gUTM"><img src="figures/np_video.svg" alt="Part 1" height="40px"/></a> <a href="https://youtu.be/XO02aFf5tNo"><img src="figures/np_video.svg" alt="Part 2" height="40px"/></a>
- </td>
-</tr>
-</table>
+| Downloads| Videos |
+|:---:|:---|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>| Last years videos <a href="https://youtu.be/J8kzUU7gUTM"><img src="figures/np_video.svg" alt="Part 1" height="40px"/></a> <a href="https://youtu.be/XO02aFf5tNo"><img src="figures/np_video.svg" alt="Part 2" height="40px"/></a>|
  
 #### Exercises
-- [Getting started with python for image processing](http://github.com/imaginglectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/01-Images)[![Exercises](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/main?filepath=Exercises/01-Images/Assignment_01_Images.ipynb) 
+
+- Getting started with python for image processing, [![Exercises](https://img.shields.io/badge/Notebook-Exercises-green.svg)](http://github.com/imaginglectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/01-Images) [![Exercises](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/main?filepath=Exercises/01-Images/Assignment_01_Images.ipynb) 
+
 #### Supporting material for the exercises
 - [Introduction to Python and Jupyter for Data-Science](https://github.com/jakevdp/PythonDataScienceHandbook)
 
@@ -176,7 +170,8 @@ Last years material - not yet updated
 | ------------- | ------------- |--------------|
 |N.N.| TBA| yes|
 
+
 <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/html/Lecture01/index.html"><img src="figures/np_presentation.svg" height="50px"/></a>
  <a href="http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2021/blob/master/Lectures/Lecture-01/01-Introduction.ipynb"><img src="figures/Jupyter_logo.svg" height="50px"/></a>
- </td>
+
 
