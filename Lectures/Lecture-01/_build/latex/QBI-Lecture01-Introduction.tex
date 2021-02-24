@@ -680,7 +680,7 @@ Cloud Computing
 
 \item {} 
 \sphinxAtStartPar
-\sphinxhref{http://www-inst.eecs.berkeley.edu/~cs61c/sp14/}{The Case for Energy\sphinxhyphen{}Proportional Computing} \_ Luiz André Barroso, Urs Hölzle, IEEE Computer, December 2007\_
+\sphinxhref{http://www-inst.eecs.berkeley.edu/~cs61c/sp14/}{The Case for Energy\sphinxhyphen{}Proportional Computing} \sphinxstyleemphasis{Luiz André Barroso, Urs Hölzle, IEEE Computer, December 2007}
 
 \item {} 
 \sphinxAtStartPar
@@ -1899,18 +1899,11 @@ Optical imaging, microscopy
 \PYG{c+c1}{\PYGZsh{} show result}
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax\PYGZus{}orig}\PYG{p}{,} \PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{ax\PYGZus{}orig}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{bone\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}orig}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original Object}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{real}\PYG{p}{(}\PYG{n}{meas\PYGZus{}img}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Measurement}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{real}\PYG{p}{(}\PYG{n}{rec\PYGZus{}img}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{l+m+mi}{255}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Reconstructed}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-/Users/kaestner/opt/anaconda3/lib/python3.8/site\PYGZhy{}packages/numpy/core/\PYGZus{}asarray.py:83: ComplexWarning: Casting complex values to real discards the imaginary part
-  return array(a, dtype, copy=False, order=order)
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{01-Introduction_136_1}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_136_0}.png}
 
 
 \subsection{Indirect / Computational imaging}
@@ -2277,6 +2270,108 @@ Experimenting is time\sphinxhyphen{}consuming
 \end{itemize}
 
 
+\section{Important questions}
+\label{\detokenize{01-Introduction:important-questions}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+It is important to define how you want to use your images
+
+\item {} 
+\sphinxAtStartPar
+Nice rederings is mostly not sufficient for a publication
+
+\end{itemize}
+
+
+
+
+\subsection{Initial questions}
+\label{\detokenize{01-Introduction:initial-questions}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Is my original question specific or too general?
+
+\item {} 
+\sphinxAtStartPar
+How can I plan my experiment to make the analysis easier?
+
+\item {} 
+\sphinxAtStartPar
+How can I transfer the original question into the vocabulary of image analysis?
+
+\item {} 
+\sphinxAtStartPar
+How much a priori information about the sample do I have? Can it be used for the analysis?
+
+
+
+\end{itemize}
+
+
+\subsection{What is the purpose of the experiment}
+\label{\detokenize{01-Introduction:what-is-the-purpose-of-the-experiment}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+3D visualization
+
+\item {} 
+\sphinxAtStartPar
+Sample characterization
+
+\item {} 
+\sphinxAtStartPar
+Model process parameters
+
+\item {} 
+\sphinxAtStartPar
+etc.
+
+\end{itemize}
+
+
+\subsection{What can we measure?}
+\label{\detokenize{01-Introduction:what-can-we-measure}}
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Quantification from gray values
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Quantification from shapes
+\\
+\hline
+\sphinxAtStartPar
+Material composition
+&
+\sphinxAtStartPar
+Identify and count items
+\\
+\hline
+\sphinxAtStartPar
+Material transport
+&
+\sphinxAtStartPar
+Measure volume
+\\
+\hline
+\sphinxAtStartPar
+
+&
+\sphinxAtStartPar
+Characterize shape
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+
+
+
 \section{Why quantitative?}
 \label{\detokenize{01-Introduction:why-quantitative}}
 
@@ -2300,7 +2395,7 @@ Which center square seems brighter?
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{img\PYGZus{}b}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_160_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_164_0}.png}
 
 
 \section{Intensity gradients}
@@ -2319,7 +2414,67 @@ Are the intensities constant in the image?
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{xx}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_162_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_166_0}.png}
+
+
+\section{Selecting the right tool for your task}
+\label{\detokenize{01-Introduction:selecting-the-right-tool-for-your-task}}
+
+
+
+\subsection{Criteria}
+\label{\detokenize{01-Introduction:criteria}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+How many samples?
+
+\item {} 
+\sphinxAtStartPar
+How complex is the sample?
+
+\item {} 
+\sphinxAtStartPar
+Is human interpretation needed?
+
+\item {} 
+\sphinxAtStartPar
+What is the end product?
+
+\item {} 
+\sphinxAtStartPar
+Are there methods tools available?
+
+\item {} 
+\sphinxAtStartPar
+Will there be more similar data sets?
+
+\end{itemize}
+
+
+\subsection{The choice}
+\label{\detokenize{01-Introduction:the-choice}}
+\sphinxAtStartPar
+There is \sphinxstylestrong{no golden recipe}!
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Interactive tools
+
+\item {} 
+\sphinxAtStartPar
+Scripting using existing toolboxes
+
+\item {} 
+\sphinxAtStartPar
+Development of new algorithms
+
+\end{itemize}
+
+
+
+
+
+
 
 
 \section{Reproducibility vs. Repeatability}
@@ -2439,7 +2594,7 @@ Write clear and understandable code
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{semilogy}\PYG{p}{(}\PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Count(1000s)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{b.\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1000s of transitiors}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{semilogy}\PYG{p}{(}\PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{moore\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Clock(MHz)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r.\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Clockspeed (MHz)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{p}{;}\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_172_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_177_0}.png}
 
 \sphinxAtStartPar
 \sphinxstyleemphasis{Based on data from \sphinxurl{https://gist.github.com/humberto-ortiz/de4b3a621602b78bf90d}}
@@ -2621,7 +2776,7 @@ In this example we use the graph plotting module graphviz to draw the flow chart
 \PYG{n}{plt} \PYG{o}{=} \PYG{n}{Image}\PYG{p}{(}\PYG{n}{graph}\PYG{o}{.}\PYG{n}{create\PYGZus{}png}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{display}\PYG{p}{(}\PYG{n}{plt}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_195_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_200_0}.png}
 
 
 \subsection{Workflows \sphinxhyphen{} the complicated soup}
@@ -2654,7 +2809,7 @@ Furthermore a clean workflow allows you to better parallelize the task since it 
 \PYG{n}{plt} \PYG{o}{=} \PYG{n}{Image}\PYG{p}{(}\PYG{n}{graph}\PYG{o}{.}\PYG{n}{create\PYGZus{}png}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{display}\PYG{p}{(}\PYG{n}{plt}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_198_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_203_0}.png}
 
 
 \section{Directed Acyclical Graphs (DAG)}
@@ -2723,7 +2878,7 @@ Let create a DAG to demonstrate how it works. This first piece creates two small
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_202_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_207_0}.png}
 
 
 \subsubsection{Add two variables}
@@ -2738,7 +2893,7 @@ Adding two variables in a DAG looks like the code to add any variables. Now if w
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}3}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_205_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_210_0}.png}
 
 
 \subsubsection{A more complicated operation}
@@ -2752,7 +2907,7 @@ Now lets make a more complicated calculation like:
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}4}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_208_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_213_0}.png}
 
 \sphinxAtStartPar
 We can here see that there are two clear branches in the flow chart. This indicates that here is an opportunity to perform these tasks in parallel.
@@ -2774,7 +2929,7 @@ Now let’s see where this can be really useful. Dask allows you to split the da
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_213_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_218_0}.png}
 
 \sphinxAtStartPar
 You see now that there are four graph created. The boxes on the top indicates the location of the chunk in the large image.
@@ -2795,7 +2950,7 @@ on the large image with chunks, we see that the code hasn’t changed at all. Wh
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}4}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_217_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_222_0}.png}
 
 
 \subsection{Matrix multiplication in a DAG}
@@ -2808,7 +2963,7 @@ A matrix multiplication is a more complicated operation than the previous exmapl
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}5}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_220_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_225_0}.png}
 
 
 \subsection{An even more complicated computation}
@@ -2823,7 +2978,7 @@ Combining different operations into a final calculation like
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}6}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_224_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_229_0}.png}
 
 \sphinxAtStartPar
 We see here that the convolution part connects all branches of the graph which mean all processing must be synchronized here. Afterwards there are no connections and each sub graph can work independently.
@@ -2842,7 +2997,7 @@ Convolution makes life harder for a DAG. There is a need for an overlap between 
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}7}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_229_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_234_0}.png}
 
 
 \section{Deep Learning}

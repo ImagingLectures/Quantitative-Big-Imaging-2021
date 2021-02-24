@@ -165,7 +165,7 @@ In the optional science projects you will have to opportunity to test what you h
 
 - Some book on image processing with python (to be updated)
 - Cloud Computing
- - [The Case for Energy-Proportional Computing](http://www-inst.eecs.berkeley.edu/~cs61c/sp14/) _ Luiz André Barroso, Urs Hölzle, IEEE Computer, December 2007_
+ - [The Case for Energy-Proportional Computing](http://www-inst.eecs.berkeley.edu/~cs61c/sp14/) _Luiz André Barroso, Urs Hölzle, IEEE Computer, December 2007_
  - [Concurrency](http://www.gotw.ca/publications/concurrency-ddj.htm)
 - Reproducibility
  - [Trouble at the lab](http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble) _Scientists like to think of science as self-correcting. To an alarming degree, it is not_
@@ -788,11 +788,8 @@ rec_img   = convolve(meas_img, dekern)[::-1]
 # show result
 fig, (ax_orig, ax1, ax2) = plt.subplots(1,3, figsize = (15, 5))
 ax_orig.imshow(bone_img, cmap = 'bone'); ax_orig.set_title('Original Object')
-
 ax1.imshow(np.real(meas_img), cmap = 'bone'); ax1.set_title('Measurement')
-
 ax2.imshow(np.real(rec_img), cmap = 'bone', vmin = 0, vmax = 255); ax2.set_title('Reconstructed');
-
 
 ### Indirect / Computational imaging
 - Recorded information does not resemble object
@@ -966,7 +963,6 @@ These three approaches have their own advantages and disadvantages, therefore it
 
 ## What is the purpose?
 
-
 - Discover and validate new knowledge
 
 ### How?
@@ -992,6 +988,39 @@ Images are great for qualitative analyses since our brains can quickly interpret
 - Thousands of tools
 - Many images require multi-step processing
 - Experimenting is time-consuming
+
+## Important questions 
+- It is important to define how you want to use your images
+- Nice rederings is mostly not sufficient for a publication
+
+<table>
+    <td><img src="figures/GoldPendant.png" style="height:400px"/> </td>
+<td>
+<img src="figures/NailHistogram.png" style="height:400px"/></td>
+    </table>
+
+### Initial questions
+- Is my original question specific or too general?
+- How can I plan my experiment to make the analysis easier?
+- How can I transfer the original question into the vocabulary of image analysis?
+- How much a priori information about the sample do I have? Can it be used for the analysis?
+<br /><br /><br />
+<img src="figures/WeWantThis.png" style="height:500px" />
+
+### What is the purpose of the experiment
+- 3D visualization
+- Sample characterization
+- Model process parameters
+- etc.
+
+### What can we measure?
+|Quantification from gray values| Quantification from shapes |
+|:---|:---|
+| Material composition | Identify and count items |
+| Material transport | Measure volume |
+|| Characterize shape |
+
+<img src="figures/WeCanMeasureThis.png" style="height:500px" />
 
 ## Why quantitative?
 
@@ -1026,6 +1055,33 @@ xx, yy = np.meshgrid(xlin, xlin)
 
 fig, ax1 = plt.subplots(1,1, figsize = (6, 6))
 ax1.matshow(xx, vmin = -1, vmax = 1, cmap = 'bone');
+
+## Selecting the right tool for your task
+
+<table>
+<td>
+
+### Criteria
+- How many samples?
+- How complex is the sample?
+- Is human interpretation needed?
+- What is the end product?
+- Are there methods tools available?
+- Will there be more similar data sets?
+
+### The choice 
+There is __no golden recipe__!
+- Interactive tools
+- Scripting using existing toolboxes
+- Development of new algorithms
+
+</td>    
+<td>
+    
+<img src="figures/automation.png" style="height:600px"/>
+    
+</td>
+</table>
 
 ## Reproducibility vs. Repeatability
 
