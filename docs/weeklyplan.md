@@ -2,15 +2,10 @@
 
 ## 25th February - Introduction and Workflows
 
-<table>
-<tr><th>Downloads</th><th>Videos</th>
-</tr>
-<tr>
-<td><a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>
- <td>Last years videos <a href="https://youtu.be/J8kzUU7gUTM"><img src="figures/np_video.svg" alt="Part 1" height="40px"/></a> <a href="https://youtu.be/XO02aFf5tNo"><img src="figures/np_video.svg" alt="Part 2" height="40px"/></a>
-</td>
-</tr>
-</table>
+| Downloads| Videos |
+|:---:|:---|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>| Last years videos <a href="https://youtu.be/J8kzUU7gUTM"><img src="figures/np_video.svg" alt="Part 1" height="40px"/></a> <a href="https://youtu.be/XO02aFf5tNo"><img src="figures/np_video.svg" alt="Part 2" height="40px"/></a>|
+
  
 #### Exercises
 
@@ -170,7 +165,9 @@ Last years material - not yet updated
 ---
 
 ### 3rd June - Project Presentations
+
 [Info before the presentations](../Projects/Presentations.md)
+
 #### Presentations
 | Presenter(s)  | Title.        | Recording OK |
 | ------------- | ------------- |--------------|
