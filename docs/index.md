@@ -13,7 +13,7 @@ Here are the lectures, exercises, and additional course materials corresponding 
 
 ---
 
-Please note the Lecture Slides and PDF do not contain source code, this is only available in the handout file. Some of the lectures will be recorded and placed on YouTube on the [QBI 2020 Playlist](https://www.youtube.com/playlist?list=PLcDfeQH_rVdbu7VooFvWA6F9gctY-UUwN). The lectures are meant to be followed in chronological order and each lecture has a corresponding hands-on exercise.
+Please note the Lecture Slides and PDF do not contain active source code, this is only available in the handout file. The lectures will be recorded and placed on YouTube on the [QBI 2020 Playlist](https://www.youtube.com/playlist?list=PLcDfeQH_rVdbu7VooFvWA6F9gctY-UUwN). The lectures are meant to be followed in chronological order and each lecture has a corresponding hands-on exercise.
 
 ## Learning Objectives
 
@@ -48,7 +48,7 @@ Please note the Lecture Slides and PDF do not contain source code, this is only 
 
 ## Target Audience
 
-The course is designed with both advanced undergraduate and graduate level students in mind. Ideally students will have some familiarity with basic manipulation and programming in languages like Python (Matlab or R are also reasonable starting points). Much of the material is available as visual workflows in a tool called KNIME, although these are less up to date than the Python material. Interested students who are worried about their skill level in this regard are encouraged to contact Anders Kaestner directly (anders.kaestner@psi.ch).
+The course is designed with both advanced undergraduate and graduate level students in mind. Ideally, students will have some familiarity with basic manipulation and programming in languages like Python (Matlab or R are also reasonable starting points). Interested students who are worried about their skill level in this regard are encouraged to contact [Anders Kaestner](anders.kaestner@psi.ch) directly.
 
 - Students with very diverse academic backgrounds have done well in the course (Informatics to Art History to Agriculture).
 - Successful students typically spent a few hours a week working on the exercises to really understand the material.
@@ -65,4 +65,3 @@ The final examination (as originally stated in the course material) will be a 30
 The projects are optional, but highly recommended to do as they give better insight in practical problems occurring while analyzing real data. We provide a list of projects, but you can also take the opportunity to extract a fraction of your other ongoing projects like master's or PhD project. Please contact Anders Kaestner in advance if you choose to define your own project.
 - [Overview](Projects/Overview.md) of possible projects
 - [Here](https://docs.google.com/spreadsheets/d/1n7I2mzSC06tXu3g7NoeoL3LKtA3oFEOGRBHIHXHeGNs/edit?usp=sharing) you signup for your project with team members and a short title and description
-
