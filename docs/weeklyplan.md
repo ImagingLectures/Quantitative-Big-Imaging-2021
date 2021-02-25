@@ -4,9 +4,7 @@
 
 | Downloads| Videos |
 |:---:|:---|
-| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>| Part 1 <a href="https://youtu.be/fKthCxdd61o"><img src="figures/np_video.svg" alt="Part 1" height="30px"/></a>, 
-Part 2 <a href="https://youtu.be/lslXWQA7W58"><img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>, 
-Exercise <a href="https://youtu.be/X0F1Lw5RZh0"><img src="figures/np_video.svg" alt="Exercise" height="30px"/></a>|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>| Part 1 <a href="https://youtu.be/fKthCxdd61o"><img src="figures/np_video.svg" alt="Part 1" height="30px"/></a>, Part 2 <a href="https://youtu.be/lslXWQA7W58"><img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>, Exercise <a href="https://youtu.be/X0F1Lw5RZh0"><img src="figures/np_video.svg" alt="Exercise" height="30px"/></a>|
  
 #### Exercises
 
