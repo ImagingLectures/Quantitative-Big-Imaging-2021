@@ -75,41 +75,43 @@
 \contentsline {subsection}{\numberline {6.2.2}Furthermore in image processing there is a plethora of tools available}{52}{subsection.6.2.2}%
 \contentsline {section}{\numberline {6.3}Important questions}{52}{section.6.3}%
 \contentsline {subsection}{\numberline {6.3.1}Initial questions}{52}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}What is the purpose of the experiment}{52}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}What can we measure?}{52}{subsection.6.3.3}%
-\contentsline {section}{\numberline {6.4}Why quantitative?}{53}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Human eyes have issues}{53}{subsection.6.4.1}%
-\contentsline {section}{\numberline {6.5}Intensity gradients}{53}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Selecting the right tool for your task}{54}{section.6.6}%
-\contentsline {subsection}{\numberline {6.6.1}Criteria}{54}{subsection.6.6.1}%
-\contentsline {subsection}{\numberline {6.6.2}The choice}{55}{subsection.6.6.2}%
-\contentsline {section}{\numberline {6.7}Reproducibility vs. Repeatability}{55}{section.6.7}%
-\contentsline {subsection}{\numberline {6.7.1}Reproducibility}{55}{subsection.6.7.1}%
-\contentsline {subsection}{\numberline {6.7.2}Repeatability}{55}{subsection.6.7.2}%
-\contentsline {section}{\numberline {6.8}Reproducibility vs. Repeatability}{56}{section.6.8}%
-\contentsline {section}{\numberline {6.9}How can we keep track of everything for ourselves and others?}{56}{section.6.9}%
-\contentsline {chapter}{\numberline {7}Workflows for image analysis}{57}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Computing has changed: Parallel}{57}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Moores Law}{57}{subsection.7.1.1}%
-\contentsline {subsection}{\numberline {7.1.2}Why doesn’t the clock rate follow Moore’s law?}{58}{subsection.7.1.2}%
-\contentsline {section}{\numberline {7.2}Computing has changed: Cloud}{58}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Workflow analysis}{59}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Simple Soup}{59}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}More complicated soup}{60}{subsection.7.3.2}%
-\contentsline {section}{\numberline {7.4}Using flow charts / workflows}{60}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Workflow of the Simple Soup}{60}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Workflows \sphinxhyphen {} the complicated soup}{60}{subsection.7.4.2}%
-\contentsline {section}{\numberline {7.5}Directed Acyclical Graphs (DAG)}{61}{section.7.5}%
-\contentsline {subsection}{\numberline {7.5.1}Concrete example \sphinxhyphen {} Creating a DAG}{62}{subsection.7.5.1}%
-\contentsline {subsubsection}{Create two variables}{62}{subsubsection*.4}%
-\contentsline {subsubsection}{Add two variables}{62}{subsubsection*.5}%
-\contentsline {subsubsection}{A more complicated operation}{63}{subsubsection*.6}%
-\contentsline {subsection}{\numberline {7.5.2}Let’s go big}{65}{subsection.7.5.2}%
-\contentsline {subsubsection}{Creating a large image with chunks}{65}{subsubsection*.7}%
-\contentsline {subsubsection}{Computing something with a larger image}{65}{subsubsection*.8}%
-\contentsline {subsection}{\numberline {7.5.3}Matrix multiplication in a DAG}{66}{subsection.7.5.3}%
-\contentsline {subsection}{\numberline {7.5.4}An even more complicated computation}{67}{subsection.7.5.4}%
-\contentsline {subsection}{\numberline {7.5.5}Convolution using a DAG}{68}{subsection.7.5.5}%
-\contentsline {section}{\numberline {7.6}Deep Learning}{69}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Summary}{71}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Next weeks lecture}{71}{section.8.1}%
+\contentsline {subsection}{\numberline {6.3.2}What is the purpose of the experiment}{54}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}What can we measure?}{54}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}Why quantitative?}{54}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Human eyes have issues}{54}{subsection.6.4.1}%
+\contentsline {section}{\numberline {6.5}Intensity gradients}{55}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Selecting the right tool for your task}{56}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Criteria}{56}{subsection.6.6.1}%
+\contentsline {subsection}{\numberline {6.6.2}The choice}{57}{subsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.6.3}Criteria}{58}{subsection.6.6.3}%
+\contentsline {subsection}{\numberline {6.6.4}The choice}{58}{subsection.6.6.4}%
+\contentsline {section}{\numberline {6.7}Reproducibility vs. Repeatability}{58}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Reproducibility}{58}{subsection.6.7.1}%
+\contentsline {subsection}{\numberline {6.7.2}Repeatability}{59}{subsection.6.7.2}%
+\contentsline {section}{\numberline {6.8}Reproducibility vs. Repeatability}{59}{section.6.8}%
+\contentsline {section}{\numberline {6.9}How can we keep track of everything for ourselves and others?}{59}{section.6.9}%
+\contentsline {chapter}{\numberline {7}Workflows for image analysis}{61}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Computing has changed: Parallel}{61}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Moores Law}{61}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Why doesn’t the clock rate follow Moore’s law?}{62}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}Computing has changed: Cloud}{62}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Workflow analysis}{63}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Simple Soup}{63}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}More complicated soup}{64}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Using flow charts / workflows}{64}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Workflow of the Simple Soup}{64}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Workflows \sphinxhyphen {} the complicated soup}{64}{subsection.7.4.2}%
+\contentsline {section}{\numberline {7.5}Directed Acyclical Graphs (DAG)}{65}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Concrete example \sphinxhyphen {} Creating a DAG}{66}{subsection.7.5.1}%
+\contentsline {subsubsection}{Create two variables}{66}{subsubsection*.4}%
+\contentsline {subsubsection}{Add two variables}{66}{subsubsection*.5}%
+\contentsline {subsubsection}{A more complicated operation}{67}{subsubsection*.6}%
+\contentsline {subsection}{\numberline {7.5.2}Let’s go big}{69}{subsection.7.5.2}%
+\contentsline {subsubsection}{Creating a large image with chunks}{69}{subsubsection*.7}%
+\contentsline {subsubsection}{Computing something with a larger image}{69}{subsubsection*.8}%
+\contentsline {subsection}{\numberline {7.5.3}Matrix multiplication in a DAG}{70}{subsection.7.5.3}%
+\contentsline {subsection}{\numberline {7.5.4}An even more complicated computation}{71}{subsection.7.5.4}%
+\contentsline {subsection}{\numberline {7.5.5}Convolution using a DAG}{72}{subsection.7.5.5}%
+\contentsline {section}{\numberline {7.6}Deep Learning}{73}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Summary}{75}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Next weeks lecture}{75}{section.8.1}%

@@ -990,6 +990,20 @@ Images are great for qualitative analyses since our brains can quickly interpret
 - Experimenting is time-consuming
 
 ## Important questions 
+
+```{figure} figures/GoldPendant.png
+---
+---
+A realistic rendering of an ancient gold pendant.
+```
+
+
+```{figure} figures/NailHistogram.png
+---
+---
+Material analysis of a rusty roman nail.
+```
+
 - It is important to define how you want to use your images
 - Nice rederings is mostly not sufficient for a publication
 
@@ -999,11 +1013,24 @@ Images are great for qualitative analyses since our brains can quickly interpret
 <img src="figures/NailHistogram.png" style="height:400px"/></td>
     </table>
 
+
 ### Initial questions
+
+You need to ask yourself a number of questions before you start to plan an experiment that involves images. It is good to a at least have a plan about how you are going to analyze your images ones you have them. It is not always obvious how you get from the experiment idea, to performing the experiment and finally how you perform the analysis to obtain the information you are really interested in for your research project.
+
+```{figures} figures/WeWantThis.png
+---
+---
+Things a scientist wants to know from an experiment.
+```
+
+
+- What am I looking for?
 - Is my original question specific or too general?
 - How can I plan my experiment to make the analysis easier?
 - How can I transfer the original question into the vocabulary of image analysis?
 - How much a priori information about the sample do I have? Can it be used for the analysis?
+
 <br /><br /><br />
 <img src="figures/WeWantThis.png" style="height:500px" />
 
@@ -1014,6 +1041,15 @@ Images are great for qualitative analyses since our brains can quickly interpret
 - etc.
 
 ### What can we measure?
+
+There is a leap between what you really want to know and what we actually can measure in the images.
+
+```{figures} figures/WeCanMeasureThis.png
+---
+---
+These are things we can measure in images.
+```
+
 |Quantification from gray values| Quantification from shapes |
 |:---|:---|
 | Material composition | Identify and count items |
@@ -1058,6 +1094,30 @@ ax1.matshow(xx, vmin = -1, vmax = 1, cmap = 'bone');
 
 ## Selecting the right tool for your task
 
+### Criteria
+There are many questions you have to ask about the data and analysis task you are facing. Here are some relevant questions that will guide you towards the choice of tool(s) you need to use when you analyses the data.
+- How many samples?
+- How complex is the sample?
+- Is human interpretation needed?
+- What is the end product?
+- Are there methods tools available?
+- Will there be more similar data sets?
+
+### The choice 
+You have different options to choose the tool for your analysis. 
+- Interactive tools
+- Scripting using existing toolboxes
+- Development of new algorithms
+Which one you actually select for your analysis workflow depends on many factors like the criteria listed in the previous section, but also on your experience, preferences in the group you are working with and so on.
+
+In general, there is __no golden recipe__! You have to be flexible from task to task.
+
+```{figure} figures/automation.png
+---
+---
+It sometimes feels decievingly simple to implement a script that automates your task... be careful!
+```
+
 <table>
 <td>
 
@@ -1087,6 +1147,7 @@ There is __no golden recipe__!
 
 ### Reproducibility
 
+To reproduce an experiment means that someone else can repeat your entire workflow from sample preparation and experiment to the analysis to obtain the same results you got in your report. This should be possible completely independently for an experiment to be called reproducible.
 ```{figure} figures/reproducibility.pdf
 ---
 scale: 75%
@@ -1097,6 +1158,8 @@ A workflow describing the concept of reproducibility.
 <img src='figures/reproducibility.svg' style='height:300px'>
 
 ### Repeatability
+
+Repeatability is a more relaxed concept. It requires that someone else (or even yourself) can obtain the same results multiple time using the same data and analysis workflow. This means that there must very little room left for individual decisions that may have impact on the outcome.
 
 ```{figure} figures/repeatability.pdf
 ---
@@ -1122,7 +1185,7 @@ Science demands __repeatability__! and really wants __reproducability__
 - Many image processing tasks are multistep, have many parameters, use a variety of tools, and consume a very long time
 
 ## How can we keep track of everything for ourselves and others?
-- We can make the data analysis easy to repeat by an independent 3rd party
+We can make the data analysis easy to repeat by an independent 3rd party
 - Document the analysis steps
 - Write clear and understandable code
 
