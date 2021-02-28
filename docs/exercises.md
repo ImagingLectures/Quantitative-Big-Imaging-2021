@@ -9,11 +9,10 @@ If you use colab, kaggle or mybinder you won't need python on your own machine b
 1. Download the course from github as a zip file
 1. Extract the zip file
 1. Open a terminal (or command prompt on windows)
-1. Go to the binder folder inside the course directory (something like: `Downloads/Quantitative-Big-Imaging-2021-master/binder`)
+1. Go to the root folder inside the course directory (something like: `Downloads/Quantitative-Big-Imaging-2021-master`)
 1. Install the environment
 1. `conda env create -f environment.yml -n qbi2021`
 1. Activate the environment `conda activate qbi2021` or `activate qbi2021`
-1. Go up one directory to the root of the course `cd ..`
 1. Start python `jupyter notebook`
 
 ### Install Git and clone the lecturematerial

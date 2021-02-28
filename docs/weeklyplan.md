@@ -4,7 +4,7 @@
 
 | Downloads| Videos |
 |:---:|:---|
-| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>| Last years videos <a href="https://youtu.be/J8kzUU7gUTM"><img src="figures/np_video.svg" alt="Part 1" height="40px"/></a> <a href="https://youtu.be/XO02aFf5tNo"><img src="figures/np_video.svg" alt="Part 2" height="40px"/></a>|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture01-Introduction.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>| Part 1 <a href="https://youtu.be/fKthCxdd61o"><img src="figures/np_video.svg" alt="Part 1" height="30px"/></a>, Part 2 <a href="https://youtu.be/lslXWQA7W58"><img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>, Exercise <a href="https://youtu.be/X0F1Lw5RZh0"><img src="figures/np_video.svg" alt="Exercise" height="30px"/></a>|
  
 #### Exercises
 
@@ -15,7 +15,7 @@
 
 ---
 ---
-Last years material - not yet updated
+Last year's material - not yet updated
 
 ## 4th March - Image Enhancement 
 - [Slides (static)](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/02-ImageEnhancement.ipynb) [![Slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/02-ImageEnhancement.ipynb) [Lecture Handout](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/02-ImageEnhancement.ipynb)

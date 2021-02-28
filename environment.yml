@@ -26,5 +26,5 @@ dependencies:
   - pip
   - scipy
   - scikit-image
-  - dask-ndfilters
+  - dask-image
 prefix: /Users/kaestner/opt/anaconda3
