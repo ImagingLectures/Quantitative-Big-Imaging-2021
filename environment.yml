@@ -1,6 +1,7 @@
 name: qbi2021
 channels:
   - defaults
+  - anaconda
 dependencies:
   - conda
   - python=3.7
@@ -23,5 +24,7 @@ dependencies:
   - keras
   - tifffile
   - pip
+  - scipy
+  - scikit-image
   - dask-ndfilters
 prefix: /Users/kaestner/opt/anaconda3
