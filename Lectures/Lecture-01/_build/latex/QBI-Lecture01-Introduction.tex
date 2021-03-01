@@ -1270,11 +1270,11 @@ Limited extent
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
    x  y  Intensity
-0  0  0         86
-1  1  0         99
-2  2  0         13
-3  3  0         93
-4  4  0         57
+0  0  0         53
+1  1  0         14
+2  2  0         82
+3  3  0         78
+4  4  0          2
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -2994,14 +2994,15 @@ Adding two variables in a DAG looks like the code to add any variables. Now if w
 \label{\detokenize{01-Introduction:a-more-complicated-operation}}
 \sphinxAtStartPar
 Now lets make a more complicated calculation like:
-\$\(Image_4=(image_1-10)+(image_2*50)\)\$
-
+\begin{equation*}
+\begin{split}Image_4=(image_1-10)+(image_2*50)\end{split}
+\end{equation*}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{image\PYGZus{}4} \PYG{o}{=} \PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{image\PYGZus{}2}\PYG{o}{*}\PYG{l+m+mi}{50}\PYG{p}{)}
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}4}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_221_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_222_0}.png}
 
 \sphinxAtStartPar
 We can here see that there are two clear branches in the flow chart. This indicates that here is an opportunity to perform these tasks in parallel.
@@ -3023,7 +3024,7 @@ Now let’s see where this can be really useful. Dask allows you to split the da
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}1}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_226_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_227_0}.png}
 
 \sphinxAtStartPar
 You see now that there are four graph created. The boxes on the top indicates the location of the chunk in the large image.
@@ -3044,7 +3045,7 @@ on the large image with chunks, we see that the code hasn’t changed at all. Wh
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}4}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_230_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_231_0}.png}
 
 
 \subsection{Matrix multiplication in a DAG}
@@ -3057,7 +3058,7 @@ A matrix multiplication is a more complicated operation than the previous exmapl
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}5}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_233_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_234_0}.png}
 
 
 \subsection{An even more complicated computation}
@@ -3072,7 +3073,7 @@ Combining different operations into a final calculation like
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}6}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_237_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_238_0}.png}
 
 \sphinxAtStartPar
 We see here that the convolution part connects all branches of the graph which mean all processing must be synchronized here. Afterwards there are no connections and each sub graph can work independently.
@@ -3091,7 +3092,7 @@ Convolution makes life harder for a DAG. There is a need for an overlap between 
 \PYG{n}{dot\PYGZus{}graph}\PYG{p}{(}\PYG{n}{image\PYGZus{}7}\PYG{o}{.}\PYG{n}{dask}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{01-Introduction_242_0}.png}
+\noindent\sphinxincludegraphics{{01-Introduction_243_0}.png}
 
 
 \section{Deep Learning}

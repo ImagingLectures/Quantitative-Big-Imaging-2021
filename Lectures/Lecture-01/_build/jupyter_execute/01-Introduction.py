@@ -1375,6 +1375,7 @@ dot_graph(image_3.dask)
 #### A more complicated operation
 
 Now lets make a more complicated calculation like:
+
 $$Image_4=(image_1-10)+(image_2*50)$$
 
 image_4 = (image_1-10) + (image_2*50)
