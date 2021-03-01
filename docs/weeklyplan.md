@@ -14,10 +14,13 @@
 - [Introduction to Python and Jupyter for Data-Science](https://github.com/jakevdp/PythonDataScienceHandbook)
 
 ---
----
-Last year's material - not yet updated
 
 ## 4th March - Image Enhancement 
+
+| Downloads| Videos |
+|:---:|:---|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture02-ImageEnhancement.pdf"><img src="figures/downloadbook.svg" height="40px"/></a>| No video yet <a href="https://youtu.be/xyz"><img src="figures/np_video.svg" alt="Part 1" height="30px"/></a>|
+
 - [Slides (static)](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/02-ImageEnhancement.ipynb) [![Slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/02-ImageEnhancement.ipynb) [Lecture Handout](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/02-ImageEnhancement.ipynb)
 
 - [Slides on non-local means (static)](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Exercises/02-ImageEnhancement/02-NonLocalMeansStudy.ipynb)[![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Exercises/02-ImageEnhancement/02-NonLocalMeansStudy.ipynb) [Lecture Handout](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Exercises/02-ImageEnhancement/02-NonLocalMeansStudy.ipynb)
@@ -29,6 +32,8 @@ Last year's material - not yet updated
 - [![slides](https://img.shields.io/badge/Launch-image_enhancement_tool-yellow.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Exercises/02-ImageEnhancement/ImageEnhancementPlayground.ipynb)
 
 ---
+---
+Last year's material - not yet updated
 ## 11th March - Ground Truth: Building and Augmenting Datasets
 
 - [Slides (static)](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/03-Datasets.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/02-Datasets.ipynb) [Lecture Handout](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/03-Datasets.ipynb)
