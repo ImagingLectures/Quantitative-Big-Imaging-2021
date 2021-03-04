@@ -86,7 +86,7 @@ Time spent on different tasks.
 
 ### Kathy Scott (Image Analytics Lead at Planet Labs)
 
-```{figures} figures/kathy_tweet.png
+```{figure} figures/kathy_tweet.png
 ---
 scale: 70%
 ---
