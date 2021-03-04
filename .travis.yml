@@ -25,8 +25,9 @@ env:
   matrix:
     - DISTRIB="conda" PYTHON_VERSION="3.7"
 
-install: travis_wait mvn install
+install: 
    - source circleci/travis_install.sh
+   - source circleci/travis_conda.sh
   #  - ipython kernel install --user --name testkernel
   #  - jupyter kernelspec list
 
