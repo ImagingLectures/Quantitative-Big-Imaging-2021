@@ -2,8 +2,6 @@ name: qbi2021
 channels:
   - defaults
   - anaconda
-  - conda-forge
-  - simpleitk
 dependencies:
   - conda
   - python=3.7
@@ -27,18 +25,11 @@ dependencies:
   - tensorflow==1.15
   - keras
   - itk
-  - SimpleITK
-  - ipyvolume
   - ffmpeg
   - tifffile
-  - pip
   - scipy
   - scikit-image
   - dask-image
-  - pip: 
-    - jupyter-book
-    - pyppeteer
-    - sphinxcontrib-bibtex
-    - webcolors
-    - itkwidgets
-    - plotly
+  - pip
+
+  - prefix: /Users/kaestner/opt/anaconda3

@@ -4,10 +4,13 @@ conda env create -n book -f environment.yml
 conda init zsh
 source /home/travis/miniconda/etc/profile.d/conda.sh
 conda activate book
-#pip install -U jupyter-book
-#pip install pyppeteer
+pip install -U jupyter-book
+pip install pyppeteer
 python -c 'import pyppeteer; pyppeteer.chromium_downloader.download_chromium()'
-#pip install sphinxcontrib-bibtex
+pip install sphinxcontrib-bibtex
+pip install webcolors
+pip install itkwidgets
+pip install plotly
 
 # Kevins environment
 # conda create -n testenv --yes python=$PYTHON_VERSION pip nose pytest
