@@ -2,6 +2,8 @@ name: qbi2021
 channels:
   - defaults
   - anaconda
+  - vmtk
+  - simpleitk
 dependencies:
   - conda
   - python=3.7
