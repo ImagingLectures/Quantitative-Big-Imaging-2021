@@ -871,7 +871,7 @@ Some examples are:
 # Different views on image Analysis
 
 Image analysis is a complex task and there are many ways to reach the quantitative results from the images. 
-```{figures} figures/approaches.png
+```{figure} figures/approaches.png
 ---
 scale: 75%
 ---
@@ -1018,7 +1018,7 @@ Material analysis of a rusty roman nail.
 
 You need to ask yourself a number of questions before you start to plan an experiment that involves images. It is good to a at least have a plan about how you are going to analyze your images ones you have them. It is not always obvious how you get from the experiment idea, to performing the experiment and finally how you perform the analysis to obtain the information you are really interested in for your research project.
 
-```{figures} figures/WeWantThis.png
+```{figure} figures/WeWantThis.png
 ---
 ---
 Things a scientist wants to know from an experiment.
@@ -1044,7 +1044,7 @@ Things a scientist wants to know from an experiment.
 
 There is a leap between what you really want to know and what we actually can measure in the images.
 
-```{figures} figures/WeCanMeasureThis.png
+```{figure} figures/WeCanMeasureThis.png
 ---
 ---
 These are things we can measure in images.

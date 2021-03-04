@@ -56,14 +56,14 @@
 \contentsline {section}{\numberline {4.9}Traditional Imaging: Model}{44}{section.4.9}%
 \contentsline {subsection}{\numberline {4.9.1}Indirect Imaging (Computational Imaging)}{45}{subsection.4.9.1}%
 \contentsline {chapter}{\numberline {5}Different views on image Analysis}{47}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Image Analysis: Experimentalist}{47}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Characteristics}{47}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Examples}{47}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.1}Image Analysis: Experimentalist}{48}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Characteristics}{48}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Examples}{48}{subsection.5.1.2}%
 \contentsline {section}{\numberline {5.2}Image Analysis: Computer Vision Approaches}{48}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}Characteristics}{48}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Examples}{48}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Image Analysis: Deep Learning Approach}{48}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Characteristics}{48}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.2.2}Examples}{49}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Image Analysis: Deep Learning Approach}{49}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Characteristics}{49}{subsection.5.3.1}%
 \contentsline {subsection}{\numberline {5.3.2}Examples}{49}{subsection.5.3.2}%
 \contentsline {section}{\numberline {5.4}Summary analysis approaches}{49}{section.5.4}%
 \contentsline {chapter}{\numberline {6}On Science}{51}{chapter.6}%
@@ -77,19 +77,19 @@
 \contentsline {subsection}{\numberline {6.3.1}Initial questions}{52}{subsection.6.3.1}%
 \contentsline {subsection}{\numberline {6.3.2}What is the purpose of the experiment}{54}{subsection.6.3.2}%
 \contentsline {subsection}{\numberline {6.3.3}What can we measure?}{54}{subsection.6.3.3}%
-\contentsline {section}{\numberline {6.4}Why quantitative?}{54}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Human eyes have issues}{54}{subsection.6.4.1}%
-\contentsline {section}{\numberline {6.5}Intensity gradients}{55}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Selecting the right tool for your task}{56}{section.6.6}%
-\contentsline {subsection}{\numberline {6.6.1}Criteria}{56}{subsection.6.6.1}%
-\contentsline {subsection}{\numberline {6.6.2}The choice}{57}{subsection.6.6.2}%
-\contentsline {subsection}{\numberline {6.6.3}Criteria}{58}{subsection.6.6.3}%
-\contentsline {subsection}{\numberline {6.6.4}The choice}{58}{subsection.6.6.4}%
-\contentsline {section}{\numberline {6.7}Reproducibility vs. Repeatability}{58}{section.6.7}%
-\contentsline {subsection}{\numberline {6.7.1}Reproducibility}{58}{subsection.6.7.1}%
-\contentsline {subsection}{\numberline {6.7.2}Repeatability}{59}{subsection.6.7.2}%
-\contentsline {section}{\numberline {6.8}Reproducibility vs. Repeatability}{59}{section.6.8}%
-\contentsline {section}{\numberline {6.9}How can we keep track of everything for ourselves and others?}{59}{section.6.9}%
+\contentsline {section}{\numberline {6.4}Why quantitative?}{56}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Human eyes have issues}{56}{subsection.6.4.1}%
+\contentsline {section}{\numberline {6.5}Intensity gradients}{56}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Selecting the right tool for your task}{57}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Criteria}{57}{subsection.6.6.1}%
+\contentsline {subsection}{\numberline {6.6.2}The choice}{58}{subsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.6.3}Criteria}{59}{subsection.6.6.3}%
+\contentsline {subsection}{\numberline {6.6.4}The choice}{59}{subsection.6.6.4}%
+\contentsline {section}{\numberline {6.7}Reproducibility vs. Repeatability}{59}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Reproducibility}{59}{subsection.6.7.1}%
+\contentsline {subsection}{\numberline {6.7.2}Repeatability}{60}{subsection.6.7.2}%
+\contentsline {section}{\numberline {6.8}Reproducibility vs. Repeatability}{60}{section.6.8}%
+\contentsline {section}{\numberline {6.9}How can we keep track of everything for ourselves and others?}{60}{section.6.9}%
 \contentsline {chapter}{\numberline {7}Workflows for image analysis}{61}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Computing has changed: Parallel}{61}{section.7.1}%
 \contentsline {subsection}{\numberline {7.1.1}Moores Law}{61}{subsection.7.1.1}%
