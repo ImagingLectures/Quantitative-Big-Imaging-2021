@@ -28,15 +28,23 @@ If you use colab, kaggle or mybinder you won't need python on your own machine b
   
 Now you should have a folder called Quantitative-Big-Imaging-2021 at location where you called the clone.
 
-#### Update from git with the latest changes
+## Get the latest version
+### Update from git with the latest changes
 1. Open a terminal 
 2. Go to the repository folder 
-3. Type ```git pull``` and wait.
+3. Type ```git pull``` and wait for the download.
 4. The local folder is updated with the latest changes.
-  
+
+### Update conda environment
+The lectures are an on-going development and there may be new modules required from week to week. Therefore it is recommended to update your environment before starting your exercises. This is done using:
+
+```bash
+$ conda activate qbi2021
+$ conda env update -f environment.yml
+```
 
 ## Assistance
-The exercises will be supported by Stefano van Gogh and Anders Kaestner right after the lectures on thursday. For further support please contact us for an appointment.
+The exercises will be supported by Stefano van Gogh and Anders Kaestner Thursdays right after the lectures. For further support, please contact us for an appointment.
 
 ## Online Tools
 The exercises will be available on Kaggle as 'Datasets' and we will be using mybinder as stated above.
