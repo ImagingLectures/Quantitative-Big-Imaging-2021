@@ -130,64 +130,20 @@ These modules are needed to run the python cells in this lecture.
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{disk}
 \PYG{k+kn}{import} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{ndimage} \PYG{k}{as} \PYG{n+nn}{ndimage}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}        \PYG{k}{as} \PYG{n+nn}{mpl}
-\PYG{n}{mpl}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.dpi}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{300}
+\PYG{n}{mpl}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.dpi}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{100}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
 \PYG{n+ne}{ModuleNotFoundError}\PYG{g+gWhitespace}{                       }Traceback (most recent call last)
-\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{9}\PYG{n}{de9c7643c12}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{1} \PYG{n}{get\PYGZus{}ipython}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{run\PYGZus{}line\PYGZus{}magic}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{matplotlib}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{inline}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{ffbe9569d72e}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{2} \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{3} \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{4} \PYG{k+kn}{import} \PYG{n+nn}{skimage} \PYG{k}{as} \PYG{n+nn}{ski}
+\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{4} \PYG{k+kn}{import} \PYG{n+nn}{skimage} \PYG{k}{as} \PYG{n+nn}{ski}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{5} \PYG{k+kn}{import} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k}{as} \PYG{n+nn}{io}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{6} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{disk}
 
-\PYG{n+nn}{\PYGZti{}/miniconda3/lib/python3.8/site\PYGZhy{}packages/IPython/core/interactiveshell.py} in \PYG{n+ni}{run\PYGZus{}line\PYGZus{}magic}\PYG{n+nt}{(self, magic\PYGZus{}name, line, \PYGZus{}stack\PYGZus{}depth)}
-\PYG{g+gWhitespace}{   }\PYG{l+m+mi}{2342}                 \PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{local\PYGZus{}ns}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{get\PYGZus{}local\PYGZus{}scope}\PYG{p}{(}\PYG{n}{stack\PYGZus{}depth}\PYG{p}{)}
-\PYG{g+gWhitespace}{   }\PYG{l+m+mi}{2343}             \PYG{k}{with} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{builtin\PYGZus{}trap}\PYG{p}{:}
-\PYG{n+ne}{\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{2344}                 \PYG{n}{result} \PYG{o}{=} \PYG{n}{fn}\PYG{p}{(}\PYG{o}{*}\PYG{n}{args}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{kwargs}\PYG{p}{)}
-\PYG{g+gWhitespace}{   }\PYG{l+m+mi}{2345}             \PYG{k}{return} \PYG{n}{result}
-\PYG{g+gWhitespace}{   }\PYG{l+m+mi}{2346} 
-
-\PYG{n+nn}{\PYGZlt{}decorator\PYGZhy{}gen\PYGZhy{}101\PYGZgt{}} in \PYG{n+ni}{matplotlib}\PYG{n+nt}{(self, line)}
-
-\PYG{n+nn}{\PYGZti{}/miniconda3/lib/python3.8/site\PYGZhy{}packages/IPython/core/magic.py} in \PYG{n+ni}{\PYGZlt{}lambda\PYGZgt{}}\PYG{n+nt}{(f, *a, **k)}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{185}     \PYG{c+c1}{\PYGZsh{} but it\PYGZsq{}s overkill for just that one bit of state.}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{186}     \PYG{k}{def} \PYG{n+nf}{magic\PYGZus{}deco}\PYG{p}{(}\PYG{n}{arg}\PYG{p}{)}\PYG{p}{:}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{187}         \PYG{n}{call} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{f}\PYG{p}{,} \PYG{o}{*}\PYG{n}{a}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{k}\PYG{p}{:} \PYG{n}{f}\PYG{p}{(}\PYG{o}{*}\PYG{n}{a}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{k}\PYG{p}{)}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{188} 
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{189}         \PYG{k}{if} \PYG{n}{callable}\PYG{p}{(}\PYG{n}{arg}\PYG{p}{)}\PYG{p}{:}
-
-\PYG{n+nn}{\PYGZti{}/miniconda3/lib/python3.8/site\PYGZhy{}packages/IPython/core/magics/pylab.py} in \PYG{n+ni}{matplotlib}\PYG{n+nt}{(self, line)}
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{97}             \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Available matplotlib backends: }\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{backends\PYGZus{}list}\PYG{p}{)}
-\PYG{g+gWhitespace}{     }\PYG{l+m+mi}{98}         \PYG{k}{else}\PYG{p}{:}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{99}             \PYG{n}{gui}\PYG{p}{,} \PYG{n}{backend} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{shell}\PYG{o}{.}\PYG{n}{enable\PYGZus{}matplotlib}\PYG{p}{(}\PYG{n}{args}\PYG{o}{.}\PYG{n}{gui}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{(}\PYG{p}{)} \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{args}\PYG{o}{.}\PYG{n}{gui}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{)} \PYG{k}{else} \PYG{n}{args}\PYG{o}{.}\PYG{n}{gui}\PYG{p}{)}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{100}             \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}show\PYGZus{}matplotlib\PYGZus{}backend}\PYG{p}{(}\PYG{n}{args}\PYG{o}{.}\PYG{n}{gui}\PYG{p}{,} \PYG{n}{backend}\PYG{p}{)}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{101} 
-
-\PYG{n+nn}{\PYGZti{}/miniconda3/lib/python3.8/site\PYGZhy{}packages/ipykernel/zmqshell.py} in \PYG{n+ni}{enable\PYGZus{}matplotlib}\PYG{n+nt}{(self, gui)}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{599} 
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{600}     \PYG{k}{def} \PYG{n+nf}{enable\PYGZus{}matplotlib}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{gui}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}\PYG{p}{:}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{601}         \PYG{n}{gui}\PYG{p}{,} \PYG{n}{backend} \PYG{o}{=} \PYG{n+nb}{super}\PYG{p}{(}\PYG{n}{ZMQInteractiveShell}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n}{enable\PYGZus{}matplotlib}\PYG{p}{(}\PYG{n}{gui}\PYG{p}{)}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{602} 
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{603}         \PYG{k+kn}{from} \PYG{n+nn}{ipykernel}\PYG{n+nn}{.}\PYG{n+nn}{pylab}\PYG{n+nn}{.}\PYG{n+nn}{backend\PYGZus{}inline} \PYG{k+kn}{import} \PYG{n}{configure\PYGZus{}inline\PYGZus{}support}
-
-\PYG{n+nn}{\PYGZti{}/miniconda3/lib/python3.8/site\PYGZhy{}packages/IPython/core/interactiveshell.py} in \PYG{n+ni}{enable\PYGZus{}matplotlib}\PYG{n+nt}{(self, gui)}
-\PYG{g+gWhitespace}{   }\PYG{l+m+mi}{3511}         \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{g+gWhitespace}{   }\PYG{l+m+mi}{3512}\PYG{l+s+sd}{         from IPython.core import pylabtools as pt}
-\PYG{n+ne}{\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{3513}\PYG{l+s+sd}{         gui, backend = pt.find\PYGZus{}gui\PYGZus{}and\PYGZus{}backend(gui, self.pylab\PYGZus{}gui\PYGZus{}select)}
-\PYG{g+gWhitespace}{   }\PYG{l+m+mi}{3514}\PYG{l+s+sd}{ }
-\PYG{g+gWhitespace}{   }\PYG{l+m+mi}{3515}\PYG{l+s+sd}{         if gui != \PYGZsq{}inline\PYGZsq{}:}
-
-\PYG{n+nn}{\PYGZti{}/miniconda3/lib/python3.8/site\PYGZhy{}packages/IPython/core/pylabtools.py} in \PYG{n+ni}{find\PYGZus{}gui\PYGZus{}and\PYGZus{}backend}\PYG{n+nt}{(gui, gui\PYGZus{}select)}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{278}\PYG{l+s+sd}{     \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{279} 
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{280}     \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{281} 
-\PYG{g+gWhitespace}{    }\PYG{l+m+mi}{282}     \PYG{k}{if} \PYG{n}{gui} \PYG{o+ow}{and} \PYG{n}{gui} \PYG{o}{!=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{auto}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}
-
-\PYG{n+ne}{ModuleNotFoundError}: No module named \PYGZsq{}matplotlib\PYGZsq{}
+\PYG{n+ne}{ModuleNotFoundError}: No module named \PYGZsq{}skimage\PYGZsq{}
 \end{sphinxVerbatim}
 
 
@@ -461,7 +417,7 @@ Below you see plots of the Gaussian distribution with different parameters.
 \PYG{k+kn}{from} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{stats} \PYG{k+kn}{import} \PYG{n}{norm}
 \PYG{n}{rv} \PYG{o}{=} \PYG{n}{norm}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.}\PYG{p}{,} \PYG{n}{scale} \PYG{o}{=} \PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{p}{;}\PYG{n}{rv1} \PYG{o}{=} \PYG{n}{norm}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{p}{,} \PYG{n}{scale} \PYG{o}{=} \PYG{l+m+mf}{2.0}\PYG{p}{)}\PYG{p}{;} \PYG{n}{rv2} \PYG{o}{=} \PYG{n}{norm}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mf}{2.}\PYG{p}{,} \PYG{n}{scale} \PYG{o}{=} \PYG{l+m+mf}{3.0}\PYG{p}{)}
 \PYG{n}{x} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{o}{.}\PYG{l+m+mi}{1}\PYG{p}{)}
-
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{}plot the pdfs of these normal distributions }
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{rv}\PYG{o}{.}\PYG{n}{pdf}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{,}\PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{mu\PYGZdl{}=\PYGZhy{}1, \PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{sigma\PYGZdl{}=1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{rv1}\PYG{o}{.}\PYG{n}{pdf}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{,}\PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{mu\PYGZdl{}=0, \PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{sigma\PYGZdl{}=2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} 
@@ -974,7 +930,7 @@ Separability reduces the number of computations \(\rightarrow\) faster processin
 \end{itemize}
 
 \sphinxAtStartPar
-The gain is moderate in the 3x3 three case, but if we increase the kernel size to 5 instead we see that the gain is increasing radically:
+The gain is moderate in the 3x3 case, but if we increase the kernel size to 5 instead we see that the gain is increasing radically:
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -1402,7 +1358,7 @@ Compute the inverse transform to obtain the filtered image in real space
 \end{itemize}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figures/raw\PYGZus{}img.png}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}a\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figures/raw\PYGZus{}spec.png}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{mathcal}\PYG{l+s+si}{\PYGZob{}F\PYGZcb{}}\PYG{l+s+s1}{(a)\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{;}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figures/filt\PYGZus{}spec.png}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kernel \PYGZdl{}H\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}

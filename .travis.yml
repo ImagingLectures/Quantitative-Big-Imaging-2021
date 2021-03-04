@@ -27,6 +27,7 @@ env:
 
 install: 
    - source circleci/travis_install.sh
+   - source circleci/travis_conda.sh
   #  - ipython kernel install --user --name testkernel
   #  - jupyter kernelspec list
 

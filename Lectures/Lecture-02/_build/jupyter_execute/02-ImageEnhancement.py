@@ -25,10 +25,10 @@ import skimage.io as io
 from skimage.morphology import disk
 import scipy.ndimage as ndimage
 import matplotlib        as mpl
-mpl.rcParams['figure.dpi'] = 300
+mpl.rcParams['figure.dpi'] = 100
 
 # Measurements are rarely perfect
-<figure><img src="figures/imperfect_imaging_system.svg" style="height:300px" align="middle"></figure>
+<figure><img src="figures/imperfect_imaging_system.svg" style="height:500px" align="middle"></figure>
 
 There is no perfect measurement. This is also true for neutron imaging. The ideal image is the sample is distorted for many reasons. The figure below shows how an image of a sample can look after passing though the acquisition system. These quailty degradations will have an impact on the analysis of the image data. In some cases, it is possible to correct for some of these artifacts using classing image processing techniques. There are however also cases that require extra effort to correct the artifacts.  
 
@@ -153,7 +153,7 @@ Below you see plots of the Gaussian distribution with different parameters.
 from scipy.stats import norm
 rv = norm(loc = -1., scale = 1.0);rv1 = norm(loc = 0., scale = 2.0); rv2 = norm(loc = 2., scale = 3.0)
 x = np.arange(-10, 10, .1)
-
+plt.figure(figsize=(5,4))
 #plot the pdfs of these normal distributions 
 plt.plot(x, rv.pdf(x),label='$\mu$=-1, $\sigma$=1')
 plt.plot(x, rv1.pdf(x),label='$\mu$=0, $\sigma$=2') 
@@ -487,7 +487,7 @@ Separability reduces the number of computations $\rightarrow$ faster processing
 - 3$\times$3 $\rightarrow$ 9 mult and 8 add $\Leftrightarrow$ 6 mult and 4 add
 - 3$\times$3$\times$3 $\rightarrow$ 27 mult and 26 add $\Leftrightarrow$ 9 mult and 6 add
 
-The gain is moderate in the 3x3 three case, but if we increase the kernel size to 5 instead we see that the gain is increasing radically:
+The gain is moderate in the 3x3 case, but if we increase the kernel size to 5 instead we see that the gain is increasing radically:
 - 5$\times$5 $\rightarrow$ 25 mult and 24 add $\Leftrightarrow$ 10 mult and 8 add
 - 5$\times$5$\times$5 $\rightarrow$ 125 mult and 124 add $\Leftrightarrow$ 15 mult and 12 add
 
@@ -775,7 +775,7 @@ $$A_{filtered}=A \cdot H$$
 - Compute the inverse transform to obtain the filtered image in real space
 $$\mathcal{{F_{2D}}^{-1}}\left\{A_{filtered}\right\} \Rightarrow a_{filtered}$$
 
-plt.figure(figsize=[8,10])
+plt.figure(figsize=[10,8])
 plt.subplot(4,1,1);plt.imshow(plt.imread('figures/raw_img.png')); plt.title('$a$'); plt.axis('off');
 plt.subplot(4,1,2);plt.imshow(plt.imread('figures/raw_spec.png')); plt.title('$\mathcal{F}(a)$'); plt.axis('off');
 plt.subplot(4,1,3);plt.imshow(plt.imread('figures/filt_spec.png')); plt.title('Kernel $H$'); plt.axis('off');
@@ -1420,4 +1420,6 @@ Which one you select depends on
 <div class="alert alert-block alert-success">
 <b>Remember</b>: A good measurement is better than an enhanced bad measurement, but bad data can mostly be rescued if needed.
 </div>
+
+
 

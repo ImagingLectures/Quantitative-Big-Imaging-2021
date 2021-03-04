@@ -8,23 +8,28 @@ dependencies:
   - conda-env
   - conda-build
   - conda-verify
-  - _ipyw_jlab_nb_ext_conf
   - anaconda
   - anaconda-navigator
   - navigator-updater
+  - _ipyw_jlab_nb_ext_conf
   - numpy
   - matplotlib
-  - graphviz
+  - bokeh
   - rise
+  - pandas
+  - graphviz
   - python-graphviz
   - pydot
   - plotly
   - ffmpeg
   - tensorflow==1.15
   - keras
+  - itk
+  - ffmpeg
   - tifffile
-  - pip
   - scipy
   - scikit-image
   - dask-image
-prefix: /Users/kaestner/opt/anaconda3
+  - pip
+
+  - prefix: /Users/kaestner/opt/anaconda3

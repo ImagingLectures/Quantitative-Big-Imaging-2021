@@ -63,9 +63,9 @@
 \contentsline {subsection}{\numberline {6.4.3}Problem}{31}{subsection.6.4.3}%
 \contentsline {section}{\numberline {6.5}Spatial frequencies and orientation}{31}{section.6.5}%
 \contentsline {section}{\numberline {6.6}Example \sphinxhyphen {} Stripe removal in Fourier space}{32}{section.6.6}%
-\contentsline {section}{\numberline {6.7}The effect of the stripe filter}{34}{section.6.7}%
-\contentsline {section}{\numberline {6.8}Technical details on Fourier space filters}{34}{section.6.8}%
-\contentsline {subsection}{\numberline {6.8.1}When should you use convolution in Fourier space?}{34}{subsection.6.8.1}%
+\contentsline {section}{\numberline {6.7}The effect of the stripe filter}{33}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Technical details on Fourier space filters}{36}{section.6.8}%
+\contentsline {subsection}{\numberline {6.8.1}When should you use convolution in Fourier space?}{36}{subsection.6.8.1}%
 \contentsline {subsection}{\numberline {6.8.2}Zero padding}{36}{subsection.6.8.2}%
 \contentsline {section}{\numberline {6.9}Python functions}{36}{section.6.9}%
 \contentsline {subsection}{\numberline {6.9.1}Filters in the spatial domain}{36}{subsection.6.9.1}%
