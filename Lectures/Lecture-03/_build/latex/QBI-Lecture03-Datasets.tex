@@ -73,7 +73,7 @@
 
 
 \title{Quantitative Big Imaging - Building and Augmenting Datasets}
-\date{Mar 04, 2021}
+\date{Mar 07, 2021}
 \release{}
 \author{Anders Kaestner}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -93,35 +93,6 @@
 \sphinxstylestrong{Quantitative Big Imaging} ETHZ: 227\sphinxhyphen{}0966\sphinxhyphen{}00L
 
 
-
-
-\chapter{Let’s load some modules for the notebook}
-\label{\detokenize{03-Datasets:let-s-load-some-modules-for-the-notebook}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}    \PYG{k}{as} \PYG{n+nn}{mpl}
-\PYG{k+kn}{import} \PYG{n+nn}{numpy}         \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{k+kn}{import} \PYG{n+nn}{skimage}       \PYG{k}{as} \PYG{n+nn}{ski}
-\PYG{k+kn}{import} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io}    \PYG{k}{as} \PYG{n+nn}{io}
-\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{disk}
-\PYG{k+kn}{import} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{ndimage} \PYG{k}{as} \PYG{n+nn}{ndimage}
-
-\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{n}{mpl}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.dpi}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{300}
-\end{sphinxVerbatim}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
-\PYG{n+ne}{ModuleNotFoundError}\PYG{g+gWhitespace}{                       }Traceback (most recent call last)
-\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{f8507326f08a}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{2} \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}    \PYG{k}{as} \PYG{n+nn}{mpl}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{3} \PYG{k+kn}{import} \PYG{n+nn}{numpy}         \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{4} \PYG{k+kn}{import} \PYG{n+nn}{skimage}       \PYG{k}{as} \PYG{n+nn}{ski}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{5} \PYG{k+kn}{import} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io}    \PYG{k}{as} \PYG{n+nn}{io}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{6} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{disk}
-
-\PYG{n+ne}{ModuleNotFoundError}: No module named \PYGZsq{}skimage\PYGZsq{}
-\end{sphinxVerbatim}
 
 
 \chapter{Today’s lecture}
@@ -186,11 +157,46 @@ Example: Nearest Neighbor
 \end{itemize}
 
 
+\chapter{Let’s load some modules for the notebook}
+\label{\detokenize{03-Datasets:let-s-load-some-modules-for-the-notebook}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}    \PYG{k}{as} \PYG{n+nn}{mpl}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy}         \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{skimage}       \PYG{k}{as} \PYG{n+nn}{ski}
+\PYG{k+kn}{import} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io}    \PYG{k}{as} \PYG{n+nn}{io}
+\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{disk}
+\PYG{k+kn}{import} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{ndimage} \PYG{k}{as} \PYG{n+nn}{ndimage}
+\PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets}  \PYG{k+kn}{import} \PYG{n}{mnist}
+\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{util}    \PYG{k+kn}{import} \PYG{n}{montage} \PYG{k}{as} \PYG{n}{montage2d}
+
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\PYG{n}{mpl}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.dpi}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{100}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n+ne}{ModuleNotFoundError}\PYG{g+gWhitespace}{                       }Traceback (most recent call last)
+\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{ca35de6f9736}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{2} \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}    \PYG{k}{as} \PYG{n+nn}{mpl}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{3} \PYG{k+kn}{import} \PYG{n+nn}{numpy}         \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{4} \PYG{k+kn}{import} \PYG{n+nn}{skimage}       \PYG{k}{as} \PYG{n+nn}{ski}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{5} \PYG{k+kn}{import} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io}    \PYG{k}{as} \PYG{n+nn}{io}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{6} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{disk}
+
+\PYG{n+ne}{ModuleNotFoundError}: No module named \PYGZsq{}skimage\PYGZsq{}
+\end{sphinxVerbatim}
+
+
 \chapter{References}
 \label{\detokenize{03-Datasets:references}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Revisiting \sphinxstylestrong{Unreasonable Effectiveness of Data} in Deep Learning Era: \sphinxurl{https://arxiv.org/abs/1707.02968}
+\sphinxhref{https://arxiv.org/abs/1707.02968}{Revisiting \sphinxstylestrong{Unreasonable Effectiveness of Data} in Deep Learning Era}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{https://towardsdatascience.com/data-science-without-any-data-6c1ae9509d92}{Data science … without any data}
 
 \item {} 
 \sphinxAtStartPar
@@ -202,11 +208,11 @@ Python Machine Learning 2nd Edition by Sebastian Raschka, Packt Publishing Ltd. 
 
 \item {} 
 \sphinxAtStartPar
-Chapter 2: Building Good Datasets: \sphinxurl{https://github.com/rasbt/python-machine-learning-book-2nd-edition/blob/master/code/ch04/ch04.ipynb}
+Chapter 2: \sphinxhref{https://github.com/rasbt/python-machine-learning-book-2nd-edition/blob/master/code/ch04/ch04.ipynb}{Building Good Datasets:}
 
 \item {} 
 \sphinxAtStartPar
-A Standardised Approach for Preparing Imaging Data for Machine Learning Tasks in Radiology \sphinxurl{https://doi.org/10.1007/978-3-319-94878-2\_6}
+\sphinxhref{https://doi.org/10.1007/978-3-319-94878-2\_6}{A Standardised Approach for Preparing Imaging Data for Machine Learning Tasks in Radiology}
 
 \end{itemize}
 
@@ -216,23 +222,23 @@ Creating Datasets / Crowdsourcing
 
 \item {} 
 \sphinxAtStartPar
-Mindcontrol: A web application for brain segmentation quality control: \sphinxurl{https://www.sciencedirect.com/science/article/pii/S1053811917302707}
+\sphinxhref{https://www.sciencedirect.com/science/article/pii/S1053811917302707}{Mindcontrol: A web application for brain segmentation quality control}
 
 \item {} 
 \sphinxAtStartPar
-Combining citizen science and deep learning to amplify expertise in neuroimaging: \sphinxurl{https://www.biorxiv.org/content/10.1101/363382v1.abstract}
+\sphinxhref{https://www.biorxiv.org/content/10.1101/363382v1.abstract}{Combining citizen science and deep learning to amplify expertise in neuroimaging}
 
 \item {} 
 \sphinxAtStartPar
-Augmentation
+Augmentation tools
 
 \item {} 
 \sphinxAtStartPar
-\sphinxurl{https://github.com/aleju/imgaug}
+\sphinxhref{https://github.com/aleju/imgaug}{ImgAug}
 
 \item {} 
 \sphinxAtStartPar
-\sphinxurl{https://github.com/mdbloice/Augmentor}
+\sphinxhref{https://github.com/mdbloice/Augmentor}{Augmentor}
 
 \end{itemize}
 
@@ -261,6 +267,9 @@ You already collected data (sometimes lots of it) that is why you took this clas
 
 \section{Sean Taylor (Research Scientist at Facebook)}
 \label{\detokenize{03-Datasets:sean-taylor-research-scientist-at-facebook}}
+\sphinxAtStartPar
+This tweet tells us that you shouldn’t put too much belief in AI without providing carefully prepared data set. Machine learning methods perform only so good as the data it was trained with. You need a data set that covers all extremes of the fenomena that you want to model.
+
 \begin{figure}[htbp]
 \centering
 \capstart
@@ -273,6 +282,9 @@ You already collected data (sometimes lots of it) that is why you took this clas
 
 \section{Andrej Karpathy (Director of AI at Tesla)}
 \label{\detokenize{03-Datasets:andrej-karpathy-director-of-ai-at-tesla}}
+\sphinxAtStartPar
+This slide by Andrej Karpathy shows the importance of correct data set in a machine learning project. Typically, you should spend much more time on collecting representative data for your models than building the models. Unfortunately, this is not the case for many PhD projects where the data usually is scarse. Much for the reason that it is really hard to come by the data. You may only have a few beam slots allocated for your experiments and this is the data you have to live with.
+
 \begin{figure}[htbp]
 \centering
 \capstart
@@ -285,6 +297,9 @@ You already collected data (sometimes lots of it) that is why you took this clas
 
 \section{Kathy Scott (Image Analytics Lead at Planet Labs)}
 \label{\detokenize{03-Datasets:kathy-scott-image-analytics-lead-at-planet-labs}}
+\sphinxAtStartPar
+Yet another tweet that implies that many data scientist actually spend more time on preparing the data than developing new models.  The training is less labor demanding, the computer is doing that part of the job.
+
 \begin{figure}[htbp]
 \centering
 \capstart
@@ -400,10 +415,19 @@ The famous datasets are important for basic network training.
 \section{MNIST Digits}
 \label{\detokenize{03-Datasets:mnist-digits}}
 \sphinxAtStartPar
-Modified NIST (National Institute of Standards and Technology) created a list of handwritten digits
+Modified NIST (National Institute of Standards and Technology) created a list of handwritten digits.
 
 \sphinxAtStartPar
-\sphinxincludegraphics{{mnist}.png}
+This list is a popular starting point for many machine learning projects. The images are already labeled and are also nicely prepared to about the same size and also very high SNR. These properties makes it a great toy data set for first testing.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.5]{{mnist}.png}
+\caption{A selection of hand written numbers from the MNIST data base}\label{\detokenize{03-Datasets:id8}}\end{figure}
+
+
 
 
 \section{ImageNet}
@@ -432,6 +456,20 @@ Not just dog/cat, but wolf vs german shepard,
 
 \end{itemize}
 
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.8]{{A-simplified-WordNet-hierarchy-of-synsets}.png}
+\caption{Hierarchial structure of the WordNet database.}\label{\detokenize{03-Datasets:id9}}\end{figure}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZhy{}\PYGZhy{}\PYGZhy{}
+scale: 80\PYGZpc{}
+\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Error rates for different classifiers on the same data set.
+\end{sphinxVerbatim}
+
 
 
 \sphinxAtStartPar
@@ -444,6 +482,13 @@ Not just dog/cat, but wolf vs german shepard,
 \label{\detokenize{03-Datasets:brats}}
 \sphinxAtStartPar
 Segmenting Tumors in Multimodal MRI Brain Images.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.6]{{BRATS_tasks}.png}
+\caption{Images of brain tumors from the BRATS database.}\label{\detokenize{03-Datasets:id10}}\end{figure}
 
 
 
@@ -522,6 +567,10 @@ Ultimately it enables better solutions to be made and you to be confident that t
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{https://datasetsearch.research.google.com/}{Google Dataset Search}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{https://en.wikipedia.org/wiki/List\_of\_datasets\_for\_machine-learning\_research}{Wikipedia provides a comprehensive list categorized into different topics}
 
 \end{itemize}
 
@@ -700,12 +749,10 @@ Cancer vs Healthy
 
 \subsection{Classification example}
 \label{\detokenize{03-Datasets:classification-example}}
+\sphinxAtStartPar
+In classification you want to observe an image an quickly provide it with a category. Like in the MNIST example which is designed for recognition of handwritten numbers. Each image has a label telling which number it represents.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{mnist}
-\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{util} \PYG{k+kn}{import} \PYG{n}{montage} \PYG{k}{as} \PYG{n}{montage2d}
-\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 \PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{mnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mi}{9}\PYG{p}{)}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{c\PYGZus{}img}\PYG{p}{,} \PYG{n}{c\PYGZus{}label} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{:}
@@ -714,15 +761,17 @@ Cancer vs Healthy
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_30_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_37_0}.png}
 
 
 \section{Regression}
-\label{\detokenize{03-Datasets:regression}}\begin{itemize}
-\item {} 
+\label{\detokenize{03-Datasets:regression}}
+\sphinxAtStartPar
+Regression almost looks like classification at first sight. You still want to put a number related to the image content. But here it is not strictly bound to the provided categories but rather estimating a value which can be found on the regression line fitted to the data.
+
 \sphinxAtStartPar
 Taking an image and predicting one (or more) decimal values
-
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Examples:
@@ -740,6 +789,16 @@ Risk of hurricane from satellite image
 
 \subsection{Regression example Age from X\sphinxhyphen{}Rays}
 \label{\detokenize{03-Datasets:regression-example-age-from-x-rays}}
+\sphinxAtStartPar
+This dataset contains a collection of X\sphinxhyphen{}ray radiographs of hands. The purpose of the data is to estimate the age of a child based on the radiograph. This can be done using a regression model.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.75]{{bone_age}.png}
+\caption{A collection of X\sphinxhyphen{}ray images from children at different ages.}\label{\detokenize{03-Datasets:id11}}\end{figure}
+
 
 
 \sphinxAtStartPar
@@ -777,6 +836,20 @@ Where streets are from satellite images of a neighborhood
 
 \subsection{Segmentation example: Nuclei in Microscope Images}
 \label{\detokenize{03-Datasets:segmentation-example-nuclei-in-microscope-images}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.5]{{slide}.png}
+\caption{Sample with cells.}\label{\detokenize{03-Datasets:id12}}\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.5]{{labels}.png}
+\caption{Labelled cells.}\label{\detokenize{03-Datasets:id13}}\end{figure}
+
 
 
 \sphinxAtStartPar
@@ -784,14 +857,17 @@ Where streets are from satellite images of a neighborhood
 
 
 \section{Detection}
-\label{\detokenize{03-Datasets:detection}}\begin{itemize}
+\label{\detokenize{03-Datasets:detection}}
+\sphinxAtStartPar
+Detection is a combination of segmenation and classification in the sense that the location and extents of a feature is determined and is also categorized into some class. The extents don’t have to be very precise, it is often a bounding box or a convex hull. This coarseness is sufficient for many applications.
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Taking an image and predicting where and which type of objects appear
 
 \item {} 
 \sphinxAtStartPar
-Generally bounding box rather then specific pixels
+Generally bounding box rather than specific pixels
 
 \item {} 
 \sphinxAtStartPar
@@ -799,11 +875,27 @@ Multiple objects can overlap
 
 \end{itemize}
 
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.6]{{lung_opacity}.png}
+\caption{Radiographs to detect opaque regions in X\sphinxhyphen{}Rays}\label{\detokenize{03-Datasets:id14}}\end{figure}
+
 
 \subsection{Detection example: Opaque Regions in X\sphinxhyphen{}Rays}
 \label{\detokenize{03-Datasets:detection-example-opaque-regions-in-x-rays}}
 \sphinxAtStartPar
-\sphinxincludegraphics{{lung_opacity}.png}
+In this example the task is to detect opaque regions in lung X\sphinxhyphen{}ray images to provide a first indication for the physician who should make a diagnosis from the images. The used algorithm marks rectangles on region that are too opaque to be healthy.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{lung_opacity}.png}
+\caption{Critical regions detected in lung radiographs.}\label{\detokenize{03-Datasets:id15}}\end{figure}
+
+
 
 \sphinxAtStartPar
 \sphinxhref{https://www.kaggle.com/c/rsna-pneumonia-detection-challenge}{More details on Kaggle}
@@ -836,7 +928,10 @@ Denoising \sphinxhref{http://cchen156.web.engr.illinois.edu/SID.html}{Learning t
 
 
 \chapter{Building your own data sets}
-\label{\detokenize{03-Datasets:building-your-own-data-sets}}\begin{itemize}
+\label{\detokenize{03-Datasets:building-your-own-data-sets}}
+\sphinxAtStartPar
+Finally, we arrive at your data! As you already have seen, it is a time consuming and labor intense task to collect and prepare data.
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Very time consuming
@@ -850,6 +945,9 @@ Not a lot of great tools
 Very problem specific
 
 \end{itemize}
+
+\sphinxAtStartPar
+It is however important to have well\sphinxhyphen{}organized data for the analysis.
 
 
 \section{Code\sphinxhyphen{}free}
@@ -926,6 +1024,32 @@ MightyAI / Spare5: \sphinxurl{https://mighty.ai/} \sphinxurl{https://app.spare5.
 \section{Simulations}
 \label{\detokenize{03-Datasets:simulations}}
 \sphinxAtStartPar
+A further way to increase training data is to build a model of the features you want to train on. This approach has the advantage that you know where to look for the features which means the tedious annotation task is reduced to a minimum. The work rather lies in building a relieable model that should reflect the characteristics of features you want to segments. Once a valid model is built, it is easy to generate masses of data under variuos conditions.
+
+\sphinxAtStartPar
+Simulations can be done using:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Geometric models
+
+\item {} 
+\sphinxAtStartPar
+Template models
+
+\item {} 
+\sphinxAtStartPar
+Physical models
+
+\end{itemize}
+
+\sphinxAtStartPar
+Both augmented and simulated data should be combined with real data.
+
+
+\subsection{Simulation examples}
+\label{\detokenize{03-Datasets:simulation-examples}}
+\sphinxAtStartPar
 Another way to enhance or expand your dataset is to use simulations
 \begin{itemize}
 \item {} 
@@ -943,7 +1067,7 @@ unlimited, risk\sphinxhyphen{}free playability (driving cars in the world is mor
 \end{itemize}
 
 
-\subsection{Examples}
+\subsubsection{Examples}
 \label{\detokenize{03-Datasets:examples}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -952,15 +1076,15 @@ Pore Detection in Cast Aluminum Parts, iCT 2019, Padova}
 
 \item {} 
 \sphinxAtStartPar
-\sphinxurl{https://download.visinf.tu-darmstadt.de/data/from\_games/}
+\sphinxhref{https://download.visinf.tu-darmstadt.de/data/from\_games/}{Playing for Data: Ground Truth from Computer Games}
 
 \item {} 
 \sphinxAtStartPar
-\sphinxurl{https://pythonprogramming.net/self-driving-car-neural-network-training-data-python-plays-gta-v/}
+\sphinxhref{https://pythonprogramming.net/self-driving-car-neural-network-training-data-python-plays-gta-v/}{Self\sphinxhyphen{}driving car}
 
 \item {} 
 \sphinxAtStartPar
-\sphinxurl{https://towardsdatascience.com/learning-from-simulated-data-ff4be63ac89c}
+\sphinxhref{https://towardsdatascience.com/learning-from-simulated-data-ff4be63ac89c}{Learning from simulated data}
 
 \end{itemize}
 
@@ -995,51 +1119,169 @@ These lead to problems with the algorithms built on top of them.
 \section{Bias}
 \label{\detokenize{03-Datasets:bias}}
 \sphinxAtStartPar
-\sphinxincludegraphics{{google-racist-gorilla-doctored-tweet}.png}
+Working with single sided data will bias the model towards this kind of data. This is a reason for the need to include as many corner cases as possible in the data. Biasing can easily happen when you have too few data to provide a statistically well founded training.
+
+\sphinxAtStartPar
+The gorilla example may sound fun but it can also upset people and in some cases the wrong descision can even cause inrepairable damage. Google’s quick fix to the problem was to remove the gorilla category from their classifyer. This approach may work for a trivial service like picture categorization tool, but yet again what if it is an essential category for the model?
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.6]{{google-racist-gorilla-doctored-tweet}.png}
+\caption{Mistakes that can happen due bias caused by insufficent training data.}\label{\detokenize{03-Datasets:id16}}\end{figure}
 
 
 
 
-\subsection{The solution was to remove Gorilla from the category}
-\label{\detokenize{03-Datasets:the-solution-was-to-remove-gorilla-from-the-category}}
+
+\sphinxAtStartPar
+\sphinxhref{https://www.theverge.com/2018/1/12/16882408/google-racist-gorillas-photo-recognition-algorithm-ai}{The solution was to remove Gorilla from the category}
 
 
 
-\section{Better solution would be to have training sets with more diverse people}
-\label{\detokenize{03-Datasets:better-solution-would-be-to-have-training-sets-with-more-diverse-people}}
 
+
+\subsection{A better solution to avoid biasing}
+\label{\detokenize{03-Datasets:a-better-solution-to-avoid-biasing}}
+\sphinxAtStartPar
+\sphinxstylestrong{Use training sets with more diverse people}
+
+\sphinxAtStartPar
+The better solution to avoid biasing mistakes is to use a large data base with more variations one example is the \sphinxhref{https://www.research.ibm.com/artificial-intelligence/trusted-ai/diversity-in-faces/}{IBM Diverse Face Dataset}. This face dataset not only provides great variation in people but also adds features to categorize the pictures even further. The figure below shows some samples from the face dataset with categories like:
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxhref{https://www.research.ibm.com/artificial-intelligence/trusted-ai/diversity-in-faces/}{IBM Diverse Face Dataset}
+Accessories like eyeglases and hats
+
+\item {} 
+\sphinxAtStartPar
+Different hair styles
+
+\item {} 
+\sphinxAtStartPar
+Face shapes
+
+\item {} 
+\sphinxAtStartPar
+Face expressions
 
 \end{itemize}
 
+\begin{figure}[htbp]
+\centering
+\capstart
 
-\chapter{Example of image data and labels}
-\label{\detokenize{03-Datasets:example-of-image-data-and-labels}}
+\noindent\sphinxincludegraphics[scale=0.8]{{celeb_dataset}.png}
+\caption{Use a database with more diverse people to avoid biasing.}\label{\detokenize{03-Datasets:id17}}\end{figure}
+
+
+
+\sphinxAtStartPar
+IBM Diverse Face Dataset
+
+
+\section{Image data and labels}
+\label{\detokenize{03-Datasets:image-data-and-labels}}
+\sphinxAtStartPar
+In the prevoius example with face pictures we started to look into categories of pictures. These pictures were provided with labels bescribing the picture content. The next dataset we will look at is the MNIST data set, which we already have seen a couple of times in this lecture.
+
+\sphinxAtStartPar
+In the example below we have extracted the numbers 1,2, and 3. The histogram to the right shows the distribution of the numbers in the extracted data set.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{mnist}
-\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{util} \PYG{k+kn}{import} \PYG{n}{montage} \PYG{k}{as} \PYG{n}{montage2d}
-\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 \PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{mnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{16}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{d\PYGZus{}subset} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{where}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{in1d}\PYG{p}{(}\PYG{n}{label}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{montage2d}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{d\PYGZus{}subset}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{64}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Images}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{d\PYGZus{}subset}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{64}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Digit Distribution}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{montage2d}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{d\PYGZus{}subset}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{64}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Images}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{d\PYGZus{}subset}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{64}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}          \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Digit Distribution}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_46_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_76_0}.png}
+
+
+\section{Limited data}
+\label{\detokenize{03-Datasets:limited-data}}
+\sphinxAtStartPar
+Machine learning methods require a lot of training data to be able to build good models that are able to detect the features they are intended to.
+
+\sphinxAtStartPar
+\sphinxstyleemphasis{Different types of limited data}:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Few data points or limited amounts of images
+
+\end{itemize}
+
+\sphinxAtStartPar
+This is very often the case in neutron imaging. The number of images collected during an experiment session is often very low due to the long experiment duration and limited amount of beam time. This makes it hard to develop segmentation and analysis methods for single experiments. The few data points problem can partly be overcome by using data from previous experiment with similar characteristics. The ability to recycle data depends on what you want to detect in the images.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Unbalanced data
+
+\end{itemize}
+
+\sphinxAtStartPar
+Unbalanced data means that the ratio between the data points with features you want detect and the total number data points is several orders of magnitude. E.g roots in a volume like the example we will look at later in this lecture. There is even a risk that the distribution of the wanted features is overlapped by the dominating background distribution.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{classunbalance}.pdf}
+\caption{Two cases of unblanaced data; (a) the classes are well separated and the feature class is clearly visible in the tail distribution of the background and (b) the feature class is embeded in the background making it hard to detect.}\label{\detokenize{03-Datasets:id18}}\end{figure}
+
+\sphinxAtStartPar
+Case (a) can most likely be segmented using one of the many histogram based thresholding methods proposed in literature. Case (b) is much harder to segment as the target features have similar gray levels as the background. This case requires additional information to make segmentation posible.
+
+
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Little or missing training data
+
+\end{itemize}
+
+\sphinxAtStartPar
+A complete set of training data contains both input data and labelled data. The input data is easy to obtain, it is the images you measured during your experiment. The labelled data is harder to get as it is a kind of chicken and egg problem. In particular, if your experiment data is limited. In that case, you would have to mark\sphinxhyphen{}up most of the available data to obtain the labeled data. Which doesn’t make sense because
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+then you’d already solved the task before even starting to train your segmentation algorithm.
+
+\item {} 
+\sphinxAtStartPar
+An algorithm based on learning doesn’t improve the results, it only make it easier to handle large amounts of data.
+
+\end{itemize}
 
 
 \chapter{Augmentation}
-\label{\detokenize{03-Datasets:augmentation}}\begin{itemize}
+\label{\detokenize{03-Datasets:augmentation}}
+\sphinxAtStartPar
+Obtaining more experiment data is mostly relatively hard,
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Time in the lab is limited.
+
+\item {} 
+\sphinxAtStartPar
+Sample preparation is expensive.
+
+\item {} 
+\sphinxAtStartPar
+The number of specimens is limited.
+
+\end{itemize}
+
+\sphinxAtStartPar
+Still, many supervised analysis methods require large data sets to perform reliably. A method to improve this situation is to use data augmentation. This means that you take the existing data and distorts it using different transformations or add features.
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Most groups have too little well\sphinxhyphen{}labeled data and labeling new examples can be very expensive.
@@ -1055,8 +1297,8 @@ In medicine this is particularly problematic, because some diseases might only h
 \end{itemize}
 
 
-\section{Handling limited data}
-\label{\detokenize{03-Datasets:handling-limited-data}}
+\section{Typical augmentation operations}
+\label{\detokenize{03-Datasets:typical-augmentation-operations}}
 
 \subsection{Transformations}
 \label{\detokenize{03-Datasets:transformations}}\begin{itemize}
@@ -1110,6 +1352,16 @@ Blurring
 
 \section{Some augmentation examples}
 \label{\detokenize{03-Datasets:some-augmentation-examples}}
+\sphinxAtStartPar
+The figure below shows some examples of augmentations of the same image. You can also add noise and modulate the image intensity to increase the variations further.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{Augmentations}.pdf}
+\caption{A retinal image modified using different augmentation techniques (source: \sphinxurl{https://drive.grand-challenge.org/DRIVE/}) prepared by Gian Guido Parenza.}\label{\detokenize{03-Datasets:id19}}\end{figure}
+
 
 
 \sphinxAtStartPar
@@ -1189,27 +1441,38 @@ Generate minibatches of image data with real\PYGZhy{}time data augmentation.
         one image (Numpy tensor with rank 3),
 \end{sphinxVerbatim}
 
+
+\subsection{A Keras ImageDataGenerator example}
+\label{\detokenize{03-Datasets:a-keras-imagedatagenerator-example}}
+\sphinxAtStartPar
+There are quite many degrees of freedom to use the ImageDataGenerator. The generator is given all boundary condition at initialization time. Below you see an example of how it can be initialized.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{mnist}
+\end{sphinxVerbatim}
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{preprocessing}\PYG{n+nn}{.}\PYG{n+nn}{image} \PYG{k+kn}{import} \PYG{n}{ImageDataGenerator}
+
 \PYG{n}{img\PYGZus{}aug} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(}
-    \PYG{n}{featurewise\PYGZus{}center}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
-    \PYG{n}{samplewise\PYGZus{}center}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
-    \PYG{n}{zca\PYGZus{}whitening}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
-    \PYG{n}{zca\PYGZus{}epsilon}\PYG{o}{=}\PYG{l+m+mf}{1e\PYGZhy{}06}\PYG{p}{,}
-    \PYG{n}{rotation\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{30.0}\PYG{p}{,}
-    \PYG{n}{width\PYGZus{}shift\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}
-    \PYG{n}{height\PYGZus{}shift\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}
-    \PYG{n}{shear\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}
-    \PYG{n}{zoom\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{,}
-    \PYG{n}{fill\PYGZus{}mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nearest}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
-    \PYG{n}{horizontal\PYGZus{}flip}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
-    \PYG{n}{vertical\PYGZus{}flip}\PYG{o}{=}\PYG{k+kc}{False}
+    \PYG{n}{featurewise\PYGZus{}center}  \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,}
+    \PYG{n}{samplewise\PYGZus{}center}   \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,}
+    \PYG{n}{zca\PYGZus{}whitening}       \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,}
+    \PYG{n}{zca\PYGZus{}epsilon}         \PYG{o}{=} \PYG{l+m+mf}{1e\PYGZhy{}06}\PYG{p}{,}
+    \PYG{n}{rotation\PYGZus{}range}      \PYG{o}{=} \PYG{l+m+mf}{30.0}\PYG{p}{,}
+    \PYG{n}{width\PYGZus{}shift\PYGZus{}range}   \PYG{o}{=} \PYG{l+m+mf}{0.25}\PYG{p}{,}
+    \PYG{n}{height\PYGZus{}shift\PYGZus{}range}  \PYG{o}{=} \PYG{l+m+mf}{0.25}\PYG{p}{,}
+    \PYG{n}{shear\PYGZus{}range}         \PYG{o}{=} \PYG{l+m+mf}{0.25}\PYG{p}{,}
+    \PYG{n}{zoom\PYGZus{}range}          \PYG{o}{=} \PYG{l+m+mf}{0.5}\PYG{p}{,}
+    \PYG{n}{fill\PYGZus{}mode}           \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nearest}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+    \PYG{n}{horizontal\PYGZus{}flip}     \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,}
+    \PYG{n}{vertical\PYGZus{}flip}       \PYG{o}{=} \PYG{k+kc}{False}
 \PYG{p}{)}
 \end{sphinxVerbatim}
 
 
-\section{MNIST}
-\label{\detokenize{03-Datasets:mnist}}
+\section{Augmenting MNIST images}
+\label{\detokenize{03-Datasets:augmenting-mnist-images}}
 \sphinxAtStartPar
 Even something as simple as labeling digits can be very time consuming (maybe 1\sphinxhyphen{}2 per second).
 
@@ -1218,9 +1481,11 @@ Even something as simple as labeling digits can be very time consuming (maybe 1\
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{mnist}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{mnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
-\PYG{n}{img} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{expand\PYGZus{}dims}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{p}{,} \PYG{l+m+mi}{9}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{mnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{img} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{expand\PYGZus{}dims}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} setup augmentation}
 \PYG{n}{img\PYGZus{}aug}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}
 \PYG{n}{real\PYGZus{}aug} \PYG{o}{=} \PYG{n}{img\PYGZus{}aug}\PYG{o}{.}\PYG{n}{flow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{,} \PYG{n}{shuffle}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
@@ -1231,19 +1496,28 @@ Even something as simple as labeling digits can be very time consuming (maybe 1\
         \PYG{n}{img\PYGZus{}batch}\PYG{p}{,} \PYG{n}{label\PYGZus{}batch} \PYG{o}{=} \PYG{n}{img}\PYG{p}{,} \PYG{n}{label}
     \PYG{k}{for} \PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{c\PYGZus{}img}\PYG{p}{,} \PYG{n}{c\PYGZus{}label} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{c\PYGZus{}axs}\PYG{p}{,} \PYG{n}{img\PYGZus{}batch}\PYG{p}{,} \PYG{n}{label\PYGZus{}batch}\PYG{p}{)}\PYG{p}{:}
         \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax}\PYG{o}{=}\PYG{l+m+mi}{255}\PYG{p}{)}
-        \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(} \PYG{n}{c\PYGZus{}label}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{aug}\PYG{l+s+s1}{\PYGZsq{}} \PYG{k}{if} \PYG{n}{do\PYGZus{}augmentation} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
-        \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(} \PYG{n}{c\PYGZus{}label}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{aug}\PYG{l+s+s1}{\PYGZsq{}} \PYG{k}{if} \PYG{n}{do\PYGZus{}augmentation} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_55_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_101_0}.png}
 
 
-\chapter{A larger open data set}
+\section{A larger open data set}
 \label{\detokenize{03-Datasets:a-larger-open-data-set}}
 \sphinxAtStartPar
-\sphinxhref{https://www.cs.toronto.edu/~kriz/cifar.html}{CIFAR10}
-We can use a more exciting dataset to try some of the other features in augmentation
+We can use a more exciting dataset to try some of the other features in augmentation.
 
+\sphinxAtStartPar
+The CIFAR\sphinxhyphen{}10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.
+
+\sphinxAtStartPar
+Here are some examples from the \sphinxhref{https://www.cs.toronto.edu/~kriz/cifar.html}{CIFAR10} dataset
+
+
+
+
+\subsection{Augmenting CIFAR10 images}
+\label{\detokenize{03-Datasets:augmenting-cifar10-images}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{cifar10}
 \PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{cifar10}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
@@ -1251,28 +1525,34 @@ We can use a more exciting dataset to try some of the other features in augmenta
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{img\PYGZus{}aug} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(}
-    \PYG{n}{featurewise\PYGZus{}center}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
-    \PYG{n}{samplewise\PYGZus{}center}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
-    \PYG{n}{zca\PYGZus{}whitening}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
-    \PYG{n}{zca\PYGZus{}epsilon}\PYG{o}{=}\PYG{l+m+mf}{1e\PYGZhy{}06}\PYG{p}{,}
-    \PYG{n}{rotation\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{30.0}\PYG{p}{,}
-    \PYG{n}{width\PYGZus{}shift\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}
-    \PYG{n}{height\PYGZus{}shift\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}
-    \PYG{n}{channel\PYGZus{}shift\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}
-    \PYG{n}{shear\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}
-    \PYG{n}{zoom\PYGZus{}range}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}
-    \PYG{n}{fill\PYGZus{}mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{reflect}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
-    \PYG{n}{horizontal\PYGZus{}flip}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
-    \PYG{n}{vertical\PYGZus{}flip}\PYG{o}{=}\PYG{k+kc}{True}
+    \PYG{n}{featurewise\PYGZus{}center}  \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{,}
+    \PYG{n}{samplewise\PYGZus{}center}   \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,}
+    \PYG{n}{zca\PYGZus{}whitening}       \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,}
+    \PYG{n}{zca\PYGZus{}epsilon}         \PYG{o}{=} \PYG{l+m+mf}{1e\PYGZhy{}06}\PYG{p}{,}
+    \PYG{n}{rotation\PYGZus{}range}      \PYG{o}{=} \PYG{l+m+mf}{30.0}\PYG{p}{,}
+    \PYG{n}{width\PYGZus{}shift\PYGZus{}range}   \PYG{o}{=} \PYG{l+m+mf}{0.25}\PYG{p}{,}
+    \PYG{n}{height\PYGZus{}shift\PYGZus{}range}  \PYG{o}{=} \PYG{l+m+mf}{0.25}\PYG{p}{,}
+    \PYG{n}{channel\PYGZus{}shift\PYGZus{}range} \PYG{o}{=} \PYG{l+m+mf}{0.25}\PYG{p}{,}
+    \PYG{n}{shear\PYGZus{}range}         \PYG{o}{=} \PYG{l+m+mf}{0.25}\PYG{p}{,}
+    \PYG{n}{zoom\PYGZus{}range}          \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,}
+    \PYG{n}{fill\PYGZus{}mode}           \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{reflect}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+    \PYG{n}{horizontal\PYGZus{}flip}     \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{,}
+    \PYG{n}{vertical\PYGZus{}flip}       \PYG{o}{=} \PYG{k+kc}{True}
 \PYG{p}{)}
 \end{sphinxVerbatim}
 
+
+\subsection{Running the CIFAR augmentation}
+\label{\detokenize{03-Datasets:running-the-cifar-augmentation}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{mnist}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{16}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{18}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} setup augmentation}
 \PYG{n}{img\PYGZus{}aug}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}
 \PYG{n}{real\PYGZus{}aug} \PYG{o}{=} \PYG{n}{img\PYGZus{}aug}\PYG{o}{.}\PYG{n}{flow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{,} \PYG{n}{shuffle}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
@@ -1291,7 +1571,7 @@ We can use a more exciting dataset to try some of the other features in augmenta
         \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_59_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_110_0}.png}
 
 
 \chapter{Baselines}
@@ -1319,9 +1599,14 @@ I have a a model that is \textgreater{}99\% accurate for predicting breast cance
 
 \section{The dummy classifier}
 \label{\detokenize{03-Datasets:the-dummy-classifier}}
+\sphinxAtStartPar
+Let’s train the dummy classifier with some values related to healthy and cancer sick patients. Measurements values 0,1, and 2 are healthy while the value 3 has cancer. We train the classifyer with the strategy that the most frequent class will predict the outcome.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{dummy} \PYG{k+kn}{import} \PYG{n}{DummyClassifier}
+
 \PYG{n}{dc} \PYG{o}{=} \PYG{n}{DummyClassifier}\PYG{p}{(}\PYG{n}{strategy}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{most\PYGZus{}frequent}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
 \PYG{n}{dc}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{,} 
        \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Healthy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Healthy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Healthy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Cancer}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -1330,22 +1615,46 @@ I have a a model that is \textgreater{}99\% accurate for predicting breast cance
 DummyClassifier(strategy=\PYGZsq{}most\PYGZus{}frequent\PYGZsq{})
 \end{sphinxVerbatim}
 
+\sphinxAtStartPar
+\sphinxstylestrong{Testing the outcome of the classifyer}
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{dc}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dc}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dc}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dc}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{]}\PYG{p}{)}
+\PYG{k}{for} \PYG{n}{idx} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{100}\PYG{p}{]} \PYG{p}{:}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Prediction for }\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{ is }\PYG{l+s+si}{\PYGZob{}1\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{idx}\PYG{p}{,}\PYG{n}{dc}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{p}{[}\PYG{n}{idx}\PYG{p}{]}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-(array([\PYGZsq{}Healthy\PYGZsq{}], dtype=\PYGZsq{}\PYGZlt{}U7\PYGZsq{}),
- array([\PYGZsq{}Healthy\PYGZsq{}], dtype=\PYGZsq{}\PYGZlt{}U7\PYGZsq{}),
- array([\PYGZsq{}Healthy\PYGZsq{}], dtype=\PYGZsq{}\PYGZlt{}U7\PYGZsq{}),
- array([\PYGZsq{}Healthy\PYGZsq{}], dtype=\PYGZsq{}\PYGZlt{}U7\PYGZsq{}))
+Prediction for 0 is Healthy
+Prediction for 1 is Healthy
+Prediction for 3 is Healthy
+Prediction for 100 is Healthy
 \end{sphinxVerbatim}
+
+\sphinxAtStartPar
+With these few lines we test what happens when we provide some numbers to the classifyer. The numbers are
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+0 and 1, which are expected to be healthy
+
+\item {} 
+\sphinxAtStartPar
+3 , which has cancer
+
+\item {} 
+\sphinxAtStartPar
+100, unknown to the model
+
+\end{itemize}
+
+\sphinxAtStartPar
+So, the classifyer tells us that all values are from healthy patients… not really good! The reason is that it was told to tell us the category of the majority, which is that the patient is healthy.
 
 
 \section{Try dummy classifier on MNIST data}
 \label{\detokenize{03-Datasets:try-dummy-classifier-on-mnist-data}}
 \sphinxAtStartPar
-First we load the data…
+The previous basic problem showed us how the dummy classifier work. Now we want to use it with the handwritten numbers in the MNIST dataset. The first step is to load the data and check how the distribution of numbers in the data set using a histogram.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1353,21 +1662,26 @@ First we load the data…
 \PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{mnist}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{util} \PYG{k+kn}{import} \PYG{n}{montage} \PYG{k}{as} \PYG{n}{montage2d}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{mnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Digit Distribution}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_66_0}.png}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{mnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{m\PYGZus{}axs}\PYG{o}{=} \PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Digit Distribution}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{03-Datasets_123_0}.png}
 
 
-\section{Let’s train the model…}
+\subsection{Let’s train the model…}
 \label{\detokenize{03-Datasets:let-s-train-the-model}}
+\sphinxAtStartPar
+Now we want to train the model with our data. Once again we use the \sphinxstyleemphasis{most frequent} model. The training is done in the first 24 images in the data set. The fitting requires that we provide the images with numbers and their associated labels telling the model how to interpret the image.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{dc} \PYG{o}{=} \PYG{n}{DummyClassifier}\PYG{p}{(}\PYG{n}{strategy}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{most\PYGZus{}frequent}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{dc}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{)}
@@ -1380,6 +1694,9 @@ DummyClassifier(strategy=\PYGZsq{}most\PYGZus{}frequent\PYGZsq{})
 \sphinxAtStartPar
 \sphinxstylestrong{A basic test}
 
+\sphinxAtStartPar
+In the basic test, we provide the first ten images and hope to get predictions which numbers they represent.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{dc}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -1389,62 +1706,92 @@ array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], dtype=uint8)
 \end{sphinxVerbatim}
 
 
-\subsection{… why are all predictions = 1?}
-\label{\detokenize{03-Datasets:why-are-all-predictions-1}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Frequency of numbers in the training data}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{03-Datasets_72_0}.png}
-
-
 \subsection{Test on the images}
 \label{\detokenize{03-Datasets:test-on-the-images}}
+\sphinxAtStartPar
+Let’s see how good these predictions really are by showing the images along with their labels and the prediction of the trained model.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Predicted: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{dc}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}  
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{prediction} \PYG{o}{=} \PYG{n}{dc}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Predicted: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{prediction} \PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_74_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_132_0}.png}
+
+
+\subsection{… why are all predictions = 1?}
+\label{\detokenize{03-Datasets:why-are-all-predictions-1}}
+\sphinxAtStartPar
+The result of the basic classifyer was quite disapointing. It told us that all ten images contained the number ‘1’. Now, why is that?
+
+\sphinxAtStartPar
+This can be explained by looking at the label histogram:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Frequency of numbers in the training data}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{03-Datasets_135_0}.png}
+
+\sphinxAtStartPar
+Here, we see that there are most ‘1’s in the training data. We have been using the \sphinxstyleemphasis{most frequent} model for training the classifyer therefore the response ‘1’ is the only answer the model can give us.
 
 
 \section{Nearest Neighbor}
 \label{\detokenize{03-Datasets:nearest-neighbor}}
 \sphinxAtStartPar
+A better baseline
+
+\sphinxAtStartPar
 This isn’t a machine learning class and so we won’t dive deeply into other methods, but nearest neighbor is often a very good baseline (that is also very easy to understand). You basically take the element from the original set that is closest to the image you show.
 
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics{{Russ_fig12_58}.png}
+\caption{Examples of the k\sphinxhyphen{}nearest neighbors classifyer (\sphinxhref{https://www.crcpress.com/The-Image-Processing-Handbook/Russ-Neal/p/book/9781138747494}{Figure from J. Russ, Image Processing Handbook}).}\label{\detokenize{03-Datasets:id20}}\end{figure}
+
 
 
 \sphinxAtStartPar
-\sphinxhref{https://www.crcpress.com/The-Image-Processing-Handbook/Russ-Neal/p/book/9781138747494}{Figure from J. Russ, Image Processing Handbook}
+Figure from J. Russ, Image Processing Handbook
 
 \sphinxAtStartPar
-You can make the method more robust by using more than one nearest neighbor (hence K nearest neighbors), but that we will cover in the supervised methods lecture
+You can make the method more robust by using more than one nearest neighbor (hence K nearest neighbors), but that we will cover later in the supervised methods lecture.
 
 
 \subsection{Let’s load the data again…}
 \label{\detokenize{03-Datasets:let-s-load-the-data-again}}
+\sphinxAtStartPar
+Let’s come back to the MNIST numbers again. This time, we will try the k\sphinxhyphen{}nearest neighbors as baseline and see if we can get a better result than with the dummy classifyer with majority voting.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{k+kn}{from} \PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{mnist}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{util} \PYG{k+kn}{import} \PYG{n}{montage} \PYG{k}{as} \PYG{n}{montage2d}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{n}{label}\PYG{p}{)}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{mnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Digit Distribution}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_77_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_144_0}.png}
 
+
+\subsection{Training k\sphinxhyphen{}nearest neighbors}
+\label{\detokenize{03-Datasets:training-k-nearest-neighbors}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{neighbors} \PYG{k+kn}{import} \PYG{n}{KNeighborsClassifier}
 \PYG{n}{neigh\PYGZus{}class} \PYG{o}{=} \PYG{n}{KNeighborsClassifier}\PYG{p}{(}\PYG{n}{n\PYGZus{}neighbors}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
@@ -1455,8 +1802,10 @@ You can make the method more robust by using more than one nearest neighbor (hen
 KNeighborsClassifier(n\PYGZus{}neighbors=1)
 \end{sphinxVerbatim}
 
+
+\subsection{Predict on a few images}
+\label{\detokenize{03-Datasets:predict-on-a-few-images}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} predict on a few images}
 \PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
@@ -1464,47 +1813,103 @@ KNeighborsClassifier(n\PYGZus{}neighbors=1)
 array([5, 0, 4, 1, 9, 2, 1, 3, 1, 4], dtype=uint8)
 \end{sphinxVerbatim}
 
+
+\subsection{Compare predictions with the images}
+\label{\detokenize{03-Datasets:compare-predictions-with-the-images}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Predicted: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} 
-                                              \PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{prediction} \PYG{o}{=} \PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Predicted: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,}\PYG{n}{prediction}\PYG{p}{)}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}} \PYG{k}{if} \PYG{n}{prediction} \PYG{o}{==} \PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_80_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_150_0}.png}
 
 
-\subsection{100\% for a baseline}
+\subsection{100\% for a baseline !!?}
 \label{\detokenize{03-Datasets:for-a-baseline}}
 \sphinxAtStartPar
-Wow the model works really really well, it got every example perfectly. What we did here (a common mistake) was evaluate on the same data we ‘trained’ on which means the model just correctly recalled each example, if we try it on new images we can see the performance drop but still a reasonable result
+Wow the model works really really well, it got every example perfectly.
+
+\sphinxAtStartPar
+What we did here (a common mistake) was evaluate on the same data we ‘trained’ on which means the model just correctly recalled each example, if we try it on new images we can see the performance drop but still a reasonable result
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{25}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Predicted: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} 
-                                              \PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{prediction} \PYG{o}{=} \PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;} 
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Predicted: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,}\PYG{n}{prediction}\PYG{p}{)}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}} \PYG{k}{if} \PYG{n}{prediction} \PYG{o}{==} \PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_82_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_153_0}.png}
 
 
 \section{How good is good?}
 \label{\detokenize{03-Datasets:how-good-is-good}}
 \sphinxAtStartPar
-We will cover more tools later in the class but now we will show the accuracy and the confusion matrix for our simple baseline model to evaluate how well it worked
+From the previous example, we saw that the classify doesn’t really reach the 100\% accuracy on unseen data, but rather makes a mistake here or there. Therefore we need to quantify how good it really is to be able to compare the results with other algorithms. We will cover more tools later in the class but now we will show the accuracy and the confusion matrix for our simple baseline model to evaluate how well it worked.
 
 
 \subsection{Confusion Matrix}
 \label{\detokenize{03-Datasets:confusion-matrix}}
 \sphinxAtStartPar
+The confusion matrix is a kind of histogram where you count the number of predicted occurances for each actual label. This gives us an idea about the classifyier performance.
+
+\sphinxAtStartPar
 We show which cases were most frequently confused
 
 
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+n=165
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Predicted TRUE
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Predicted FALSE
+\\
+\hline
+\sphinxAtStartPar
+\sphinxstylestrong{Actual TRUE}
+&
+\sphinxAtStartPar
+\sphinxstyleemphasis{50}
+&
+\sphinxAtStartPar
+10
+\\
+\hline
+\sphinxAtStartPar
+\sphinxstylestrong{Actual FALSE}
+&
+\sphinxAtStartPar
+5
+&
+\sphinxAtStartPar
+\sphinxstyleemphasis{100}
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+This is only a simple matrix for the two cases \sphinxstyleemphasis{true} and \sphinxstyleemphasis{false}. The matrix does however grow with the number of classes in the data set. It is always a square matrix as we have the same number of actual classes as we have predicted classes.
+
+
+\subsection{Confusion matrix for the MNIST classification}
+\label{\detokenize{03-Datasets:confusion-matrix-for-the-mnist-classification}}
+\sphinxAtStartPar
+We saw that the k\sphinxhyphen{}nearest neighbors did a couple of missclassifications on the unseen test data. Now is the question how many mistakes it really does and how many correct labels it assigned. If compute the confusion matrix for this example, we will get a 10x10 matrix i.e. one for each class in the data set.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
@@ -1554,11 +1959,78 @@ We show which cases were most frequently confused
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Accuracy: }\PYG{l+s+si}{\PYGZob{}:2.2\PYGZpc{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{accuracy\PYGZus{}score}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{l+m+mi}{24}\PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{pred\PYGZus{}values}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_85_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_163_0}.png}
+
+\sphinxAtStartPar
+In this confusion matrix we see that some numbers are easier to classify than others. Some examples are:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+The ‘0’ seems to be hard to confuse with other numers.
+
+\item {} 
+\sphinxAtStartPar
+Many images from all categories are falsely assigned to the ‘1’
+
+\item {} 
+\sphinxAtStartPar
+The number ‘4’ is more probable to be assigned a label ‘9’ than the ‘4’
+
+\end{itemize}
 
 
 \chapter{Summary}
-\label{\detokenize{03-Datasets:summary}}
+\label{\detokenize{03-Datasets:summary}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+The importance of good data
+
+\item {} 
+\sphinxAtStartPar
+What is good data
+
+\item {} 
+\sphinxAtStartPar
+Preparing data
+
+\item {} 
+\sphinxAtStartPar
+Famous data sets
+
+\item {} 
+\sphinxAtStartPar
+Augmentation
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Transformations for increase the data
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+Baseline algorithms
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+What is it?
+
+\item {} 
+\sphinxAtStartPar
+Why do we need it?
+
+\item {} 
+\sphinxAtStartPar
+How good is our baseline algorithm?
+
+\item {} 
+\sphinxAtStartPar
+The confusion matrix
+
+\end{itemize}
+
+\end{itemize}
+
 
 
 
