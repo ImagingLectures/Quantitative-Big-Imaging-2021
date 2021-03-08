@@ -1,0 +1,89 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Today’s lecture}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Applications}{5}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Literature / Useful References}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Models / ROC Curves}{7}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Motivation: Why do we do imaging experiments?}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Exploratory}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}To test a hypothesis}{9}{section.4.2}%
+\contentsline {section}{\numberline {4.3}What we are looking at?}{9}{section.4.3}%
+\contentsline {section}{\numberline {4.4}What we get from the imaging modality}{9}{section.4.4}%
+\contentsline {section}{\numberline {4.5}To test a hypothesis}{10}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}2560 x 2560 x 2160 x 32 bit = 56GB / sample}{10}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}20h of computer time later …}{10}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Way too much data, we need to reduce}{10}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}What did we want in the first place?}{10}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}\sphinxstyleemphasis {Single numbers}:}{10}{subsection.4.6.1}%
+\contentsline {section}{\numberline {4.7}Why do we perform segmentation?}{10}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Review: Filtering and Image Enhancement (last week)}{11}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Qualitative Metrics: What did people use to do?}{13}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Identify objects by eye}{13}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Morphometrics}{14}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Segmentation Approaches}{15}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Segmentation approaches}{16}{section.7.1}%
+\contentsline {chapter}{\numberline {8}Model\sphinxhyphen {}based Analysis}{17}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Direct Imaging (simple)}{17}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Profiles across the image}{18}{subsection.8.1.1}%
+\contentsline {section}{\numberline {8.2}Inhomogeneous illumination}{19}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Absorption Imaging (X\sphinxhyphen {}ray, Ultrasound, Optical)}{19}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}For absorption/attenuation imaging \(\rightarrow \) Beer\sphinxhyphen {}Lambert Law}{19}{subsection.8.3.1}%
+\contentsline {chapter}{\numberline {9}Example Mammography}{23}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Problems to interpret radiography images}{23}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Building a breast phantom}{23}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}Transmission image of the breast phantom}{24}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}Compute the thickness}{25}{subsection.9.2.2}%
+\contentsline {subsection}{\numberline {9.2.3}Visualizing the thickness}{25}{subsection.9.2.3}%
+\contentsline {section}{\numberline {9.3}What if \(\alpha \) is not constant?}{26}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Looking at the thickness again}{27}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}An anomaly in the thickness reconstruction}{28}{subsection.9.3.2}%
+\contentsline {subsection}{\numberline {9.3.3}Looking at the thickness profile again}{28}{subsection.9.3.3}%
+\contentsline {chapter}{\numberline {10}Segmentation}{31}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Where does segmentation get us?}{31}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Basic segmentation: Applying a threshold to an image}{31}{section.10.2}%
+\contentsline {section}{\numberline {10.3}The histogram}{32}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Applying a threshold to an image}{33}{section.10.4}%
+\contentsline {subsection}{\numberline {10.4.1}Various Thresholds}{34}{subsection.10.4.1}%
+\contentsline {chapter}{\numberline {11}Segmenting Cells}{37}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Trying different thresholds on the cell image}{38}{section.11.1}%
+\contentsline {chapter}{\numberline {12}Other image types}{39}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Looking at colocation histograms}{40}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Vector field plot}{41}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Applying a threshold to vector valued image}{42}{section.12.3}%
+\contentsline {subsection}{\numberline {12.3.1}Histogram of the vectors}{43}{subsection.12.3.1}%
+\contentsline {subsection}{\numberline {12.3.2}Applying a threshold}{44}{subsection.12.3.2}%
+\contentsline {subsection}{\numberline {12.3.3}Thresholding orientations}{44}{subsection.12.3.3}%
+\contentsline {subsubsection}{Basic Segmentation and Discrete Binary Structures}{44}{subsubsection*.3}%
+\contentsline {subsubsection}{A Machine Learning Approach to Image Processing}{44}{subsubsection*.4}%
+\contentsline {subsubsection}{How do we quantify this?}{45}{subsubsection*.5}%
+\contentsline {paragraph}{Check the performance of the thresholding}{46}{paragraph*.6}%
+\contentsline {subsubsection}{Apply Precision and Recall}{47}{subsubsection*.7}%
+\contentsline {paragraph}{The confusion matrix (revisited)}{48}{paragraph*.8}%
+\contentsline {subparagraph}{ROC Curve}{48}{subparagraph*.9}%
+\contentsline {subsubsection}{Making ROC Curves Easier}{49}{subsubsection*.10}%
+\contentsline {subsubsection}{Evaluating Models}{52}{subsubsection*.11}%
+\contentsline {subsubsection}{Multiple Phases: Segmenting Shale}{52}{subsubsection*.12}%
+\contentsline {subsubsection}{Multiple Segmentations}{54}{subsubsection*.13}%
+\contentsline {subsubsection}{Implementation}{54}{subsubsection*.14}%
+\contentsline {subsubsection}{Implementation Code}{54}{subsubsection*.15}%
+\contentsline {paragraph}{Matlab / Python (numpy)}{54}{paragraph*.16}%
+\contentsline {paragraph}{Python}{55}{paragraph*.17}%
+\contentsline {paragraph}{Java}{55}{paragraph*.18}%
+\contentsline {paragraph}{In C/C++}{55}{paragraph*.19}%
+\contentsline {subsubsection}{Morphology}{55}{subsubsection*.20}%
+\contentsline {paragraph}{Fundamentals: Neighborhood}{56}{paragraph*.21}%
+\contentsline {subparagraph}{Fundamentals: Neighbors in 2D}{57}{subparagraph*.22}%
+\contentsline {subsubsection}{Erosion and Dilation}{58}{subsubsection*.23}%
+\contentsline {paragraph}{Erosion}{58}{paragraph*.24}%
+\contentsline {paragraph}{Dilation}{58}{paragraph*.25}%
+\contentsline {subsubsection}{Applied Erosion and Dilation}{59}{subsubsection*.26}%
+\contentsline {paragraph}{Dilation}{59}{paragraph*.27}%
+\contentsline {paragraph}{Erosion}{60}{paragraph*.28}%
+\contentsline {subsubsection}{Opening and Closing}{60}{subsubsection*.29}%
+\contentsline {paragraph}{Opening}{60}{paragraph*.30}%
+\contentsline {paragraph}{Closing}{60}{paragraph*.31}%
+\contentsline {paragraph}{Morphological Closing}{61}{paragraph*.32}%
+\contentsline {subsubsection}{Pitfalls with Segmentation}{62}{subsubsection*.33}%
+\contentsline {paragraph}{Partial Volume Effect}{62}{paragraph*.34}%
+\contentsline {paragraph}{When is a sphere really a sphere?}{62}{paragraph*.35}%
+\contentsline {subsubsection}{Rescaling}{63}{subsubsection*.36}%
+\contentsline {subsubsection}{Summary}{64}{subsubsection*.37}%
