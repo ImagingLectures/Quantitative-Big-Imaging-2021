@@ -206,15 +206,62 @@ Images of brain tumors from the BRATS database.
  <img src="figures/BRATS_tasks.png" style="height:600px">
 
 ## What story did these datasets tell?
+
+<p>These data sets changed they way people approach the analysis.</p>
+
+
 Each of these datasets is very different from images with fewer than 1000 pixels to images with more than 100MPx, but what they have in common is how their analysis has changed.
-### Hand-crafted features
+
 All of these datasets used to be analyzed by domain experts with hand-crafted features. 
+        
 - A handwriting expert using graph topology to assign images to digits
 - A computer vision expert using gradients common in faces to identify people in ImageNet
 - A biomedical engineer using knowledge of different modalities to fuse them together and cluster healthy and tumorous tissue
+        
+```{figure} figures/domainexperts.pdf
+---
+scale: 75%
+---
+Domain experts use their experience to analyze data
+```
+Starting in the early 2010s, the approaches of deep learning began to improve and become more computationally efficient. With these techniques groups with __absolutely no domain knowledge__ could begin building algorithms and winning contests based on these datasets.
 
-### Machine Learning / Deep Learning
-Starting in the early 2010s, the approaches of deep learning began to improve and become more computationally efficient. With these techniques groups with __absolutely no domain knowledge__ could begin building algorithms and winning contests based on these datasets
+```{figure} figures/datascientists.pdf
+---
+scale: 75%
+---
+Data scientist don't have domain specific knowledge, they use available data for the analysis.
+```
+
+
+<table>
+<tr>
+<th>Hand-crafted features</th><th>Machine Learning/Deep Learning</th>
+</tr>
+<tr>
+<td>
+        
+All of these datasets used to be analyzed by domain experts with hand-crafted features. 
+        
+- A handwriting expert using graph topology
+- A computer vision expert to identify people in ImageNet
+- A biomedical engineer cluster healthy and tumorous tissue
+        
+</td>
+<td>
+        
+Starting in the early 2010s, 
+    
+- the approaches of deep learning began to improve and become more computationally efficient. 
+- groups with __absolutely no domain knowledge__ could winning contests based on datasets
+        
+</td>    
+</tr>
+<tr>
+<td><img src="figures/domainexperts.svg" style="height:600px"/></td>
+<td><figure><img src="figures/datascientists.svg" style="height:200px"/></figure></td>
+</tr>
+</table>
 
 ## So Deep Learning always wins? 
 No, that isn't the point of this lecture. 
@@ -438,6 +485,24 @@ It is however important to have well-organized data for the analysis.
  - https://www.figure-eight.com/
  - MightyAI / Spare5: https://mighty.ai/ https://app.spare5.com/fives/sign_in
  
+
+### Example: annotation of spots
+Spots are outliers in radiography and very annoying when the images are used for tomography. 
+
+```{figure} figures/markedspots.pdf
+---
+---
+Annotation of spot in a neutron radiograph.
+```
+
+<img src="figures/markedspots.svg" style="width:100%">
+
+- Image size 2048x2048
+- Tools
+    - Bitmap painting application 
+    - Drawing tablet
+- Time to markup _8h_
+
 
 ## Simulations
 

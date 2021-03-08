@@ -73,7 +73,7 @@
 
 
 \title{Quantitative Big Imaging - Building and Augmenting Datasets}
-\date{Mar 07, 2021}
+\date{Mar 08, 2021}
 \release{}
 \author{Anders Kaestner}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -495,12 +495,11 @@ Segmenting Tumors in Multimodal MRI Brain Images.
 
 \section{What story did these datasets tell?}
 \label{\detokenize{03-Datasets:what-story-did-these-datasets-tell}}
+
+
 \sphinxAtStartPar
 Each of these datasets is very different from images with fewer than 1000 pixels to images with more than 100MPx, but what they have in common is how their analysis has changed.
 
-
-\subsection{Hand\sphinxhyphen{}crafted features}
-\label{\detokenize{03-Datasets:hand-crafted-features}}
 \sphinxAtStartPar
 All of these datasets used to be analyzed by domain experts with hand\sphinxhyphen{}crafted features.
 \begin{itemize}
@@ -518,11 +517,58 @@ A biomedical engineer using knowledge of different modalities to fuse them toget
 
 \end{itemize}
 
+\begin{figure}[htbp]
+\centering
+\capstart
 
-\subsection{Machine Learning / Deep Learning}
-\label{\detokenize{03-Datasets:machine-learning-deep-learning}}
+\noindent\sphinxincludegraphics[scale=0.75]{{domainexperts}.pdf}
+\caption{Domain experts use their experience to analyze data}\label{\detokenize{03-Datasets:id11}}\end{figure}
+
 \sphinxAtStartPar
-Starting in the early 2010s, the approaches of deep learning began to improve and become more computationally efficient. With these techniques groups with \sphinxstylestrong{absolutely no domain knowledge} could begin building algorithms and winning contests based on these datasets
+Starting in the early 2010s, the approaches of deep learning began to improve and become more computationally efficient. With these techniques groups with \sphinxstylestrong{absolutely no domain knowledge} could begin building algorithms and winning contests based on these datasets.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.75]{{datascientists}.pdf}
+\caption{Data scientist don’t have domain specific knowledge, they use available data for the analysis.}\label{\detokenize{03-Datasets:id12}}\end{figure}
+
+
+
+\sphinxAtStartPar
+All of these datasets used to be analyzed by domain experts with hand\sphinxhyphen{}crafted features.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+A handwriting expert using graph topology
+
+\item {} 
+\sphinxAtStartPar
+A computer vision expert to identify people in ImageNet
+
+\item {} 
+\sphinxAtStartPar
+A biomedical engineer cluster healthy and tumorous tissue
+
+\end{itemize}
+
+
+
+\sphinxAtStartPar
+Starting in the early 2010s,
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+the approaches of deep learning began to improve and become more computationally efficient.
+
+\item {} 
+\sphinxAtStartPar
+groups with \sphinxstylestrong{absolutely no domain knowledge} could winning contests based on datasets
+
+\end{itemize}
+
+
 
 
 \section{So Deep Learning always wins?}
@@ -761,7 +807,7 @@ In classification you want to observe an image an quickly provide it with a cate
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_37_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_39_0}.png}
 
 
 \section{Regression}
@@ -797,7 +843,7 @@ This dataset contains a collection of X\sphinxhyphen{}ray radiographs of hands. 
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{bone_age}.png}
-\caption{A collection of X\sphinxhyphen{}ray images from children at different ages.}\label{\detokenize{03-Datasets:id11}}\end{figure}
+\caption{A collection of X\sphinxhyphen{}ray images from children at different ages.}\label{\detokenize{03-Datasets:id13}}\end{figure}
 
 
 
@@ -841,14 +887,14 @@ Where streets are from satellite images of a neighborhood
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.5]{{slide}.png}
-\caption{Sample with cells.}\label{\detokenize{03-Datasets:id12}}\end{figure}
+\caption{Sample with cells.}\label{\detokenize{03-Datasets:id14}}\end{figure}
 
 \begin{figure}[htbp]
 \centering
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.5]{{labels}.png}
-\caption{Labelled cells.}\label{\detokenize{03-Datasets:id13}}\end{figure}
+\caption{Labelled cells.}\label{\detokenize{03-Datasets:id15}}\end{figure}
 
 
 
@@ -880,7 +926,7 @@ Multiple objects can overlap
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.6]{{lung_opacity}.png}
-\caption{Radiographs to detect opaque regions in X\sphinxhyphen{}Rays}\label{\detokenize{03-Datasets:id14}}\end{figure}
+\caption{Radiographs to detect opaque regions in X\sphinxhyphen{}Rays}\label{\detokenize{03-Datasets:id16}}\end{figure}
 
 
 \subsection{Detection example: Opaque Regions in X\sphinxhyphen{}Rays}
@@ -893,7 +939,7 @@ In this example the task is to detect opaque regions in lung X\sphinxhyphen{}ray
 \capstart
 
 \noindent\sphinxincludegraphics[scale=1.0]{{lung_opacity}.png}
-\caption{Critical regions detected in lung radiographs.}\label{\detokenize{03-Datasets:id15}}\end{figure}
+\caption{Critical regions detected in lung radiographs.}\label{\detokenize{03-Datasets:id17}}\end{figure}
 
 
 
@@ -1021,6 +1067,45 @@ MightyAI / Spare5: \sphinxurl{https://mighty.ai/} \sphinxurl{https://app.spare5.
 \end{itemize}
 
 
+\subsection{Example: annotation of spots}
+\label{\detokenize{03-Datasets:example-annotation-of-spots}}
+\sphinxAtStartPar
+Spots are outliers in radiography and very annoying when the images are used for tomography.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics{{markedspots}.pdf}
+\caption{Annotation of spot in a neutron radiograph.}\label{\detokenize{03-Datasets:id18}}\end{figure}
+
+
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Image size 2048x2048
+
+\item {} 
+\sphinxAtStartPar
+Tools
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Bitmap painting application
+
+\item {} 
+\sphinxAtStartPar
+Drawing tablet
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+Time to markup \sphinxstyleemphasis{8h}
+
+\end{itemize}
+
+
 \section{Simulations}
 \label{\detokenize{03-Datasets:simulations}}
 \sphinxAtStartPar
@@ -1129,7 +1214,7 @@ The gorilla example may sound fun but it can also upset people and in some cases
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.6]{{google-racist-gorilla-doctored-tweet}.png}
-\caption{Mistakes that can happen due bias caused by insufficent training data.}\label{\detokenize{03-Datasets:id16}}\end{figure}
+\caption{Mistakes that can happen due bias caused by insufficent training data.}\label{\detokenize{03-Datasets:id19}}\end{figure}
 
 
 
@@ -1173,7 +1258,7 @@ Face expressions
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.8]{{celeb_dataset}.png}
-\caption{Use a database with more diverse people to avoid biasing.}\label{\detokenize{03-Datasets:id17}}\end{figure}
+\caption{Use a database with more diverse people to avoid biasing.}\label{\detokenize{03-Datasets:id20}}\end{figure}
 
 
 
@@ -1199,7 +1284,7 @@ In the example below we have extracted the numbers 1,2, and 3. The histogram to 
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{d\PYGZus{}subset}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{64}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}          \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Digit Distribution}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_76_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_81_0}.png}
 
 
 \section{Limited data}
@@ -1233,7 +1318,7 @@ Unbalanced data means that the ratio between the data points with features you w
 \capstart
 
 \noindent\sphinxincludegraphics[scale=1.0]{{classunbalance}.pdf}
-\caption{Two cases of unblanaced data; (a) the classes are well separated and the feature class is clearly visible in the tail distribution of the background and (b) the feature class is embeded in the background making it hard to detect.}\label{\detokenize{03-Datasets:id18}}\end{figure}
+\caption{Two cases of unblanaced data; (a) the classes are well separated and the feature class is clearly visible in the tail distribution of the background and (b) the feature class is embeded in the background making it hard to detect.}\label{\detokenize{03-Datasets:id21}}\end{figure}
 
 \sphinxAtStartPar
 Case (a) can most likely be segmented using one of the many histogram based thresholding methods proposed in literature. Case (b) is much harder to segment as the target features have similar gray levels as the background. This case requires additional information to make segmentation posible.
@@ -1360,7 +1445,7 @@ The figure below shows some examples of augmentations of the same image. You can
 \capstart
 
 \noindent\sphinxincludegraphics[scale=1.0]{{Augmentations}.pdf}
-\caption{A retinal image modified using different augmentation techniques (source: \sphinxurl{https://drive.grand-challenge.org/DRIVE/}) prepared by Gian Guido Parenza.}\label{\detokenize{03-Datasets:id19}}\end{figure}
+\caption{A retinal image modified using different augmentation techniques (source: \sphinxurl{https://drive.grand-challenge.org/DRIVE/}) prepared by Gian Guido Parenza.}\label{\detokenize{03-Datasets:id22}}\end{figure}
 
 
 
@@ -1499,7 +1584,7 @@ Even something as simple as labeling digits can be very time consuming (maybe 1\
         \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(} \PYG{n}{c\PYGZus{}label}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{aug}\PYG{l+s+s1}{\PYGZsq{}} \PYG{k}{if} \PYG{n}{do\PYGZus{}augmentation} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_101_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_106_0}.png}
 
 
 \section{A larger open data set}
@@ -1571,7 +1656,7 @@ Here are some examples from the \sphinxhref{https://www.cs.toronto.edu/~kriz/cif
         \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_110_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_115_0}.png}
 
 
 \chapter{Baselines}
@@ -1674,7 +1759,7 @@ The previous basic problem showed us how the dummy classifier work. Now we want 
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_123_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_128_0}.png}
 
 
 \subsection{Let’s train the model…}
@@ -1719,7 +1804,7 @@ Let’s see how good these predictions really are by showing the images along wi
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Predicted: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{prediction} \PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_132_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_137_0}.png}
 
 
 \subsection{… why are all predictions = 1?}
@@ -1734,7 +1819,7 @@ This can be explained by looking at the label histogram:
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Frequency of numbers in the training data}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_135_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_140_0}.png}
 
 \sphinxAtStartPar
 Here, we see that there are most ‘1’s in the training data. We have been using the \sphinxstyleemphasis{most frequent} model for training the classifyer therefore the response ‘1’ is the only answer the model can give us.
@@ -1753,7 +1838,7 @@ This isn’t a machine learning class and so we won’t dive deeply into other m
 \capstart
 
 \noindent\sphinxincludegraphics{{Russ_fig12_58}.png}
-\caption{Examples of the k\sphinxhyphen{}nearest neighbors classifyer (\sphinxhref{https://www.crcpress.com/The-Image-Processing-Handbook/Russ-Neal/p/book/9781138747494}{Figure from J. Russ, Image Processing Handbook}).}\label{\detokenize{03-Datasets:id20}}\end{figure}
+\caption{Examples of the k\sphinxhyphen{}nearest neighbors classifyer (\sphinxhref{https://www.crcpress.com/The-Image-Processing-Handbook/Russ-Neal/p/book/9781138747494}{Figure from J. Russ, Image Processing Handbook}).}\label{\detokenize{03-Datasets:id23}}\end{figure}
 
 
 
@@ -1787,7 +1872,7 @@ Let’s come back to the MNIST numbers again. This time, we will try the k\sphin
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_144_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_149_0}.png}
 
 
 \subsection{Training k\sphinxhyphen{}nearest neighbors}
@@ -1825,7 +1910,7 @@ array([5, 0, 4, 1, 9, 2, 1, 3, 1, 4], dtype=uint8)
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_150_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_155_0}.png}
 
 
 \subsection{100\% for a baseline !!?}
@@ -1845,7 +1930,7 @@ What we did here (a common mistake) was evaluate on the same data we ‘trained�
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_153_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_158_0}.png}
 
 
 \section{How good is good?}
@@ -1959,7 +2044,7 @@ We saw that the k\sphinxhyphen{}nearest neighbors did a couple of missclassifica
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Accuracy: }\PYG{l+s+si}{\PYGZob{}:2.2\PYGZpc{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{accuracy\PYGZus{}score}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{l+m+mi}{24}\PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{pred\PYGZus{}values}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_163_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_168_0}.png}
 
 \sphinxAtStartPar
 In this confusion matrix we see that some numbers are easier to classify than others. Some examples are:

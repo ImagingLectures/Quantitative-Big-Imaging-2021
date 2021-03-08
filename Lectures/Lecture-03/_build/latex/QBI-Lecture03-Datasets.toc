@@ -14,16 +14,14 @@
 \contentsline {section}{\numberline {5.2}ImageNet}{15}{section.5.2}%
 \contentsline {section}{\numberline {5.3}BRATS}{17}{section.5.3}%
 \contentsline {section}{\numberline {5.4}What story did these datasets tell?}{17}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Hand\sphinxhyphen {}crafted features}{17}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Machine Learning / Deep Learning}{17}{subsection.5.4.2}%
-\contentsline {section}{\numberline {5.5}So Deep Learning always wins?}{18}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Other Datasets}{18}{section.5.6}%
-\contentsline {section}{\numberline {5.7}What makes a good dataset?}{18}{section.5.7}%
-\contentsline {subsection}{\numberline {5.7.1}Lots of images}{18}{subsection.5.7.1}%
-\contentsline {section}{\numberline {5.8}What makes a good dataset?}{18}{section.5.8}%
-\contentsline {subsection}{\numberline {5.8.1}Lots of diversity}{18}{subsection.5.8.1}%
-\contentsline {section}{\numberline {5.9}What makes a good dataset?}{19}{section.5.9}%
-\contentsline {subsection}{\numberline {5.9.1}Meaningful labels}{19}{subsection.5.9.1}%
+\contentsline {section}{\numberline {5.5}So Deep Learning always wins?}{19}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Other Datasets}{19}{section.5.6}%
+\contentsline {section}{\numberline {5.7}What makes a good dataset?}{19}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Lots of images}{19}{subsection.5.7.1}%
+\contentsline {section}{\numberline {5.8}What makes a good dataset?}{19}{section.5.8}%
+\contentsline {subsection}{\numberline {5.8.1}Lots of diversity}{19}{subsection.5.8.1}%
+\contentsline {section}{\numberline {5.9}What makes a good dataset?}{20}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Meaningful labels}{20}{subsection.5.9.1}%
 \contentsline {chapter}{\numberline {6}Purpose of different types of Datasets}{21}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Classification}{21}{section.6.1}%
 \contentsline {subsection}{\numberline {6.1.1}Classification example}{21}{subsection.6.1.1}%
@@ -43,40 +41,41 @@
 \contentsline {section}{\numberline {7.2}Software for data labelling}{27}{section.7.2}%
 \contentsline {subsection}{\numberline {7.2.1}Free tools}{27}{subsection.7.2.1}%
 \contentsline {subsection}{\numberline {7.2.2}Commercial Approaches}{28}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}Example: annotation of spots}{28}{subsection.7.2.3}%
 \contentsline {section}{\numberline {7.3}Simulations}{28}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Simulation examples}{28}{subsection.7.3.1}%
-\contentsline {subsubsection}{Examples}{28}{subsubsection*.3}%
-\contentsline {chapter}{\numberline {8}Dataset Problems}{29}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Bias}{29}{section.8.1}%
-\contentsline {subsection}{\numberline {8.1.1}A better solution to avoid biasing}{29}{subsection.8.1.1}%
-\contentsline {section}{\numberline {8.2}Image data and labels}{30}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Limited data}{32}{section.8.3}%
-\contentsline {chapter}{\numberline {9}Augmentation}{35}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Typical augmentation operations}{35}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}Transformations}{35}{subsection.9.1.1}%
-\contentsline {subsection}{\numberline {9.1.2}Further modifications}{36}{subsection.9.1.2}%
-\contentsline {section}{\numberline {9.2}Some augmentation examples}{36}{section.9.2}%
-\contentsline {section}{\numberline {9.3}Limitations of augmentation}{36}{section.9.3}%
-\contentsline {section}{\numberline {9.4}Keras ImageDataGenerator}{37}{section.9.4}%
-\contentsline {subsection}{\numberline {9.4.1}A Keras ImageDataGenerator example}{38}{subsection.9.4.1}%
-\contentsline {section}{\numberline {9.5}Augmenting MNIST images}{38}{section.9.5}%
-\contentsline {section}{\numberline {9.6}A larger open data set}{39}{section.9.6}%
-\contentsline {subsection}{\numberline {9.6.1}Augmenting CIFAR10 images}{39}{subsection.9.6.1}%
-\contentsline {subsection}{\numberline {9.6.2}Running the CIFAR augmentation}{40}{subsection.9.6.2}%
-\contentsline {chapter}{\numberline {10}Baselines}{41}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Baseline model example}{41}{section.10.1}%
-\contentsline {section}{\numberline {10.2}The dummy classifier}{41}{section.10.2}%
-\contentsline {section}{\numberline {10.3}Try dummy classifier on MNIST data}{42}{section.10.3}%
-\contentsline {subsection}{\numberline {10.3.1}Let’s train the model…}{43}{subsection.10.3.1}%
-\contentsline {subsection}{\numberline {10.3.2}Test on the images}{44}{subsection.10.3.2}%
-\contentsline {subsection}{\numberline {10.3.3}… why are all predictions = 1?}{45}{subsection.10.3.3}%
-\contentsline {section}{\numberline {10.4}Nearest Neighbor}{46}{section.10.4}%
-\contentsline {subsection}{\numberline {10.4.1}Let’s load the data again…}{46}{subsection.10.4.1}%
-\contentsline {subsection}{\numberline {10.4.2}Training k\sphinxhyphen {}nearest neighbors}{48}{subsection.10.4.2}%
-\contentsline {subsection}{\numberline {10.4.3}Predict on a few images}{49}{subsection.10.4.3}%
-\contentsline {subsection}{\numberline {10.4.4}Compare predictions with the images}{49}{subsection.10.4.4}%
-\contentsline {subsection}{\numberline {10.4.5}100\% for a baseline !!?}{50}{subsection.10.4.5}%
-\contentsline {section}{\numberline {10.5}How good is good?}{51}{section.10.5}%
-\contentsline {subsection}{\numberline {10.5.1}Confusion Matrix}{52}{subsection.10.5.1}%
-\contentsline {subsection}{\numberline {10.5.2}Confusion matrix for the MNIST classification}{52}{subsection.10.5.2}%
-\contentsline {chapter}{\numberline {11}Summary}{55}{chapter.11}%
+\contentsline {subsection}{\numberline {7.3.1}Simulation examples}{29}{subsection.7.3.1}%
+\contentsline {subsubsection}{Examples}{29}{subsubsection*.3}%
+\contentsline {chapter}{\numberline {8}Dataset Problems}{31}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Bias}{31}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}A better solution to avoid biasing}{31}{subsection.8.1.1}%
+\contentsline {section}{\numberline {8.2}Image data and labels}{32}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Limited data}{34}{section.8.3}%
+\contentsline {chapter}{\numberline {9}Augmentation}{37}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Typical augmentation operations}{37}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Transformations}{37}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Further modifications}{38}{subsection.9.1.2}%
+\contentsline {section}{\numberline {9.2}Some augmentation examples}{38}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Limitations of augmentation}{38}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Keras ImageDataGenerator}{39}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}A Keras ImageDataGenerator example}{40}{subsection.9.4.1}%
+\contentsline {section}{\numberline {9.5}Augmenting MNIST images}{40}{section.9.5}%
+\contentsline {section}{\numberline {9.6}A larger open data set}{41}{section.9.6}%
+\contentsline {subsection}{\numberline {9.6.1}Augmenting CIFAR10 images}{41}{subsection.9.6.1}%
+\contentsline {subsection}{\numberline {9.6.2}Running the CIFAR augmentation}{42}{subsection.9.6.2}%
+\contentsline {chapter}{\numberline {10}Baselines}{43}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Baseline model example}{43}{section.10.1}%
+\contentsline {section}{\numberline {10.2}The dummy classifier}{43}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Try dummy classifier on MNIST data}{44}{section.10.3}%
+\contentsline {subsection}{\numberline {10.3.1}Let’s train the model…}{45}{subsection.10.3.1}%
+\contentsline {subsection}{\numberline {10.3.2}Test on the images}{46}{subsection.10.3.2}%
+\contentsline {subsection}{\numberline {10.3.3}… why are all predictions = 1?}{47}{subsection.10.3.3}%
+\contentsline {section}{\numberline {10.4}Nearest Neighbor}{48}{section.10.4}%
+\contentsline {subsection}{\numberline {10.4.1}Let’s load the data again…}{48}{subsection.10.4.1}%
+\contentsline {subsection}{\numberline {10.4.2}Training k\sphinxhyphen {}nearest neighbors}{50}{subsection.10.4.2}%
+\contentsline {subsection}{\numberline {10.4.3}Predict on a few images}{51}{subsection.10.4.3}%
+\contentsline {subsection}{\numberline {10.4.4}Compare predictions with the images}{51}{subsection.10.4.4}%
+\contentsline {subsection}{\numberline {10.4.5}100\% for a baseline !!?}{52}{subsection.10.4.5}%
+\contentsline {section}{\numberline {10.5}How good is good?}{53}{section.10.5}%
+\contentsline {subsection}{\numberline {10.5.1}Confusion Matrix}{54}{subsection.10.5.1}%
+\contentsline {subsection}{\numberline {10.5.2}Confusion matrix for the MNIST classification}{54}{subsection.10.5.2}%
+\contentsline {chapter}{\numberline {11}Summary}{57}{chapter.11}%
