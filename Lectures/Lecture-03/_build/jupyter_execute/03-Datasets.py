@@ -1018,11 +1018,23 @@ for i, c_ax in enumerate(m_axs.flatten()[1:]):
 
 ### Training k-nearest neighbors
 
+The training of the k-nearest neigbors consists of filling feature vectors into the model and assign each vector to a class.
+
+But images are not vectors... so what we do is to rearrange the $N\times{}M$ images into a vector with the dimensions $M\cdot{}N\times{}1$.
+
 from sklearn.neighbors import KNeighborsClassifier
 neigh_class = KNeighborsClassifier(n_neighbors=1)
-neigh_class.fit(img[:24].reshape((24, -1)), label[:24])
+
+N = 24
+neigh_class.fit(img[:N].reshape((N, -1)), label[:N])
 
 ### Predict on a few images
+
+The prediction of which class an image belongs to is done by reshaping the input image into a vector in the same manner as for the training data. Now we will compare the input vector $u$ to all the vectors in the trained model $v_i$ by computing the Euclidean distance between the vectors. This can easily be done by the inner product of the two vectors:
+
+$$D_i=(v_i-u)^T \cdot{} (v_i-u) = scalar$$
+
+The class is chosen by the model vector that is closest to the input vector, i.e. having the smallest $D_i$. This calculations are done for you as a black box in the ```KNeighborsClassifier```, you only have to reshape the images into the right format.
 
 neigh_class.predict(img[0:10].reshape((10, -1)))
 
@@ -1031,7 +1043,9 @@ neigh_class.predict(img[0:10].reshape((10, -1)))
 fig, m_axs = plt.subplots(4, 6, figsize=(12, 12))
 for i, c_ax in enumerate(m_axs.flatten()):
     c_ax.imshow(img[i], cmap='gray')
+    
     prediction = neigh_class.predict(img[i].reshape((1, -1)))[0]
+    
     c_ax.set_title('{}\nPredicted: {}'.format(label[i],prediction), color='green' if prediction == label[i] else 'red')
     c_ax.axis('off');
 
@@ -1041,7 +1055,9 @@ Wow, 100% correct!
 
 Wow the model works really really well, it got every example perfectly. 
 
-What we did here (a common mistake) was evaluate on the same data we 'trained' on which means the model just correctly recalled each example, if we try it on new images we can see the performance drop but still a reasonable result
+What we did here (a common mistake) was evaluate on the same data we 'trained' on which means the model just correctly recalled each example. This is natural as there is always an image that gives the distance $D_i=0$. 
+
+Now, if we try it on new images we can see the performance drop but still a somewhat reasonable result.
 
 fig, m_axs = plt.subplots(4, 6, figsize=(12, 12))
 for i, c_ax in enumerate(m_axs.flatten(), 25):
@@ -1123,6 +1139,8 @@ In this confusion matrix we see that some numbers are easier to classify than ot
 - The '0' seems to be hard to confuse with other numers. 
 - Many images from all categories are falsely assigned to the '1'
 - The number '4' is more probable to be assigned a label '9' than the '4'
+
+This experiment was done with a very limited training data set. You can experiment with more neighbors and more training data to see what improvement that brings. In all, there are 60000 images with digits in the data set.
 
 # Summary
 

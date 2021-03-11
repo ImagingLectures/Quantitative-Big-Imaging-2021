@@ -1978,25 +1978,41 @@ Let’s come back to the MNIST numbers again. This time, we will try the k\sphin
 
 \subsection{Training k\sphinxhyphen{}nearest neighbors}
 \label{\detokenize{03-Datasets:training-k-nearest-neighbors}}
+\sphinxAtStartPar
+The training of the k\sphinxhyphen{}nearest neigbors consists of filling feature vectors into the model and assign each vector to a class.
+
+\sphinxAtStartPar
+But images are not vectors… so what we do is to rearrange the \(N\times{}M\) images into a vector with the dimensions \(M\cdot{}N\times{}1\).
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{neighbors} \PYG{k+kn}{import} \PYG{n}{KNeighborsClassifier}
 \PYG{n}{neigh\PYGZus{}class} \PYG{o}{=} \PYG{n}{KNeighborsClassifier}\PYG{p}{(}\PYG{n}{n\PYGZus{}neighbors}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{24}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{24}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{N} \PYG{o}{=} \PYG{l+m+mi}{24}
+\PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{p}{:}\PYG{n}{N}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[}\PYG{p}{:}\PYG{n}{N}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-KNeighborsClassifier(n\PYGZus{}neighbors=1)
+KNeighborsClassifier(n\PYGZus{}neighbors=3)
 \end{sphinxVerbatim}
 
 
 \subsection{Predict on a few images}
 \label{\detokenize{03-Datasets:predict-on-a-few-images}}
+\sphinxAtStartPar
+The prediction of which class an image belongs to is done by reshaping the input image into a vector in the same manner as for the training data. Now we will compare the input vector \(u\) to all the vectors in the trained model \(v_i\) by computing the Euclidean distance between the vectors. This can easily be done by the inner product of the two vectors:
+\begin{equation*}
+\begin{split}D_i=(v_i-u)^T \cdot{} (v_i-u) = scalar\end{split}
+\end{equation*}
+\sphinxAtStartPar
+The class is chosen by the model vector that is closest to the input vector, i.e. having the smallest \(D_i\). This calculations are done for you as a black box in the \sphinxcode{\sphinxupquote{KNeighborsClassifier}}, you only have to reshape the images into the right format.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-array([5, 0, 4, 1, 9, 2, 1, 3, 1, 4], dtype=uint8)
+array([3, 0, 4, 1, 9, 9, 1, 3, 1, 9], dtype=uint8)
 \end{sphinxVerbatim}
 
 
@@ -2006,12 +2022,14 @@ array([5, 0, 4, 1, 9, 2, 1, 3, 1, 4], dtype=uint8)
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    
     \PYG{n}{prediction} \PYG{o}{=} \PYG{n}{neigh\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{img}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Predicted: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,}\PYG{n}{prediction}\PYG{p}{)}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}} \PYG{k}{if} \PYG{n}{prediction} \PYG{o}{==} \PYG{n}{label}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_159_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_161_0}.png}
 
 \sphinxAtStartPar
 Wow, 100\% correct!
@@ -2023,7 +2041,10 @@ Wow, 100\% correct!
 Wow the model works really really well, it got every example perfectly.
 
 \sphinxAtStartPar
-What we did here (a common mistake) was evaluate on the same data we ‘trained’ on which means the model just correctly recalled each example, if we try it on new images we can see the performance drop but still a reasonable result
+What we did here (a common mistake) was evaluate on the same data we ‘trained’ on which means the model just correctly recalled each example. This is natural as there is always an image that gives the distance \(D_i=0\).
+
+\sphinxAtStartPar
+Now, if we try it on new images we can see the performance drop but still a somewhat reasonable result.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
@@ -2034,7 +2055,7 @@ What we did here (a common mistake) was evaluate on the same data we ‘trained�
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_163_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_165_0}.png}
 
 
 
@@ -2150,7 +2171,7 @@ We saw that the k\sphinxhyphen{}nearest neighbors did a couple of missclassifica
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Accuracy: }\PYG{l+s+si}{\PYGZob{}:2.2\PYGZpc{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{accuracy\PYGZus{}score}\PYG{p}{(}\PYG{n}{label}\PYG{p}{[}\PYG{l+m+mi}{24}\PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{pred\PYGZus{}values}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{03-Datasets_174_0}.png}
+\noindent\sphinxincludegraphics{{03-Datasets_176_0}.png}
 
 \sphinxAtStartPar
 In this confusion matrix we see that some numbers are easier to classify than others. Some examples are:
@@ -2168,6 +2189,9 @@ Many images from all categories are falsely assigned to the ‘1’
 The number ‘4’ is more probable to be assigned a label ‘9’ than the ‘4’
 
 \end{itemize}
+
+\sphinxAtStartPar
+This experiment was done with a very limited training data set. You can experiment with more neighbors and more training data to see what improvement that brings. In all, there are 60000 images with digits in the data set.
 
 
 \chapter{Summary}

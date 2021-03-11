@@ -73,7 +73,7 @@
 \contentsline {subsection}{\numberline {10.4.3}Predict on a few images}{51}{subsection.10.4.3}%
 \contentsline {subsection}{\numberline {10.4.4}Compare predictions with the images}{51}{subsection.10.4.4}%
 \contentsline {subsection}{\numberline {10.4.5}100\% for a baseline !!?}{52}{subsection.10.4.5}%
-\contentsline {section}{\numberline {10.5}How good is good?}{54}{section.10.5}%
+\contentsline {section}{\numberline {10.5}How good is good?}{53}{section.10.5}%
 \contentsline {subsection}{\numberline {10.5.1}Confusion Matrix}{54}{subsection.10.5.1}%
 \contentsline {subsection}{\numberline {10.5.2}Confusion matrix for the MNIST classification}{54}{subsection.10.5.2}%
 \contentsline {chapter}{\numberline {11}Summary}{57}{chapter.11}%
