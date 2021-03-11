@@ -57,10 +57,13 @@ mpl.rcParams['figure.dpi'] = 100
  - [Augmentor](https://github.com/mdbloice/Augmentor)
 
 # Motivation
+__Why other peoples data?__
+
 Most of you taking this class are rightfully excited to learn about new tools and algorithms to analyzing _your_ data. 
 
 This lecture is a bit of an anomaly and perhaps disappointment because it doesn't cover any algorithms, or tools.
-- So you might ask, why are we spending so much time on datasets?
+
+- You might ask, why are we spending so much time on datasets?
 - You already collected data (sometimes lots of it) that is why you took this class?!
 
 ... let's see what some other people say
@@ -76,7 +79,7 @@ scale: 50%
 Realistic thoughts about AI.
 ```
 
-<img src="figures/data_tweet.jpg" style="height:400px"/>
+<img src="figures/data_tweet.jpg" style="height:600px"/>
 
 ### Andrej Karpathy (Director of AI at Tesla)
 
@@ -89,7 +92,7 @@ scale: 70%
 Time spent on different tasks.
 ```
 
-<img src="figures/karpathy_slide.jpg" style="height:500px">
+<img src="figures/karpathy_slide.jpg" style="height:700px">
 
 ### Kathy Scott (Image Analytics Lead at Planet Labs)
 
@@ -101,36 +104,52 @@ scale: 70%
 The importance to spend sufficient time on data preparation.
 ```
 
-<img src="figures/kathy_tweet.png" style="height:700px">
+<img src="figures/kathy_tweet.png" style="height:900px">
 
 ## Data is important
 It probably [isn't the _new_ oil](https://www.forbes.com/sites/bernardmarr/2018/03/05/heres-why-data-is-not-the-new-oil/), but it forms an essential component for building modern tools today.
-- Testing good algorithms *requires* good data
- - If you don't know what to expect how do you know your algorithm worked?
- - If you have dozens of edge cases how can you make sure it works on each one?
- - If a new algorithm is developed every few hours, how can you be confident they actually work better (facebook's site has a new version multiple times per day and their app every other day)
 
-- For machine learning, even building requires good data
+
+Testing good algorithms *requires* good data
+ - If you don't know what to expect - _how do you know your algorithm worked_?
+ 
+ 
+ 
+ - If you have dozens of edge cases - _how can you make sure it works on each one_?
+ 
+ 
+ 
+ - If a new algorithm is developed every few hours - _how can you be confident they actually work better_ 
+     - facebook's site has a new version multiple times per day and their app every other day
+
+
+
+For machine learning, even building requires good data
  - If you count cells maybe you can write your own algorithm,
+ 
  - but if you are trying to detect subtle changes in cell structure that indicate cancer you probably can't write a list of simple mathematical rules yourself.
 
 
 ## Data is reusable
-
+ 
 - Well organized and structured data is very easy to reuse. 
 - Another project can easily combine your data with their data in order to get even better results.
 
 
 
-- Algorithms are often messy, complicated, poorly written, ... (especially so if written by students trying to graduate on time)
+Algorithms are often often only prototypes
+- messy, 
+- complicated, 
+- poorly written, 
 
+... especially so if written by students trying to graduate on time.
 
 
 <div class="alert alert-block alert-success">
 
 <center>
 
-## Data recycling saves time and improves performance
+__Data recycling saves time and improves performance__
 
 </center>
 
@@ -238,10 +257,23 @@ Data scientist don't have domain specific knowledge, they use available data for
 <tr>
 <th>Hand-crafted features</th><th>Machine Learning/Deep Learning</th>
 </tr>
+    
 <tr>
 <td>
-        
-All of these datasets used to be analyzed by domain experts with hand-crafted features. 
+    
+All of these datasets used to be analyzed by __domain experts__ with hand-crafted features.
+
+</td>  
+<td>
+Starting in the early 2010s,     
+</td>
+</tr>
+<tr>
+<td><img src="figures/domainexperts.svg" style="height:600px"/></td>
+<td><figure><img src="figures/datascientists.svg" style="height:200px"/></figure></td>
+</tr>    
+<tr>
+<td>
         
 - A handwriting expert using graph topology
 - A computer vision expert to identify people in ImageNet
@@ -249,18 +281,13 @@ All of these datasets used to be analyzed by domain experts with hand-crafted fe
         
 </td>
 <td>
-        
-Starting in the early 2010s, 
     
 - the approaches of deep learning began to improve and become more computationally efficient. 
 - groups with __absolutely no domain knowledge__ could winning contests based on datasets
         
 </td>    
 </tr>
-<tr>
-<td><img src="figures/domainexperts.svg" style="height:600px"/></td>
-<td><figure><img src="figures/datascientists.svg" style="height:200px"/></figure></td>
-</tr>
+
 </table>
 
 ## So Deep Learning always wins? 
@@ -273,7 +300,16 @@ Even if you aren't using deep learning the point of these stories is having
 
 makes your problem *a lot more accessible* for other groups and enables a variety of different approaches to be tried. 
 
-Ultimately it enables better solutions to be made and you to be confident that the solutions are in fact better
+Ultimately it enables better solutions to be made and you to be confident that the solutions are in fact better.
+
+### The FAIR principle
+
+- __F__indable
+- __A__ccessible
+- __I__nteroperable
+- __R__eusable
+
+[Wilkinson et al. 2016](https://doi.org/10.1038/sdata.2016.18)
 
 ## Other Datasets
 - Grand-Challenge.org a large number of challenges in the biomedical area
@@ -283,16 +319,24 @@ Ultimately it enables better solutions to be made and you to be confident that t
 
 
 ## What makes a good dataset?
+A good data set is characterized by
+- Large amount
+- Diversity
+- Annotations
+
+This means that...
 
 ### Lots of images
- - Small datasets can be useful but here the bigger the better
- - Particularly if you have 
-     - Complicated problems
-     - Very subtle differences (ie a lung tumor looks mostly like normal lung tissue but it is in a place it shouldn't be)
-     - Class imbalance 
+
+- Small datasets can be useful, but here the bigger the better
+ 
+ 
+- Particularly if you have:
+    - Complicated problems
+    - Very subtle differences (ie a lung tumor looks mostly like normal lung tissue but it is in a place it shouldn't be)
+    - Class imbalance 
  
 
-## What makes a good dataset?
 ### Lots of diversity
  - Is it what data 'in the wild' really looks like?
  - Lots of different 
@@ -305,7 +349,6 @@ Ultimately it enables better solutions to be made and you to be confident that t
      - _if you only have one male with breast cancer it will be hard to generalize exactly what that looks like_
  
 
-## What makes a good dataset?
 ### Meaningful labels
  - Clear task or question
  - Unambiguous (would multiple different labelers come to the same conclusion)
@@ -323,12 +366,22 @@ Ultimately it enables better solutions to be made and you to be confident that t
 - Other
 
 ## Classification
+
+```{figure} figures/classificationCD.pdf
+---
+scale: 50%
+---
+Classification example with cats and dogs.
+```
+
 - Taking an image and putting it into a category
 - Each image should have exactly one category
 - The categories should be non-ordered
 - Example: 
  - Cat vs Dog
  - Cancer vs Healthy
+ 
+<img src="figures/classificationCD.svg" style="height:400px"/>
 
 ### Classification example
 
@@ -374,8 +427,11 @@ A collection of X-ray images from children at different ages.
 - Every pixel needs a label (and a pixel cannot have multiple labels)
 - Typically limited to a few (<20) different types of objects
 - Examples:
- - Where a tumor is from an image of the lungs
- - Where streets are from satellite images of a neighborhood
+ - Where a tumor is from an image of the lungs?
+ - Where streets are from satellite images of a neighborhood?
+ - Where are the cats and dogs?
+ 
+ <img src="figures/segmentationCD.svg" style="height:400px"/>
 
 ### Segmentation example: Nuclei in Microscope Images
 
@@ -471,7 +527,7 @@ It is however important to have well-organized data for the analysis.
 - Create an excel file (first column image name, next columns to regress)
 
 ### Segmentation / Object Detection
-- Take [FIJI](http://fiji.sc/) and manually draw region to be identified and save it as a grayscale image
+- Take [FIJI](http://fiji.sc/) or any paint application and manually draw region to be identified and save it as a grayscale image
 
 ## Software for data labelling
 ### Free tools
@@ -617,7 +673,7 @@ Two cases of unblanaced data; (a) the classes are well separated and the feature
 
 Case (a) can most likely be segmented using one of the many histogram based thresholding methods proposed in literature. Case (b) is much harder to segment as the target features have similar gray levels as the background. This case requires additional information to make segmentation posible.
 
-<figure><img src="figures/classunbalance.svg"></figure>
+<figure><img src="figures/classunbalance.svg" style="width:70%"></figure>
 
 - Little or missing training data
 
@@ -666,7 +722,7 @@ A retinal image modified using different augmentation techniques (source: https:
 ```
 
 <figure>
-<img src="figures/Augmentations.svg" style="height:600px">
+<img src="figures/Augmentations.svg" style="height:900px">
 <figcaption>
     
 Retial images from [DRIVE](https://drive.grand-challenge.org/DRIVE/) prepared by Gian Guido Parenza.
@@ -830,11 +886,15 @@ for c_axs, do_augmentation in zip(m_axs, [False, True, True, True]):
         c_ax.axis('off')
 
 # Baselines
-- A baseline is a simple, easily implemented and understood model that illustrates the problem and the 'worst-case scenario' for a model that learns nothing (some models will do worse, but these are especially useless).
+- A baseline is 
+    - a simple, 
+    - easily implemented and understood model 
+    - that illustrates the problem 
+    - and the 'worst-case scenario' for a model that learns nothing (some models will do worse, but these are especially useless).
 - Why is this important?
 
 ## Baseline model example
-I have a a model that is >99% accurate for predicting breast cancer
+I have a a model that is >99% accurate for predicting breast cancer:
 
 $$ \textrm{DoIHaveBreastCancer}(\textrm{Age}, \textrm{Weight}, \textrm{Race}) = \textrm{No!} $$
 
@@ -905,8 +965,10 @@ Let's see how good these predictions really are by showing the images along with
 fig, m_axs = plt.subplots(4, 6, figsize=(12, 12))
 for i, c_ax in enumerate(m_axs.flatten()):
     c_ax.imshow(img[i], cmap='gray')
+
     prediction = dc.predict(img[i])[0]
-    c_ax.set_title('{}\nPredicted: {}'.format(label[i], prediction )), c_ax.axis('off');
+    
+    c_ax.set_title('{}\nPredicted: {}'.format(label[i],prediction), color='green' if prediction == label[i] else 'red'), c_ax.axis('off');
 
 ### ... why are all predictions = 1?
 
@@ -925,6 +987,7 @@ This isn't a machine learning class and so we won't dive deeply into other metho
 
 ```{figure} figures/Russ_fig12_58.png
 ---
+scale: 80%
 ---
 Examples of the k-nearest neighbors classifyer ([Figure from J. Russ, Image Processing Handbook](https://www.crcpress.com/The-Image-Processing-Handbook/Russ-Neal/p/book/9781138747494)).
 ```
@@ -972,6 +1035,8 @@ for i, c_ax in enumerate(m_axs.flatten()):
     c_ax.set_title('{}\nPredicted: {}'.format(label[i],prediction), color='green' if prediction == label[i] else 'red')
     c_ax.axis('off');
 
+Wow, 100% correct!
+
 ### 100% for a baseline !!?
 
 Wow the model works really really well, it got every example perfectly. 
@@ -984,6 +1049,10 @@ for i, c_ax in enumerate(m_axs.flatten(), 25):
     prediction = neigh_class.predict(img[i].reshape((1, -1)))[0]; 
     c_ax.set_title('{}\nPredicted: {}'.format(label[i],prediction), color='green' if prediction == label[i] else 'red')
     c_ax.axis('off')
+
+<div class="alert alert-box alert-danger">
+A classic mistake: testing and training with the same data.
+</div>
 
 ## How good is good?
 
