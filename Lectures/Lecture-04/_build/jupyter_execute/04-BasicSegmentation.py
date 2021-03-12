@@ -18,30 +18,47 @@ __Part 1__: Image formation and thresholding
 
 - Motivation
 - Qualitative Approaches
+- Image formation and interpretation problems
 - Thresholding
  - Other types of images
  - Selecting a good threshold
 - Implementation
 - Morphology
-- Contouring / Mask Creation
+- Partial volume effects
 
 ## Applications
+
+In this lecture we are going to focus on basic segmentation approaches that work well for simple two-phase materials. Segmenting complex samples like  
+- Beyond 1 channel of depth
+- Multiple phase materials
+- Filling holes in materials
+- Segmenting Fossils
+- Attempting to segment the cortex in brain imaging (see figure below)
+
+can be a very challenging task. Such tasks will be covered in later lectures.
+
+```{figure} figures/cortex.png
+---
+scale: 50%
+---
+An x-ray CT slice of the cortex.
+``
 
 <table>
     <tr>
         <td>
         
 - Simple two-phase materials (bone, cells, etc)
-  - Beyond 1 channel of depth
-- Multiple phase materials
-- Filling holes in materials
-- Segmenting Fossils
-- Attempting to segment the cortex in brain imaging
+- Beyond 1 channel of depth
+    - Multiple phase materials
+    - Filling holes in materials
+    - Segmenting Fossils
+    - Attempting to segment the cortex in brain imaging
 
 </td>
 <td>
 <figure>    
-<img src="figures/cortex.png" style="height:300px" />
+<img src="figures/cortex.png" style="height:500px" />
 <figcaption>The cortex in brain imaging</figcaption>
 </figure>
 </td></tr></table>
@@ -58,11 +75,19 @@ __Part 1__: Image formation and thresholding
 
 # Motivation:  Why do we do imaging experiments?
 
+There are different reasons for performing an image experiment. This often depends on in which state you are in your project. 
+
 ## Exploratory
+
+In the initial phase, you want to learn what your sample looks like with the chosen modality. Maybe, you don't even know what is in there to see. The explorative type of experiment mostly only allows qualitative conclusions. These conclusions will however help you to formulate better hypotheses for more detailed experiments.
+
  - To visually, qualitatively examine samples and differences between them
  - No prior knowledge or expectations
  
 ## To test a hypothesis
+
+When you perform an experiment to test a hypothesis, you already know relatively much about your sample and want make an investigation where you can quantify characteristic features.
+
 Quantitative assessment coupled with statistical analysis
  - Does temperature affect bubble size?
  - Is this gene important for cell shape and thus mechanosensation in bone?
@@ -76,15 +101,6 @@ Quantitative assessment coupled with statistical analysis
 <figcaption><a href="http://en.wikipedia.org/wiki/File:Average_prokaryote_cell-_en.svg">Standard Cell</a></figcaption>
 </figure>
 
-## What we get from the imaging modality
-
-%matplotlib inline
-from skimage.io import imread
-from skimage.color import rgb2gray
-import matplotlib.pyplot as plt
-dkimg = imread("figures/Average_prokaryote_cell.jpg")
-plt.matshow(rgb2gray(dkimg), cmap = 'bone');
-
 ## To test a hypothesis
 
 We perform an experiment bone to see how big the cells are inside the tissue:
@@ -92,7 +108,7 @@ We perform an experiment bone to see how big the cells are inside the tissue:
     
 $$\downarrow$$ 
     
-<img src="figures/tomoimage.png" style="height:200px"> 
+<img src="figures/tomoimage.png" style="width:75%"> 
 
 ### <center>2560 x 2560 x 2160 x 32 bit = 56GB / sample</center>
     
@@ -125,24 +141,31 @@ $$\downarrow$$
 
 ## Why do we perform segmentation?
 
-- In model-based analysis every step we peform, simple or complicated is related to an underlying model of the system we are dealing with
-- [_Occam's Razor_](http://en.wikipedia.org/wiki/Occams_Razor) is very important here : The simplest solution is usually the right one
- - Bayesian, neural networks optimized using genetic algorithms with Fuzzy logic has a much larger parameter space to explore, establish sensitivity in, and must perform much better and be tested much more thoroughly than thresholding to be justified.
- - We will cover some of these techniques in the next 2 lectures since they can be very powerful particularly with unknown data
+In model-based analysis every step we peform, simple or complicated is related to an underlying model of the system we are dealing with
 
-# Review: Filtering and Image Enhancement (last week)
+- Identify relevant regions in the images
+- Many methods are available to solve the segmentation task. 
+- Choose wisely... [_Occam's Razor_](http://en.wikipedia.org/wiki/Occams_Razor) is very important here : __The simplest solution is usually the right one__
 
+Advanced methods like a Bayesian, neural networks optimized using genetic algorithms with Fuzzy logic has a much larger parameter space to explore, establish sensitivity in, and must perform much better and be tested much more thoroughly than thresholding to be justified. 
+ 
+
+The next two lectures will cover powerful segmentation techinques, in particular with unknown data.
+
+## Review: Filtering and Image Enhancement 
 
 This was a noise process which was added to otherwise clean imaging data
 
-<center><img src="../Lecture-02/figures/imperfect_imaging_system.svg" style="height:150px" align="middle"></center>
+<center><img src="../Lecture-02/figures/imperfect_imaging_system.svg" style="height:350px" align="middle"></center>
 
 $$ I_{measured}(x,y) = I_{sample}(x,y) + \text{Noise}(x,y) $$
 
 - What would the perfect filter be
 
 $$ \textit{Filter} \ast I_{sample}(x,y) = I_{sample}(x,y) $$
+<br/>
  $$ \textit{Filter} \ast \text{Noise}(x,y) = 0 $$ 
+ <br/>
  $$ \textit{Filter} \ast I_{measured}(x,y) = \textit{Filter} \ast I_{real}(x,y) + \textit{Filter}\ast \text{Noise}(x,y) \rightarrow \bf I_{sample}(x,y) $$
 
 
@@ -162,6 +185,18 @@ $$ \textit{Filter} \ast I_{measured}(x,y) = 10\% I_{real}(x,y) + 90\% \text{Nois
     
 </div> 
 
+
+## What we get from the imaging modality
+
+To demonstrate what we get from a modality, we load the cell image as a toy example.
+
+%matplotlib inline
+from skimage.io import imread
+from skimage.color import rgb2gray
+import matplotlib.pyplot as plt
+
+dkimg = imread("figures/Average_prokaryote_cell.jpg")
+plt.imshow(rgb2gray(dkimg), cmap = 'bone');
 
 # Qualitative Metrics: What did people use to do?
 - What comes out of our detector / enhancement process 
@@ -183,22 +218,32 @@ cb_obj = plt.colorbar(m_show_obj)
 cb_obj.set_label('Absorption Coefficient')
 
 ### Identify objects by eye
- - Count, describe qualitatively: "many little cilia on surface", "long curly flaggelum", "elongated nuclear structure"
+
+The first qualitative analysis is mostly done by eye. You look at the image to describe what you see. This first assessment will help you decide how to approach the quantitative analysis task. Here, it is important to think about using words that can be translated into an image processing workflow.
+
+ - Count, 
+ - Describe qualitatively: "many little cilia on surface", "long curly flaggelum", "elongated nuclear structure"
  
 ### Morphometrics
  - Trace the outline of the object (or sub-structures)
- - Can calculate the area by using equal-weight-paper 
  - Employing the "[cut-and-weigh](http://ion.chem.usu.edu/~sbialkow/Classes/361/GC/GC.html)" method
-
 
 # Segmentation Approaches
 
+In the introduction lecture we talked about how people approach an image analysis problem depending on their background. This is something that becomes very clear when an image is about to be segmented. 
 
 They match up well to the world view / perspective 
 
 ![Approaches](../Lecture-01/figures/approaches.png)
 
-## Segmentation approaches
+## How to approach the segmenation task
+
+### Model based segmentation
+The experimentalists approached the segmenation task based on their experience and knowledge about the samples. This results in a top-down approach and quite commonly based on models fitting the real world, what we actually can see in the images. The analysis aims at solving the problems needed to provide answers to the defined hypothesis.
+
+### Algorithmic segmentation approach
+The opposite approach is to find and use generalized algorithms that provides the results. This approach is driven by the results as the computer vision and deep learning experts often don't have the knowledge to interpret the data.
+
 
 <table>
 <tr><th>
@@ -224,8 +269,11 @@ Results-driven
 </td></tr>    
 </table>
 
-# Model-based Analysis
+## Model-based Analysis
 
+
+The image formation process is the process to use some kind of excitation or impulse probe a sample. This requires the interaction of the four parts in the figure below.
+ 
 ```{figure} ../Lecture-01/figures/image-formation.pdf
 ---
 scale: 80%
@@ -233,15 +281,19 @@ scale: 80%
 The elements of the image formation process.
 ```
 
+- __Impulses__ Light, X-Rays, Electrons, A sharp point, Magnetic field, Sound wave
+- __Characteristics__ Electron Shell Levels, Electron Density, Phonons energy levels, Electronic, Spins, Molecular mobility
+- __Response__ Absorption, Reflection, Phase Shift, Scattering, Emission
+- __Detection__ Your eye, Light sensitive film, CCD / CMOS, Scintillator, Transducer
+
 <img src="../Lecture-01/figures/image-formation.svg" style="height:500px" />
 
 - Many different imaging modalities <br/>( $\mu \textrm{CT}$ to MRI to Confocal to Light-field to AFM). 
-- Similarities in underlying equations
- - different coefficients, units, and mechanism
+- Similarities in underlying equations, but different _coefficients_, _units_, and _mechanism_
 
 $$I_{measured}(\vec{x})=F_{system}(I_{stimulus}(\vec{x}),S_{sample}(\vec{x}))$$
 
-## Direct Imaging (simple)
+### Direct Imaging (simple)
 
 In many setups there is un-even illumination caused by incorrectly adjusted equipment and fluctations in power and setups
 
@@ -251,9 +303,7 @@ $I_{stimulus}=\textrm{Beam}_{profile}$
 $S_{system}=\alpha(\vec{x})\longrightarrow\alpha(\vec{x})=\frac{I_{measured}(\vec{x})}{\textrm{Beam}_{profile}(\vec{x})}$
 
 
-
-
-
+Let's create a simulated image acquisition with the cell image where you have beam profile that is penetrating the sample:
 
 %matplotlib inline
 from skimage.io import imread
@@ -262,7 +312,6 @@ import matplotlib.pyplot as plt
 from skimage.morphology import disk
 from scipy.ndimage import zoom
 import numpy as np
-
 
 cell_img = 1-rgb2gray(imread("figures/Average_prokaryote_cell.jpg"))
 s_beam_img = np.pad(disk(2)/1.0, [[1,1], [1,1]], mode = 'constant', constant_values = 0.2)
@@ -278,6 +327,8 @@ ax_det.imshow(cell_img*beam_img, cmap = 'viridis'); ax_det.set_title('Detector')
 
 ### Profiles across the image
 
+A first qualitative analysis on images of this type is to extract line profiles to see how the transmitted intensity changes across the sample. What we can see in this particular example is that the acquired profile tapers off with the beam intensity. With this in mind, it may come clear to you that you need to normalize the images by the beam profile.
+
 fig, ax = plt.subplots(1, 2, figsize = (12,4),dpi=150)
 ax[0].imshow(cell_img*beam_img); ax[0].hlines(beam_img.shape[0]//2,xmin=0,xmax=beam_img.shape[1]-1,color='red')
 ax[1].plot(beam_img[beam_img.shape[0]//2], label = 'Beam Profile')
@@ -285,23 +336,24 @@ ax[1].plot(cell_img[beam_img.shape[0]//2], label = 'Sample Image')
 ax[1].plot((cell_img*beam_img)[beam_img.shape[0]//2], label = 'Detector')
 ax[1].set_ylabel('Intensity'); ax[1].set_xlabel('Pixel Position');ax[1].legend(loc="lower center");
 
-## Inhomogeneous illumination
+### Inhomogeneous illumination
 - Frequently there is a fall-off of the beam away from the center (as is the case of a Gaussian beam which frequently shows up for laser systems). 
 
-- This can make extracting detail away from the center 
+- This can make extracting detail away from the center much harder.
 
 
 fig, ax1 = plt.subplots(1,1, figsize = (8,8))
 ax1.matshow(cell_img*beam_img,cmap = 'viridis');
 
-## Absorption Imaging (X-ray, Ultrasound, Optical)
+### Absorption Imaging (X-ray, Ultrasound, Optical)
 
-### For absorption/attenuation imaging $\rightarrow$ [Beer-Lambert Law](http://en.wikipedia.org/wiki/Attenuation_coefficient)
+#### For absorption/attenuation imaging $\rightarrow$ [Beer-Lambert Law](http://en.wikipedia.org/wiki/Attenuation_coefficient)
 $$I_{detector}=\underbrace{I_{source}}_{I_{stimulus}}\underbrace{e^{-\alpha d}}_{S_{sample}}$$
 
 Different components have a different $\alpha$ based on the strength of the interaction between the light and the chemical / nuclear structure of the material
 
 $$I_{sample}(x,y)=I_{source}\cdot{}e^{-\alpha(x,y)\cdot{}d}$$
+<br/>
 $$\alpha=f(N,Z,\sigma,\cdots)$$
 
 
@@ -315,11 +367,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+### A numerical transmission imaging example (1D)
+
+In this example we create a sample with three different materials and the sample thickness 1.0. The attenuation coefficient is modelled by random models to give them some realistic spread. 
+
+The transmission uses Beer Lambert's law.
+
 I_source = 1.0
 d = 1.0
-alpha_1 = np.random.normal(1, 0.25, size = 100)
-alpha_2 = np.random.normal(2, 0.25, size = 100)
-alpha_3 = np.random.normal(3, 0.5, size = 100)
+alpha_1 = np.random.normal(1, 0.25, size = 100) # Material 1
+alpha_2 = np.random.normal(2, 0.25, size = 100) # Material 2
+alpha_3 = np.random.normal(3, 0.5, size = 100)  # Material 3
 
 abs_df = pd.DataFrame([dict(alpha = c_x, material = c_mat) for c_vec, c_mat in zip([alpha_1, alpha_2, alpha_3], 
                        ['material 1', 'material 2', 'material 3']) for c_x in c_vec])
@@ -327,7 +385,13 @@ abs_df = pd.DataFrame([dict(alpha = c_x, material = c_mat) for c_vec, c_mat in z
 abs_df['I_detector'] = I_source*np.exp(-abs_df['alpha']*d)
 abs_df.sample(5)
 
-fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2,2, figsize = (12, 8))
+In the table, you can see that we measure different intensities on the detector depending on the material the beam is penetrating.
+
+#### Plotting measured intensities
+
+Let's now plot the intensities and attenuation coefficients and compare the outcome of our transmission experiment.
+
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2,2, figsize = (15, 12))
 for c_mat, c_df in abs_df.groupby('material'):
     ax1.scatter(x = c_df['alpha'], 
                 y = c_df['I_detector'], 
@@ -338,8 +402,12 @@ ax1.set_xlabel('$\\alpha(x,y)$', fontsize = 15); ax1.set_ylabel('$I_{detector}$'
 
 ax1.legend(); ax2.legend(); ax3.legend(loc = 0); ax4.axis('off');
 
+The $\alpha$-$I_{detector}$ plot shows the curved exponential behaviour we can expect from Beer Lambert's law. Now, if we look at the histogram, we can see that distribution of attenuation coefficients doesn't really match the measured intensity. In this example, it is even so that the widths of the diffent materials have changed places. Great attenuation coefficient results in little transmission and small attenuation coefficient allow more of the beam to penetrate the sample.
+
 # Example Mammography
-Mammographic imaging is an area where model-based absorption imaging is problematic. Even if we assume a constant illumination (_rarely_ the case), 
+Mammographic imaging is an area where model-based absorption imaging is problematic. 
+
+Even if we assume a constant illumination (_rarely_ the case), 
 
 $$I_{detector}=\underbrace{I_{source}}_{I_{stimulus}}\underbrace{\exp(-\alpha d)}_{S_{sample}}$$
 $$\downarrow$$
@@ -348,20 +416,27 @@ $$\downarrow$$
 $$I_{detector}=\exp\left(-\int_{0}^{l}\alpha(x,y, z) dz\right)$$
 
 
+The assumption that the attenuation coefficient, $\alpha$, is constant is rarely valid. Then you see that the exponent turns into an integral along the probing ray and that $\alpha$ is a function of the position in the sample. This of course leads ambiguity in the interpretation of what the pixel intensity really means.
+
 ## Problems to interpret radiography images
 Specifically the problem is related to the inability to separate the 
 - $\alpha$ - attenuation
 - $d$ - thickness
 terms. 
 
-We model a basic breast volume as a half sphere with a constant absorption factor:
-$$\alpha(x,y,z) = 0.01$$
+To demonstrate this, we model a basic breast volume as a half sphere with a constant absorption factor:
+
+| | Air | Breast tissue |
+|:---:|:---:|:---:|
+|$\alpha(x,y,z)$| 0| 0.01 |
 
 $\rightarrow$ The $\int$ then turns into a $\Sigma$ in discrete space
-- Air
-- Breast tissue
+
+
+
 
 ## Building a breast phantom
+The breast is here modelled as a half sphere of constant attenuation coefficient:
 
 %matplotlib inline
 import matplotlib.pyplot as plt
@@ -387,27 +462,41 @@ py.iplot(fig)
 
 ### Transmission image of the breast phantom
 
+Our first step is to simulate a transmission image of the breast. This is done by 
+1. Summing the attenuation coefficents times the pixel size.
+2. Applying Beer-Lambert's law
+
+This produces a 2D image of the side view of the breast.
+
 breast_alpha = 1e-2                           # The attenuation coefficient
+pixel_size   = 0.1                            # The simulated detector has 1mm pixels
 breast_vol   = breast_alpha*breast_mask       # Scale the image intensity by attenuation coefficient
-i_detector   = np.exp(-np.sum(breast_vol,2))  # Compute the transmission through the phantom
+i_detector   = np.exp(-np.sum(breast_vol,2)*pixel_size)  # Compute the transmission through the phantom
 
-fig, (ax_hist, ax_breast) = plt.subplots(1, 2, figsize = (15,6))
+fig, (ax_hist, ax_breast) = plt.subplots(1, 2, figsize = (15,8))
 
-b_img_obj = ax_breast.imshow(i_detector, cmap = 'bone_r'); plt.colorbar(b_img_obj)
+b_img_obj = ax_breast.imshow(i_detector, cmap = 'bone_r'); plt.colorbar(b_img_obj) ;ax_breast.set_title('Transmission image')
 
-ax_hist.hist(i_detector.flatten()); ax_hist.set_xlabel('$I_{detector}$'); ax_hist.set_ylabel('Pixel Count');
+ax_hist.hist(i_detector.flatten()); ax_hist.set_xlabel('$I_{detector}$'); ax_hist.set_ylabel('Pixel Count');ax_hist.set_title('Distribution of transmission values');
+
+The histogram shows the distribution of the transmitted intensity. 
 
 ### Compute the thickness
 If we know that $\alpha$ is constant we can reconstruct the thickness $d$ from the image:
+
 $$ d = -\log(I_{detector})$$
+
+This is only valid because we have air ($\alpha=0$) as the second component in the phantom. Otherwise, if it was a denser material we would have a material mixture.
+
+Now, let's compute the breast thickness from the transmission image:
 
 breast_thickness = -np.log(i_detector)/breast_alpha
 fig, (ax_hist, ax_breast) = plt.subplots(1, 2, figsize = (12,5), dpi=150)
 
-b_img_obj = ax_breast.imshow(breast_thickness, cmap = 'bone'); ax_breast.set_title('Transmission image')
+b_img_obj = ax_breast.imshow(breast_thickness, cmap = 'bone'); ax_breast.set_title('Thickness image')
 plt.colorbar(b_img_obj)
 
-ax_hist.hist(breast_thickness.flatten()) ; ax_hist.set_xlabel('Breast Thickness ($d$) [Pixels]'); ax_hist.set_ylabel('Pixel Count');
+ax_hist.hist(breast_thickness.flatten()) ; ax_hist.set_xlabel('Breast Thickness ($d$) [cm]'); ax_hist.set_ylabel('Pixel Count');
 
 ### Visualizing the thickness
 
@@ -470,10 +559,10 @@ b_img_obj = ax_breast.imshow(breast_thickness, cmap = 'bone')
 plt.colorbar(b_img_obj)
 
 ax_hist.hist(breast_thickness.flatten())
-ax_hist.set_xlabel('Breast Thickness ($d$)\nIn Pixels')
+ax_hist.set_xlabel('Breast Thickness ($d$)\nIn cm')
 ax_hist.set_ylabel('Pixel Count');
 
-### Looking at the thickness profile again
+### Looking at the thickness profile with lump
 
 from mpl_toolkits.mplot3d import Axes3D
 fig = plt.figure(figsize = (8, 4), dpi = 150)
@@ -506,6 +595,8 @@ __2560 x 2560 x 2160 x 32 bit = 56GB / sample__ $\rightarrow$ 2560 x 2560 x 2160
 ## Basic segmentation: Applying a threshold to an image
 Start out with a simple image of a cross with added noise
 $$ I(x,y) = f(x,y) $$
+
+Here, we create a test image with two features embedded in uniform noise; a cross with values in the order of '1' and background with values in the order '0'. The figure below shows the image and its histogram. The histogram helps us to see how the graylevels are distributed which guides the decision where to put a threshold that segments the cross from the background.
 
 %matplotlib inline
 import matplotlib.pyplot as plt
@@ -566,14 +657,18 @@ for c_thresh, ax1 in zip(np.linspace(0.1, 0.9, 6), m_axs.flatten()):
     ax1.plot(xx[np.where(thresh_img)], yy[np.where(thresh_img)], 'rs', alpha = 0.5, label = 'img>%2.2f' % c_thresh, markersize = 20)
     ax1.legend(loc = 1);
 
+In this fabricated example we saw that thresholding can be a very simple and quick solution to the segmentation problem. Unfortunately, real data is often less obvious. The features we want to identify for our qantitative analysis are often obscured be different other features in the image. They may be part of the setup of caused by the acquisition conditions.
+
 # Segmenting Cells
 
-- We can peform the same sort of analysis with this image of cells
-- This time we can derive the model from the basic physics of the system
- - The field is illuminated by white light of nearly uniform brightness
- - Cells absorb light causing darker regions to appear in the image
- - _Lighter_ regions have no cells
- - __Darker__ regions have cells
+We can peform the same sort of analysis with this image of cells
+
+This time we can derive the model from the basic physics of the system
+
+- The field is illuminated by white light of nearly uniform brightness
+- Cells absorb light causing darker regions to appear in the image
+- _Lighter_ regions have no cells
+- __Darker__ regions have cells
 
 %matplotlib inline
 from skimage.io import imread
@@ -582,7 +677,7 @@ import numpy as np
 
 cell_img = imread("figures/Cell_Colony.jpg")
 
-fig, (ax_hist, ax_img) = plt.subplots(1, 2, figsize = (15,5))
+fig, (ax_hist, ax_img) = plt.subplots(1, 2, figsize = (15,6), dpi=120)
 ax_hist.hist(cell_img.ravel(), np.arange(255))
 ax_obj = ax_img.matshow(cell_img, cmap = 'bone')
 plt.colorbar(ax_obj);
@@ -591,11 +686,11 @@ plt.colorbar(ax_obj);
 
 from skimage.color import label2rgb
 fig, m_axs = plt.subplots(2,3, 
-                          figsize = (15, 8), dpi = 200)
+                          figsize = (15, 8), dpi = 150)
 for c_thresh, ax1 in zip(np.linspace(100, 200, 6), m_axs.flatten()):
     thresh_img = cell_img < c_thresh     
 
-    ax1.imshow(label2rgb(thresh_img, image = 1-cell_img, bg_label = 0, alpha = 0.4))
+    ax1.imshow(label2rgb(thresh_img, image = 1-cell_img, bg_label = 0, alpha = 0.4)) # Rgb coding of image and mask
     
     ax1.set_title('img<%2.2f' % c_thresh)
 
@@ -608,6 +703,8 @@ $$ I(x,y) = \vec{f}(x,y) $$
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+
+Here, we create an image with vectors to show local orientation and intensities to meassure the streng of a signal.
 
 nx = 10
 ny = 10
@@ -627,10 +724,14 @@ base_df.sample(5)
 
 ### Looking at colocation histograms
 
+The colocation histogram is a powerful tool to visualize how different components are related to each other. It also called bi-variate histogram. In seaborn, there is the ```pairplot``` which shows colocation histograms for all combinations on the data. The diagonal is the histogram of the individual components.
+
 import seaborn as sns
 sns.pairplot(base_df);
 
 ### Vector field plot
+
+The vector field is a common way to visualiz vector data. It does however only work for small data sets like in this example, otherwise it will be too cluttered and no relevant information will be visible.
 
 fig, ax1 = plt.subplots(1,1, figsize = (8, 8))
 ax1.quiver(base_df['x'], base_df['y'], base_df['x_vec'], base_df['y_vec'], base_df['I_detector'], cmap = 'hot');
@@ -653,12 +754,14 @@ ax1.quiver(thresh_df['x'], thresh_df['y'], thresh_df['x_vec'], thresh_df['y_vec'
 ax1.set_xlabel('Position x'); ax1.set_ylabel('Position y');
 
 ### Histogram of the vectors
-This can also be shown on the joint probability distribution as 
+This can also be shown on the joint probability distribution as a bivariate histogram.
+
+The lines here indicate the thresholded vector components.
 
 fig, ax = plt.subplots(1,1, figsize = (5, 5), dpi = 150)
 ax.hist2d(thresh_df['x_vec'], thresh_df['y_vec'], cmap = 'viridis'); ax.set_title('Tresholded'); 
 ax.set_xlabel('$\\vec{f}_x(x,y)$'); ax.set_ylabel('$\\vec{f}_y(x,y)$');
-ax.vlines(0.25,ymin=-1,ymax=1,color='red',label='x=0.25');ax.hlines(0.25,xmin=-1,xmax=1,color='lightgreen', label='y=0.25');ax.legend(loc='lower left')
+ax.vlines(0.25,ymin=0.25,ymax=1,color='red',label='x=0.25');ax.hlines(0.25,xmin=0.25,xmax=1,color='lightgreen', label='y=0.25');ax.legend(loc='lower left');
 
 ### Applying a threshold
 Given the presence of two variables; however, more advanced approaches can also be investigated. For example we can keep only components parallel to the x axis by using the dot product.
@@ -669,7 +772,11 @@ $$ I(x,y) =
 \end{cases}$$
 
 ### Thresholding orientations
-We can tune the angular acceptance by using the fact $$\vec{x}\cdot\vec{y}=|\vec{x}| |\vec{y}| \cos(\theta_{x\rightarrow y}) $$
+
+We can tune the angular acceptance by using the fact that the scalar product can be expressed using the angle between the the vectors as 
+
+__Scalar product definition__ 
+$$\vec{x}\cdot\vec{y}=|\vec{x}| |\vec{y}| \cos(\theta_{x\rightarrow y}) $$
 <br />
 <br />
 $$ I(x,y) = 
@@ -677,8 +784,6 @@ $$ I(x,y) =
 1, & \cos^{-1}(\vec{f}(x,y)\cdot \vec{i}) \leq \theta^{\circ} \\
 0, & \text{otherwise}
 \end{cases}$$
-
-
 
 
 ```{toctree}

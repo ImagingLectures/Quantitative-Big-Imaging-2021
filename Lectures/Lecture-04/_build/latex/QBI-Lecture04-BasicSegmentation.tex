@@ -73,7 +73,7 @@
 
 
 \title{Quantitative Big Imaging - Basic segmentation}
-\date{Mar 11, 2021}
+\date{Mar 12, 2021}
 \release{}
 \author{Anders Kaestner}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -114,6 +114,10 @@ Qualitative Approaches
 
 \item {} 
 \sphinxAtStartPar
+Image formation and interpretation problems
+
+\item {} 
+\sphinxAtStartPar
 Thresholding
 
 \item {} 
@@ -134,24 +138,19 @@ Morphology
 
 \item {} 
 \sphinxAtStartPar
-Contouring / Mask Creation
+Partial volume effects
 
 \end{itemize}
 
 
 \chapter{Applications}
 \label{\detokenize{04-BasicSegmentation:applications}}
-
-\begin{itemize}
-\item {} 
 \sphinxAtStartPar
-Simple two\sphinxhyphen{}phase materials (bone, cells, etc)
+In this lecture we are going to focus on basic segmentation approaches that work well for simple two\sphinxhyphen{}phase materials. Segmenting complex samples like
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Beyond 1 channel of depth
-
-\end{itemize}
 
 \item {} 
 \sphinxAtStartPar
@@ -167,7 +166,48 @@ Segmenting Fossils
 
 \item {} 
 \sphinxAtStartPar
+Attempting to segment the cortex in brain imaging (see figure below)
+
+\end{itemize}
+
+\sphinxAtStartPar
+can be a very challenging task. Such tasks will be covered in later lectures.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.5]{{cortex}.png}
+\caption{An x\sphinxhyphen{}ray CT slice of the cortex.
+\textasciigrave{}\textasciigrave{}}\label{\detokenize{04-BasicSegmentation:id2}}\end{figure}
+
+
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Simple two\sphinxhyphen{}phase materials (bone, cells, etc)
+
+\item {} 
+\sphinxAtStartPar
+Beyond 1 channel of depth
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Multiple phase materials
+
+\item {} 
+\sphinxAtStartPar
+Filling holes in materials
+
+\item {} 
+\sphinxAtStartPar
+Segmenting Fossils
+
+\item {} 
+\sphinxAtStartPar
 Attempting to segment the cortex in brain imaging
+
+\end{itemize}
 
 \end{itemize}
 
@@ -202,9 +242,15 @@ Available \sphinxhref{http://dx.doi.org/10.1201/9780203881095}{online} within do
 
 \chapter{Motivation:  Why do we do imaging experiments?}
 \label{\detokenize{04-BasicSegmentation:motivation-why-do-we-do-imaging-experiments}}
+\sphinxAtStartPar
+There are different reasons for performing an image experiment. This often depends on in which state you are in your project.
+
 
 \section{Exploratory}
-\label{\detokenize{04-BasicSegmentation:exploratory}}\begin{itemize}
+\label{\detokenize{04-BasicSegmentation:exploratory}}
+\sphinxAtStartPar
+In the initial phase, you want to learn what your sample looks like with the chosen modality. Maybe, you don’t even know what is in there to see. The explorative type of experiment mostly only allows qualitative conclusions. These conclusions will however help you to formulate better hypotheses for more detailed experiments.
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 To visually, qualitatively examine samples and differences between them
@@ -218,6 +264,9 @@ No prior knowledge or expectations
 
 \section{To test a hypothesis}
 \label{\detokenize{04-BasicSegmentation:to-test-a-hypothesis}}
+\sphinxAtStartPar
+When you perform an experiment to test a hypothesis, you already know relatively much about your sample and want make an investigation where you can quantify characteristic features.
+
 \sphinxAtStartPar
 Quantitative assessment coupled with statistical analysis
 \begin{itemize}
@@ -243,31 +292,6 @@ Does the granule shape affect battery life expectancy?
 \section{What we are looking at?}
 \label{\detokenize{04-BasicSegmentation:what-we-are-looking-at}}
 
-
-
-\section{What we get from the imaging modality}
-\label{\detokenize{04-BasicSegmentation:what-we-get-from-the-imaging-modality}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
-\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{color} \PYG{k+kn}{import} \PYG{n}{rgb2gray}
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{n}{dkimg} \PYG{o}{=} \PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures/Average\PYGZus{}prokaryote\PYGZus{}cell.jpg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{rgb2gray}\PYG{p}{(}\PYG{n}{dkimg}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
-\end{sphinxVerbatim}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
-\PYG{n+ne}{ModuleNotFoundError}\PYG{g+gWhitespace}{                       }Traceback (most recent call last)
-\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{e99542f45115}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{1} \PYG{n}{get\PYGZus{}ipython}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{run\PYGZus{}line\PYGZus{}magic}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{matplotlib}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{inline}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{2} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{3} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{color} \PYG{k+kn}{import} \PYG{n}{rgb2gray}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{4} \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{5} \PYG{n}{dkimg} \PYG{o}{=} \PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures/Average\PYGZus{}prokaryote\PYGZus{}cell.jpg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-
-\PYG{n+ne}{ModuleNotFoundError}: No module named \PYGZsq{}skimage\PYGZsq{}
-\end{sphinxVerbatim}
 
 
 \section{To test a hypothesis}
@@ -324,28 +348,33 @@ cell volume variability
 
 
 \section{Why do we perform segmentation?}
-\label{\detokenize{04-BasicSegmentation:why-do-we-perform-segmentation}}\begin{itemize}
-\item {} 
+\label{\detokenize{04-BasicSegmentation:why-do-we-perform-segmentation}}
 \sphinxAtStartPar
 In model\sphinxhyphen{}based analysis every step we peform, simple or complicated is related to an underlying model of the system we are dealing with
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Identify relevant regions in the images
 
 \item {} 
 \sphinxAtStartPar
-\sphinxhref{http://en.wikipedia.org/wiki/Occams\_Razor}{\sphinxstyleemphasis{Occam’s Razor}} is very important here : The simplest solution is usually the right one
+Many methods are available to solve the segmentation task.
 
 \item {} 
 \sphinxAtStartPar
-Bayesian, neural networks optimized using genetic algorithms with Fuzzy logic has a much larger parameter space to explore, establish sensitivity in, and must perform much better and be tested much more thoroughly than thresholding to be justified.
-
-\item {} 
-\sphinxAtStartPar
-We will cover some of these techniques in the next 2 lectures since they can be very powerful particularly with unknown data
+Choose wisely… \sphinxhref{http://en.wikipedia.org/wiki/Occams\_Razor}{\sphinxstyleemphasis{Occam’s Razor}} is very important here : \sphinxstylestrong{The simplest solution is usually the right one}
 
 \end{itemize}
 
+\sphinxAtStartPar
+Advanced methods like a Bayesian, neural networks optimized using genetic algorithms with Fuzzy logic has a much larger parameter space to explore, establish sensitivity in, and must perform much better and be tested much more thoroughly than thresholding to be justified.
 
-\chapter{Review: Filtering and Image Enhancement (last week)}
-\label{\detokenize{04-BasicSegmentation:review-filtering-and-image-enhancement-last-week}}
+\sphinxAtStartPar
+The next two lectures will cover powerful segmentation techinques, in particular with unknown data.
+
+
+\section{Review: Filtering and Image Enhancement}
+\label{\detokenize{04-BasicSegmentation:review-filtering-and-image-enhancement}}
 \sphinxAtStartPar
 This was a noise process which was added to otherwise clean imaging data
 
@@ -360,11 +389,9 @@ What would the perfect filter be
 \end{itemize}
 \begin{equation*}
 \begin{split} \textit{Filter} \ast I_{sample}(x,y) = I_{sample}(x,y) \end{split}
-\end{equation*}\begin{equation*}
-\begin{split} \textit{Filter} \ast \text{Noise}(x,y) = 0 \end{split}
-\end{equation*}\begin{equation*}
-\begin{split} \textit{Filter} \ast I_{measured}(x,y) = \textit{Filter} \ast I_{real}(x,y) + \textit{Filter}\ast \text{Noise}(x,y) \rightarrow \bf I_{sample}(x,y) \end{split}
 \end{equation*}
+
+
 
 
 \sphinxAtStartPar
@@ -380,6 +407,38 @@ What \sphinxstylestrong{bad filters} do
 \$\( \textit{Filter} \ast I_{measured}(x,y) = 10\% I_{real}(x,y) + 90\% \text{Noise}(x,y) \)\$
 
 
+
+
+\section{What we get from the imaging modality}
+\label{\detokenize{04-BasicSegmentation:what-we-get-from-the-imaging-modality}}
+\sphinxAtStartPar
+To demonstrate what we get from a modality, we load the cell image as a toy example.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
+\PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{color} \PYG{k+kn}{import} \PYG{n}{rgb2gray}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n+ne}{ModuleNotFoundError}\PYG{g+gWhitespace}{                       }Traceback (most recent call last)
+\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{51744}\PYG{n}{a8c7ee8}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{1} \PYG{n}{get\PYGZus{}ipython}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{run\PYGZus{}line\PYGZus{}magic}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{matplotlib}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{inline}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{2} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{3} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{color} \PYG{k+kn}{import} \PYG{n}{rgb2gray}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{4} \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+
+\PYG{n+ne}{ModuleNotFoundError}: No module named \PYGZsq{}skimage\PYGZsq{}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{dkimg} \PYG{o}{=} \PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures/Average\PYGZus{}prokaryote\PYGZus{}cell.jpg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{rgb2gray}\PYG{p}{(}\PYG{n}{dkimg}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_25_0}.png}
 
 
 \chapter{Qualitative Metrics: What did people use to do?}
@@ -410,14 +469,21 @@ What comes out of our detector / enhancement process
 \PYG{n}{cb\PYGZus{}obj}\PYG{o}{.}\PYG{n}{set\PYGZus{}label}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Absorption Coefficient}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_14_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_28_0}.png}
 
 
 \section{Identify objects by eye}
-\label{\detokenize{04-BasicSegmentation:identify-objects-by-eye}}\begin{itemize}
+\label{\detokenize{04-BasicSegmentation:identify-objects-by-eye}}
+\sphinxAtStartPar
+The first qualitative analysis is mostly done by eye. You look at the image to describe what you see. This first assessment will help you decide how to approach the quantitative analysis task. Here, it is important to think about using words that can be translated into an image processing workflow.
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Count, describe qualitatively: “many little cilia on surface”, “long curly flaggelum”, “elongated nuclear structure”
+Count,
+
+\item {} 
+\sphinxAtStartPar
+Describe qualitatively: “many little cilia on surface”, “long curly flaggelum”, “elongated nuclear structure”
 
 \end{itemize}
 
@@ -430,10 +496,6 @@ Trace the outline of the object (or sub\sphinxhyphen{}structures)
 
 \item {} 
 \sphinxAtStartPar
-Can calculate the area by using equal\sphinxhyphen{}weight\sphinxhyphen{}paper
-
-\item {} 
-\sphinxAtStartPar
 Employing the “\sphinxhref{http://ion.chem.usu.edu/~sbialkow/Classes/361/GC/GC.html}{cut\sphinxhyphen{}and\sphinxhyphen{}weigh}” method
 
 \end{itemize}
@@ -442,14 +504,29 @@ Employing the “\sphinxhref{http://ion.chem.usu.edu/~sbialkow/Classes/361/GC/GC
 \chapter{Segmentation Approaches}
 \label{\detokenize{04-BasicSegmentation:segmentation-approaches}}
 \sphinxAtStartPar
+In the introduction lecture we talked about how people approach an image analysis problem depending on their background. This is something that becomes very clear when an image is about to be segmented.
+
+\sphinxAtStartPar
 They match up well to the world view / perspective
 
 \sphinxAtStartPar
 \sphinxincludegraphics{{approaches}.png}
 
 
-\section{Segmentation approaches}
-\label{\detokenize{04-BasicSegmentation:id2}}
+\section{How to approach the segmenation task}
+\label{\detokenize{04-BasicSegmentation:how-to-approach-the-segmenation-task}}
+
+\subsection{Model based segmentation}
+\label{\detokenize{04-BasicSegmentation:model-based-segmentation}}
+\sphinxAtStartPar
+The experimentalists approached the segmenation task based on their experience and knowledge about the samples. This results in a top\sphinxhyphen{}down approach and quite commonly based on models fitting the real world, what we actually can see in the images. The analysis aims at solving the problems needed to provide answers to the defined hypothesis.
+
+
+\subsection{Algorithmic segmentation approach}
+\label{\detokenize{04-BasicSegmentation:algorithmic-segmentation-approach}}
+\sphinxAtStartPar
+The opposite approach is to find and use generalized algorithms that provides the results. This approach is driven by the results as the computer vision and deep learning experts often don’t have the knowledge to interpret the data.
+
 
 
 \sphinxAtStartPar
@@ -468,14 +545,35 @@ Top\sphinxhyphen{}down
 
 
 
-\chapter{Model\sphinxhyphen{}based Analysis}
+\section{Model\sphinxhyphen{}based Analysis}
 \label{\detokenize{04-BasicSegmentation:model-based-analysis}}
+\sphinxAtStartPar
+The image formation process is the process to use some kind of excitation or impulse probe a sample. This requires the interaction of the four parts in the figure below.
+
 \begin{figure}[htbp]
 \centering
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.8]{{image-formation}.pdf}
 \caption{The elements of the image formation process.}\label{\detokenize{04-BasicSegmentation:id3}}\end{figure}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Impulses} Light, X\sphinxhyphen{}Rays, Electrons, A sharp point, Magnetic field, Sound wave
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Characteristics} Electron Shell Levels, Electron Density, Phonons energy levels, Electronic, Spins, Molecular mobility
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Response} Absorption, Reflection, Phase Shift, Scattering, Emission
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Detection} Your eye, Light sensitive film, CCD / CMOS, Scintillator, Transducer
+
+\end{itemize}
 
 
 \begin{itemize}
@@ -485,18 +583,14 @@ Many different imaging modalities ( \(\mu \textrm{CT}\) to MRI to Confocal to Li
 
 \item {} 
 \sphinxAtStartPar
-Similarities in underlying equations
-
-\item {} 
-\sphinxAtStartPar
-different coefficients, units, and mechanism
+Similarities in underlying equations, but different \sphinxstyleemphasis{coefficients}, \sphinxstyleemphasis{units}, and \sphinxstyleemphasis{mechanism}
 
 \end{itemize}
 \begin{equation*}
 \begin{split}I_{measured}(\vec{x})=F_{system}(I_{stimulus}(\vec{x}),S_{sample}(\vec{x}))\end{split}
 \end{equation*}
 
-\section{Direct Imaging (simple)}
+\subsection{Direct Imaging (simple)}
 \label{\detokenize{04-BasicSegmentation:direct-imaging-simple}}
 \sphinxAtStartPar
 In many setups there is un\sphinxhyphen{}even illumination caused by incorrectly adjusted equipment and fluctations in power and setups
@@ -507,6 +601,9 @@ In many setups there is un\sphinxhyphen{}even illumination caused by incorrectly
 \sphinxAtStartPar
 \(I_{stimulus}=\textrm{Beam}_{profile}\)
 \(S_{system}=\alpha(\vec{x})\longrightarrow\alpha(\vec{x})=\frac{I_{measured}(\vec{x})}{\textrm{Beam}_{profile}(\vec{x})}\)
+
+\sphinxAtStartPar
+Let’s create a simulated image acquisition with the cell image where you have beam profile that is penetrating the sample:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
@@ -532,11 +629,14 @@ In many setups there is un\sphinxhyphen{}even illumination caused by incorrectly
 \PYG{n}{ax\PYGZus{}det}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{o}{*}\PYG{n}{beam\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}det}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Detector}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_23_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_43_0}.png}
 
 
 \subsection{Profiles across the image}
 \label{\detokenize{04-BasicSegmentation:profiles-across-the-image}}
+\sphinxAtStartPar
+A first qualitative analysis on images of this type is to extract line profiles to see how the transmitted intensity changes across the sample. What we can see in this particular example is that the acquired profile tapers off with the beam intensity. With this in mind, it may come clear to you that you need to normalize the images by the beam profile.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{o}{*}\PYG{n}{beam\PYGZus{}img}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{hlines}\PYG{p}{(}\PYG{n}{beam\PYGZus{}img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{xmin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{xmax}\PYG{o}{=}\PYG{n}{beam\PYGZus{}img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -546,10 +646,10 @@ In many setups there is un\sphinxhyphen{}even illumination caused by incorrectly
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Position}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{lower center}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_25_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_46_0}.png}
 
 
-\section{Inhomogeneous illumination}
+\subsection{Inhomogeneous illumination}
 \label{\detokenize{04-BasicSegmentation:inhomogeneous-illumination}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -557,7 +657,7 @@ Frequently there is a fall\sphinxhyphen{}off of the beam away from the center (a
 
 \item {} 
 \sphinxAtStartPar
-This can make extracting detail away from the center
+This can make extracting detail away from the center much harder.
 
 \end{itemize}
 
@@ -566,13 +666,13 @@ This can make extracting detail away from the center
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{o}{*}\PYG{n}{beam\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_27_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_48_0}.png}
 
 
-\section{Absorption Imaging (X\sphinxhyphen{}ray, Ultrasound, Optical)}
+\subsection{Absorption Imaging (X\sphinxhyphen{}ray, Ultrasound, Optical)}
 \label{\detokenize{04-BasicSegmentation:absorption-imaging-x-ray-ultrasound-optical}}
 
-\subsection{For absorption/attenuation imaging \protect\(\rightarrow\protect\) Beer\sphinxhyphen{}Lambert Law}
+\subsubsection{For absorption/attenuation imaging \protect\(\rightarrow\protect\) Beer\sphinxhyphen{}Lambert Law}
 \label{\detokenize{04-BasicSegmentation:for-absorption-attenuation-imaging-rightarrow-beer-lambert-law}}\begin{equation*}
 \begin{split}I_{detector}=\underbrace{I_{source}}_{I_{stimulus}}\underbrace{e^{-\alpha d}}_{S_{sample}}\end{split}
 \end{equation*}
@@ -580,9 +680,9 @@ This can make extracting detail away from the center
 Different components have a different \(\alpha\) based on the strength of the interaction between the light and the chemical / nuclear structure of the material
 \begin{equation*}
 \begin{split}I_{sample}(x,y)=I_{source}\cdot{}e^{-\alpha(x,y)\cdot{}d}\end{split}
-\end{equation*}\begin{equation*}
-\begin{split}\alpha=f(N,Z,\sigma,\cdots)\end{split}
 \end{equation*}
+
+
 \sphinxAtStartPar
 \#\#\#\# For segmentation this model is:
 \begin{itemize}
@@ -603,12 +703,21 @@ these components are distinguishable by their values (or vectors, colors, tensor
 \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
 \end{sphinxVerbatim}
 
+
+\subsection{A numerical transmission imaging example (1D)}
+\label{\detokenize{04-BasicSegmentation:a-numerical-transmission-imaging-example-1d}}
+\sphinxAtStartPar
+In this example we create a sample with three different materials and the sample thickness 1.0. The attenuation coefficient is modelled by random models to give them some realistic spread.
+
+\sphinxAtStartPar
+The transmission uses Beer Lambert’s law.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{I\PYGZus{}source} \PYG{o}{=} \PYG{l+m+mf}{1.0}
 \PYG{n}{d} \PYG{o}{=} \PYG{l+m+mf}{1.0}
-\PYG{n}{alpha\PYGZus{}1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{normal}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mf}{0.25}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{)}
-\PYG{n}{alpha\PYGZus{}2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{normal}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mf}{0.25}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{)}
-\PYG{n}{alpha\PYGZus{}3} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{normal}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{)}
+\PYG{n}{alpha\PYGZus{}1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{normal}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mf}{0.25}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} Material 1}
+\PYG{n}{alpha\PYGZus{}2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{normal}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mf}{0.25}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} Material 2}
+\PYG{n}{alpha\PYGZus{}3} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{normal}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Material 3}
 
 \PYG{n}{abs\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{dict}\PYG{p}{(}\PYG{n}{alpha} \PYG{o}{=} \PYG{n}{c\PYGZus{}x}\PYG{p}{,} \PYG{n}{material} \PYG{o}{=} \PYG{n}{c\PYGZus{}mat}\PYG{p}{)} \PYG{k}{for} \PYG{n}{c\PYGZus{}vec}\PYG{p}{,} \PYG{n}{c\PYGZus{}mat} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{p}{[}\PYG{n}{alpha\PYGZus{}1}\PYG{p}{,} \PYG{n}{alpha\PYGZus{}2}\PYG{p}{,} \PYG{n}{alpha\PYGZus{}3}\PYG{p}{]}\PYG{p}{,} 
                        \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{material 1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{material 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{material 3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{c\PYGZus{}x} \PYG{o+ow}{in} \PYG{n}{c\PYGZus{}vec}\PYG{p}{]}\PYG{p}{)}
@@ -619,15 +728,24 @@ these components are distinguishable by their values (or vectors, colors, tensor
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
         alpha    material  I\PYGZus{}detector
-227  2.899166  material 3    0.055069
-60   1.408457  material 1    0.244520
-197  1.577132  material 2    0.206567
-28   1.189721  material 1    0.304306
-167  1.501914  material 2    0.222704
+270  3.853025  material 3    0.021215
+73   0.886718  material 1    0.412006
+178  1.519744  material 2    0.218768
+180  1.745622  material 2    0.174536
+256  3.399326  material 3    0.033396
 \end{sphinxVerbatim}
 
+\sphinxAtStartPar
+In the table, you can see that we measure different intensities on the detector depending on the material the beam is penetrating.
+
+
+\subsubsection{Plotting measured intensities}
+\label{\detokenize{04-BasicSegmentation:plotting-measured-intensities}}
+\sphinxAtStartPar
+Let’s now plot the intensities and attenuation coefficients and compare the outcome of our transmission experiment.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax3}\PYG{p}{,} \PYG{n}{ax4}\PYG{p}{)}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax3}\PYG{p}{,} \PYG{n}{ax4}\PYG{p}{)}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{c\PYGZus{}mat}\PYG{p}{,} \PYG{n}{c\PYGZus{}df} \PYG{o+ow}{in} \PYG{n}{abs\PYGZus{}df}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{material}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{x} \PYG{o}{=} \PYG{n}{c\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{alpha}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} 
                 \PYG{n}{y} \PYG{o}{=} \PYG{n}{c\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{I\PYGZus{}detector}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} 
@@ -639,13 +757,19 @@ these components are distinguishable by their values (or vectors, colors, tensor
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_31_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_57_0}.png}
+
+\sphinxAtStartPar
+The \(\alpha\)\sphinxhyphen{}\(I_{detector}\) plot shows the curved exponential behaviour we can expect from Beer Lambert’s law. Now, if we look at the histogram, we can see that distribution of attenuation coefficients doesn’t really match the measured intensity. In this example, it is even so that the widths of the diffent materials have changed places. Great attenuation coefficient results in little transmission and small attenuation coefficient allow more of the beam to penetrate the sample.
 
 
 \chapter{Example Mammography}
 \label{\detokenize{04-BasicSegmentation:example-mammography}}
 \sphinxAtStartPar
-Mammographic imaging is an area where model\sphinxhyphen{}based absorption imaging is problematic. Even if we assume a constant illumination (\sphinxstyleemphasis{rarely} the case),
+Mammographic imaging is an area where model\sphinxhyphen{}based absorption imaging is problematic.
+
+\sphinxAtStartPar
+Even if we assume a constant illumination (\sphinxstyleemphasis{rarely} the case),
 \begin{equation*}
 \begin{split}I_{detector}=\underbrace{I_{source}}_{I_{stimulus}}\underbrace{\exp(-\alpha d)}_{S_{sample}}\end{split}
 \end{equation*}\begin{equation*}
@@ -657,6 +781,9 @@ Mammographic imaging is an area where model\sphinxhyphen{}based absorption imagi
 \end{equation*}\begin{equation*}
 \begin{split}I_{detector}=\exp\left(-\int_{0}^{l}\alpha(x,y, z) dz\right)\end{split}
 \end{equation*}
+\sphinxAtStartPar
+The assumption that the attenuation coefficient, \(\alpha\), is constant is rarely valid. Then you see that the exponent turns into an integral along the probing ray and that \(\alpha\) is a function of the position in the sample. This of course leads ambiguity in the interpretation of what the pixel intensity really means.
+
 
 \section{Problems to interpret radiography images}
 \label{\detokenize{04-BasicSegmentation:problems-to-interpret-radiography-images}}
@@ -675,25 +802,47 @@ terms.
 \end{itemize}
 
 \sphinxAtStartPar
-We model a basic breast volume as a half sphere with a constant absorption factor:
-\$\(\alpha(x,y,z) = 0.01\)\$
+To demonstrate this, we model a basic breast volume as a half sphere with a constant absorption factor:
+
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|T|}
+\hline
+
+\sphinxAtStartPar
+
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Air
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Breast tissue
+\\
+\hline
+\sphinxAtStartPar
+\(\alpha(x,y,z)\)
+&
+\sphinxAtStartPar
+0
+&
+\sphinxAtStartPar
+0.01
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
 
 \sphinxAtStartPar
 \(\rightarrow\) The \(\int\) then turns into a \(\Sigma\) in discrete space
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Air
-
-\item {} 
-\sphinxAtStartPar
-Breast tissue
-
-\end{itemize}
 
 
 \section{Building a breast phantom}
 \label{\detokenize{04-BasicSegmentation:building-a-breast-phantom}}
+\sphinxAtStartPar
+The breast is here modelled as a half sphere of constant attenuation coefficient:
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -723,38 +872,66 @@ Breast tissue
 
 \subsection{Transmission image of the breast phantom}
 \label{\detokenize{04-BasicSegmentation:transmission-image-of-the-breast-phantom}}
+\sphinxAtStartPar
+Our first step is to simulate a transmission image of the breast. This is done by
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Summing the attenuation coefficents times the pixel size.
+
+\item {} 
+\sphinxAtStartPar
+Applying Beer\sphinxhyphen{}Lambert’s law
+
+\end{enumerate}
+
+\sphinxAtStartPar
+This produces a 2D image of the side view of the breast.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{breast\PYGZus{}alpha} \PYG{o}{=} \PYG{l+m+mf}{1e\PYGZhy{}2}                           \PYG{c+c1}{\PYGZsh{} The attenuation coefficient}
+\PYG{n}{pixel\PYGZus{}size}   \PYG{o}{=} \PYG{l+m+mf}{0.1}                            \PYG{c+c1}{\PYGZsh{} The simulated detector has 1mm pixels}
 \PYG{n}{breast\PYGZus{}vol}   \PYG{o}{=} \PYG{n}{breast\PYGZus{}alpha}\PYG{o}{*}\PYG{n}{breast\PYGZus{}mask}       \PYG{c+c1}{\PYGZsh{} Scale the image intensity by attenuation coefficient}
-\PYG{n}{i\PYGZus{}detector}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{n}{breast\PYGZus{}vol}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Compute the transmission through the phantom}
+\PYG{n}{i\PYGZus{}detector}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{n}{breast\PYGZus{}vol}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{*}\PYG{n}{pixel\PYGZus{}size}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Compute the transmission through the phantom}
 
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax\PYGZus{}hist}\PYG{p}{,} \PYG{n}{ax\PYGZus{}breast}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax\PYGZus{}hist}\PYG{p}{,} \PYG{n}{ax\PYGZus{}breast}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
 
-\PYG{n}{b\PYGZus{}img\PYGZus{}obj} \PYG{o}{=} \PYG{n}{ax\PYGZus{}breast}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{i\PYGZus{}detector}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone\PYGZus{}r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{b\PYGZus{}img\PYGZus{}obj}\PYG{p}{)}
+\PYG{n}{b\PYGZus{}img\PYGZus{}obj} \PYG{o}{=} \PYG{n}{ax\PYGZus{}breast}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{i\PYGZus{}detector}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone\PYGZus{}r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{b\PYGZus{}img\PYGZus{}obj}\PYG{p}{)} \PYG{p}{;}\PYG{n}{ax\PYGZus{}breast}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Transmission image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 
-\PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{i\PYGZus{}detector}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}I\PYGZus{}}\PYG{l+s+si}{\PYGZob{}detector\PYGZcb{}}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{i\PYGZus{}detector}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}I\PYGZus{}}\PYG{l+s+si}{\PYGZob{}detector\PYGZcb{}}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distribution of transmission values}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_38_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_67_0}.png}
+
+\sphinxAtStartPar
+The histogram shows the distribution of the transmitted intensity.
 
 
 \subsection{Compute the thickness}
 \label{\detokenize{04-BasicSegmentation:compute-the-thickness}}
 \sphinxAtStartPar
 If we know that \(\alpha\) is constant we can reconstruct the thickness \(d\) from the image:
-\$\( d = -\log(I_{detector})\)\$
+\begin{equation*}
+\begin{split} d = -\log(I_{detector})\end{split}
+\end{equation*}
+\sphinxAtStartPar
+This is only valid because we have air (\(\alpha=0\)) as the second component in the phantom. Otherwise, if it was a denser material we would have a material mixture.
+
+\sphinxAtStartPar
+Now, let’s compute the breast thickness from the transmission image:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{breast\PYGZus{}thickness} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{np}\PYG{o}{.}\PYG{n}{log}\PYG{p}{(}\PYG{n}{i\PYGZus{}detector}\PYG{p}{)}\PYG{o}{/}\PYG{n}{breast\PYGZus{}alpha}
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax\PYGZus{}hist}\PYG{p}{,} \PYG{n}{ax\PYGZus{}breast}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
 
-\PYG{n}{b\PYGZus{}img\PYGZus{}obj} \PYG{o}{=} \PYG{n}{ax\PYGZus{}breast}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{breast\PYGZus{}thickness}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}breast}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Transmission image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{b\PYGZus{}img\PYGZus{}obj} \PYG{o}{=} \PYG{n}{ax\PYGZus{}breast}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{breast\PYGZus{}thickness}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}breast}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Thickness image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{b\PYGZus{}img\PYGZus{}obj}\PYG{p}{)}
 
-\PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{breast\PYGZus{}thickness}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)} \PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness (\PYGZdl{}d\PYGZdl{}) [Pixels]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{breast\PYGZus{}thickness}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)} \PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness (\PYGZdl{}d\PYGZdl{}) [cm]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_40_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_71_0}.png}
 
 
 \subsection{Visualizing the thickness}
@@ -772,7 +949,7 @@ If we know that \(\alpha\) is constant we can reconstruct the thickness \(d\) fr
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}zlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_42_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_73_0}.png}
 
 
 \section{What if \protect\(\alpha\protect\) is not constant?}
@@ -804,7 +981,7 @@ For the lump below we can see on the individual slices of the sample that the le
            \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{n}{breast\PYGZus{}alpha}\PYG{o}{*}\PYG{o}{.}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{n}{breast\PYGZus{}alpha}\PYG{o}{*}\PYG{l+m+mf}{1.2}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_44_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_75_0}.png}
 
 
 \subsection{Looking at the thickness again}
@@ -825,7 +1002,7 @@ When we make the projection and apply Beer’s Law we see that it appears as a r
 \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_46_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_77_0}.png}
 
 
 \subsection{An anomaly in the thickness reconstruction}
@@ -854,15 +1031,15 @@ or does it have an possible tumor inside of it?
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{b\PYGZus{}img\PYGZus{}obj}\PYG{p}{)}
 
 \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{breast\PYGZus{}thickness}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness (\PYGZdl{}d\PYGZdl{})}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{In Pixels}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness (\PYGZdl{}d\PYGZdl{})}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{In cm}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_48_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_79_0}.png}
 
 
-\subsection{Looking at the thickness profile again}
-\label{\detokenize{04-BasicSegmentation:looking-at-the-thickness-profile-again}}
+\subsection{Looking at the thickness profile with lump}
+\label{\detokenize{04-BasicSegmentation:looking-at-the-thickness-profile-with-lump}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{mpl\PYGZus{}toolkits}\PYG{n+nn}{.}\PYG{n+nn}{mplot3d} \PYG{k+kn}{import} \PYG{n}{Axes3D}
 \PYG{n}{fig} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi} \PYG{o}{=} \PYG{l+m+mi}{150}\PYG{p}{)}
@@ -877,7 +1054,7 @@ or does it have an possible tumor inside of it?
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}zlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_50_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_81_0}.png}
 
 
 \chapter{Segmentation}
@@ -925,6 +1102,9 @@ but for images with phases it would be each phase, e.g. bone, air, cellular tiss
 Start out with a simple image of a cross with added noise
 \$\( I(x,y) = f(x,y) \)\$
 
+\sphinxAtStartPar
+Here, we create a test image with two features embedded in uniform noise; a cross with values in the order of ‘1’ and background with values in the order ‘0’. The figure below shows the image and its histogram. The histogram helps us to see how the graylevels are distributed which guides the decision where to put a threshold that segments the cross from the background.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -942,7 +1122,7 @@ Start out with a simple image of a cross with added noise
 \PYG{n}{fig}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{im}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_54_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_86_0}.png}
 
 
 \section{The histogram}
@@ -957,7 +1137,7 @@ The intensity can be described with a probability density function
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}P\PYGZus{}f(x,y)\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_57_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_89_0}.png}
 
 
 \section{Applying a threshold to an image}
@@ -985,7 +1165,7 @@ Applying the threshold is a deceptively simple operation
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_59_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_93_0}.png}
 
 
 \subsection{Various Thresholds}
@@ -1007,19 +1187,20 @@ We can see the effect of choosing various thresholds
     \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_61_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_95_0}.png}
+
+\sphinxAtStartPar
+In this fabricated example we saw that thresholding can be a very simple and quick solution to the segmentation problem. Unfortunately, real data is often less obvious. The features we want to identify for our qantitative analysis are often obscured be different other features in the image. They may be part of the setup of caused by the acquisition conditions.
 
 
 \chapter{Segmenting Cells}
-\label{\detokenize{04-BasicSegmentation:segmenting-cells}}\begin{itemize}
-\item {} 
+\label{\detokenize{04-BasicSegmentation:segmenting-cells}}
 \sphinxAtStartPar
 We can peform the same sort of analysis with this image of cells
 
-\item {} 
 \sphinxAtStartPar
 This time we can derive the model from the basic physics of the system
-
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 The field is illuminated by white light of nearly uniform brightness
@@ -1048,13 +1229,13 @@ Cells absorb light causing darker regions to appear in the image
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{cell\PYGZus{}img} \PYG{o}{=} \PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures/Cell\PYGZus{}Colony.jpg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax\PYGZus{}hist}\PYG{p}{,} \PYG{n}{ax\PYGZus{}img}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax\PYGZus{}hist}\PYG{p}{,} \PYG{n}{ax\PYGZus{}img}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
 \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{255}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{ax\PYGZus{}obj} \PYG{o}{=} \PYG{n}{ax\PYGZus{}img}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{ax\PYGZus{}obj}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_64_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_99_0}.png}
 
 
 \section{Trying different thresholds on the cell image}
@@ -1062,16 +1243,16 @@ Cells absorb light causing darker regions to appear in the image
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{color} \PYG{k+kn}{import} \PYG{n}{label2rgb}
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,} 
-                          \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi} \PYG{o}{=} \PYG{l+m+mi}{200}\PYG{p}{)}
+                          \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi} \PYG{o}{=} \PYG{l+m+mi}{150}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{c\PYGZus{}thresh}\PYG{p}{,} \PYG{n}{ax1} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,} \PYG{l+m+mi}{200}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{thresh\PYGZus{}img} \PYG{o}{=} \PYG{n}{cell\PYGZus{}img} \PYG{o}{\PYGZlt{}} \PYG{n}{c\PYGZus{}thresh}     
 
-    \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{label2rgb}\PYG{p}{(}\PYG{n}{thresh\PYGZus{}img}\PYG{p}{,} \PYG{n}{image} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{cell\PYGZus{}img}\PYG{p}{,} \PYG{n}{bg\PYGZus{}label} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{alpha} \PYG{o}{=} \PYG{l+m+mf}{0.4}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{label2rgb}\PYG{p}{(}\PYG{n}{thresh\PYGZus{}img}\PYG{p}{,} \PYG{n}{image} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{cell\PYGZus{}img}\PYG{p}{,} \PYG{n}{bg\PYGZus{}label} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{alpha} \PYG{o}{=} \PYG{l+m+mf}{0.4}\PYG{p}{)}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} Rgb coding of image and mask}
     
     \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{img\PYGZlt{}}\PYG{l+s+si}{\PYGZpc{}2.2f}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{c\PYGZus{}thresh}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_66_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_101_0}.png}
 
 
 \chapter{Other image types}
@@ -1086,6 +1267,9 @@ While scalar images are easiest, it is possible for any type of image
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Here, we create an image with vectors to show local orientation and intensities to meassure the streng of a signal.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{nx} \PYG{o}{=} \PYG{l+m+mi}{10}
@@ -1107,32 +1291,38 @@ While scalar images are easiest, it is possible for any type of image
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
            x         y  I\PYGZus{}detector     x\PYGZus{}vec     y\PYGZus{}vec
-5   0.698132 \PYGZhy{}6.283185   \PYGZhy{}0.146359  0.110418 \PYGZhy{}0.993759
-20 \PYGZhy{}6.283185 \PYGZhy{}3.490659    0.012720 \PYGZhy{}0.874073 \PYGZhy{}0.485596
-77  3.490659  3.490659   \PYGZhy{}0.103736  0.706962  0.706962
-0  \PYGZhy{}6.283185 \PYGZhy{}6.283185   \PYGZhy{}0.202519 \PYGZhy{}0.707062 \PYGZhy{}0.707062
-47  3.490659 \PYGZhy{}0.698132    0.394822  0.980194 \PYGZhy{}0.196039
+69  6.283185  2.094395    0.128002  0.948575  0.316192
+78  4.886922  3.490659    0.101807  0.813621  0.581158
+83 \PYGZhy{}2.094395  4.886922    0.061300 \PYGZhy{}0.393850  0.918982
+22 \PYGZhy{}3.490659 \PYGZhy{}3.490659   \PYGZhy{}0.117917 \PYGZhy{}0.706962 \PYGZhy{}0.706962
+52 \PYGZhy{}3.490659  0.698132    0.329619 \PYGZhy{}0.980194  0.196039
 \end{sphinxVerbatim}
 
 
 \section{Looking at colocation histograms}
 \label{\detokenize{04-BasicSegmentation:looking-at-colocation-histograms}}
+\sphinxAtStartPar
+The colocation histogram is a powerful tool to visualize how different components are related to each other. It also called bi\sphinxhyphen{}variate histogram. In seaborn, there is the \sphinxcode{\sphinxupquote{pairplot}} which shows colocation histograms for all combinations on the data. The diagonal is the histogram of the individual components.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
 \PYG{n}{sns}\PYG{o}{.}\PYG{n}{pairplot}\PYG{p}{(}\PYG{n}{base\PYGZus{}df}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_71_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_108_0}.png}
 
 
 \section{Vector field plot}
 \label{\detokenize{04-BasicSegmentation:vector-field-plot}}
+\sphinxAtStartPar
+The vector field is a common way to visualiz vector data. It does however only work for small data sets like in this example, otherwise it will be too cluttered and no relevant information will be visible.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{quiver}\PYG{p}{(}\PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}vec}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}vec}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{I\PYGZus{}detector}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_73_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_111_0}.png}
 
 
 \section{Applying a threshold to vector valued image}
@@ -1155,26 +1345,25 @@ A threshold is now more difficult to apply since there are now two distinct vari
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Position x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Position y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_75_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_113_0}.png}
 
 
 \subsection{Histogram of the vectors}
 \label{\detokenize{04-BasicSegmentation:histogram-of-the-vectors}}
 \sphinxAtStartPar
-This can also be shown on the joint probability distribution as
+This can also be shown on the joint probability distribution as a bivariate histogram.
+
+\sphinxAtStartPar
+The lines here indicate the thresholded vector components.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi} \PYG{o}{=} \PYG{l+m+mi}{150}\PYG{p}{)}
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{hist2d}\PYG{p}{(}\PYG{n}{thresh\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}vec}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{thresh\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}vec}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Tresholded}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} 
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{vec}\PYG{l+s+si}{\PYGZob{}f\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}x(x,y)\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{vec}\PYG{l+s+si}{\PYGZob{}f\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}y(x,y)\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{ax}\PYG{o}{.}\PYG{n}{vlines}\PYG{p}{(}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{ymin}\PYG{o}{=}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{ymax}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x=0.25}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax}\PYG{o}{.}\PYG{n}{hlines}\PYG{p}{(}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{xmin}\PYG{o}{=}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{xmax}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lightgreen}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y=0.25}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lower left}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{vlines}\PYG{p}{(}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{ymin}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{ymax}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x=0.25}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax}\PYG{o}{.}\PYG{n}{hlines}\PYG{p}{(}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{xmin}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{xmax}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lightgreen}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y=0.25}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lower left}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}matplotlib.legend.Legend at 0x7ffdeabbf070\PYGZgt{}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_77_1}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_116_0}.png}
 
 
 \subsection{Applying a threshold}
@@ -1191,7 +1380,11 @@ Given the presence of two variables; however, more advanced approaches can also 
 \subsection{Thresholding orientations}
 \label{\detokenize{04-BasicSegmentation:thresholding-orientations}}
 \sphinxAtStartPar
-We can tune the angular acceptance by using the fact \$\(\vec{x}\cdot\vec{y}=|\vec{x}| |\vec{y}| \cos(\theta_{x\rightarrow y}) \)\(
+We can tune the angular acceptance by using the fact that the scalar product can be expressed using the angle between the the vectors as
+
+\sphinxAtStartPar
+\sphinxstylestrong{Scalar product definition}
+\$\(\vec{x}\cdot\vec{y}=|\vec{x}| |\vec{y}| \cos(\theta_{x\rightarrow y}) \)\(
 <br />
 <br />
 \)\( I(x,y) = 
