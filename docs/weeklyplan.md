@@ -28,41 +28,31 @@
 - [Overview part 4](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/02-ImageEnhancement/Exercise4.ipynb)[![slides](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/main?filepath=Exercises/02-ImageEnhancement/Exercise4.ipynb)
 - [![slides](https://img.shields.io/badge/Launch-image_enhancement_tool-yellow.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/main?filepath=Exercises/02-ImageEnhancement/ImageEnhancementPlayground.ipynb)
 
-
-
----
----
-Last year's material - not yet updated
 ## 11th March - Ground Truth: Building and Augmenting Datasets
 
 | Downloads| Videos |
 |:---:|:---|
 | <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture03-Datasets.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-03/03-Datasets.ipynb) &nbsp;&nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-03/03-Datasets.ipynb)| No video yet <a href="https://youtu.be/xyz"><img src="figures/np_video.svg" alt="Part 1" height="30px"/></a>|
 
-#### Last year's Lecture Videos
-- [Part 1](https://youtu.be/nRYFKlcbdMM)
-- [Part 2](https://youtu.be/yyEasauurtI)
-
 #### Exercises
-
 - [Data augmentation exercise](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Exercises/03-augmentation/03-AugmentationExercise.ipynb)[![slides](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Exercises/03-augmentation/03-AugmentationExercise.ipynb)
 
 ---
 
 ## 18th March - Basic Segmentation, Discrete Binary Structures
 
-- Part 1: [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/04-BasicSegmentation.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/04-BasicSegmentation.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/04-BasicSegmentation.ipynb)
- - Part 2: [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/04-BasicSegmentation_Part2.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/04-BasicSegmentation_Part2.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/04-BasicSegmentation_Part2.ipynb)
+| Downloads| Videos |
+|:---:|:---|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture04-BasicSegmentation.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-04/04-BasicSegmentation.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-04/04-BasicSegmenation.ipynb) &nbsp;&nbsp;&nbsp;  [<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-04/04-BasicSegmentation_Part2.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-04/04-BasicSegmenation_Part2.ipynb)| No video yet <a href="https://youtu.be/xyz"><img src="figures/np_video.svg" alt="Part 1" height="30px"/></a>|
 
-#### Lecture videos 
- - [Part 1](https://youtu.be/D9WygDQhB3M)
- - [Part 2](https://youtu.be/BGrWqJERRdw)
- 
 #### Exercises
 
 - [Overview](../Exercises/04-Segmentation/04-Overview.md)
 
 ---
+---
+
+Last year's material - not yet updated
 
 ## 25th March - Advanced Segmentation
 
