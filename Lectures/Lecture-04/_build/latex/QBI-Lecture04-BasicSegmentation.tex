@@ -73,7 +73,7 @@
 
 
 \title{Quantitative Big Imaging - Basic segmentation}
-\date{Mar 12, 2021}
+\date{Mar 14, 2021}
 \release{}
 \author{Anders Kaestner}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -178,8 +178,7 @@ can be a very challenging task. Such tasks will be covered in later lectures.
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.5]{{cortex}.png}
-\caption{An x\sphinxhyphen{}ray CT slice of the cortex.
-\textasciigrave{}\textasciigrave{}}\label{\detokenize{04-BasicSegmentation:id2}}\end{figure}
+\caption{An x\sphinxhyphen{}ray CT slice of the cortex.}\label{\detokenize{04-BasicSegmentation:id2}}\end{figure}
 
 
 \begin{itemize}
@@ -298,28 +297,35 @@ Does the granule shape affect battery life expectancy?
 \label{\detokenize{04-BasicSegmentation:id1}}
 \sphinxAtStartPar
 We perform an experiment bone to see how big the cells are inside the tissue:
+
+\sphinxAtStartPar
+We have performed an experiment that produced heaps of data to analyze. For example a using tomography.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{tomoimage}.png}
+\caption{Acquisition workflow to obtain CT slices of a specimen.}\label{\detokenize{04-BasicSegmentation:id3}}\end{figure}
+
+\sphinxAtStartPar
+At the beginning we have 2560 x 2560 x 2160 x 32 bits = 56GB / sample! Then we apply some filtering and preprocessing to prepare the data for analysis. After 20h of computer time we still have 56GB of data (it is however nicer to work with). This still way to much data to handle, we need to reduce it in some way.
+
+
+
+
 \begin{equation*}
 \begin{split}\downarrow\end{split}
 \end{equation*}
 
 
 
-\subsection{2560 x 2560 x 2160 x 32 bit = 56GB / sample}
-\label{\detokenize{04-BasicSegmentation:center-2560-x-2560-x-2160-x-32-bit-56gb-sample-center}}
-
-\begin{equation*}
-\begin{split}\downarrow\end{split}
-\end{equation*}
-
-\subsection{20h of computer time later …}
-\label{\detokenize{04-BasicSegmentation:center-20h-of-computer-time-later-center}}
 
 
 
+\sphinxAtStartPar
+\sphinxstylestrong{Way too much data, we need to reduce}
 
-
-\subsection{Way too much data, we need to reduce}
-\label{\detokenize{04-BasicSegmentation:way-too-much-data-we-need-to-reduce}}
 
 
 
@@ -438,7 +444,7 @@ To demonstrate what we get from a modality, we load the cell image as a toy exam
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{rgb2gray}\PYG{p}{(}\PYG{n}{dkimg}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_25_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_27_0}.png}
 
 
 \chapter{Qualitative Metrics: What did people use to do?}
@@ -469,7 +475,7 @@ What comes out of our detector / enhancement process
 \PYG{n}{cb\PYGZus{}obj}\PYG{o}{.}\PYG{n}{set\PYGZus{}label}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Absorption Coefficient}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_28_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_30_0}.png}
 
 
 \section{Identify objects by eye}
@@ -513,8 +519,8 @@ They match up well to the world view / perspective
 \sphinxincludegraphics{{approaches}.png}
 
 
-\section{How to approach the segmenation task}
-\label{\detokenize{04-BasicSegmentation:how-to-approach-the-segmenation-task}}
+\section{How to approach the segmentation task}
+\label{\detokenize{04-BasicSegmentation:how-to-approach-the-segmentation-task}}
 
 \subsection{Model based segmentation}
 \label{\detokenize{04-BasicSegmentation:model-based-segmentation}}
@@ -555,7 +561,7 @@ The image formation process is the process to use some kind of excitation or imp
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.8]{{image-formation}.pdf}
-\caption{The elements of the image formation process.}\label{\detokenize{04-BasicSegmentation:id3}}\end{figure}
+\caption{The elements of the image formation process.}\label{\detokenize{04-BasicSegmentation:id4}}\end{figure}
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -629,7 +635,7 @@ Let’s create a simulated image acquisition with the cell image where you have 
 \PYG{n}{ax\PYGZus{}det}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{o}{*}\PYG{n}{beam\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}det}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Detector}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_43_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_45_0}.png}
 
 
 \subsection{Profiles across the image}
@@ -646,7 +652,7 @@ A first qualitative analysis on images of this type is to extract line profiles 
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Position}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{lower center}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_46_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_48_0}.png}
 
 
 \subsection{Inhomogeneous illumination}
@@ -666,16 +672,15 @@ This can make extracting detail away from the center much harder.
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{o}{*}\PYG{n}{beam\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_48_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_50_0}.png}
 
 
 \subsection{Absorption Imaging (X\sphinxhyphen{}ray, Ultrasound, Optical)}
 \label{\detokenize{04-BasicSegmentation:absorption-imaging-x-ray-ultrasound-optical}}
+\sphinxAtStartPar
+\sphinxstylestrong{For absorption/attenuation imaging \(\rightarrow\) \sphinxhref{http://en.wikipedia.org/wiki/Attenuation\_coefficient}{Beer\sphinxhyphen{}Lambert Law}}
+\$\(I_{detector}=\underbrace{I_{source}}_{I_{stimulus}}\underbrace{e^{-\alpha d}}_{S_{sample}}\)\$
 
-\subsubsection{For absorption/attenuation imaging \protect\(\rightarrow\protect\) Beer\sphinxhyphen{}Lambert Law}
-\label{\detokenize{04-BasicSegmentation:for-absorption-attenuation-imaging-rightarrow-beer-lambert-law}}\begin{equation*}
-\begin{split}I_{detector}=\underbrace{I_{source}}_{I_{stimulus}}\underbrace{e^{-\alpha d}}_{S_{sample}}\end{split}
-\end{equation*}
 \sphinxAtStartPar
 Different components have a different \(\alpha\) based on the strength of the interaction between the light and the chemical / nuclear structure of the material
 \begin{equation*}
@@ -684,7 +689,7 @@ Different components have a different \(\alpha\) based on the strength of the in
 
 
 \sphinxAtStartPar
-\#\#\#\# For segmentation this model is:
+\sphinxstylestrong{For segmentation this model is:}
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -757,7 +762,7 @@ Let’s now plot the intensities and attenuation coefficients and compare the ou
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_57_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_59_0}.png}
 
 \sphinxAtStartPar
 The \(\alpha\)\sphinxhyphen{}\(I_{detector}\) plot shows the curved exponential behaviour we can expect from Beer Lambert’s law. Now, if we look at the histogram, we can see that distribution of attenuation coefficients doesn’t really match the measured intensity. In this example, it is even so that the widths of the diffent materials have changed places. Great attenuation coefficient results in little transmission and small attenuation coefficient allow more of the beam to penetrate the sample.
@@ -902,7 +907,7 @@ This produces a 2D image of the side view of the breast.
 \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{i\PYGZus{}detector}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}I\PYGZus{}}\PYG{l+s+si}{\PYGZob{}detector\PYGZcb{}}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distribution of transmission values}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_67_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_69_0}.png}
 
 \sphinxAtStartPar
 The histogram shows the distribution of the transmitted intensity.
@@ -931,7 +936,7 @@ Now, let’s compute the breast thickness from the transmission image:
 \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{breast\PYGZus{}thickness}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)} \PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness (\PYGZdl{}d\PYGZdl{}) [cm]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_71_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_73_0}.png}
 
 
 \subsection{Visualizing the thickness}
@@ -949,7 +954,7 @@ Now, let’s compute the breast thickness from the transmission image:
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}zlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_73_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_75_0}.png}
 
 
 \section{What if \protect\(\alpha\protect\) is not constant?}
@@ -981,7 +986,7 @@ For the lump below we can see on the individual slices of the sample that the le
            \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin} \PYG{o}{=} \PYG{n}{breast\PYGZus{}alpha}\PYG{o}{*}\PYG{o}{.}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{n}{vmax} \PYG{o}{=} \PYG{n}{breast\PYGZus{}alpha}\PYG{o}{*}\PYG{l+m+mf}{1.2}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_75_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_77_0}.png}
 
 
 \subsection{Looking at the thickness again}
@@ -1002,7 +1007,7 @@ When we make the projection and apply Beer’s Law we see that it appears as a r
 \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_77_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_79_0}.png}
 
 
 \subsection{An anomaly in the thickness reconstruction}
@@ -1035,7 +1040,7 @@ or does it have an possible tumor inside of it?
 \PYG{n}{ax\PYGZus{}hist}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_79_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_81_0}.png}
 
 
 \subsection{Looking at the thickness profile with lump}
@@ -1054,7 +1059,7 @@ or does it have an possible tumor inside of it?
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}zlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Breast Thickness}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_81_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_83_0}.png}
 
 
 \chapter{Segmentation}
@@ -1122,7 +1127,7 @@ Here, we create a test image with two features embedded in uniform noise; a cros
 \PYG{n}{fig}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{im}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_86_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_88_0}.png}
 
 
 \section{The histogram}
@@ -1137,7 +1142,7 @@ The intensity can be described with a probability density function
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}P\PYGZus{}f(x,y)\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pixel Count}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_89_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_91_0}.png}
 
 
 \section{Applying a threshold to an image}
@@ -1165,7 +1170,7 @@ Applying the threshold is a deceptively simple operation
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_93_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_95_0}.png}
 
 
 \subsection{Various Thresholds}
@@ -1187,7 +1192,7 @@ We can see the effect of choosing various thresholds
     \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_95_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_97_0}.png}
 
 \sphinxAtStartPar
 In this fabricated example we saw that thresholding can be a very simple and quick solution to the segmentation problem. Unfortunately, real data is often less obvious. The features we want to identify for our qantitative analysis are often obscured be different other features in the image. They may be part of the setup of caused by the acquisition conditions.
@@ -1235,7 +1240,7 @@ Cells absorb light causing darker regions to appear in the image
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{ax\PYGZus{}obj}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_99_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_101_0}.png}
 
 
 \section{Trying different thresholds on the cell image}
@@ -1252,7 +1257,7 @@ Cells absorb light causing darker regions to appear in the image
     \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{img\PYGZlt{}}\PYG{l+s+si}{\PYGZpc{}2.2f}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{c\PYGZus{}thresh}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_101_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_103_0}.png}
 
 
 \chapter{Other image types}
@@ -1291,11 +1296,11 @@ Here, we create an image with vectors to show local orientation and intensities 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
            x         y  I\PYGZus{}detector     x\PYGZus{}vec     y\PYGZus{}vec
-69  6.283185  2.094395    0.128002  0.948575  0.316192
-78  4.886922  3.490659    0.101807  0.813621  0.581158
-83 \PYGZhy{}2.094395  4.886922    0.061300 \PYGZhy{}0.393850  0.918982
-22 \PYGZhy{}3.490659 \PYGZhy{}3.490659   \PYGZhy{}0.117917 \PYGZhy{}0.706962 \PYGZhy{}0.706962
-52 \PYGZhy{}3.490659  0.698132    0.329619 \PYGZhy{}0.980194  0.196039
+85  0.698132  4.886922    0.193711  0.141392  0.989746
+76  2.094395  3.490659    0.207917  0.514341  0.857234
+7   3.490659 \PYGZhy{}6.283185    0.253510  0.485596 \PYGZhy{}0.874073
+11 \PYGZhy{}4.886922 \PYGZhy{}4.886922   \PYGZhy{}0.158919 \PYGZhy{}0.707033 \PYGZhy{}0.707033
+44 \PYGZhy{}0.698132 \PYGZhy{}0.698132    1.125334 \PYGZhy{}0.703507 \PYGZhy{}0.703507
 \end{sphinxVerbatim}
 
 
@@ -1309,7 +1314,7 @@ The colocation histogram is a powerful tool to visualize how different component
 \PYG{n}{sns}\PYG{o}{.}\PYG{n}{pairplot}\PYG{p}{(}\PYG{n}{base\PYGZus{}df}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_108_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_110_0}.png}
 
 
 \section{Vector field plot}
@@ -1322,7 +1327,7 @@ The vector field is a common way to visualiz vector data. It does however only w
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{quiver}\PYG{p}{(}\PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}vec}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}vec}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{I\PYGZus{}detector}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_111_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_113_0}.png}
 
 
 \section{Applying a threshold to vector valued image}
@@ -1345,7 +1350,7 @@ A threshold is now more difficult to apply since there are now two distinct vari
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Position x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Position y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_113_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_115_0}.png}
 
 
 \subsection{Histogram of the vectors}
@@ -1363,19 +1368,20 @@ The lines here indicate the thresholded vector components.
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{vlines}\PYG{p}{(}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{ymin}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{ymax}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x=0.25}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax}\PYG{o}{.}\PYG{n}{hlines}\PYG{p}{(}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{xmin}\PYG{o}{=}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{n}{xmax}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lightgreen}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y=0.25}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lower left}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_116_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_118_0}.png}
 
 
 \subsection{Applying a threshold}
 \label{\detokenize{04-BasicSegmentation:applying-a-threshold}}
 \sphinxAtStartPar
 Given the presence of two variables; however, more advanced approaches can also be investigated. For example we can keep only components parallel to the x axis by using the dot product.
-\$\( I(x,y) = 
+\begin{equation*}
+\begin{split}I(x,y)=
 \begin{cases}
-1, & |\vec{f}(x,y)\cdot \vec{i}| = 1 \\
-0, & \text{otherwise}
-\end{cases}\)\$
-
+1,&|\vec{f}(x,y)\cdot{}\vec{i}|=1\\
+0,&\text{otherwise}
+\end{cases}\end{split}
+\end{equation*}
 
 \subsection{Thresholding orientations}
 \label{\detokenize{04-BasicSegmentation:thresholding-orientations}}
@@ -1384,59 +1390,70 @@ We can tune the angular acceptance by using the fact that the scalar product can
 
 \sphinxAtStartPar
 \sphinxstylestrong{Scalar product definition}
-\$\(\vec{x}\cdot\vec{y}=|\vec{x}| |\vec{y}| \cos(\theta_{x\rightarrow y}) \)\(
-<br />
-<br />
-\)\( I(x,y) = 
+\begin{equation*}
+\begin{split}\vec{x}\cdot\vec{y}=|\vec{x}| |\vec{y}| \cos(\theta_{x\rightarrow y}) \end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}I(x,y)=
 \begin{cases}
-1, & \cos^{-1}(\vec{f}(x,y)\cdot \vec{i}) \leq \theta^{\circ} \\
-0, & \text{otherwise}
-\end{cases}\)\$
-
-
-\subsubsection{Basic Segmentation and Discrete Binary Structures}
-\label{\detokenize{04-BasicSegmentation_Part2:basic-segmentation-and-discrete-binary-structures}}\label{\detokenize{04-BasicSegmentation_Part2::doc}}
-
-
-\sphinxAtStartPar
-\sphinxstylestrong{Quantitative Big Imaging} ETHZ: 227\sphinxhyphen{}0966\sphinxhyphen{}00L
-
-\sphinxAtStartPar
-\sphinxstylestrong{Part 2}
-
-
-
-
-
+1,&\cos^{-1}(\vec{f}(x,y)\cdot \vec{i}) \leq \theta^{\circ} \\
+0,&\text{otherwise}
+\end{cases}\end{split}
+\end{equation*}
 
 \subsubsection{A Machine Learning Approach to Image Processing}
-\label{\detokenize{04-BasicSegmentation_Part2:a-machine-learning-approach-to-image-processing}}
-\sphinxAtStartPar
-Segmentation and all the steps leading up to it are really a specialized type of learning problem.
+\label{\detokenize{04-BasicSegmentation_Part2:a-machine-learning-approach-to-image-processing}}\label{\detokenize{04-BasicSegmentation_Part2::doc}}
 
+
+
+
+
+
+
+\paragraph{Loading some modules}
+\label{\detokenize{04-BasicSegmentation_Part2:loading-some-modules}}
 \sphinxAtStartPar
-Let’s look at an important problem for electron microscopy imaging…
+Let’s load a collection of modules for this part.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{color} \PYG{k+kn}{import} \PYG{n}{rgb2gray}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
+\PYG{k+kn}{import} \PYG{n+nn}{plotsupport} \PYG{k}{as} \PYG{n+nn}{ps}
+\PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{metrics} \PYG{k+kn}{import} \PYG{n}{roc\PYGZus{}auc\PYGZus{}score}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{from} \PYG{n+nn}{collections} \PYG{k+kn}{import} \PYG{n}{OrderedDict}
+\PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{metrics} \PYG{k+kn}{import} \PYG{n}{roc\PYGZus{}curve}
+
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
 \PYG{n+ne}{ModuleNotFoundError}\PYG{g+gWhitespace}{                       }Traceback (most recent call last)
-\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{33}\PYG{n}{a394319bb8}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
+\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{a1f715e67617}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{1} \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{2} \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{3} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{color} \PYG{k+kn}{import} \PYG{n}{rgb2gray}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{4} \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
-\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{5} \PYG{n}{get\PYGZus{}ipython}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{run\PYGZus{}line\PYGZus{}magic}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{matplotlib}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{inline}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{g+gWhitespace}{      }\PYG{l+m+mi}{5} \PYG{k+kn}{import} \PYG{n+nn}{plotsupport} \PYG{k}{as} \PYG{n+nn}{ps}
 
 \PYG{n+ne}{ModuleNotFoundError}: No module named \PYGZsq{}skimage\PYGZsq{}
 \end{sphinxVerbatim}
+
+
+\paragraph{How to approach the analysis}
+\label{\detokenize{04-BasicSegmentation_Part2:how-to-approach-the-analysis}}
+\sphinxAtStartPar
+Segmentation and all the steps leading up to it are really a specialized type of learning problem.
+
+\sphinxAtStartPar
+Let’s look at an important problem for electron microscopy imaging…
+
+\sphinxAtStartPar
+Identifying the mitochondria in the images like the one to the left in the figures below.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{cell\PYGZus{}img} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{255}\PYG{o}{\PYGZhy{}}\PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{data/em\PYGZus{}image.png}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{[}\PYG{p}{:}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{p}{:}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mf}{255.0}
@@ -1447,7 +1464,7 @@ Let’s look at an important problem for electron microscopy imaging…
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}  \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mitochondria}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_3_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_5_0}.png}
 
 \sphinxAtStartPar
 We want to identify which class each pixel belongs to.
@@ -1464,6 +1481,9 @@ Classify the pixels in a mitochondria as \sphinxstyleemphasis{Foreground}
 Classify the pixels outside of a mitochondria as \sphinxstyleemphasis{Background}
 
 \end{itemize}
+
+\sphinxAtStartPar
+This is a really tedious task and we want to automatize it. Here, segmentation is a good approach. The question is now how we can achieve this.
 
 
 \subsubsection{How do we quantify this?}
@@ -1499,37 +1519,44 @@ Classify the pixels outside of a mitochondria as \sphinxstyleemphasis{Background
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mf}{2.5}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
 
-\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}  \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}    \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{bins}\PYG{o}{=}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Histogram}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
 \PYG{n}{thresh}     \PYG{o}{=} \PYG{l+m+mf}{0.52} 
-\PYG{n}{thresh\PYGZus{}img} \PYG{o}{=} \PYG{n}{cell\PYGZus{}img} \PYG{o}{\PYGZgt{}} \PYG{n}{thresh} \PYG{c+c1}{\PYGZsh{} Apply a single threshold}
+\PYG{n}{thresh\PYGZus{}img} \PYG{o}{=} \PYG{n}{cell\PYGZus{}img} \PYG{o}{\PYGZgt{}} \PYG{n}{thresh} \PYG{c+c1}{\PYGZsh{} Apply a single threshold to the image}
 
+\PYG{c+c1}{\PYGZsh{} Visualization}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}  \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}    \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{bins}\PYG{o}{=}\PYG{l+m+mi}{30}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Histogram}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{vlines}\PYG{p}{(}\PYG{n}{thresh}\PYG{p}{,}\PYG{n}{ymin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{ymax}\PYG{o}{=}\PYG{l+m+mi}{12000}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Threshold}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{9}\PYG{p}{)}
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{thresh\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}   \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Threshold at }\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{thresh}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{p}{,}   \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}   \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mitochondria Labels}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}             \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_6_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_9_0}.png}
+
+\sphinxAtStartPar
+In this example we can see that it is clearly not sufficient to apply a single threshold as we have tried before. When we compare the thresholded image to the provided mask, we can see the that there are plenty more structures marked as foreground and also that there are holes within the mitochondria.
 
 
 \paragraph{Check the performance of the thresholding}
 \label{\detokenize{04-BasicSegmentation_Part2:check-the-performance-of-the-thresholding}}
+\sphinxAtStartPar
+Let’s create a confusion matrix to visualize the performance of the segmentation. A first step is to compute how many hits and misses our segmentation resulted in. In particual, looking at the four different cases that can occur in a binarization.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c+c1}{\PYGZsh{} Suport function for the plot labels}
 \PYG{k}{def} \PYG{n+nf}{tp\PYGZus{}func}\PYG{p}{(}\PYG{n}{real\PYGZus{}img\PYGZus{}idx}\PYG{p}{,} \PYG{n}{pred\PYGZus{}img\PYGZus{}idx}\PYG{p}{)}\PYG{p}{:}
     \PYG{k}{if} \PYG{n}{real\PYGZus{}img\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{o+ow}{and} \PYG{n}{pred\PYGZus{}img\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
-        \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsh{}009933}\PYG{l+s+s1}{\PYGZsq{}}
     \PYG{k}{if} \PYG{n}{real\PYGZus{}img\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{0} \PYG{o+ow}{and} \PYG{n}{pred\PYGZus{}img\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
-        \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Negative}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Negative}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsh{}009933}\PYG{l+s+s1}{\PYGZsq{}}
     \PYG{k}{if} \PYG{n}{real\PYGZus{}img\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{0} \PYG{o+ow}{and} \PYG{n}{pred\PYGZus{}img\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
-        \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsh{}cc0000}\PYG{l+s+s1}{\PYGZsq{}}
     \PYG{k}{if} \PYG{n}{real\PYGZus{}img\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{1} \PYG{o+ow}{and} \PYG{n}{pred\PYGZus{}img\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
-        \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Negative}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Negative}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsh{}cc0000}\PYG{l+s+s1}{\PYGZsq{}}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{out\PYGZus{}results} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{real\PYGZus{}img\PYGZus{}idx}\PYG{p}{,} \PYG{n}{n\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{m\PYGZus{}ax}\PYG{p}{)}\PYG{p}{:}
     \PYG{k}{for} \PYG{n}{pred\PYGZus{}img\PYGZus{}idx}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{n\PYGZus{}ax}\PYG{p}{)}\PYG{p}{:}
         \PYG{n}{match\PYGZus{}img} \PYG{o}{=} \PYG{p}{(}\PYG{n}{thresh\PYGZus{}img} \PYG{o}{==} \PYG{n}{pred\PYGZus{}img\PYGZus{}idx}\PYG{p}{)} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{n}{cell\PYGZus{}seg} \PYG{o}{==} \PYG{n}{real\PYGZus{}img\PYGZus{}idx}\PYG{p}{)}
@@ -1540,20 +1567,49 @@ Classify the pixels outside of a mitochondria as \sphinxstyleemphasis{Background
         \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_9_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_14_0}.png}
 
 
-\subsubsection{Apply Precision and Recall}
-\label{\detokenize{04-BasicSegmentation_Part2:apply-precision-and-recall}}\begin{itemize}
+\paragraph{The confusion matrix (revisited)}
+\label{\detokenize{04-BasicSegmentation_Part2:the-confusion-matrix-revisited}}
+\sphinxAtStartPar
+From the counts in the previus slide, we can now create a \sphinxhref{https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62}{Confusion matrix} and also look at the combined image of all the cases. In the hit map we can see white and gray as true segmentation and blue and magenta as false segmentations.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{ps}\PYG{o}{.}\PYG{n}{showHitMap}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{p}{,}\PYG{n}{thresh\PYGZus{}img}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} this is a handy support function provided with the notebook}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_17_0}.png}
+
+
+\paragraph{Apply Precision and Recall}
+\label{\detokenize{04-BasicSegmentation_Part2:apply-precision-and-recall}}
+\sphinxAtStartPar
+We can use two further metrics to measure the performance of a segmentation method. These are based on the information in the confusion matrix like
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Recall} (sensitivity)  \$\(\frac{TP}{TP+FN}\)\$
 
+\end{itemize}
+
+\sphinxAtStartPar
+This is the sum the true positive relative to the number of positives in the mask or also as written here the sum of true positives and false negatives. Recall tells us how good the method is to find the correct label within the mask.
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Precision}            \$\(\frac{TP}{TP+FP}\)\$
 
 \end{itemize}
+
+\sphinxAtStartPar
+This is the sum of true positives relative to the total number of positives provided by our segmentation method. The precision tells us how much our method over segments the image.
+
+\sphinxAtStartPar
+Both recall and precision are scalar numbers in the interval \(0<m\leq1\) where ‘1’ is the ideal condition.
+
+\sphinxAtStartPar
+Let’s compute precision and recall for our mitochonria example.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Recall: }\PYG{l+s+si}{\PYGZob{}0:0.2f\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{/}
@@ -1567,31 +1623,33 @@ Recall: 0.82
 Precision: 0.18
 \end{sphinxVerbatim}
 
-
-\paragraph{The confusion matrix (revisited)}
-\label{\detokenize{04-BasicSegmentation_Part2:the-confusion-matrix-revisited}}
 \sphinxAtStartPar
-\sphinxhref{https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62}{Confusion matrix}
+This result tells us that our segmentation was relatively good at finding the mitochondria, but also that this happened at the cost of many false positives.
 
 
-\subparagraph{ROC Curve}
-\label{\detokenize{04-BasicSegmentation_Part2:roc-curve}}
+\subsubsection{Reciever Operating Characteristic (ROC)}
+\label{\detokenize{04-BasicSegmentation_Part2:reciever-operating-characteristic-roc}}
 \sphinxAtStartPar
-Reciever Operating Characteristic (\sphinxhref{https://en.wikipedia.org/wiki/Receiver\_operating\_characteristic\#History}{first developed for WW2 soldiers detecting objects in battlefields using radar}).
-
+ROC curves are a very common tool for analyzing the performance of binary classification systems and there are a large number of tools which can automatically make them.
+\begin{itemize}
+\item {} 
 \sphinxAtStartPar
-The ideal is the top\sphinxhyphen{}right (identify everything and miss nothing).
+The concept of the ROC curve was \sphinxhref{https://en.wikipedia.org/wiki/Receiver\_operating\_characteristic\#History}{first developed for WW2 soldiers detecting objects in battlefields using radar}).
 
+\item {} 
 \sphinxAtStartPar
 As we saw before, for a single threshold value 0.5, we were able to compute a single recall and precision.
 
+\item {} 
 \sphinxAtStartPar
-If we want to make an ROC curve we take a number of threshold values
+The ROC shows the releation between recall and precision for a segmentation model.
+
+\end{itemize}
+
+\sphinxAtStartPar
+If we want to make an ROC curve we take a number of threshold values and compute the corresponding precision and recall values for each threshold.  In the example below we scan threshold values from 0.1 to 0.9 and compute the hit and miss statistics to calculate the precision and recall.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
-\PYG{k+kn}{from} \PYG{n+nn}{collections} \PYG{k+kn}{import} \PYG{n}{OrderedDict}
-
 \PYG{n}{out\PYGZus{}vals} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
 \PYG{k}{for} \PYG{n}{thresh\PYGZus{}val} \PYG{o+ow}{in} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{0.9}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{thresh\PYGZus{}img} \PYG{o}{=} \PYG{n}{cell\PYGZus{}img} \PYG{o}{\PYGZgt{}} \PYG{n}{thresh\PYGZus{}val}
@@ -1603,13 +1661,10 @@ If we want to make an ROC curve we take a number of threshold values
             \PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{n}{tp\PYGZus{}title}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{n}{match\PYGZus{}img}\PYG{p}{)}
     \PYG{n}{out\PYGZus{}vals} \PYG{o}{+}\PYG{o}{=} \PYG{p}{[}
         \PYG{n}{OrderedDict}\PYG{p}{(}
-            \PYG{n}{Threshold}\PYG{o}{=}\PYG{n}{thresh\PYGZus{}val}\PYG{p}{,}
-            \PYG{n}{Recall}\PYG{o}{=}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{/}
-            \PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{+}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Negative}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
-            \PYG{n}{Precision}\PYG{o}{=}\PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{/}
-                       \PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{+}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
-            \PYG{n}{False\PYGZus{}Positive\PYGZus{}Rate}\PYG{o}{=}\PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{/}
-                       \PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{+}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Negative}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
+            \PYG{n}{Threshold} \PYG{o}{=} \PYG{n}{thresh\PYGZus{}val}\PYG{p}{,}
+            \PYG{n}{Recall}    \PYG{o}{=} \PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{/} \PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{+}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Negative}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
+            \PYG{n}{Precision} \PYG{o}{=} \PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{/} \PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{+}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
+            \PYG{n}{False\PYGZus{}Positive\PYGZus{}Rate} \PYG{o}{=} \PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{/} \PYG{p}{(}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{+}\PYG{n}{out\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Negative}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
             \PYG{o}{*}\PYG{o}{*}\PYG{n}{out\PYGZus{}results}
         \PYG{p}{)}\PYG{p}{]}
 
@@ -1623,22 +1678,30 @@ If we want to make an ROC curve we take a number of threshold values
 1   0.116327  0.823512   0.180903             0.344148         118050   
 2   0.132653  0.823512   0.180903             0.344148         118050   
 
-   False Positive  False Negative  True Positive  (True Negative, green)  \PYGZbs{}
-0           61945            2932          13681                       0   
-1           61945            2932          13681                       0   
-2           61945            2932          13681                       0   
+   False Positive  False Negative  True Positive  (True Negative, \PYGZsh{}009933)  \PYGZbs{}
+0           61945            2932          13681                         0   
+1           61945            2932          13681                         0   
+2           61945            2932          13681                         0   
 
-   (False Positive, red)  (False Negative, red)  (True Positive, green)  
-0                 179995                      0                   16613  
-1                 179995                      0                   16613  
-2                 179995                      0                   16613  
+   (False Positive, \PYGZsh{}cc0000)  (False Negative, \PYGZsh{}cc0000)  \PYGZbs{}
+0                     179995                          0   
+1                     179995                          0   
+2                     179995                          0   
+
+   (True Positive, \PYGZsh{}009933)  
+0                     16613  
+1                     16613  
+2                     16613  
 \end{sphinxVerbatim}
 
+\sphinxAtStartPar
+Let’s plot the table…
 
-\subsubsection{Making ROC Curves Easier}
+
+\paragraph{Making ROC Curves Easier}
 \label{\detokenize{04-BasicSegmentation_Part2:making-roc-curves-easier}}
 \sphinxAtStartPar
-ROC curves are a very common tool for analyzing the performance of binary classification systems and there are a large number of tools which can automatically make them. Here we show how it is done with scikit\sphinxhyphen{}image.
+Here we show how it is done with scikit\sphinxhyphen{}image.
 
 \sphinxAtStartPar
 Another way of showing the ROC curve (more common for machine learning rather than medical diagnosis) is using the True positive rate and False positive rate
@@ -1657,28 +1720,25 @@ Another way of showing the ROC curve (more common for machine learning rather th
 These show very similar information with the major difference being the goal is to be in the upper left\sphinxhyphen{}hand corner. Additionally random guesses can be shown as the slope 1 line. Therefore for a system to be useful it must lie above the random line.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{roc\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False\PYGZus{}Positive\PYGZus{}Rate}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{roc\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Recall}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}  \PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{b.\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ROC Curve}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r+}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ideal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlim}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r+}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ideal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlim}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}\PYG{p}{;}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive Rate / Recall}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive Rate}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}matplotlib.legend.Legend at 0x1c181c51d0\PYGZgt{}
+\PYGZlt{}matplotlib.legend.Legend at 0x7fea01236d90\PYGZgt{}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_16_1}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_33_1}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{metrics} \PYG{k+kn}{import} \PYG{n}{roc\PYGZus{}curve}
 \PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{n}{thresholds} \PYG{o}{=} \PYG{n}{roc\PYGZus{}curve}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}\PYG{p}{,}
                                  \PYG{n}{cell\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{b.\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mf}{0.01}\PYG{p}{,}  \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ROC Curve}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r+}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ideal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{g\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Random Guessing}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -1689,27 +1749,39 @@ These show very similar information with the major difference being the goal is 
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_17_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_34_0}.png}
+
+
+\paragraph{Explore the impact of different filters on the ROC}
+\label{\detokenize{04-BasicSegmentation_Part2:explore-the-impact-of-different-filters-on-the-roc}}
+\sphinxAtStartPar
+We have already seen what the ROC curve looks like for the original data. Some weeks ago we learnt about a lot of filters and now it is time to see how these can be used in an attempt to improve the ROC. In this example we will compare the unfiltered image to:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Gaussian filter (\(\sigma=2\))
+
+\item {} 
+\sphinxAtStartPar
+Difference of Gaussian \(x-G_{sigma=3}*x\)
+
+\item {} 
+\sphinxAtStartPar
+Median size 3x3
+And see what performance improvements we can achieve
+
+\end{itemize}
+
+\sphinxAtStartPar
+Let’s produce some filtered images:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{filters} \PYG{k+kn}{import} \PYG{n}{gaussian}\PYG{p}{,} \PYG{n}{median}
 
-
-\PYG{k}{def} \PYG{n+nf}{no\PYGZus{}filter}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}
-    \PYG{k}{return} \PYG{n}{x}
-
-
-\PYG{k}{def} \PYG{n+nf}{gaussian\PYGZus{}filter}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}
-    \PYG{k}{return} \PYG{n}{gaussian}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{sigma}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
-
-
-\PYG{k}{def} \PYG{n+nf}{diff\PYGZus{}of\PYGZus{}gaussian\PYGZus{}filter}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}
-    \PYG{k}{return}   \PYG{o}{\PYGZhy{}}\PYG{n}{gaussian}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{sigma}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}
-
-
-\PYG{k}{def} \PYG{n+nf}{median\PYGZus{}filter}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}
-    \PYG{k}{return} \PYG{n}{median}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
-
+\PYG{k}{def} \PYG{n+nf}{no\PYGZus{}filter}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}               \PYG{k}{return}  \PYG{n}{x}
+\PYG{k}{def} \PYG{n+nf}{gaussian\PYGZus{}filter}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}         \PYG{k}{return}  \PYG{n}{gaussian}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{sigma}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{k}{def} \PYG{n+nf}{diff\PYGZus{}of\PYGZus{}gaussian\PYGZus{}filter}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:} \PYG{k}{return}  \PYG{n}{x}\PYG{o}{\PYGZhy{}}\PYG{n}{gaussian}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{sigma}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}
+\PYG{k}{def} \PYG{n+nf}{median\PYGZus{}filter}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}           \PYG{k}{return}  \PYG{n}{median}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
 
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{)}
 \PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -1718,64 +1790,68 @@ These show very similar information with the major difference being the goal is 
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{c\PYGZus{}filt}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_18_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_38_0}.png}
 
+
+\subparagraph{ROC curves fo filtered images}
+\label{\detokenize{04-BasicSegmentation_Part2:roc-curves-fo-filtered-images}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
-\PYG{k}{for} \PYG{n}{c\PYGZus{}filt} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n}{no\PYGZus{}filter}\PYG{p}{,} \PYG{n}{gaussian\PYGZus{}filter}\PYG{p}{,} \PYG{n}{diff\PYGZus{}of\PYGZus{}gaussian\PYGZus{}filter}\PYG{p}{,} \PYG{n}{median\PYGZus{}filter}\PYG{p}{]}\PYG{p}{:}
-    \PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{n}{thresholds} \PYG{o}{=} \PYG{n}{roc\PYGZus{}curve}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}\PYG{p}{,}
-                                     \PYG{n}{c\PYGZus{}filt}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{p}{)}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
-    \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mf}{0.01}\PYG{p}{,}
-             \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ROC Curve (}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{c\PYGZus{}filt}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{)}\PYG{p}{)}
 
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r+}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ideal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r+}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ideal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{k\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Random Guessing}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive Rate}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive Rate}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{lower right}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{colors} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cornflowerblue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gold}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{mediumseagreen}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tomato}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+\PYG{k}{for} \PYG{n}{color}\PYG{p}{,}\PYG{n}{c\PYGZus{}filt} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{colors}\PYG{p}{,}\PYG{p}{[}\PYG{n}{no\PYGZus{}filter}\PYG{p}{,} \PYG{n}{gaussian\PYGZus{}filter}\PYG{p}{,} \PYG{n}{diff\PYGZus{}of\PYGZus{}gaussian\PYGZus{}filter}\PYG{p}{,} \PYG{n}{median\PYGZus{}filter}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{n}{thresholds} \PYG{o}{=} \PYG{n}{roc\PYGZus{}curve}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}\PYG{p}{,} \PYG{n}{c\PYGZus{}filt}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{p}{)}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mf}{0.01}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ROC Curve (}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{c\PYGZus{}filt}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{)}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{n}{color}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Decorations}
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.5}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive Rate}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive Rate}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{center right}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_19_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_40_0}.png}
 
+
+\paragraph{Area Under the Curve (AUC)}
+\label{\detokenize{04-BasicSegmentation_Part2:area-under-the-curve-auc}}
 \sphinxAtStartPar
 We can then use this ROC curve to compare different filters (or even entire workflows), if the area is higher the approach is better.
 
 \sphinxAtStartPar
-Different approaches can be compared by area under the curve
+Different approaches can be compared by \sphinxstyleemphasis{Area Under the Curve} (AUC) which is a scalar.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{metrics} \PYG{k+kn}{import} \PYG{n}{roc\PYGZus{}auc\PYGZus{}score}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
+\PYG{n}{colors} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cornflowerblue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gold}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{mediumseagreen}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tomato}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
 \PYG{n}{scores} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
-\PYG{n}{names} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{no\PYGZus{}filter}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gaussian\PYGZus{}filter}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{diff\PYGZus{}of\PYGZus{}gaussian\PYGZus{}filter}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{median\PYGZus{}filter}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
-\PYG{k}{for} \PYG{n}{c\PYGZus{}filt} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n}{no\PYGZus{}filter}\PYG{p}{,} \PYG{n}{gaussian\PYGZus{}filter}\PYG{p}{,} \PYG{n}{diff\PYGZus{}of\PYGZus{}gaussian\PYGZus{}filter}\PYG{p}{,} \PYG{n}{median\PYGZus{}filter}\PYG{p}{]}\PYG{p}{:}
-    \PYG{n}{scores}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{roc\PYGZus{}auc\PYGZus{}score}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}\PYG{p}{,}  \PYG{n}{c\PYGZus{}filt}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{p}{)}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
-\PYG{c+c1}{\PYGZsh{}    print(\PYGZsq{}\PYGZpc{}s \PYGZhy{} \PYGZpc{}2.2f\PYGZsq{} \PYGZpc{} (c\PYGZus{}filt.\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}, roc\PYGZus{}auc\PYGZus{}score(cell\PYGZus{}seg.ravel().astype(int),}
-\PYG{c+c1}{\PYGZsh{}                                                         c\PYGZus{}filt(cell\PYGZus{}img).ravel())))}
-    
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{bar}\PYG{p}{(}\PYG{n}{names}\PYG{p}{,}\PYG{n}{scores}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Filter type}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Score}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{for} \PYG{n}{color}\PYG{p}{,} \PYG{n}{c\PYGZus{}filt} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{colors}\PYG{p}{,}\PYG{p}{[}\PYG{n}{no\PYGZus{}filter}\PYG{p}{,} \PYG{n}{gaussian\PYGZus{}filter}\PYG{p}{,} \PYG{n}{diff\PYGZus{}of\PYGZus{}gaussian\PYGZus{}filter}\PYG{p}{,} \PYG{n}{median\PYGZus{}filter}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{fimg} \PYG{o}{=} \PYG{n}{c\PYGZus{}filt}\PYG{p}{(}\PYG{n}{cell\PYGZus{}img}\PYG{p}{)}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}
+    \PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{n}{thresholds} \PYG{o}{=} \PYG{n}{roc\PYGZus{}curve}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}\PYG{p}{,} \PYG{n}{fimg}\PYG{p}{)}
+    \PYG{n}{scores}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{roc\PYGZus{}auc\PYGZus{}score}\PYG{p}{(}\PYG{n}{cell\PYGZus{}seg}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}\PYG{p}{,}  \PYG{n}{fimg}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mf}{0.01}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{n}{color}\PYG{p}{,}\PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{c\PYGZus{}filt}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{fill\PYGZus{}between}\PYG{p}{(}\PYG{n}{fpr}\PYG{p}{,} \PYG{n}{tpr}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.2}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{n}{color}\PYG{p}{)}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{False Positive Rate}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True Positive Rate}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ROC curves}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{lower right}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{names} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{No filter}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Gaussian}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Diff of Gaussian}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Median}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{bar}\PYG{p}{(}\PYG{n}{names}\PYG{p}{,}\PYG{n}{scores}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{n}{colors}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Filter type}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Score}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Area und curve (AUC)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_21_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_42_0}.png}
 
-
-\subsubsection{Evaluating Models}
-\label{\detokenize{04-BasicSegmentation_Part2:evaluating-models}}\begin{itemize}
-\item {} 
 \sphinxAtStartPar
-\sphinxurl{https://github.com/jvns/talks/blob/master/pydatanyc2014/slides.md}
-
-\item {} 
-\sphinxAtStartPar
-\sphinxurl{http://mathbabe.org/2012/03/06/the-value-added-teacher-model-sucks/}
-
-\end{itemize}
+Armed with these tools we are ready to analyze the performance of the segmentation methods we develop to solve our image analysis tasks.
 
 
-\subsubsection{Multiple Phases: Segmenting Shale}
-\label{\detokenize{04-BasicSegmentation_Part2:multiple-phases-segmenting-shale}}\begin{itemize}
+\subsubsection{Segmenting multiple phases}
+\label{\detokenize{04-BasicSegmentation_Part2:segmenting-multiple-phases}}
+
+\paragraph{Multiple Phases example: Segmenting Shale}
+\label{\detokenize{04-BasicSegmentation_Part2:multiple-phases-example-segmenting-shale}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Shale provided from Kanitpanyacharoen, W. (2012). Synchrotron X\sphinxhyphen{}ray Applications Toward an Understanding of Elastic Anisotropy.
@@ -1796,12 +1872,21 @@ The model is that because the chemical composition and density of each phase is 
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{color} \PYG{k+kn}{import} \PYG{n}{rgb2gray}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{shale\PYGZus{}img} \PYG{o}{=} \PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures/ShaleSample.jpg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mf}{255.0}
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{shale\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_24_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_47_0}.png}
+
+
+\subparagraph{Finding three categories}
+\label{\detokenize{04-BasicSegmentation_Part2:finding-three-categories}}
+\sphinxAtStartPar
+Let’s take a look at the histogram as always when we face a segmentation task…
 
 \sphinxAtStartPar
 Ideally we would derive 3 values for the thresholds based on a model for the composition of each phase and how much it absorbs, but that is not always possible or practical.
@@ -1813,10 +1898,12 @@ While there are 3 phases clearly visible in the image, the histogram is less tel
 \end{itemize}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{shale\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{=}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{shale\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Shale image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{shale\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Histogram of the shale image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_26_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_50_0}.png}
 
 
 \subsubsection{Multiple Segmentations}
@@ -1834,36 +1921,53 @@ The relation can explicitly be written out as
 \end{cases}\)\$
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{=}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{300}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{shale\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Histogram of the shale image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{thresholds} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mf}{0.3}\PYG{p}{,} \PYG{l+m+mf}{0.5}\PYG{p}{]}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{vlines}\PYG{p}{(}\PYG{n}{thresholds}\PYG{p}{,}\PYG{n}{ymin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{ymax}\PYG{o}{=}\PYG{l+m+mi}{600}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{fs}\PYG{o}{=}\PYG{l+m+mi}{18}\PYG{p}{;} \PYG{n}{ypos}\PYG{o}{=}\PYG{l+m+mi}{600}\PYG{p}{;} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{0.18}\PYG{p}{,}\PYG{n}{ypos}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Void}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{n}{fs}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{0.38}\PYG{p}{,}\PYG{n}{ypos}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Clay}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{n}{fs}\PYG{p}{)}\PYG{p}{,}\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{0.7}\PYG{p}{,}\PYG{n}{ypos}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Rock}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{n}{fs}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_52_0}.png}
+
+
+\paragraph{Segmentation result}
+\label{\detokenize{04-BasicSegmentation_Part2:segmentation-result}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{shale\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Shale Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Shale Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{used\PYGZus{}vox} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros\PYGZus{}like}\PYG{p}{(}\PYG{n}{shale\PYGZus{}img}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{uint8}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{c\PYGZus{}max}\PYG{p}{,} \PYG{n}{c\PYGZus{}title} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.3}\PYG{p}{,} \PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Void}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Clay}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Rock}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{c\PYGZus{}slice} \PYG{o}{=} \PYG{p}{(}\PYG{n}{shale\PYGZus{}img} \PYG{o}{\PYGZlt{}} \PYG{n}{c\PYGZus{}max}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{used\PYGZus{}vox}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}slice}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}slice}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{used\PYGZus{}vox} \PYG{o}{+}\PYG{o}{=} \PYG{n}{c\PYGZus{}slice}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZdl{}x\PYGZlt{}}\PYG{l+s+si}{\PYGZpc{}2.2f}\PYG{l+s+s1}{\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{n}{c\PYGZus{}title}\PYG{p}{,} \PYG{n}{c\PYGZus{}max}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{ (x\PYGZlt{}}\PYG{l+s+si}{\PYGZob{}1:0.1f\PYGZcb{}}\PYG{l+s+s1}{)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{c\PYGZus{}title}\PYG{p}{,} \PYG{n}{c\PYGZus{}max}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_28_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_54_0}.png}
+
+\sphinxAtStartPar
+Segmenting multiple phases is a non\sphinxhyphen{}trivial problem. In particular, when the edges in the image as smooth and at low SNR. We will look into these problems next week.
 
 
-\subsubsection{Implementation}
-\label{\detokenize{04-BasicSegmentation_Part2:implementation}}
+\subsubsection{Implementation of thresholding}
+\label{\detokenize{04-BasicSegmentation_Part2:implementation-of-thresholding}}
 \sphinxAtStartPar
 The implementations of basic thresholds and segmentations is very easy since it is a unary operation of a single image
 \$\( f(I(\vec{x})) \)\$
 In mathematical terms this is called a map and since it does not require information from neighboring voxels or images it can be calculated for each point independently (\sphinxstyleemphasis{parallel}). Filters on the other hand almost always depend on neighboring voxels and thus the calculations are not as easy to seperate.
 
 
-\subsubsection{Implementation Code}
-\label{\detokenize{04-BasicSegmentation_Part2:implementation-code}}
+\paragraph{Implementation using script languages}
+\label{\detokenize{04-BasicSegmentation_Part2:implementation-using-script-languages}}
 
-\paragraph{Matlab / Python (numpy)}
-\label{\detokenize{04-BasicSegmentation_Part2:matlab-python-numpy}}
+\subparagraph{Python (numpy) and Matlab}
+\label{\detokenize{04-BasicSegmentation_Part2:python-numpy-and-matlab}}
 \sphinxAtStartPar
-The simplist is a single threshold in Matlab:
+The simplest is a single threshold in numpy and Matlab:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{thresh\PYGZus{}img}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{gray\PYGZus{}img}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{thresh}
@@ -1877,19 +1981,23 @@ A more complicated threshold:
 \end{sphinxVerbatim}
 
 
-\paragraph{Python}
+\subparagraph{Python}
 \label{\detokenize{04-BasicSegmentation_Part2:python}}
+\sphinxAtStartPar
+The task is slightly more complicated when you use standard python. Here, you have to define a mapping function with a lambda to perform the thresholding.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{thresh\PYGZus{}img} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{gray\PYGZus{}val}\PYG{p}{:} \PYG{n}{gray\PYGZus{}val}\PYG{o}{\PYGZgt{}}\PYG{n}{thresh}\PYG{p}{,}
-                \PYG{n}{gray\PYGZus{}img}\PYG{p}{)}
+\PYG{n}{thresh\PYGZus{}img} \PYG{o}{=} \PYG{n+nb}{map}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{gray\PYGZus{}val}\PYG{p}{:} \PYG{n}{gray\PYGZus{}val}\PYG{o}{\PYGZgt{}}\PYG{n}{thresh}\PYG{p}{,} \PYG{n}{gray\PYGZus{}img}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 
-\bigskip\hrule\bigskip
+\paragraph{Implementation using traditional programming languages}
+\label{\detokenize{04-BasicSegmentation_Part2:implementation-using-traditional-programming-languages}}
+\sphinxAtStartPar
+In traditional programming languages you have to write some moer code as there are no predefined functions that operate directly on arrays. This means, you’ll have to implement the loops yourself.
 
 
-
-\paragraph{Java}
+\subparagraph{Java}
 \label{\detokenize{04-BasicSegmentation_Part2:java}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kt}{boolean}\PYG{o}{[}\PYG{o}{]} \PYG{n}{thresh\PYGZus{}img} \PYG{o}{=} \PYG{k}{new} \PYG{k+kt}{boolean}\PYG{o}{[}\PYG{n}{x\PYGZus{}size}\PYG{o}{*}\PYG{n}{y\PYGZus{}size}\PYG{o}{*}\PYG{n}{z\PYGZus{}size}\PYG{o}{]}\PYG{p}{;}
@@ -1902,8 +2010,8 @@ A more complicated threshold:
 \end{sphinxVerbatim}
 
 
-\paragraph{In C/C++}
-\label{\detokenize{04-BasicSegmentation_Part2:in-c-c}}
+\subparagraph{C/C++}
+\label{\detokenize{04-BasicSegmentation_Part2:c-c}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kt}{bool}\PYG{o}{*} \PYG{n}{thresh\PYGZus{}img} \PYG{o}{=} \PYG{n}{malloc}\PYG{p}{(}\PYG{n}{x\PYGZus{}size}\PYG{o}{*}\PYG{n}{y\PYGZus{}size}\PYG{o}{*}\PYG{n}{z\PYGZus{}size} \PYG{o}{*} \PYG{k}{sizeof} \PYG{p}{(}\PYG{k+kt}{bool}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 
@@ -1953,14 +2061,10 @@ Therefore these imaging problems can be alleviated by adjusting the balance betw
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cross\PYGZus{}im}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cross\PYGZus{}im} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.8}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Simple Thresholding}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Simple Thresholding}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-Text(0.5, 1.0, \PYGZsq{}Simple Thresholding\PYGZsq{})
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_32_1}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_60_0}.png}
 
 
 \paragraph{Fundamentals: Neighborhood}
@@ -2061,14 +2165,14 @@ For standard image operations there are two definitions of neighborhood. The 4 a
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{suptitle}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Different neighborhood shapes and sizes}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_37_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_65_0}.png}
 
 
-\subsubsection{Erosion and Dilation}
+\paragraph{Erosion and Dilation}
 \label{\detokenize{04-BasicSegmentation_Part2:erosion-and-dilation}}
+\sphinxAtStartPar
+\sphinxstylestrong{Erosion}
 
-\paragraph{Erosion}
-\label{\detokenize{04-BasicSegmentation_Part2:erosion}}
 \sphinxAtStartPar
 If any of the voxels in the neighborhood are 0/false than the voxel will be set to 0
 \begin{itemize}
@@ -2078,13 +2182,9 @@ Has the effect of peeling the surface layer off of an object
 
 \end{itemize}
 
+\sphinxAtStartPar
+\sphinxstylestrong{Dilation}
 
-\bigskip\hrule\bigskip
-
-
-
-\paragraph{Dilation}
-\label{\detokenize{04-BasicSegmentation_Part2:dilation}}
 \sphinxAtStartPar
 If any of the voxels in the neigbhorhood are 1/true then the voxel will be set to 1
 \begin{itemize}
@@ -2095,26 +2195,37 @@ Has the effect of adding a layer onto an object (dunking an strawberry in chocol
 \end{itemize}
 
 
-\subsubsection{Applied Erosion and Dilation}
+\subparagraph{Applied Erosion and Dilation}
 \label{\detokenize{04-BasicSegmentation_Part2:applied-erosion-and-dilation}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{k+kn}{import} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k}{as} \PYG{n+nn}{morph}
 
-\PYG{n}{img}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{data/morphimage.npy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{oimg}\PYG{o}{=}\PYG{n}{morph}\PYG{o}{.}\PYG{n}{opening}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{cimg}\PYG{o}{=}\PYG{n}{morph}\PYG{o}{.}\PYG{n}{closing}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mf}{255.0}
 \PYG{n}{cmap} \PYG{o}{=} \PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{230}\PYG{o}{/}\PYG{n}{s}\PYG{p}{,}\PYG{l+m+mi}{230}\PYG{o}{/}\PYG{n}{s}\PYG{p}{,}\PYG{l+m+mi}{230}\PYG{o}{/}\PYG{n}{s}\PYG{p}{]}\PYG{p}{,}
         \PYG{p}{[}\PYG{l+m+mi}{255}\PYG{o}{/}\PYG{n}{s}\PYG{p}{,}\PYG{l+m+mi}{176}\PYG{o}{/}\PYG{n}{s}\PYG{p}{,}\PYG{l+m+mi}{159}\PYG{o}{/}\PYG{n}{s}\PYG{p}{]}\PYG{p}{,}
         \PYG{p}{[}\PYG{l+m+mf}{0.0}\PYG{o}{/}\PYG{n}{s}\PYG{p}{,}\PYG{l+m+mf}{0.0}\PYG{o}{/}\PYG{n}{s}\PYG{p}{,}\PYG{l+m+mf}{0.0}\PYG{o}{/}\PYG{n}{s}\PYG{p}{]}\PYG{p}{]}
 \end{sphinxVerbatim}
 
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{img}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{data/morphimage.npy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 
-\paragraph{Dilation}
-\label{\detokenize{04-BasicSegmentation_Part2:id1}}
+\PYG{n}{dimg}\PYG{o}{=}\PYG{n}{morph}\PYG{o}{.}\PYG{n}{dilation}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{eimg}\PYG{o}{=}\PYG{n}{morph}\PYG{o}{.}\PYG{n}{erosion}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,} \PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{eimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Erosion}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}  \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}  \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{dimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Dilation}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_69_0}.png}
+
+
+\subparagraph{Dilation}
+\label{\detokenize{04-BasicSegmentation_Part2:dilation}}
 \sphinxAtStartPar
 We can use dilation to expand objects, for example a too\sphinxhyphen{}low threshold value leading to disconnected components
 
@@ -2133,13 +2244,13 @@ We can use dilation to expand objects, for example a too\sphinxhyphen{}low thres
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{tight\PYGZus{}layout}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_42_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_71_0}.png}
 
 
-\paragraph{Erosion}
-\label{\detokenize{04-BasicSegmentation_Part2:id2}}
+\subparagraph{Erosion}
+\label{\detokenize{04-BasicSegmentation_Part2:erosion}}
 \sphinxAtStartPar
-Erosion performs the opposite task reducing the size
+Erosion performs the opposite task to the dilation by reducing the size of the objects in the image
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{eimg}\PYG{o}{=}\PYG{n}{morph}\PYG{o}{.}\PYG{n}{erosion}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}
@@ -2155,16 +2266,91 @@ Erosion performs the opposite task reducing the size
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{tight\PYGZus{}layout}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_44_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_73_0}.png}
 
 
-\subsubsection{Opening and Closing}
+\paragraph{Opening and Closing}
 \label{\detokenize{04-BasicSegmentation_Part2:opening-and-closing}}
+\sphinxAtStartPar
+Erosion and dilation removes and adds a layer of pixels to the objects in the image.
 
-\paragraph{Opening}
-\label{\detokenize{04-BasicSegmentation_Part2:opening}}
+\sphinxAtStartPar
+This is not desired, combining them gives two new operations:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Opening \(\delta(\epsilon(f))\)
+
+\item {} 
+\sphinxAtStartPar
+Closing \(\epsilon(\delta(f))\)
+
+\end{itemize}
+
+\sphinxAtStartPar
+These operation rebuilds most of the objects after removing unwanted features.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{oimg} \PYG{o}{=} \PYG{n}{morph}\PYG{o}{.}\PYG{n}{opening}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{cimg} \PYG{o}{=} \PYG{n}{morph}\PYG{o}{.}\PYG{n}{closing}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Closing}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{oimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Opening}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_75_0}.png}
+
+
+\subparagraph{Morphological Closing}
+\label{\detokenize{04-BasicSegmentation_Part2:morphological-closing}}
+\sphinxAtStartPar
+A dilation followed by an erosion operation
+\begin{equation*}
+\begin{split}\epsilon(\delta(f))\end{split}
+\end{equation*}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Adds a layer and then peels a layer off
+
+\item {} 
+\sphinxAtStartPar
+Objects that are very close are connected when the layer is added and they stay connected when the layer is removed thus the image is \_\_close\_\_d
+
+\item {} 
+\sphinxAtStartPar
+A cube larger than one voxel will have the exact same volume after (conservative)
+
+\end{itemize}
+
+\sphinxAtStartPar
+Closing is an operation you apply to remove false negatives in your image. The effect is that small holes in the objects are filled and gaps between large objects are connected.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original \PYGZdl{}f\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{o}{+}\PYG{n}{dimg}\PYG{o}{+}\PYG{n}{cimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Operation \PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{epsilon(}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{delta(f))\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xticks}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}  \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xticklabels}\PYG{p}{(}\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} 
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}yticks}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.55}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}yticklabels}\PYG{p}{(}\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} 
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linestyle}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linewidth}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{k+kc}{True}\PYG{p}{)}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Closed result}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{tight\PYGZus{}layout}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_78_0}.png}
+
+
+\subparagraph{Morphological opening}
+\label{\detokenize{04-BasicSegmentation_Part2:morphological-opening}}
 \sphinxAtStartPar
 An erosion followed by a dilation operation
+\$\(\delta(\epsilon(f))\)\$
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -2180,76 +2366,27 @@ A cube larger than several voxels will have the exact same volume after (conserv
 
 \end{itemize}
 
-
-\bigskip\hrule\bigskip
-
-
-
-\paragraph{Closing}
-\label{\detokenize{04-BasicSegmentation_Part2:closing}}
 \sphinxAtStartPar
-A dilation followed by an erosion operation
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Adds a layer and then peels a layer off
+Opening is an operation you apply to remove false positives in your image. The effect is that small objects are erased and connections between large objects are removed.
 
-\item {} 
-\sphinxAtStartPar
-Objects that are very close are connected when the layer is added and they stay connected when the layer is removed thus the image is \_\_close\_\_d
-
-\item {} 
-\sphinxAtStartPar
-A cube larger than one voxel will have the exact same volume after (conservative)
-
-\end{itemize}
-
-
-\paragraph{Morphological Closing}
-\label{\detokenize{04-BasicSegmentation_Part2:morphological-closing}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original \PYGZdl{}f\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{o}{+}\PYG{n}{dimg}\PYG{o}{+}\PYG{n}{cimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Operation \PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{epsilon(}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{delta(f))\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xticks}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{n}{labels}\PYG{o}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{yticks}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.55}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{n}{labels}\PYG{o}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linestyle}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linewidth}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{k+kc}{True}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Closed result}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,}\PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original \PYGZdl{}f\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{o}{+}\PYG{n}{eimg}\PYG{o}{+}\PYG{n}{oimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Operation \PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{delta(}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{epsilon(f))\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xticks}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xticklabels}\PYG{p}{(}\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}yticks}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.55}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}yticklabels}\PYG{p}{(}\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linestyle}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linewidth}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{k+kc}{True}\PYG{p}{)}
+
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{oimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Opened result}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{tight\PYGZus{}layout}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_47_0}.png}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Original \PYGZdl{}f\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{img}\PYG{o}{+}\PYG{n}{eimg}\PYG{o}{+}\PYG{n}{oimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xticks}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{n}{labels}\PYG{o}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{yticks}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.55}\PYG{p}{,}\PYG{n}{img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{n}{labels}\PYG{o}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linestyle}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linewidth}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{k+kc}{True}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Operation \PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{delta(}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{epsilon(f))\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{oimg}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Opened result}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{tight\PYGZus{}layout}\PYG{p}{(}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_48_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_81_0}.png}
 
 
 \subsubsection{Pitfalls with Segmentation}
@@ -2276,16 +2413,13 @@ Removing the first layer alleviates issue
 \end{itemize}
 
 
-\paragraph{When is a sphere really a sphere?}
-\label{\detokenize{04-BasicSegmentation_Part2:when-is-a-sphere-really-a-sphere}}
-\begin{figure}[htbp]
-\centering
-\capstart
+\paragraph{Thresholding structures}
+\label{\detokenize{04-BasicSegmentation_Part2:thresholding-structures}}
+\sphinxAtStartPar
+What happens when we threshold objects of different sizes?
 
-\noindent\sphinxincludegraphics[scale=1.0]{{sphere_comparison}.pdf}
-\caption{Discrete spheres with increasing radius.}\label{\detokenize{04-BasicSegmentation_Part2:id3}}\end{figure}
-
-
+\sphinxAtStartPar
+In this example we create a series of spheres on different grid sizes form 10 up to 500 pixels.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{ndimage} \PYG{k+kn}{import} \PYG{n}{zoom}
@@ -2293,44 +2427,105 @@ Removing the first layer alleviates issue
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
-\PYG{n}{step\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{l+m+mi}{500}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{step\PYGZus{}list}  \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{l+m+mi}{500}\PYG{p}{]}
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{step\PYGZus{}list}\PYG{p}{)}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{steps} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{p}{,} \PYG{n}{step\PYGZus{}list}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{x\PYGZus{}lin} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{steps}\PYG{p}{)}
-    \PYG{n}{xy\PYGZus{}area} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{diff}\PYG{p}{(}\PYG{n}{x\PYGZus{}lin}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
-    \PYG{n}{xx}\PYG{p}{,} \PYG{n}{yy} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{x\PYGZus{}lin}\PYG{p}{,} \PYG{n}{x\PYGZus{}lin}\PYG{p}{)}
+    \PYG{n}{x\PYGZus{}lin}    \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{steps}\PYG{p}{)}
+    \PYG{n}{xy\PYGZus{}area}  \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{diff}\PYG{p}{(}\PYG{n}{x\PYGZus{}lin}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
+    \PYG{n}{xx}\PYG{p}{,} \PYG{n}{yy}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{x\PYGZus{}lin}\PYG{p}{,} \PYG{n}{x\PYGZus{}lin}\PYG{p}{)}
     \PYG{n}{test\PYGZus{}img} \PYG{o}{=} \PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{n}{xx}\PYG{p}{)}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{n}{yy}\PYG{o}{+}\PYG{l+m+mf}{0.25}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{l+m+mf}{0.75}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{test\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{test\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{px}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Volume Fraction: }\PYG{l+s+si}{\PYGZpc{}2.2f}\PYG{l+s+si}{\PYGZpc{}\PYGZpc{}}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}}
                    \PYG{p}{(}\PYG{n}{steps}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{n}{test\PYGZus{}img}\PYG{p}{)}\PYG{o}{/}\PYG{n}{np}\PYG{o}{.}\PYG{n}{prod}\PYG{p}{(}\PYG{n}{test\PYGZus{}img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_52_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_86_0}.png}
+
+\sphinxAtStartPar
+Here you can see that the small objects are very pixeled and almost doesn’t resemble a disk. When object size increases we see that the object looks more and more like a round disk. We also see that the volume fraction increases towards the value the resembles the volume of a true disc.
 
 
-\subsubsection{Rescaling}
+\paragraph{When is a sphere really a sphere?}
+\label{\detokenize{04-BasicSegmentation_Part2:when-is-a-sphere-really-a-sphere}}
+\sphinxAtStartPar
+We just saw that a 2D disc can be very pixelated for small radii. The same applies in 3D. In this example, you can see what a sphere looks like. The first two examples doesn’t really look like a sphere, while the last one starts to look like a sphere. The plot in the last panel shows the volume error for different discrete spheres. At a raduis of about 10 pixels the error is below one percent.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{sphere_comparison}.pdf}
+\caption{Discrete spheres with increasing radius.}\label{\detokenize{04-BasicSegmentation_Part2:id1}}\end{figure}
+
+
+
+\sphinxAtStartPar
+What we are learning from this study is that there is a difference between detecting a basic feature and really representing it true shape. Detection should in principle be posible withing a few pixels if the SNR is sufficiently high.
+
+
+\paragraph{Rescaling}
 \label{\detokenize{04-BasicSegmentation_Part2:rescaling}}
 \sphinxAtStartPar
-We see the same effect when we rescale images from 500x500 down to 15x15 that the apparent volume fraction changes
+Sometimes, we want to downscale the image when it is too large. This is mostly done due to problems of fitting the images into memory or to speed up the processing. Rescaling should generally be done on gray scale images to avoid visible partial volume effects, which means that pixels done have only two values anymore at the edges.
+
+\sphinxAtStartPar
+In this example we rescale images from 500x500 down to 15x15 that the apparent volume fraction changes at the edges in some positions.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{zoom\PYGZus{}level} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mf}{0.067}\PYG{p}{,} \PYG{l+m+mf}{0.039}\PYG{p}{,} \PYG{l+m+mf}{0.029}\PYG{p}{,} \PYG{l+m+mf}{0.02}\PYG{p}{]}
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{zoom\PYGZus{}level}\PYG{p}{)}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{)}
 \PYG{k}{for} \PYG{p}{(}\PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)}\PYG{p}{,} \PYG{n}{c\PYGZus{}zoom} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{T}\PYG{p}{,} \PYG{n}{zoom\PYGZus{}level}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{c\PYGZus{}img} \PYG{o}{=} \PYG{n}{zoom}\PYG{p}{(}\PYG{l+m+mf}{255.0}\PYG{o}{*}\PYG{n}{test\PYGZus{}img}\PYG{p}{,} \PYG{n}{c\PYGZus{}zoom}\PYG{p}{,} \PYG{n}{order}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{px \PYGZhy{} Volume: }\PYG{l+s+si}{\PYGZpc{}2.2f}\PYG{l+s+si}{\PYGZpc{}\PYGZpc{}}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}}
                    \PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{n}{c\PYGZus{}img} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{o}{/}\PYG{n}{np}\PYG{o}{.}\PYG{n}{prod}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{[}\PYG{n}{c\PYGZus{}img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{r+\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{[}\PYG{n}{c\PYGZus{}img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{o\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cornflowerblue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_54_0}.png}
+\noindent\sphinxincludegraphics{{04-BasicSegmentation_Part2_94_0}.png}
+
+\sphinxAtStartPar
+The intermediate values are in particular visible in the profiles from down sizing from 500 pixel to 20 and 34 pixels.
 
 
 \subsubsection{Summary}
 \label{\detokenize{04-BasicSegmentation_Part2:summary}}
+\sphinxAtStartPar
+In todays lecture we have looked into
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+The image formation process and how it relates to the segmentation problem.
+
+\item {} 
+\sphinxAtStartPar
+How the histogram can be used to decide how to segment an image.
+
+\item {} 
+\sphinxAtStartPar
+Evaluation of segmentation performance.
+
+\item {} 
+\sphinxAtStartPar
+The basic operations of morphological image processing
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Using morphological operations to clean up segmented images
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+Pitfall with segmentation \sphinxhyphen{} partial volume effects.
+
+\end{itemize}
+
 
 
 

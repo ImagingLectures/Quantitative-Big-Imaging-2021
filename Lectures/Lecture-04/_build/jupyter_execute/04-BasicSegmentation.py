@@ -42,7 +42,7 @@ can be a very challenging task. Such tasks will be covered in later lectures.
 scale: 50%
 ---
 An x-ray CT slice of the cortex.
-``
+```
 
 <table>
     <tr>
@@ -105,30 +105,36 @@ Quantitative assessment coupled with statistical analysis
 
 We perform an experiment bone to see how big the cells are inside the tissue:
 
-    
-$$\downarrow$$ 
-    
-<img src="figures/tomoimage.png" style="width:75%"> 
+We have performed an experiment that produced heaps of data to analyze. For example a using tomography.
 
-### <center>2560 x 2560 x 2160 x 32 bit = 56GB / sample</center>
-    
+```{figure} figures/tomoimage.png
+---
+scale: 100%
+---
+Acquisition workflow to obtain CT slices of a specimen.
+```
+
+At the beginning we have 2560 x 2560 x 2160 x 32 bits = 56GB / sample! Then we apply some filtering and preprocessing to prepare the data for analysis. After 20h of computer time we still have 56GB of data (it is however nicer to work with). This still way to much data to handle, we need to reduce it in some way.
+
+ <img src="figures/tomoimage.png" style="width:75%"> 
+
+<center><b>2560 x 2560 x 2160 x 32 bit = 56GB / sample</b></center>
+    $$\downarrow$$ 
 <center>Filtering and Preprocessing!  </center>
     
 $$\downarrow$$
 
-### <center>20h of computer time later ...</center>
+<center><b>20h of computer time later ...</b></center>
 
 <center>Still 56GB of data, but less noisy</center>
 
 <div class="alert alert-block alert-warning">
 <center>
     
-### Way too much data, we need to reduce
+__Way too much data, we need to reduce__
     
 </center>
 </div>
-
-
 
 ## What did we want in the first place?
 
@@ -217,14 +223,14 @@ m_show_obj = ax_img.matshow(dkimg, cmap = 'bone')
 cb_obj = plt.colorbar(m_show_obj)
 cb_obj.set_label('Absorption Coefficient')
 
-### Identify objects by eye
+## Identify objects by eye
 
 The first qualitative analysis is mostly done by eye. You look at the image to describe what you see. This first assessment will help you decide how to approach the quantitative analysis task. Here, it is important to think about using words that can be translated into an image processing workflow.
 
  - Count, 
  - Describe qualitatively: "many little cilia on surface", "long curly flaggelum", "elongated nuclear structure"
  
-### Morphometrics
+## Morphometrics
  - Trace the outline of the object (or sub-structures)
  - Employing the "[cut-and-weigh](http://ion.chem.usu.edu/~sbialkow/Classes/361/GC/GC.html)" method
 
@@ -236,7 +242,7 @@ They match up well to the world view / perspective
 
 ![Approaches](../Lecture-01/figures/approaches.png)
 
-## How to approach the segmenation task
+## How to approach the segmentation task
 
 ### Model based segmentation
 The experimentalists approached the segmenation task based on their experience and knowledge about the samples. This results in a top-down approach and quite commonly based on models fitting the real world, what we actually can see in the images. The analysis aims at solving the problems needed to provide answers to the defined hypothesis.
@@ -347,7 +353,7 @@ ax1.matshow(cell_img*beam_img,cmap = 'viridis');
 
 ### Absorption Imaging (X-ray, Ultrasound, Optical)
 
-#### For absorption/attenuation imaging $\rightarrow$ [Beer-Lambert Law](http://en.wikipedia.org/wiki/Attenuation_coefficient)
+__For absorption/attenuation imaging $\rightarrow$ [Beer-Lambert Law](http://en.wikipedia.org/wiki/Attenuation_coefficient)__
 $$I_{detector}=\underbrace{I_{source}}_{I_{stimulus}}\underbrace{e^{-\alpha d}}_{S_{sample}}$$
 
 Different components have a different $\alpha$ based on the strength of the interaction between the light and the chemical / nuclear structure of the material
@@ -357,7 +363,7 @@ $$I_{sample}(x,y)=I_{source}\cdot{}e^{-\alpha(x,y)\cdot{}d}$$
 $$\alpha=f(N,Z,\sigma,\cdots)$$
 
 
-#### For segmentation this model is: 
+__For segmentation this model is:__
  - there are 2 (or more) distinct components that make up the image
  - these components are distinguishable by their values (or vectors, colors, tensors, ...)
 
@@ -722,14 +728,14 @@ base_df['y_vec'] = base_df.apply(lambda c_row: c_row['y']/np.sqrt(1e-2+np.square
 
 base_df.sample(5)
 
-### Looking at colocation histograms
+## Looking at colocation histograms
 
 The colocation histogram is a powerful tool to visualize how different components are related to each other. It also called bi-variate histogram. In seaborn, there is the ```pairplot``` which shows colocation histograms for all combinations on the data. The diagonal is the histogram of the individual components.
 
 import seaborn as sns
 sns.pairplot(base_df);
 
-### Vector field plot
+## Vector field plot
 
 The vector field is a common way to visualiz vector data. It does however only work for small data sets like in this example, otherwise it will be too cluttered and no relevant information will be visible.
 
@@ -765,10 +771,11 @@ ax.vlines(0.25,ymin=0.25,ymax=1,color='red',label='x=0.25');ax.hlines(0.25,xmin=
 
 ### Applying a threshold
 Given the presence of two variables; however, more advanced approaches can also be investigated. For example we can keep only components parallel to the x axis by using the dot product.
-$$ I(x,y) = 
+
+$$I(x,y)=
 \begin{cases}
-1, & |\vec{f}(x,y)\cdot \vec{i}| = 1 \\
-0, & \text{otherwise}
+1,&|\vec{f}(x,y)\cdot{}\vec{i}|=1\\
+0,&\text{otherwise}
 \end{cases}$$
 
 ### Thresholding orientations
@@ -776,13 +783,15 @@ $$ I(x,y) =
 We can tune the angular acceptance by using the fact that the scalar product can be expressed using the angle between the the vectors as 
 
 __Scalar product definition__ 
+
 $$\vec{x}\cdot\vec{y}=|\vec{x}| |\vec{y}| \cos(\theta_{x\rightarrow y}) $$
 <br />
 <br />
-$$ I(x,y) = 
+
+$$I(x,y)=
 \begin{cases}
-1, & \cos^{-1}(\vec{f}(x,y)\cdot \vec{i}) \leq \theta^{\circ} \\
-0, & \text{otherwise}
+1,&\cos^{-1}(\vec{f}(x,y)\cdot \vec{i}) \leq \theta^{\circ} \\
+0,&\text{otherwise}
 \end{cases}$$
 
 

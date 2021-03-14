@@ -1,30 +1,36 @@
-# Basic Segmentation and Discrete Binary Structures
+# A Machine Learning Approach to Image Processing
 
-<p>
-
-__Quantitative Big Imaging__ ETHZ: 227-0966-00L
-
+<p><b>Quantitative Big Imaging</b> ETHZ: 227-0966-00L</p>
     
-__Part 2__
-    
-</p>
+<p><b>Part 2</b></p>
 
 <p style="font-size:1em;">March 18, 2021</p>
 <br /><br />
 <p style="font-size:1.5em;padding-bottom: 0.25em;">Anders Kaestner</p>  
 <p style="font-size:1em;">Laboratory for Neutron Scattering and Imaging<br />Paul Scherrer Institut</p>
 
-# A Machine Learning Approach to Image Processing
+## Loading some modules
 
-Segmentation and all the steps leading up to it are really a specialized type of learning problem. 
-
-Let's look at an important problem for electron microscopy imaging...
+Let's load a collection of modules for this part.
 
 import numpy as np
 import matplotlib.pyplot as plt
 from skimage.color import rgb2gray
 from skimage.io import imread
+import plotsupport as ps
+from sklearn.metrics import roc_auc_score
+import pandas as pd
+from collections import OrderedDict
+from sklearn.metrics import roc_curve
+
 %matplotlib inline
+
+## How to approach the analysis
+Segmentation and all the steps leading up to it are really a specialized type of learning problem. 
+
+Let's look at an important problem for electron microscopy imaging...
+
+Identifying the mitochondria in the images like the one to the left in the figures below.
 
 cell_img = (255-imread("data/em_image.png")[::2, ::2])/255.0
 cell_seg = imread("data/em_image_seg.png")[::2, ::2]>0
@@ -38,6 +44,8 @@ We want to identify which class each pixel belongs to.
 What does identify mean?
 - Classify the pixels in a mitochondria as _Foreground_
 - Classify the pixels outside of a mitochondria as _Background_
+
+This is a really tedious task and we want to automatize it. Here, segmentation is a good approach. The question is now how we can achieve this.
 
 # How do we quantify this?
 
@@ -62,30 +70,35 @@ We can then apply a threshold to the image to determine the number of points in 
 
 fig, ax = plt.subplots(1, 4, figsize=(15, 2.5), dpi=150)
 
-ax[0].imshow(cell_img, cmap='gray');  ax[0].set_title('Image');    ax[0].axis('off')
-ax[1].hist(cell_img.ravel(),bins=50); ax[1].set_title('Histogram')
-
 thresh     = 0.52 
-thresh_img = cell_img > thresh # Apply a single threshold
+thresh_img = cell_img > thresh # Apply a single threshold to the image
 
+# Visualization
+ax[0].imshow(cell_img, cmap='gray');  ax[0].set_title('Image');    ax[0].axis('off')
+ax[1].hist(cell_img.ravel(),bins=30); ax[1].set_title('Histogram')
+ax[1].vlines(thresh,ymin=0,ymax=12000,color='r',label='Threshold'); ax[1].legend(fontsize=9)
 ax[2].imshow(thresh_img, cmap='hot');   ax[2].set_title('Threshold at {0}'.format(thresh)); ax[2].axis('off')
 ax[3].imshow(cell_seg,   cmap='hot');   ax[3].set_title('Mitochondria Labels');             ax[3].axis('off');
 
-### Check the performance of the thresholding
+In this example we can see that it is clearly not sufficient to apply a single threshold as we have tried before. When we compare the thresholded image to the provided mask, we can see the that there are plenty more structures marked as foreground and also that there are holes within the mitochondria.
+
+## Check the performance of the thresholding
+
+Let's create a confusion matrix to visualize the performance of the segmentation. A first step is to compute how many hits and misses our segmentation resulted in. In particual, looking at the four different cases that can occur in a binarization. 
 
 # Suport function for the plot labels
 def tp_func(real_img_idx, pred_img_idx):
     if real_img_idx == 1 and pred_img_idx == 1:
-        return 'True Positive','green'
+        return 'True Positive','#009933'
     if real_img_idx == 0 and pred_img_idx == 0:
-        return 'True Negative','green'
+        return 'True Negative','#009933'
     if real_img_idx == 0 and pred_img_idx == 1:
-        return 'False Positive','red'
+        return 'False Positive','#cc0000'
     if real_img_idx == 1 and pred_img_idx == 0:
-        return 'False Negative','red'
+        return 'False Negative','#cc0000'
 
 out_results = {}
-fig, m_ax = plt.subplots(2, 2, figsize=(8, 7), dpi=150)
+fig, m_ax = plt.subplots(2, 2, figsize=(8, 7), dpi=100)
 for real_img_idx, n_ax in zip([0, 1], m_ax):
     for pred_img_idx, c_ax in zip([0, 1], n_ax):
         match_img = (thresh_img == pred_img_idx) & (cell_seg == real_img_idx)
@@ -95,32 +108,46 @@ for real_img_idx, n_ax in zip([0, 1], m_ax):
         c_ax.set_title("{0} ({1})".format(tp_title,out_results[tp_title]),color=color)
         c_ax.axis('off')
 
-# Apply Precision and Recall
+## The confusion matrix (revisited)
 
+From the counts in the previus slide, we can now create a [Confusion matrix](https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62) and also look at the combined image of all the cases. In the hit map we can see white and gray as true segmentation and blue and magenta as false segmentations.
+
+ps.showHitMap(cell_seg,thresh_img) # this is a handy support function provided with the notebook
+
+## Apply Precision and Recall
+
+We can use two further metrics to measure the performance of a segmentation method. These are based on the information in the confusion matrix like
 
 - __Recall__ (sensitivity)  $$\frac{TP}{TP+FN}$$
+
+This is the sum the true positive relative to the number of positives in the mask or also as written here the sum of true positives and false negatives. Recall tells us how good the method is to find the correct label within the mask.
+
 - __Precision__            $$\frac{TP}{TP+FP}$$
+
+This is the sum of true positives relative to the total number of positives provided by our segmentation method. The precision tells us how much our method over segments the image.
+
+Both recall and precision are scalar numbers in the interval $0<m\leq1$ where '1' is the ideal condition.
+
+Let's compute precision and recall for our mitochonria example.
 
 print('Recall: {0:0.2f}'.format(out_results['True Positive'] /
                          (out_results['True Positive']+out_results['False Negative'])))
 print('Precision: {0:0.2f}'.format(out_results['True Positive'] /
                             (out_results['True Positive']+out_results['False Positive'])))
 
-## The confusion matrix (revisited)
-[Confusion matrix](https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62)
+This result tells us that our segmentation was relatively good at finding the mitochondria, but also that this happened at the cost of many false positives. 
 
+# [Reciever Operating Characteristic (ROC)](https://en.wikipedia.org/wiki/Receiver_operating_characteristic)
 
-### [ROC Curve](https://en.wikipedia.org/wiki/Receiver_operating_characteristic)
-Reciever Operating Characteristic ([first developed for WW2 soldiers detecting objects in battlefields using radar](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#History)). 
+ROC curves are a very common tool for analyzing the performance of binary classification systems and there are a large number of tools which can automatically make them. 
 
-The ideal is the top-right (identify everything and miss nothing). 
+- The concept of the ROC curve was [first developed for WW2 soldiers detecting objects in battlefields using radar](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#History)). 
 
-As we saw before, for a single threshold value 0.5, we were able to compute a single recall and precision. 
+- As we saw before, for a single threshold value 0.5, we were able to compute a single recall and precision. 
 
-If we want to make an ROC curve we take a number of threshold values
+- The ROC shows the releation between recall and precision for a segmentation model.
 
-import pandas as pd
-from collections import OrderedDict
+If we want to make an ROC curve we take a number of threshold values and compute the corresponding precision and recall values for each threshold.  In the example below we scan threshold values from 0.1 to 0.9 and compute the hit and miss statistics to calculate the precision and recall.
 
 out_vals = []
 for thresh_val in np.linspace(0.1, 0.9):
@@ -133,21 +160,20 @@ for thresh_val in np.linspace(0.1, 0.9):
             out_results[tp_title] = np.sum(match_img)
     out_vals += [
         OrderedDict(
-            Threshold=thresh_val,
-            Recall=out_results['True Positive'] /
-            (out_results['True Positive']+out_results['False Negative']),
-            Precision=(out_results['True Positive'] /
-                       (out_results['True Positive']+out_results['False Positive'])),
-            False_Positive_Rate=(out_results['False Positive'] /
-                       (out_results['False Positive']+out_results['True Negative'])),
+            Threshold = thresh_val,
+            Recall    = out_results['True Positive'] / (out_results['True Positive']+out_results['False Negative']),
+            Precision = (out_results['True Positive'] / (out_results['True Positive']+out_results['False Positive'])),
+            False_Positive_Rate = (out_results['False Positive'] / (out_results['False Positive']+out_results['True Negative'])),
             **out_results
         )]
 
 roc_df = pd.DataFrame(out_vals)
 roc_df.head(3)
 
-# Making ROC Curves Easier
-ROC curves are a very common tool for analyzing the performance of binary classification systems and there are a large number of tools which can automatically make them. Here we show how it is done with scikit-image. 
+Let's plot the table...
+
+## Making ROC Curves Easier
+Here we show how it is done with scikit-image. 
 
 Another way of showing the ROC curve (more common for machine learning rather than medical diagnosis) is using the True positive rate and False positive rate
 
@@ -156,20 +182,17 @@ Another way of showing the ROC curve (more common for machine learning rather th
 
 These show very similar information with the major difference being the goal is to be in the upper left-hand corner. Additionally random guesses can be shown as the slope 1 line. Therefore for a system to be useful it must lie above the random line.
 
-fig, ax1 = plt.subplots(1, 1, dpi=200)
+fig, ax1 = plt.subplots(1, 1, dpi=150,figsize=(8,5))
 ax1.plot(roc_df['False_Positive_Rate'], roc_df['Recall']  , 'b.-', label='ROC Curve')
-ax1.plot(0, 1.0, 'r+', markersize=20, label='Ideal')
-ax1.set_xlim(0, 1.1)
-ax1.set_ylim(0, 1.1)
+ax1.plot(0, 1.0, 'r+', markersize=20, label='Ideal'); ax1.set_xlim(0, 1.1); ax1.set_ylim(0, 1.1);
 ax1.set_ylabel('True Positive Rate / Recall')
 ax1.set_xlabel('False Positive Rate')
-ax1.legend(loc=2)
+ax1.legend(loc=2);
 
-from sklearn.metrics import roc_curve
 fpr, tpr, thresholds = roc_curve(cell_seg.ravel().astype(int),
                                  cell_img.ravel())
 
-fig, ax1 = plt.subplots(1, 1, dpi=200)
+fig, ax1 = plt.subplots(1, 1, dpi=150,figsize=(8,5))
 ax1.plot(fpr, tpr, 'b.-', markersize=0.01,  label='ROC Curve')
 ax1.plot(0.0, 1.0, 'r+', markersize=20, label='Ideal')
 ax1.plot([0, 1], [0, 1], 'g-', label='Random Guessing')
@@ -179,24 +202,22 @@ ax1.set_xlabel('False Positive Rate')
 ax1.set_ylabel('True Positive Rate')
 ax1.legend(loc=0);
 
+## Explore the impact of different filters on the ROC
+
+We have already seen what the ROC curve looks like for the original data. Some weeks ago we learnt about a lot of filters and now it is time to see how these can be used in an attempt to improve the ROC. In this example we will compare the unfiltered image to:
+- Gaussian filter ($\sigma=2$)
+- Difference of Gaussian $x-G_{sigma=3}*x$
+- Median size 3x3
+And see what performance improvements we can achieve
+
+Let's produce some filtered images:
+
 from skimage.filters import gaussian, median
 
-
-def no_filter(x):
-    return x
-
-
-def gaussian_filter(x):
-    return gaussian(x, sigma=2)
-
-
-def diff_of_gaussian_filter(x):
-    return   -gaussian(x, sigma=3)
-
-
-def median_filter(x):
-    return median(x, np.ones((3, 3)))
-
+def no_filter(x):               return  x
+def gaussian_filter(x):         return  gaussian(x, sigma=2)
+def diff_of_gaussian_filter(x): return  x-gaussian(x, sigma=3)
+def median_filter(x):           return  median(x, np.ones((3, 3)))
 
 fig, m_axs = plt.subplots(1, 5, figsize=(15, 3), dpi=200)
 m_axs[0].imshow(cell_seg, cmap='gray')
@@ -204,42 +225,50 @@ for c_filt, c_ax in zip([no_filter, gaussian_filter, diff_of_gaussian_filter, me
     c_ax.imshow(c_filt(cell_img), cmap='bone')
     c_ax.set_title(c_filt.__name__)
 
-fig, ax1 = plt.subplots(1, 1,figsize=(12,5), dpi=150)
-for c_filt in [no_filter, gaussian_filter, diff_of_gaussian_filter, median_filter]:
-    fpr, tpr, thresholds = roc_curve(cell_seg.ravel().astype(int),
-                                     c_filt(cell_img).ravel())
-    ax1.plot(fpr, tpr, '-', markersize=0.01,
-             label='ROC Curve ({})'.format(c_filt.__name__))
+### ROC curves fo filtered images
 
-ax1.plot(0.0, 1.0, 'r+', markersize=20, label='Ideal')
+fig, ax1 = plt.subplots(1, 1,figsize=(12,5), dpi=150)
+
+ax1.plot(0.0, 1.0, 'r+', markersize=12, label='Ideal')
 ax1.plot([0, 1], [0, 1], 'k-', label='Random Guessing')
-ax1.set_xlim(-0.1, 1.1)
-ax1.set_ylim(-0.1, 1.1)
-ax1.set_xlabel('False Positive Rate')
-ax1.set_ylabel('True Positive Rate')
-ax1.legend(loc="lower right", fontsize=10);
+
+colors = ['cornflowerblue','gold','mediumseagreen','tomato']
+for color,c_filt in zip(colors,[no_filter, gaussian_filter, diff_of_gaussian_filter, median_filter]):
+    fpr, tpr, thresholds = roc_curve(cell_seg.ravel().astype(int), c_filt(cell_img).ravel())
+    ax1.plot(fpr, tpr, '-', markersize=0.01, label='ROC Curve ({})'.format(c_filt.__name__),color=color)
+
+# Decorations
+ax1.set_xlim(-0.1, 1.5); ax1.set_ylim(-0.1, 1.1)
+ax1.set_xlabel('False Positive Rate'); ax1.set_ylabel('True Positive Rate')
+ax1.legend(loc="center right", fontsize=10);
+
+## Area Under the Curve (AUC)
 
 We can then use this ROC curve to compare different filters (or even entire workflows), if the area is higher the approach is better.
 
-Different approaches can be compared by area under the curve
+Different approaches can be compared by _Area Under the Curve_ (AUC) which is a scalar.
 
-from sklearn.metrics import roc_auc_score
+fig, ax = plt.subplots(1, 2,figsize=(12,5), dpi=100)
+colors = ['cornflowerblue','gold','mediumseagreen','tomato']
 scores = []
-names = ['no_filter', 'gaussian_filter', 'diff_of_gaussian_filter', 'median_filter']
-for c_filt in [no_filter, gaussian_filter, diff_of_gaussian_filter, median_filter]:
-    scores.append(roc_auc_score(cell_seg.ravel().astype(int),  c_filt(cell_img).ravel()))
-#    print('%s - %2.2f' % (c_filt.__name__, roc_auc_score(cell_seg.ravel().astype(int),
-#                                                         c_filt(cell_img).ravel())))
-    
-plt.figure(figsize=[10,5],dpi=150)
-plt.bar(names,scores); plt.xlabel('Filter type'),plt.ylabel('Score');
+for color, c_filt in zip(colors,[no_filter, gaussian_filter, diff_of_gaussian_filter, median_filter]):
+    fimg = c_filt(cell_img).ravel()
+    fpr, tpr, thresholds = roc_curve(cell_seg.ravel().astype(int), fimg)
+    scores.append(roc_auc_score(cell_seg.ravel().astype(int),  fimg))
+    ax[0].plot(fpr, tpr, '-', markersize=0.01, color=color,label='{}'.format(c_filt.__name__))
+    ax[0].fill_between(fpr, tpr, 0, alpha=0.2, color=color)
 
-# Evaluating Models
+ax[0].set_xlim(-0.1, 1.1); ax[0].set_ylim(-0.1, 1.1)
+ax[0].set_xlabel('False Positive Rate'); ax[0].set_ylabel('True Positive Rate'); ax[0].set_title('ROC curves')
+ax[0].legend(loc="lower right", fontsize=7);
+names = ['No filter', 'Gaussian', 'Diff of Gaussian', 'Median']
+ax[1].bar(names,scores, color=colors); plt.xlabel('Filter type'),ax[1].set_ylabel('Score'); ax[1].set_title('Area und curve (AUC)');
 
-- https://github.com/jvns/talks/blob/master/pydatanyc2014/slides.md
-- http://mathbabe.org/2012/03/06/the-value-added-teacher-model-sucks/
+Armed with these tools we are ready to analyze the performance of the segmentation methods we develop to solve our image analysis tasks.
 
-# Multiple Phases: Segmenting Shale
+# Segmenting multiple phases
+
+## Multiple Phases example: Segmenting Shale
 
 - Shale provided from Kanitpanyacharoen, W. (2012). Synchrotron X-ray Applications Toward an Understanding of Elastic Anisotropy.
 
@@ -251,14 +280,20 @@ import matplotlib.pyplot as plt
 from skimage.color import rgb2gray
 from skimage.io import imread
 %matplotlib inline
+
 shale_img = imread("figures/ShaleSample.jpg")/255.0
-fig, ax1 = plt.subplots(1, 1, dpi=200)
+fig, ax1 = plt.subplots(1, 1, dpi=120)
 ax1.imshow(shale_img, cmap='bone');
+
+### Finding three categories
+Let's take a look at the histogram as always when we face a segmentation task...
 
 Ideally we would derive 3 values for the thresholds based on a model for the composition of each phase and how much it absorbs, but that is not always possible or practical.
 - While there are 3 phases clearly visible in the image, the histogram is less telling (even after being re-scaled).
 
-plt.hist(shale_img.ravel(), 100);
+fig, ax=plt.subplots(1,2, figsize=(15,5))
+ax[0].imshow(shale_img, cmap='bone'), ax[0].set_title('Shale image')
+ax[1].hist(shale_img.ravel(), 100); ax[1].set_title('Histogram of the shale image');
 
 # Multiple Segmentations
 
@@ -272,26 +307,39 @@ $$ I(x) =
 \text{Rock}, & 0.5 < x
 \end{cases}$$
 
-fig, m_axs = plt.subplots(1, 4, dpi=200, figsize=(6, 3))
+fig, ax=plt.subplots(1,1, figsize=(8,5),dpi=300)
+ax.hist(shale_img.ravel(), 100); ax.set_title('Histogram of the shale image');
+
+thresholds = [0.3, 0.5]
+ax.vlines(thresholds,ymin=0,ymax=600,color='r');
+fs=18; ypos=600; ax.text(0.18,ypos,'Void', fontsize=fs), ax.text(0.38,ypos,'Clay', fontsize=fs),ax.text(0.7,ypos,'Rock', fontsize=fs);
+
+
+## Segmentation result
+
+fig, m_axs = plt.subplots(1, 4, dpi=150, figsize=(15, 5))
 m_axs[0].imshow(shale_img, cmap='bone')
-m_axs[0].set_title('Shale Image')
+m_axs[0].set_title('Shale Image'); m_axs[0].axis('off')
 used_vox = np.zeros_like(shale_img).astype(np.uint8)
 for c_ax, c_max, c_title in zip(m_axs[1:], [0.3, 0.5, 1.0], ['Void', 'Clay', 'Rock']):
     c_slice = (shale_img < c_max)-used_vox
-    c_ax.matshow(c_slice, cmap='bone')
+    c_ax.imshow(c_slice, cmap='bone')
     used_vox += c_slice
     c_ax.axis('off')
-    c_ax.set_title('%s\n$x<%2.2f$' % (c_title, c_max))
+    c_ax.set_title('{0} (x<{1:0.1f})'.format(c_title, c_max))
 
-# Implementation
+Segmenting multiple phases is a non-trivial problem. In particular, when the edges in the image as smooth and at low SNR. We will look into these problems next week.
+
+# Implementation of thresholding
 
 The implementations of basic thresholds and segmentations is very easy since it is a unary operation of a single image
 $$ f(I(\vec{x})) $$
 In mathematical terms this is called a map and since it does not require information from neighboring voxels or images it can be calculated for each point independently (_parallel_). Filters on the other hand almost always depend on neighboring voxels and thus the calculations are not as easy to seperate. 
 
-# Implementation Code 
-### Matlab / Python (numpy)
-The simplist is a single threshold in Matlab: 
+## Implementation using script languages
+
+### Python (numpy) and Matlab
+The simplest is a single threshold in numpy and Matlab: 
 ```matlab
 thresh_img = gray_img > thresh
 ```
@@ -303,12 +351,13 @@ thresh_img = (gray_img > thresh_a) & (gray_img < thresh_b)
 
 
 ### Python
+The task is slightly more complicated when you use standard python. Here, you have to define a mapping function with a lambda to perform the thresholding.
 ```python
-thresh_img = map(lambda gray_val: gray_val>thresh,
-                gray_img)
+thresh_img = map(lambda gray_val: gray_val>thresh, gray_img)
 ```
 
-***
+## Implementation using traditional programming languages
+In traditional programming languages you have to write some moer code as there are no predefined functions that operate directly on arrays. This means, you'll have to implement the loops yourself.
 
 ### Java
 ```java
@@ -321,9 +370,9 @@ for(int x=x_min;x<x_max;x++)
     }
 ```
   
-### In C/C++
+### C/C++
 
-```c
+```c++
 bool* thresh_img = malloc(x_size*y_size*z_size * sizeof (bool));
 
 for(int x=x_min;x<x_max;x++)
@@ -358,7 +407,7 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 3.5), dpi=200)
 ax1.imshow(cross_im, cmap='hot')
 ax1.set_title('Image')
 ax2.imshow(cross_im > 0.8)
-ax2.set_title('Simple Thresholding')
+ax2.set_title('Simple Thresholding');
 
 ## Fundamentals: Neighborhood
 A neighborhood consists of the pixels or voxels which are of sufficient proximity to a given point. There are a number of possible definitions which largely affect the result when it is invoked.   
@@ -411,36 +460,42 @@ for c_dim, c_axs in zip(sizes, m_axs):
         
 plt.suptitle('Different neighborhood shapes and sizes', fontsize=20);
 
-# Erosion and Dilation
+## Erosion and Dilation
 
-### Erosion
+__Erosion__
+
 If any of the voxels in the neighborhood are 0/false than the voxel will be set to 0
 
 - Has the effect of peeling the surface layer off of an object
 
-***
-
-### Dilation
+__Dilation__
 
 If any of the voxels in the neigbhorhood are 1/true then the voxel will be set to 1
 - Has the effect of adding a layer onto an object (dunking an strawberry in chocolate, adding a coat of paint to a car)
 
-# Applied Erosion and Dilation
+### Applied Erosion and Dilation
 
 import numpy as np
 import matplotlib.pyplot as plt
 import skimage.morphology as morph
 
-img=np.load('data/morphimage.npy')
-
-oimg=morph.opening(img,np.array([[0,1,0],[1,1,1],[0,1,0]]))
-cimg=morph.closing(img,np.array([[0,1,0],[1,1,1],[0,1,0]]))
 s=255.0
 cmap = [[230/s,230/s,230/s],
         [255/s,176/s,159/s],
         [0.0/s,0.0/s,0.0/s]]
 
-## Dilation
+img=np.load('data/morphimage.npy')
+
+dimg=morph.dilation(img,[[0,1,0],[1,1,1],[0,1,0]])
+eimg=morph.erosion(img, [[0,1,0],[1,1,1],[0,1,0]])
+
+fig, ax = plt.subplots(1,3,figsize=(12,6))
+
+ax[0].imshow(eimg,cmap='gray'); ax[0].set_title('Erosion'),  ax[0].axis('off');
+ax[1].imshow(img,cmap='gray');  ax[1].set_title('Original'), ax[1].axis('off');
+ax[2].imshow(dimg,cmap='gray'); ax[2].set_title('Dilation'), ax[2].axis('off');
+
+#### Dilation
 We can use dilation to expand objects, for example a too-low threshold value leading to disconnected components
 
 dimg=morph.dilation(img,[[0,1,0],[1,1,1],[0,1,0]])
@@ -456,8 +511,8 @@ ax[1].grid(color='red', linestyle='-', linewidth=0.5); ax[1].grid(True);ax[1].se
 ax[2].imshow(dimg,cmap='gray'); ax[2].set_title('Dilated result');ax[2].axis('off');
 plt.tight_layout()
 
-## Erosion
-Erosion performs the opposite task reducing the size
+#### Erosion
+Erosion performs the opposite task to the dilation by reducing the size of the objects in the image
 
 eimg=morph.erosion(img,[[0,1,0],[1,1,1],[0,1,0]])
 fig, ax = plt.subplots(1,3,figsize=(15,4))
@@ -471,73 +526,114 @@ ax[1].grid(color='red', linestyle='-', linewidth=0.5); ax[1].grid(True);ax[1].se
 ax[2].imshow(eimg,cmap='gray'); ax[2].set_title('Dilated result');ax[2].axis('off');
 plt.tight_layout()
 
-# Opening and Closing
+## Opening and Closing
 
-### Opening
+Erosion and dilation removes and adds a layer of pixels to the objects in the image.
 
-An erosion followed by a dilation operation
+This is not desired, combining them gives two new operations:
+- Opening $\delta(\epsilon(f))$
 
-- Peels a layer off and adds a layer on
-- Very small objects and connections are deleted in the erosion and do not return the image is thus __open__ed
-- A cube larger than several voxels will have the exact same volume after (conservative)
+- Closing $\epsilon(\delta(f))$
 
-***
+These operation rebuilds most of the objects after removing unwanted features.
 
-### Closing
+oimg = morph.opening(img,np.array([[0,1,0],[1,1,1],[0,1,0]]))
+cimg = morph.closing(img,np.array([[0,1,0],[1,1,1],[0,1,0]]))
+
+fig, ax = plt.subplots(1,3,figsize=(12,6))
+ax[0].imshow(cimg,cmap='gray'); ax[0].set_title('Closing'), ax[0].axis('off');
+ax[1].imshow(img,cmap='gray'); ax[1].set_title('Original'), ax[1].axis('off');
+
+ax[2].imshow(oimg,cmap='gray'); ax[2].set_title('Opening'), ax[2].axis('off');
+
+### Morphological Closing 
 
 A dilation followed by an erosion operation
+
+$$\epsilon(\delta(f))$$
 
 - Adds a layer and then peels a layer off
 - Objects that are very close are connected when the layer is added and they stay connected when the layer is removed thus the image is __close__d
 - A cube larger than one voxel will have the exact same volume after (conservative)
 
-## Morphological Closing 
+Closing is an operation you apply to remove false negatives in your image. The effect is that small holes in the objects are filled and gaps between large objects are connected.
 
-plt.figure(figsize=[15,4])
-plt.subplot(1,3,1)
-plt.imshow(img,cmap='gray')
-plt.axis('off')
-plt.title('Original $f$')
-plt.subplot(1,3,2)
-plt.imshow(img+dimg+cimg,cmap='viridis')
-plt.title('Operation $\epsilon(\delta(f))$')
-plt.xticks(np.arange(-0.5,img.shape[1],1),labels=[])
-plt.yticks(np.arange(-0.55,img.shape[0],1),labels=[])
-plt.grid(color='red', linestyle='-', linewidth=0.5)
-plt.grid(True)
-plt.subplot(1,3,3)
-plt.imshow(cimg,cmap='gray')
-plt.title('Closed result')
-plt.axis('off')
+fig, ax = plt.subplots(1,3,figsize=[15,4])
+
+ax[0].imshow(img,cmap='gray'); ax[0].set_title('Original $f$') ; ax[0].axis('off');
+
+ax[1].imshow(img+dimg+cimg,cmap='viridis'); ax[1].set_title('Operation $\epsilon(\delta(f))$')
+ax[1].set_xticks(np.arange(-0.5,img.shape[1],1));  ax[1].set_xticklabels([]); 
+ax[1].set_yticks(np.arange(-0.55,img.shape[0],1)); ax[1].set_yticklabels([]); 
+ax[1].grid(color='red', linestyle='-', linewidth=0.5); ax[1].grid(True)
+
+ax[2].imshow(cimg,cmap='gray'); ax[2].axis('off')
+ax[2].set_title('Closed result');
 plt.tight_layout()
 
-plt.figure(figsize=[15,4])
-plt.subplot(1,3,1)
-plt.imshow(img,cmap='gray')
-plt.axis('off')
-plt.title('Original $f$')
-plt.subplot(1,3,2)
-plt.imshow(img+eimg+oimg,cmap='viridis')
-plt.xticks(np.arange(-0.5,img.shape[1],1),labels=[])
-plt.yticks(np.arange(-0.55,img.shape[0],1),labels=[])
-plt.grid(color='red', linestyle='-', linewidth=0.5)
-plt.grid(True)
-plt.title('Operation $\delta(\epsilon(f))$')
-plt.subplot(1,3,3)
-plt.imshow(oimg,cmap='gray')
-plt.axis('off')
-plt.title('Opened result')
+### Morphological opening
+
+An erosion followed by a dilation operation
+$$\delta(\epsilon(f))$$
+
+- Peels a layer off and adds a layer on
+- Very small objects and connections are deleted in the erosion and do not return the image is thus __open__ed
+- A cube larger than several voxels will have the exact same volume after (conservative)
+
+Opening is an operation you apply to remove false positives in your image. The effect is that small objects are erased and connections between large objects are removed.
+
+fig,ax = plt.subplots(1,3,figsize=[15,4])
+
+ax[0].imshow(img,cmap='gray'); ax[0].axis('off');
+ax[0].set_title('Original $f$')
+
+ax[1].imshow(img+eimg+oimg,cmap='viridis'); ax[1].set_title('Operation $\delta(\epsilon(f))$')
+ax[1].set_xticks(np.arange(-0.5,img.shape[1],1)); ax[1].set_xticklabels([])
+ax[1].set_yticks(np.arange(-0.55,img.shape[0],1)); ax[1].set_yticklabels([])
+ax[1].grid(color='red', linestyle='-', linewidth=0.5); ax[1].grid(True)
+
+ax[2].imshow(oimg,cmap='gray'); ax[2].axis('off')
+ax[2].set_title('Opened result')
+
 plt.tight_layout()
 
 # Pitfalls with Segmentation
 
-### Partial Volume Effect
+## Partial Volume Effect
 - The [partial volume effect](http://bit.ly/1mW7kdP) is the name for the effect of discretization on the image into pixels or voxels.
 - Surfaces are complicated, voxels are simple boxes which make poor representations
 - Many voxels are only partially filled, but only the voxels on the surface
 - Removing the first layer alleviates issue
 
-### When is a sphere really a sphere?
+
+## Thresholding structures
+What happens when we threshold objects of different sizes?
+
+In this example we create a series of spheres on different grid sizes form 10 up to 500 pixels.
+
+from scipy.ndimage import zoom
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage.io import imread
+%matplotlib inline
+
+step_list  = [10, 20, 50, 100, 500]
+fig, m_axs = plt.subplots(1, len(step_list), figsize=(15, 5), dpi=200)
+for c_ax, steps in zip(m_axs, step_list):
+    x_lin    = np.linspace(-1, 1, steps)
+    xy_area  = np.square(np.diff(x_lin)[0])
+    xx, yy   = np.meshgrid(x_lin, x_lin)
+    test_img = (np.square(xx)+np.square(yy+0.25)) < np.square(0.75)
+    c_ax.imshow(test_img,cmap='gray')
+    c_ax.set_title('%dpx\nVolume Fraction: %2.2f%%' %
+                   (steps, 100*np.sum(test_img)/np.prod(test_img.shape)))
+    c_ax.axis('off')
+
+Here you can see that the small objects are very pixeled and almost doesn't resemble a disk. When object size increases we see that the object looks more and more like a round disk. We also see that the volume fraction increases towards the value the resembles the volume of a true disc.
+
+## When is a sphere really a sphere?
+
+We just saw that a 2D disc can be very pixelated for small radii. The same applies in 3D. In this example, you can see what a sphere looks like. The first two examples doesn't really look like a sphere, while the last one starts to look like a sphere. The plot in the last panel shows the volume error for different discrete spheres. At a raduis of about 10 pixels the error is below one percent. 
 
 ```{figure} figures/sphere_comparison.pdf
 ---
@@ -549,35 +645,32 @@ Discrete spheres with increasing radius.
 <img src="figures/sphere_comparison.svg" />  
 $$V_{error} = \frac{V_{discrete}}{V_{Analytical}}$$
 
-from scipy.ndimage import zoom
-import numpy as np
-import matplotlib.pyplot as plt
-from skimage.io import imread
-%matplotlib inline
-step_list = [10, 20, 50, 100, 500]
-fig, m_axs = plt.subplots(1, len(step_list), figsize=(15, 5), dpi=200)
-for c_ax, steps in zip(m_axs, step_list):
-    x_lin = np.linspace(-1, 1, steps)
-    xy_area = np.square(np.diff(x_lin)[0])
-    xx, yy = np.meshgrid(x_lin, x_lin)
-    test_img = (np.square(xx)+np.square(yy+0.25)) < np.square(0.75)
-    c_ax.matshow(test_img,cmap='gray')
-    c_ax.set_title('%dpx\nVolume Fraction: %2.2f%%' %
-                   (steps, 100*np.sum(test_img)/np.prod(test_img.shape)))
-    c_ax.axis('off')
+What we are learning from this study is that there is a difference between detecting a basic feature and really representing it true shape. Detection should in principle be posible withing a few pixels if the SNR is sufficiently high.
 
-# Rescaling
-We see the same effect when we rescale images from 500x500 down to 15x15 that the apparent volume fraction changes 
+## Rescaling
+
+Sometimes, we want to downscale the image when it is too large. This is mostly done due to problems of fitting the images into memory or to speed up the processing. Rescaling should generally be done on gray scale images to avoid visible partial volume effects, which means that pixels done have only two values anymore at the edges.
+
+In this example we rescale images from 500x500 down to 15x15 that the apparent volume fraction changes at the edges in some positions.
 
 zoom_level = [1, 0.067, 0.039, 0.029, 0.02]
 fig, m_axs = plt.subplots(2, len(zoom_level), figsize=(15, 5), dpi=200)
 for (c_ax, ax2), c_zoom in zip(m_axs.T, zoom_level):
     c_img = zoom(255.0*test_img, c_zoom, order=1)
-    c_ax.matshow(c_img,cmap='gray')
+    c_ax.imshow(c_img,cmap='gray')
     c_ax.set_title('%dpx - Volume: %2.2f%%' %
                    (c_img.shape[0], 100*np.sum(c_img > 0.5)/np.prod(c_img.shape)))
     c_ax.axis('off')
-    ax2.plot(c_img[c_img.shape[0]//2], 'r+-')
+    ax2.plot(c_img[c_img.shape[0]//2], 'o-', color='cornflowerblue')
+
+The intermediate values are in particular visible in the profiles from down sizing from 500 pixel to 20 and 34 pixels.
 
 # Summary
 
+In todays lecture we have looked into
+- The image formation process and how it relates to the segmentation problem.
+- How the histogram can be used to decide how to segment an image.
+- Evaluation of segmentation performance.
+- The basic operations of morphological image processing
+    - Using morphological operations to clean up segmented images
+- Pitfall with segmentation - partial volume effects.

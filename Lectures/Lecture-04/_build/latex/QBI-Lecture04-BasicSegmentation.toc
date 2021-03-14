@@ -8,19 +8,16 @@
 \contentsline {section}{\numberline {4.2}To test a hypothesis}{9}{section.4.2}%
 \contentsline {section}{\numberline {4.3}What we are looking at?}{9}{section.4.3}%
 \contentsline {section}{\numberline {4.4}To test a hypothesis}{9}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}2560 x 2560 x 2160 x 32 bit = 56GB / sample}{10}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}20h of computer time later …}{10}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Way too much data, we need to reduce}{10}{subsection.4.4.3}%
 \contentsline {section}{\numberline {4.5}What did we want in the first place?}{10}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}\sphinxstyleemphasis {Single numbers}:}{10}{subsection.4.5.1}%
 \contentsline {section}{\numberline {4.6}Why do we perform segmentation?}{10}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Review: Filtering and Image Enhancement}{10}{section.4.7}%
+\contentsline {section}{\numberline {4.7}Review: Filtering and Image Enhancement}{11}{section.4.7}%
 \contentsline {section}{\numberline {4.8}What we get from the imaging modality}{11}{section.4.8}%
 \contentsline {chapter}{\numberline {5}Qualitative Metrics: What did people use to do?}{13}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Identify objects by eye}{13}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Morphometrics}{14}{section.5.2}%
 \contentsline {chapter}{\numberline {6}Segmentation Approaches}{15}{chapter.6}%
-\contentsline {section}{\numberline {6.1}How to approach the segmenation task}{16}{section.6.1}%
+\contentsline {section}{\numberline {6.1}How to approach the segmentation task}{16}{section.6.1}%
 \contentsline {subsection}{\numberline {6.1.1}Model based segmentation}{16}{subsection.6.1.1}%
 \contentsline {subsection}{\numberline {6.1.2}Algorithmic segmentation approach}{17}{subsection.6.1.2}%
 \contentsline {section}{\numberline {6.2}Model\sphinxhyphen {}based Analysis}{17}{section.6.2}%
@@ -28,9 +25,8 @@
 \contentsline {subsection}{\numberline {6.2.2}Profiles across the image}{18}{subsection.6.2.2}%
 \contentsline {subsection}{\numberline {6.2.3}Inhomogeneous illumination}{19}{subsection.6.2.3}%
 \contentsline {subsection}{\numberline {6.2.4}Absorption Imaging (X\sphinxhyphen {}ray, Ultrasound, Optical)}{20}{subsection.6.2.4}%
-\contentsline {subsubsection}{For absorption/attenuation imaging \(\rightarrow \) Beer\sphinxhyphen {}Lambert Law}{20}{subsubsection*.3}%
 \contentsline {subsection}{\numberline {6.2.5}A numerical transmission imaging example (1D)}{21}{subsection.6.2.5}%
-\contentsline {subsubsection}{Plotting measured intensities}{21}{subsubsection*.4}%
+\contentsline {subsubsection}{Plotting measured intensities}{21}{subsubsection*.3}%
 \contentsline {chapter}{\numberline {7}Example Mammography}{23}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Problems to interpret radiography images}{23}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Building a breast phantom}{24}{section.7.2}%
@@ -54,40 +50,45 @@
 \contentsline {section}{\numberline {10.2}Vector field plot}{41}{section.10.2}%
 \contentsline {section}{\numberline {10.3}Applying a threshold to vector valued image}{42}{section.10.3}%
 \contentsline {subsection}{\numberline {10.3.1}Histogram of the vectors}{43}{subsection.10.3.1}%
-\contentsline {subsection}{\numberline {10.3.2}Applying a threshold}{44}{subsection.10.3.2}%
+\contentsline {subsection}{\numberline {10.3.2}Applying a threshold}{43}{subsection.10.3.2}%
 \contentsline {subsection}{\numberline {10.3.3}Thresholding orientations}{44}{subsection.10.3.3}%
-\contentsline {subsubsection}{Basic Segmentation and Discrete Binary Structures}{44}{subsubsection*.5}%
-\contentsline {subsubsection}{A Machine Learning Approach to Image Processing}{44}{subsubsection*.6}%
+\contentsline {subsubsection}{A Machine Learning Approach to Image Processing}{44}{subsubsection*.4}%
+\contentsline {paragraph}{Loading some modules}{44}{paragraph*.5}%
+\contentsline {paragraph}{How to approach the analysis}{44}{paragraph*.6}%
 \contentsline {subsubsection}{How do we quantify this?}{45}{subsubsection*.7}%
 \contentsline {paragraph}{Check the performance of the thresholding}{46}{paragraph*.8}%
-\contentsline {subsubsection}{Apply Precision and Recall}{47}{subsubsection*.9}%
-\contentsline {paragraph}{The confusion matrix (revisited)}{48}{paragraph*.10}%
-\contentsline {subparagraph}{ROC Curve}{48}{subparagraph*.11}%
-\contentsline {subsubsection}{Making ROC Curves Easier}{49}{subsubsection*.12}%
-\contentsline {subsubsection}{Evaluating Models}{52}{subsubsection*.13}%
-\contentsline {subsubsection}{Multiple Phases: Segmenting Shale}{52}{subsubsection*.14}%
-\contentsline {subsubsection}{Multiple Segmentations}{54}{subsubsection*.15}%
-\contentsline {subsubsection}{Implementation}{54}{subsubsection*.16}%
-\contentsline {subsubsection}{Implementation Code}{54}{subsubsection*.17}%
-\contentsline {paragraph}{Matlab / Python (numpy)}{54}{paragraph*.18}%
-\contentsline {paragraph}{Python}{55}{paragraph*.19}%
-\contentsline {paragraph}{Java}{55}{paragraph*.20}%
-\contentsline {paragraph}{In C/C++}{55}{paragraph*.21}%
-\contentsline {subsubsection}{Morphology}{55}{subsubsection*.22}%
-\contentsline {paragraph}{Fundamentals: Neighborhood}{56}{paragraph*.23}%
-\contentsline {subparagraph}{Fundamentals: Neighbors in 2D}{57}{subparagraph*.24}%
-\contentsline {subsubsection}{Erosion and Dilation}{58}{subsubsection*.25}%
-\contentsline {paragraph}{Erosion}{58}{paragraph*.26}%
-\contentsline {paragraph}{Dilation}{58}{paragraph*.27}%
-\contentsline {subsubsection}{Applied Erosion and Dilation}{59}{subsubsection*.28}%
-\contentsline {paragraph}{Dilation}{59}{paragraph*.29}%
-\contentsline {paragraph}{Erosion}{60}{paragraph*.30}%
-\contentsline {subsubsection}{Opening and Closing}{60}{subsubsection*.31}%
-\contentsline {paragraph}{Opening}{60}{paragraph*.32}%
-\contentsline {paragraph}{Closing}{60}{paragraph*.33}%
-\contentsline {paragraph}{Morphological Closing}{61}{paragraph*.34}%
-\contentsline {subsubsection}{Pitfalls with Segmentation}{62}{subsubsection*.35}%
-\contentsline {paragraph}{Partial Volume Effect}{62}{paragraph*.36}%
-\contentsline {paragraph}{When is a sphere really a sphere?}{62}{paragraph*.37}%
-\contentsline {subsubsection}{Rescaling}{63}{subsubsection*.38}%
-\contentsline {subsubsection}{Summary}{64}{subsubsection*.39}%
+\contentsline {paragraph}{The confusion matrix (revisited)}{47}{paragraph*.9}%
+\contentsline {paragraph}{Apply Precision and Recall}{48}{paragraph*.10}%
+\contentsline {subsubsection}{Reciever Operating Characteristic (ROC)}{49}{subsubsection*.11}%
+\contentsline {paragraph}{Making ROC Curves Easier}{50}{paragraph*.12}%
+\contentsline {paragraph}{Explore the impact of different filters on the ROC}{51}{paragraph*.13}%
+\contentsline {subparagraph}{ROC curves fo filtered images}{52}{subparagraph*.14}%
+\contentsline {paragraph}{Area Under the Curve (AUC)}{53}{paragraph*.15}%
+\contentsline {subsubsection}{Segmenting multiple phases}{54}{subsubsection*.16}%
+\contentsline {paragraph}{Multiple Phases example: Segmenting Shale}{54}{paragraph*.17}%
+\contentsline {subparagraph}{Finding three categories}{55}{subparagraph*.18}%
+\contentsline {subsubsection}{Multiple Segmentations}{56}{subsubsection*.19}%
+\contentsline {paragraph}{Segmentation result}{56}{paragraph*.20}%
+\contentsline {subsubsection}{Implementation of thresholding}{57}{subsubsection*.21}%
+\contentsline {paragraph}{Implementation using script languages}{57}{paragraph*.22}%
+\contentsline {subparagraph}{Python (numpy) and Matlab}{57}{subparagraph*.23}%
+\contentsline {subparagraph}{Python}{57}{subparagraph*.24}%
+\contentsline {paragraph}{Implementation using traditional programming languages}{58}{paragraph*.25}%
+\contentsline {subparagraph}{Java}{58}{subparagraph*.26}%
+\contentsline {subparagraph}{C/C++}{58}{subparagraph*.27}%
+\contentsline {subsubsection}{Morphology}{58}{subsubsection*.28}%
+\contentsline {paragraph}{Fundamentals: Neighborhood}{59}{paragraph*.29}%
+\contentsline {subparagraph}{Fundamentals: Neighbors in 2D}{60}{subparagraph*.30}%
+\contentsline {paragraph}{Erosion and Dilation}{61}{paragraph*.31}%
+\contentsline {subparagraph}{Applied Erosion and Dilation}{61}{subparagraph*.32}%
+\contentsline {subparagraph}{Dilation}{62}{subparagraph*.33}%
+\contentsline {subparagraph}{Erosion}{63}{subparagraph*.34}%
+\contentsline {paragraph}{Opening and Closing}{63}{paragraph*.35}%
+\contentsline {subparagraph}{Morphological Closing}{64}{subparagraph*.36}%
+\contentsline {subparagraph}{Morphological opening}{65}{subparagraph*.37}%
+\contentsline {subsubsection}{Pitfalls with Segmentation}{66}{subsubsection*.38}%
+\contentsline {paragraph}{Partial Volume Effect}{66}{paragraph*.39}%
+\contentsline {paragraph}{Thresholding structures}{66}{paragraph*.40}%
+\contentsline {paragraph}{When is a sphere really a sphere?}{67}{paragraph*.41}%
+\contentsline {paragraph}{Rescaling}{67}{paragraph*.42}%
+\contentsline {subsubsection}{Summary}{68}{subsubsection*.43}%
