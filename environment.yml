@@ -1,0 +1,37 @@
+name: qbi2021
+channels:
+  - defaults
+  - anaconda
+  - vmtk
+  - simpleitk
+dependencies:
+  - conda
+  - python=3.7
+  - conda-env
+  - conda-build
+  - conda-verify
+  - anaconda
+  - anaconda-navigator
+  - navigator-updater
+  - _ipyw_jlab_nb_ext_conf
+  - numpy
+  - matplotlib
+  - bokeh
+  - rise
+  - pandas
+  - graphviz
+  - python-graphviz
+  - pydot
+  - plotly
+  - ffmpeg
+  - tensorflow==1.15
+  - keras
+  - itk
+  - ffmpeg
+  - tifffile
+  - scipy
+  - scikit-image
+  - dask-image
+  - pip
+
+  - prefix: /Users/kaestner/opt/anaconda3

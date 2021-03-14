@@ -23,11 +23,6 @@ export PATH="$HOME/miniconda3/bin:$PATH"
 conda update --yes conda
 popd
 
-# Configure the conda environment and put it in the path using the
-# provided versions
-conda create -n testenv --yes python=$PYTHON_VERSION pip nose pytest
-conda env update -n testenv -f binder/environment.yml -q
-source activate testenv
+conda info -a
 
-chmod a+x binder/postBuild
-sh binder/postBuild
+
