@@ -37,7 +37,6 @@
 #### Exercises
 - [Data augmentation exercise](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2020/blob/master/Exercises/03-augmentation/03-AugmentationExercise.ipynb)[![slides](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Exercises/03-augmentation/03-AugmentationExercise.ipynb)
 
----
 
 ## 18th March - Basic Segmentation, Discrete Binary Structures
 
