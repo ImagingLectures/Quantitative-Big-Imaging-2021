@@ -46,7 +46,7 @@
 
 #### Exercises
 
-- [Overview](../Exercises/04-Segmentation/04-Overview.md)
+- [Overview](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/04-Segmentation/04-Overview.md)
 
 ---
 ---
