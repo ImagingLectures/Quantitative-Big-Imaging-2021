@@ -47,7 +47,7 @@ What does identify mean?
 
 This is a really tedious task and we want to automatize it. Here, segmentation is a good approach. The question is now how we can achieve this.
 
-# How do we quantify this?
+## How do we quantify this?
 
 <div class="alert alert-block alert-success">
     
@@ -65,15 +65,14 @@ This is a really tedious task and we want to automatize it. Here, segmentation i
 - __False Negative__ values in the mitochondria that are classified as _Background_
 
 </div>
+
 We can then apply a threshold to the image to determine the number of points in each category
-
-
-fig, ax = plt.subplots(1, 4, figsize=(15, 2.5), dpi=150)
 
 thresh     = 0.52 
 thresh_img = cell_img > thresh # Apply a single threshold to the image
 
 # Visualization
+fig, ax = plt.subplots(1, 4, figsize=(15, 2.5), dpi=150)
 ax[0].imshow(cell_img, cmap='gray');  ax[0].set_title('Image');    ax[0].axis('off')
 ax[1].hist(cell_img.ravel(),bins=30); ax[1].set_title('Histogram')
 ax[1].vlines(thresh,ymin=0,ymax=12000,color='r',label='Threshold'); ax[1].legend(fontsize=9)
@@ -112,7 +111,8 @@ for real_img_idx, n_ax in zip([0, 1], m_ax):
 
 From the counts in the previus slide, we can now create a [Confusion matrix](https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62) and also look at the combined image of all the cases. In the hit map we can see white and gray as true segmentation and blue and magenta as false segmentations.
 
-ps.showHitMap(cell_seg,thresh_img) # this is a handy support function provided with the notebook
+fig,ax=plt.subplots(1,2,figsize=(15,6),dpi=150)
+ps.showHitMap(cell_seg,thresh_img,ax=ax) # this is a handy support function provided with the notebook
 
 ## Apply Precision and Recall
 
@@ -147,6 +147,8 @@ ROC curves are a very common tool for analyzing the performance of binary classi
 
 - The ROC shows the releation between recall and precision for a segmentation model.
 
+Let's compute the hit and miss statistics...
+
 If we want to make an ROC curve we take a number of threshold values and compute the corresponding precision and recall values for each threshold.  In the example below we scan threshold values from 0.1 to 0.9 and compute the hit and miss statistics to calculate the precision and recall.
 
 out_vals = []
@@ -170,7 +172,7 @@ for thresh_val in np.linspace(0.1, 0.9):
 roc_df = pd.DataFrame(out_vals)
 roc_df.head(3)
 
-Let's plot the table...
+... and plot the table.
 
 ## Making ROC Curves Easier
 Here we show how it is done with scikit-image. 
@@ -182,12 +184,14 @@ Another way of showing the ROC curve (more common for machine learning rather th
 
 These show very similar information with the major difference being the goal is to be in the upper left-hand corner. Additionally random guesses can be shown as the slope 1 line. Therefore for a system to be useful it must lie above the random line.
 
-fig, ax1 = plt.subplots(1, 1, dpi=150,figsize=(8,5))
+fig, ax1 = plt.subplots(1, 1, dpi=120,figsize=(5,4))
 ax1.plot(roc_df['False_Positive_Rate'], roc_df['Recall']  , 'b.-', label='ROC Curve')
 ax1.plot(0, 1.0, 'r+', markersize=20, label='Ideal'); ax1.set_xlim(0, 1.1); ax1.set_ylim(0, 1.1);
 ax1.set_ylabel('True Positive Rate / Recall')
 ax1.set_xlabel('False Positive Rate')
-ax1.legend(loc=2);
+ax1.legend(loc='upper right');
+
+### ROC curve for mitochondria image segmentation
 
 fpr, tpr, thresholds = roc_curve(cell_seg.ravel().astype(int),
                                  cell_img.ravel())
@@ -196,8 +200,7 @@ fig, ax1 = plt.subplots(1, 1, dpi=150,figsize=(8,5))
 ax1.plot(fpr, tpr, 'b.-', markersize=0.01,  label='ROC Curve')
 ax1.plot(0.0, 1.0, 'r+', markersize=20, label='Ideal')
 ax1.plot([0, 1], [0, 1], 'g-', label='Random Guessing')
-ax1.set_xlim(-0.1, 1.1)
-ax1.set_ylim(-0.1, 1.1)
+ax1.set_xlim(-0.1, 1.1); ax1.set_ylim(-0.1, 1.1)
 ax1.set_xlabel('False Positive Rate')
 ax1.set_ylabel('True Positive Rate')
 ax1.legend(loc=0);
@@ -225,7 +228,7 @@ for c_filt, c_ax in zip([no_filter, gaussian_filter, diff_of_gaussian_filter, me
     c_ax.imshow(c_filt(cell_img), cmap='bone')
     c_ax.set_title(c_filt.__name__)
 
-### ROC curves fo filtered images
+### ROC curves of filtered images
 
 fig, ax1 = plt.subplots(1, 1,figsize=(12,5), dpi=150)
 
@@ -270,7 +273,7 @@ Armed with these tools we are ready to analyze the performance of the segmentati
 
 ## Multiple Phases example: Segmenting Shale
 
-- Shale provided from Kanitpanyacharoen, W. (2012). Synchrotron X-ray Applications Toward an Understanding of Elastic Anisotropy.
+- Shale provided from _Kanitpanyacharoen, W. (2012). Synchrotron X-ray Applications Toward an Understanding of Elastic Anisotropy._
 
 - Here we have a shale sample measured with X-ray tomography with three different phases inside (clay, rock, and air).
 - The model is that because the chemical composition and density of each phase is different they will absorb different amounts of x-rays and appear as different brightnesses in the image
@@ -291,7 +294,7 @@ Let's take a look at the histogram as always when we face a segmentation task...
 Ideally we would derive 3 values for the thresholds based on a model for the composition of each phase and how much it absorbs, but that is not always possible or practical.
 - While there are 3 phases clearly visible in the image, the histogram is less telling (even after being re-scaled).
 
-fig, ax=plt.subplots(1,2, figsize=(15,5))
+fig, ax=plt.subplots(1,2, figsize=(15,5),dpi=150)
 ax[0].imshow(shale_img, cmap='bone'), ax[0].set_title('Shale image')
 ax[1].hist(shale_img.ravel(), 100); ax[1].set_title('Histogram of the shale image');
 
@@ -307,7 +310,7 @@ $$ I(x) =
 \text{Rock}, & 0.5 < x
 \end{cases}$$
 
-fig, ax=plt.subplots(1,1, figsize=(8,5),dpi=300)
+fig, ax=plt.subplots(1,1, figsize=(8,5),dpi=150)
 ax.hist(shale_img.ravel(), 100); ax.set_title('Histogram of the shale image');
 
 thresholds = [0.3, 0.5]
@@ -334,6 +337,10 @@ Segmenting multiple phases is a non-trivial problem. In particular, when the edg
 
 The implementations of basic thresholds and segmentations is very easy since it is a unary operation of a single image
 $$ f(I(\vec{x})) $$
+
+How is this implemented with using a programming language?
+
+
 In mathematical terms this is called a map and since it does not require information from neighboring voxels or images it can be calculated for each point independently (_parallel_). Filters on the other hand almost always depend on neighboring voxels and thus the calculations are not as easy to seperate. 
 
 ## Implementation using script languages
@@ -383,8 +390,15 @@ for(int x=x_min;x<x_max;x++)
     }
 ```
 
+### Alternative solution
+- Image are stored as a sequence of numbers, not matter the number of dimensions. 
+- The pixel neighborhood is not considered.
+- A single loop can be used! 
+
 # [Morphology](http://scikit-image.org/docs/dev/api/skimage.morphology.html)
-We can now utilize information from neighborhood voxels to improve the results. These steps are called morphological operations. We return to the original image of a cross
+We can now utilize information from neighborhood voxels to improve the results. 
+
+These steps are called morphological operations. 
 
 Like filtering the assumption behind morphological operations are
 - nearby voxels in __real__ images are related / strongly correlated with one another 
@@ -392,9 +406,8 @@ Like filtering the assumption behind morphological operations are
 
 Therefore these imaging problems can be alleviated by adjusting the balance between local and neighborhood values.
 
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
+## Noisy segmentation
+We return to the original image of a cross:
 
 nx = 20
 ny = 20
@@ -403,11 +416,16 @@ xx, yy = np.meshgrid(np.linspace(-10, 10, nx),
 np.random.seed(2018)
 cross_im = 1.1*((np.abs(xx) < 2)+(np.abs(yy) < 2)) + \
     np.random.uniform(-1.0, 1.0, size=xx.shape)
+
+thimg = cross_im > 0.8 # Let's apply a threshold
+
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 3.5), dpi=200)
 ax1.imshow(cross_im, cmap='hot')
 ax1.set_title('Image')
-ax2.imshow(cross_im > 0.8)
+ax2.imshow(thimg)
 ax2.set_title('Simple Thresholding');
+
+We have a lot of misclassified pixels here!
 
 ## Fundamentals: Neighborhood
 A neighborhood consists of the pixels or voxels which are of sufficient proximity to a given point. There are a number of possible definitions which largely affect the result when it is invoked.   
@@ -417,6 +435,8 @@ A neighborhood consists of the pixels or voxels which are of sufficient proximit
 - A small neighborhood performs operations over small areas / volumes
  - Computationally cheaper
  - Struggles with large noise / filling large holes
+
+### Why do we need neighborhods
 
 The neighborhood is important for a large number of image and other (communication, mapping, networking) processing operations:
 - filtering
@@ -429,25 +449,46 @@ It is often called structuring element (or ```selem``` for sort / code), but has
 
 ### Fundamentals: Neighbors in 2D
 
-For standard image operations there are two definitions of neighborhood. The 4 and 8 adjacent neighbors shown below. Given the blue pixel in the center the red are the 4-adjacent and the red and green make up the 8 adjacent. We expand beyond this to disk, cross, vertical and horizontal lines
+For standard image operations there are two definitions of neighborhood. 
+
+```{figure} figures/se_r1.pdf
+---
+width: 400
+---
+4-connected pixel neighborhood for 2D images.
+```
+
+```{figure} figures/se_rsqrt2.pdf
+---
+width: 400
+---
+8-connected pixel neighborhood for 2D images.
+```
+
+<table>
+<tr>
+<th>4-connected</th>
+<th>8-connected</th>    
+</tr>
+<tr>
+<td><img src="figures/se_r1.svg" style="width:150px"/></td>
+<td><img src="figures/se_rsqrt2.svg" style="width:150px"/></td>
+</tr>
+</table>
+
+The 4 and 8 adjacent neighbors shown below. Given the blue pixel in the center the red are the 4-adjacent and the red and green make up the 8 adjacent. We expand beyond this to disk, cross, vertical and horizontal lines
+
+### More neighborhood shapes
 
 from skimage.morphology import disk, octagon as oct_func, star
 
+def h_line(n): return np.pad(np.ones((1, 2*n+1)), [[n, n], [0, 0]], mode='constant', constant_values=0).astype(int)
 
-def h_line(n):
-    return np.pad(np.ones((1, 2*n+1)), [[n, n], [0, 0]], mode='constant', constant_values=0).astype(int)
+def v_line(n): return h_line(n).T
 
+def cross(n): return ((h_line(n)+v_line(n)) > 0).astype(int)
 
-def v_line(n):
-    return h_line(n).T
-
-
-def cross(n):
-    return ((h_line(n)+v_line(n)) > 0).astype(int)
-
-
-def octagon(n):
-    return oct_func(n, n)
+def octagon(n): return oct_func(n, n)
 
 neighbor_functions = [disk, cross, h_line, v_line, star, octagon]
 sizes = [2, 3, 5]
@@ -459,6 +500,35 @@ for c_dim, c_axs in zip(sizes, m_axs):
         c_ax.set_title('{} {}'.format(c_func.__name__, c_func(c_dim).shape))
         
 plt.suptitle('Different neighborhood shapes and sizes', fontsize=20);
+
+### Fundamentals: Neighbors in 3D
+
+Neighborhoods in 3D include the planes above and below the center pixel in addition to the neighbors in the same plane. 
+
+```{figure} figures/se_r1.pdf
+---
+width: 400
+---
+4-connected pixel neighborhood for 2D images.
+```
+
+```{figure} figures/se_rsqrt2.pdf
+---
+width: 400
+---
+8-connected pixel neighborhood for 2D images.
+```
+
+<table>
+<tr>
+<th>6-connected</th>
+<th>26-connected</th>    
+</tr>
+<tr>
+<td><img src="figures/6conn3d.svg" style="width:150px"/></td>
+<td><img src="figures/26conn3d.svg" style="width:150px"/></td>
+</tr>
+</table>
 
 ## Erosion and Dilation
 
@@ -489,7 +559,7 @@ img=np.load('data/morphimage.npy')
 dimg=morph.dilation(img,[[0,1,0],[1,1,1],[0,1,0]])
 eimg=morph.erosion(img, [[0,1,0],[1,1,1],[0,1,0]])
 
-fig, ax = plt.subplots(1,3,figsize=(12,6))
+fig, ax = plt.subplots(1,3,figsize=(12,6),dpi=150)
 
 ax[0].imshow(eimg,cmap='gray'); ax[0].set_title('Erosion'),  ax[0].axis('off');
 ax[1].imshow(img,cmap='gray');  ax[1].set_title('Original'), ax[1].axis('off');
@@ -500,7 +570,7 @@ We can use dilation to expand objects, for example a too-low threshold value lea
 
 dimg=morph.dilation(img,[[0,1,0],[1,1,1],[0,1,0]])
 
-fig, ax = plt.subplots(1,3,figsize=(15,4))
+fig, ax = plt.subplots(1,3,figsize=(12,6), dpi=150)
 
 ax[0].imshow(img,cmap='gray'); ax[0].set_title('Original'); ax[0].axis('off');
 
@@ -515,7 +585,7 @@ plt.tight_layout()
 Erosion performs the opposite task to the dilation by reducing the size of the objects in the image
 
 eimg=morph.erosion(img,[[0,1,0],[1,1,1],[0,1,0]])
-fig, ax = plt.subplots(1,3,figsize=(15,4))
+fig, ax = plt.subplots(1,3,figsize=(12,6),dpi=150)
 
 ax[0].imshow(img,cmap='gray'); ax[0].set_title('Original'); ax[0].axis('off');
 
@@ -540,7 +610,7 @@ These operation rebuilds most of the objects after removing unwanted features.
 oimg = morph.opening(img,np.array([[0,1,0],[1,1,1],[0,1,0]]))
 cimg = morph.closing(img,np.array([[0,1,0],[1,1,1],[0,1,0]]))
 
-fig, ax = plt.subplots(1,3,figsize=(12,6))
+fig, ax = plt.subplots(1,3,figsize=(12,6), dpi=150)
 ax[0].imshow(cimg,cmap='gray'); ax[0].set_title('Closing'), ax[0].axis('off');
 ax[1].imshow(img,cmap='gray'); ax[1].set_title('Original'), ax[1].axis('off');
 
@@ -558,7 +628,7 @@ $$\epsilon(\delta(f))$$
 
 Closing is an operation you apply to remove false negatives in your image. The effect is that small holes in the objects are filled and gaps between large objects are connected.
 
-fig, ax = plt.subplots(1,3,figsize=[15,4])
+fig, ax = plt.subplots(1,3,figsize=[12,6], dpi=150)
 
 ax[0].imshow(img,cmap='gray'); ax[0].set_title('Original $f$') ; ax[0].axis('off');
 
@@ -582,7 +652,7 @@ $$\delta(\epsilon(f))$$
 
 Opening is an operation you apply to remove false positives in your image. The effect is that small objects are erased and connections between large objects are removed.
 
-fig,ax = plt.subplots(1,3,figsize=[15,4])
+fig,ax = plt.subplots(1,3,figsize=[12,6],dpi=150)
 
 ax[0].imshow(img,cmap='gray'); ax[0].axis('off');
 ax[0].set_title('Original $f$')

@@ -14,6 +14,8 @@ __Part 1__: Image formation and thresholding
 <p style="font-size:1.5em;padding-bottom: 0.25em;">Anders Kaestner</p>  
 <p style="font-size:1em;">Laboratory for Neutron Scattering and Imaging<br />Paul Scherrer Institut</p>
 
+
+
 ## Today's lecture
 
 - Motivation
@@ -25,6 +27,22 @@ __Part 1__: Image formation and thresholding
 - Implementation
 - Morphology
 - Partial volume effects
+
+## Load some modules
+
+from skimage.io          import imread
+from skimage.color       import rgb2gray
+import matplotlib.pyplot as plt
+from skimage.morphology  import disk
+from scipy.ndimage       import zoom
+import numpy             as np
+from skimage.morphology import ball
+%matplotlib inline
+
+# For the 3D rendering
+import plotly.offline as py
+from plotly.figure_factory import create_trisurf
+from skimage.measure import marching_cubes
 
 ## Applications
 
@@ -116,7 +134,7 @@ Acquisition workflow to obtain CT slices of a specimen.
 
 At the beginning we have 2560 x 2560 x 2160 x 32 bits = 56GB / sample! Then we apply some filtering and preprocessing to prepare the data for analysis. After 20h of computer time we still have 56GB of data (it is however nicer to work with). This still way to much data to handle, we need to reduce it in some way.
 
- <img src="figures/tomoimage.png" style="width:75%"> 
+ <img src="figures/tomoimage.png" style="width:60%"> 
 
 <center><b>2560 x 2560 x 2160 x 32 bit = 56GB / sample</b></center>
     $$\downarrow$$ 
@@ -140,10 +158,12 @@ __Way too much data, we need to reduce__
 
 
 ### *Single numbers*:
-* volume fraction,
-* cell count,
-* average cell stretch,
-* cell volume variability
+* Volume _fraction_,
+* Cell _count_,
+* Average cell _stretch_,
+* Cell volume _variability_
+
+These are all __measurable__ metrics!
 
 ## Why do we perform segmentation?
 
@@ -201,11 +221,13 @@ from skimage.io import imread
 from skimage.color import rgb2gray
 import matplotlib.pyplot as plt
 
+fig,ax=plt.subplots(1,1,figsize=(12,8))
 dkimg = imread("figures/Average_prokaryote_cell.jpg")
-plt.imshow(rgb2gray(dkimg), cmap = 'bone');
+ax.imshow(rgb2gray(dkimg), cmap = 'bone');
 
 # Qualitative Metrics: What did people use to do?
-- What comes out of our detector / enhancement process 
+
+What comes out of our detector / enhancement process 
 
 %matplotlib inline
 from skimage.io import imread
@@ -213,15 +235,16 @@ from skimage.color import rgb2gray
 import matplotlib.pyplot as plt
 
 dkimg = rgb2gray(imread("figures/Average_prokaryote_cell.jpg"))
-fig, (ax_hist, ax_img) = plt.subplots(1, 2, figsize = (12,3))
+fig, (ax_img, ax_hist) = plt.subplots(1, 2, figsize = (15,5))
+
+m_show_obj = ax_img.imshow(dkimg, cmap = 'bone')
+cb_obj = fig.colorbar(m_show_obj,ax=ax_img,shrink=0.8)
+cb_obj.set_label('Absorption Coefficient'), ax_img.set_title('Measured image')
 
 ax_hist.hist(dkimg.ravel())
 ax_hist.set_xlabel('Absorption Coefficient')
-ax_hist.set_ylabel('Pixel Count')
+ax_hist.set_ylabel('Pixel Count'), ax_hist.set_title('Gray level histogram');
 
-m_show_obj = ax_img.matshow(dkimg, cmap = 'bone')
-cb_obj = plt.colorbar(m_show_obj)
-cb_obj.set_label('Absorption Coefficient')
 
 ## Identify objects by eye
 
@@ -240,7 +263,7 @@ In the introduction lecture we talked about how people approach an image analysi
 
 They match up well to the world view / perspective 
 
-![Approaches](../Lecture-01/figures/approaches.png)
+<img src="../Lecture-01/figures/approaches.png" style="height:600px" />
 
 ## How to approach the segmentation task
 
@@ -251,6 +274,7 @@ The experimentalists approached the segmenation task based on their experience a
 The opposite approach is to find and use generalized algorithms that provides the results. This approach is driven by the results as the computer vision and deep learning experts often don't have the knowledge to interpret the data.
 
 
+<font size="10em">
 <table>
 <tr><th>
 Model-Based        
@@ -265,15 +289,14 @@ Experimentalist
 Computer Vision / Deep Learning    
 </td></tr>    
 <tr><td valign="top">
-    
 Problem-driven
- - Top-down
- - _Reality_ Model-based    
-
+<li>Top-down</li>
+<li><b>Reality</b> Model-based</li>
 </td><td valign="top">
 Results-driven    
 </td></tr>    
 </table>
+</font>
 
 ## Model-based Analysis
 
@@ -303,10 +326,10 @@ $$I_{measured}(\vec{x})=F_{system}(I_{stimulus}(\vec{x}),S_{sample}(\vec{x}))$$
 
 In many setups there is un-even illumination caused by incorrectly adjusted equipment and fluctations in power and setups
 
-$F_{system}(a,b)=a*b$
+$$F_{system}(a,b)=a*b$$
 
-$I_{stimulus}=\textrm{Beam}_{profile}$
-$S_{system}=\alpha(\vec{x})\longrightarrow\alpha(\vec{x})=\frac{I_{measured}(\vec{x})}{\textrm{Beam}_{profile}(\vec{x})}$
+$$I_{stimulus}=\textrm{Beam}_{profile}$$
+$$S_{system}=\alpha(\vec{x})\longrightarrow\alpha(\vec{x})=\frac{I_{measured}(\vec{x})}{\textrm{Beam}_{profile}(\vec{x})}$$
 
 
 Let's create a simulated image acquisition with the cell image where you have beam profile that is penetrating the sample:
@@ -325,10 +348,8 @@ beam_img = zoom(s_beam_img, [cell_img.shape[0]/7.0, cell_img.shape[1]/7.0])
 
 fig, (ax_beam, ax_img, ax_det) = plt.subplots(1, 3, figsize = (15,6),dpi=150)
 
-ax_beam.imshow(beam_img, cmap = 'viridis'); ax_beam.set_title('Beam Profile')
-
-ax_img.imshow(cell_img, cmap = 'viridis'); ax_img.set_title('Sample Profile')
-
+ax_beam.imshow(beam_img,         cmap = 'viridis'); ax_beam.set_title('Beam Profile')
+ax_img.imshow(cell_img,          cmap = 'viridis'); ax_img.set_title('Sample Profil')
 ax_det.imshow(cell_img*beam_img, cmap = 'viridis'); ax_det.set_title('Detector');
 
 ### Profiles across the image
@@ -343,13 +364,12 @@ ax[1].plot((cell_img*beam_img)[beam_img.shape[0]//2], label = 'Detector')
 ax[1].set_ylabel('Intensity'); ax[1].set_xlabel('Pixel Position');ax[1].legend(loc="lower center");
 
 ### Inhomogeneous illumination
-- Frequently there is a fall-off of the beam away from the center (as is the case of a Gaussian beam which frequently shows up for laser systems). 
+Frequently there is a fall-off of the beam away from the center (as is the case of a Gaussian beam which frequently shows up for laser systems). 
 
-- This can make extracting detail away from the center much harder.
-
-
-fig, ax1 = plt.subplots(1,1, figsize = (8,8))
+fig, ax1 = plt.subplots(1,1, figsize = (10,10))
 ax1.matshow(cell_img*beam_img,cmap = 'viridis');
+
+This can make extracting detail away from the center much harder.
 
 ### Absorption Imaging (X-ray, Ultrasound, Optical)
 
@@ -407,6 +427,8 @@ for c_mat, c_df in abs_df.groupby('material'):
 ax1.set_xlabel('$\\alpha(x,y)$', fontsize = 15); ax1.set_ylabel('$I_{detector}$', fontsize = 18)
 
 ax1.legend(); ax2.legend(); ax3.legend(loc = 0); ax4.axis('off');
+
+The material are differently represented!
 
 The $\alpha$-$I_{detector}$ plot shows the curved exponential behaviour we can expect from Beer Lambert's law. Now, if we look at the histogram, we can see that distribution of attenuation coefficients doesn't really match the measured intensity. In this example, it is even so that the widths of the diffent materials have changed places. Great attenuation coefficient results in little transmission and small attenuation coefficient allow more of the beam to penetrate the sample.
 
@@ -496,7 +518,8 @@ This is only valid because we have air ($\alpha=0$) as the second component in t
 
 Now, let's compute the breast thickness from the transmission image:
 
-breast_thickness = -np.log(i_detector)/breast_alpha
+breast_thickness = -np.log(i_detector)/breast_alpha # Compute the thickness
+
 fig, (ax_hist, ax_breast) = plt.subplots(1, 2, figsize = (12,5), dpi=150)
 
 b_img_obj = ax_breast.imshow(breast_thickness, cmap = 'bone'); ax_breast.set_title('Thickness image')
@@ -531,14 +554,14 @@ renorm_slice = np.sum(breast_mask[10:40, 0:25], 2)/np.sum(breast_mask[30, 10])
 breast_vol[10:40, 0:25] /= np.stack([renorm_slice]*breast_vol.shape[2],-1)
 
 from skimage.util import montage as montage2d
-fig, ax1 = plt.subplots(1,1, figsize = (12, 12))
+fig, ax1 = plt.subplots(1,1, figsize = (15, 12))
 ax1.imshow(montage2d(breast_vol.swapaxes(0,2).swapaxes(1,2)[::3]).transpose(), 
            cmap = 'bone', vmin = breast_alpha*.8, vmax = breast_alpha*1.2);
 
 ### Looking at the thickness again
 When we make the projection and apply Beer's Law we see that it appears as a relatively constant region in the image
 
-i_detector = np.exp(-np.sum(breast_vol,2))
+i_detector = np.exp(-np.sum(breast_vol,2)) # Compute what the detector sees
 
 fig, (ax_hist, ax_breast) = plt.subplots(1, 2, figsize = (12,5),dpi=150)
 
@@ -559,8 +582,8 @@ So we fundamentally from this single image cannot answer:
 
 
 breast_thickness = -np.log(i_detector)/1e-2
-fig, (ax_hist, ax_breast) = plt.subplots(1, 2, figsize = (12,5),dpi=150)
 
+fig, (ax_hist, ax_breast) = plt.subplots(1, 2, figsize = (12,5),dpi=150)
 b_img_obj = ax_breast.imshow(breast_thickness, cmap = 'bone')
 plt.colorbar(b_img_obj)
 
@@ -639,20 +662,25 @@ $$ I(x,y) =
 \end{cases}$$
 
 threshold = 0.4
-fig, ax1 = plt.subplots(1,1,figsize=(8,5),dpi=150)
-ax1.imshow(cross_im, cmap = 'hot', extent = [xx.min(), xx.max(), yy.min(), yy.max()])
 thresh_img = cross_im > threshold
 
-ax1.plot(xx[np.where(thresh_img)], yy[np.where(thresh_img)],
-         'ks', markerfacecolor = 'green', alpha = 0.5, label = 'threshold', markersize = 18)
+fig, (ax2,ax1) = plt.subplots(1,2,figsize=(15,6),dpi=150)
+ax1.matshow(cross_im, cmap = 'hot', extent = [xx.min(), xx.max(), yy.min(), yy.max()])
+
+ax1.plot(xx[np.where(thresh_img)]*0.91, yy[np.where(thresh_img)]*0.91,
+         'ks', markerfacecolor = 'green', alpha = 0.5, label = 'threshold', markersize = 20)
 ax1.legend();
+ax2.hist(cross_im.ravel(), 20)
+ax2.set_title('$P_f(x,y)$'); ax1.set_xlabel('Intensity'); ax1.set_ylabel('Pixel Count');
+ax2.vlines([0.4],ymin=0,ymax=15,color='red');
 
 ### Various Thresholds
 We can see the effect of choosing various thresholds 
 
+$\gamma\in{}\{0.1,0.26,0.42,0.58,0.74,0.9\}$
 
 fig, m_axs = plt.subplots(2,3, 
-                          figsize = (15, 8))
+                          figsize = (15, 8),dpi=150)
 for c_thresh, ax1 in zip(np.linspace(0.1, 0.9, 6), m_axs.flatten()):
     
     ax1.imshow(cross_im,
@@ -660,7 +688,7 @@ for c_thresh, ax1 in zip(np.linspace(0.1, 0.9, 6), m_axs.flatten()):
                extent = [xx.min(), xx.max(), yy.min(), yy.max()])
     thresh_img = cross_im > c_thresh
 
-    ax1.plot(xx[np.where(thresh_img)], yy[np.where(thresh_img)], 'rs', alpha = 0.5, label = 'img>%2.2f' % c_thresh, markersize = 20)
+    ax1.plot(xx[np.where(thresh_img)]*0.91, yy[np.where(thresh_img)]*0.91, 'rs', alpha = 0.5, label = 'img>%2.2f' % c_thresh, markersize = 15)
     ax1.legend(loc = 1);
 
 In this fabricated example we saw that thresholding can be a very simple and quick solution to the segmentation problem. Unfortunately, real data is often less obvious. The features we want to identify for our qantitative analysis are often obscured be different other features in the image. They may be part of the setup of caused by the acquisition conditions.
@@ -699,6 +727,8 @@ for c_thresh, ax1 in zip(np.linspace(100, 200, 6), m_axs.flatten()):
     ax1.imshow(label2rgb(thresh_img, image = 1-cell_img, bg_label = 0, alpha = 0.4)) # Rgb coding of image and mask
     
     ax1.set_title('img<%2.2f' % c_thresh)
+
+There is a graylevel gradient in the image!
 
 # Other image types
 
@@ -770,7 +800,8 @@ ax.set_xlabel('$\\vec{f}_x(x,y)$'); ax.set_ylabel('$\\vec{f}_y(x,y)$');
 ax.vlines(0.25,ymin=0.25,ymax=1,color='red',label='x=0.25');ax.hlines(0.25,xmin=0.25,xmax=1,color='lightgreen', label='y=0.25');ax.legend(loc='lower left');
 
 ### Applying a threshold
-Given the presence of two variables; however, more advanced approaches can also be investigated. For example we can keep only components parallel to the x axis by using the dot product.
+Given the presence of two variables; however, more advanced approaches can also be investigated. 
+- For example we can keep only components parallel to the x axis by using the dot product.
 
 $$I(x,y)=
 \begin{cases}

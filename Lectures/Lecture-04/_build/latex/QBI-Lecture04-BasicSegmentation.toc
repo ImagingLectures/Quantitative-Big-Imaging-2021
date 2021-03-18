@@ -1,94 +1,101 @@
 \babel@toc {english}{}
 \contentsline {chapter}{\numberline {1}Today’s lecture}{3}{chapter.1}%
-\contentsline {chapter}{\numberline {2}Applications}{5}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Literature / Useful References}{7}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Models / ROC Curves}{7}{section.3.1}%
-\contentsline {chapter}{\numberline {4}Motivation: Why do we do imaging experiments?}{9}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Exploratory}{9}{section.4.1}%
-\contentsline {section}{\numberline {4.2}To test a hypothesis}{9}{section.4.2}%
-\contentsline {section}{\numberline {4.3}What we are looking at?}{9}{section.4.3}%
-\contentsline {section}{\numberline {4.4}To test a hypothesis}{9}{section.4.4}%
-\contentsline {section}{\numberline {4.5}What did we want in the first place?}{10}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}\sphinxstyleemphasis {Single numbers}:}{10}{subsection.4.5.1}%
-\contentsline {section}{\numberline {4.6}Why do we perform segmentation?}{10}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Review: Filtering and Image Enhancement}{11}{section.4.7}%
-\contentsline {section}{\numberline {4.8}What we get from the imaging modality}{11}{section.4.8}%
-\contentsline {chapter}{\numberline {5}Qualitative Metrics: What did people use to do?}{13}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Identify objects by eye}{13}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Morphometrics}{14}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Segmentation Approaches}{15}{chapter.6}%
-\contentsline {section}{\numberline {6.1}How to approach the segmentation task}{16}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Model based segmentation}{16}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}Algorithmic segmentation approach}{17}{subsection.6.1.2}%
-\contentsline {section}{\numberline {6.2}Model\sphinxhyphen {}based Analysis}{17}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Direct Imaging (simple)}{18}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Profiles across the image}{18}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}Inhomogeneous illumination}{19}{subsection.6.2.3}%
-\contentsline {subsection}{\numberline {6.2.4}Absorption Imaging (X\sphinxhyphen {}ray, Ultrasound, Optical)}{20}{subsection.6.2.4}%
-\contentsline {subsection}{\numberline {6.2.5}A numerical transmission imaging example (1D)}{21}{subsection.6.2.5}%
+\contentsline {chapter}{\numberline {2}Load some modules}{5}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Applications}{7}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Literature / Useful References}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Models / ROC Curves}{9}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Motivation: Why do we do imaging experiments?}{11}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Exploratory}{11}{section.5.1}%
+\contentsline {section}{\numberline {5.2}To test a hypothesis}{11}{section.5.2}%
+\contentsline {section}{\numberline {5.3}What we are looking at?}{11}{section.5.3}%
+\contentsline {section}{\numberline {5.4}To test a hypothesis}{11}{section.5.4}%
+\contentsline {section}{\numberline {5.5}What did we want in the first place?}{12}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}\sphinxstyleemphasis {Single numbers}:}{12}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.6}Why do we perform segmentation?}{12}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Review: Filtering and Image Enhancement}{13}{section.5.7}%
+\contentsline {section}{\numberline {5.8}What we get from the imaging modality}{13}{section.5.8}%
+\contentsline {chapter}{\numberline {6}Qualitative Metrics: What did people use to do?}{15}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Identify objects by eye}{16}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Morphometrics}{16}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Segmentation Approaches}{17}{chapter.7}%
+\contentsline {section}{\numberline {7.1}How to approach the segmentation task}{17}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Model based segmentation}{17}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Algorithmic segmentation approach}{17}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}Model\sphinxhyphen {}based Analysis}{17}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Direct Imaging (simple)}{18}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Profiles across the image}{19}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}Inhomogeneous illumination}{19}{subsection.7.2.3}%
+\contentsline {subsection}{\numberline {7.2.4}Absorption Imaging (X\sphinxhyphen {}ray, Ultrasound, Optical)}{20}{subsection.7.2.4}%
+\contentsline {subsection}{\numberline {7.2.5}A numerical transmission imaging example (1D)}{21}{subsection.7.2.5}%
 \contentsline {subsubsection}{Plotting measured intensities}{21}{subsubsection*.3}%
-\contentsline {chapter}{\numberline {7}Example Mammography}{23}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Problems to interpret radiography images}{23}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Building a breast phantom}{24}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Transmission image of the breast phantom}{24}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Compute the thickness}{25}{subsection.7.2.2}%
-\contentsline {subsection}{\numberline {7.2.3}Visualizing the thickness}{26}{subsection.7.2.3}%
-\contentsline {section}{\numberline {7.3}What if \(\alpha \) is not constant?}{27}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Looking at the thickness again}{27}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}An anomaly in the thickness reconstruction}{28}{subsection.7.3.2}%
-\contentsline {subsection}{\numberline {7.3.3}Looking at the thickness profile with lump}{29}{subsection.7.3.3}%
-\contentsline {chapter}{\numberline {8}Segmentation}{31}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Where does segmentation get us?}{31}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Basic segmentation: Applying a threshold to an image}{31}{section.8.2}%
-\contentsline {section}{\numberline {8.3}The histogram}{32}{section.8.3}%
-\contentsline {section}{\numberline {8.4}Applying a threshold to an image}{33}{section.8.4}%
-\contentsline {subsection}{\numberline {8.4.1}Various Thresholds}{34}{subsection.8.4.1}%
-\contentsline {chapter}{\numberline {9}Segmenting Cells}{37}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Trying different thresholds on the cell image}{38}{section.9.1}%
-\contentsline {chapter}{\numberline {10}Other image types}{39}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Looking at colocation histograms}{40}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Vector field plot}{41}{section.10.2}%
-\contentsline {section}{\numberline {10.3}Applying a threshold to vector valued image}{42}{section.10.3}%
-\contentsline {subsection}{\numberline {10.3.1}Histogram of the vectors}{43}{subsection.10.3.1}%
-\contentsline {subsection}{\numberline {10.3.2}Applying a threshold}{43}{subsection.10.3.2}%
-\contentsline {subsection}{\numberline {10.3.3}Thresholding orientations}{44}{subsection.10.3.3}%
+\contentsline {chapter}{\numberline {8}Example Mammography}{23}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Problems to interpret radiography images}{23}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Building a breast phantom}{24}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Transmission image of the breast phantom}{24}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Compute the thickness}{25}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}Visualizing the thickness}{26}{subsection.8.2.3}%
+\contentsline {section}{\numberline {8.3}What if \(\alpha \) is not constant?}{27}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Looking at the thickness again}{27}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}An anomaly in the thickness reconstruction}{28}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Looking at the thickness profile with lump}{29}{subsection.8.3.3}%
+\contentsline {chapter}{\numberline {9}Segmentation}{31}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Where does segmentation get us?}{31}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Basic segmentation: Applying a threshold to an image}{31}{section.9.2}%
+\contentsline {section}{\numberline {9.3}The histogram}{32}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Applying a threshold to an image}{33}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Various Thresholds}{34}{subsection.9.4.1}%
+\contentsline {chapter}{\numberline {10}Segmenting Cells}{37}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Trying different thresholds on the cell image}{38}{section.10.1}%
+\contentsline {chapter}{\numberline {11}Other image types}{39}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Looking at colocation histograms}{40}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Vector field plot}{41}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Applying a threshold to vector valued image}{42}{section.11.3}%
+\contentsline {subsection}{\numberline {11.3.1}Histogram of the vectors}{43}{subsection.11.3.1}%
+\contentsline {subsection}{\numberline {11.3.2}Applying a threshold}{43}{subsection.11.3.2}%
+\contentsline {subsection}{\numberline {11.3.3}Thresholding orientations}{44}{subsection.11.3.3}%
 \contentsline {subsubsection}{A Machine Learning Approach to Image Processing}{44}{subsubsection*.4}%
 \contentsline {paragraph}{Loading some modules}{44}{paragraph*.5}%
 \contentsline {paragraph}{How to approach the analysis}{44}{paragraph*.6}%
-\contentsline {subsubsection}{How do we quantify this?}{45}{subsubsection*.7}%
+\contentsline {paragraph}{How do we quantify this?}{45}{paragraph*.7}%
 \contentsline {paragraph}{Check the performance of the thresholding}{46}{paragraph*.8}%
 \contentsline {paragraph}{The confusion matrix (revisited)}{47}{paragraph*.9}%
 \contentsline {paragraph}{Apply Precision and Recall}{48}{paragraph*.10}%
 \contentsline {subsubsection}{Reciever Operating Characteristic (ROC)}{49}{subsubsection*.11}%
 \contentsline {paragraph}{Making ROC Curves Easier}{50}{paragraph*.12}%
-\contentsline {paragraph}{Explore the impact of different filters on the ROC}{51}{paragraph*.13}%
-\contentsline {subparagraph}{ROC curves fo filtered images}{52}{subparagraph*.14}%
-\contentsline {paragraph}{Area Under the Curve (AUC)}{53}{paragraph*.15}%
-\contentsline {subsubsection}{Segmenting multiple phases}{54}{subsubsection*.16}%
-\contentsline {paragraph}{Multiple Phases example: Segmenting Shale}{54}{paragraph*.17}%
-\contentsline {subparagraph}{Finding three categories}{55}{subparagraph*.18}%
-\contentsline {subsubsection}{Multiple Segmentations}{56}{subsubsection*.19}%
-\contentsline {paragraph}{Segmentation result}{56}{paragraph*.20}%
-\contentsline {subsubsection}{Implementation of thresholding}{57}{subsubsection*.21}%
-\contentsline {paragraph}{Implementation using script languages}{57}{paragraph*.22}%
-\contentsline {subparagraph}{Python (numpy) and Matlab}{57}{subparagraph*.23}%
-\contentsline {subparagraph}{Python}{57}{subparagraph*.24}%
-\contentsline {paragraph}{Implementation using traditional programming languages}{58}{paragraph*.25}%
-\contentsline {subparagraph}{Java}{58}{subparagraph*.26}%
-\contentsline {subparagraph}{C/C++}{58}{subparagraph*.27}%
-\contentsline {subsubsection}{Morphology}{58}{subsubsection*.28}%
-\contentsline {paragraph}{Fundamentals: Neighborhood}{59}{paragraph*.29}%
-\contentsline {subparagraph}{Fundamentals: Neighbors in 2D}{60}{subparagraph*.30}%
-\contentsline {paragraph}{Erosion and Dilation}{61}{paragraph*.31}%
-\contentsline {subparagraph}{Applied Erosion and Dilation}{61}{subparagraph*.32}%
-\contentsline {subparagraph}{Dilation}{62}{subparagraph*.33}%
-\contentsline {subparagraph}{Erosion}{63}{subparagraph*.34}%
-\contentsline {paragraph}{Opening and Closing}{63}{paragraph*.35}%
-\contentsline {subparagraph}{Morphological Closing}{64}{subparagraph*.36}%
-\contentsline {subparagraph}{Morphological opening}{65}{subparagraph*.37}%
-\contentsline {subsubsection}{Pitfalls with Segmentation}{66}{subsubsection*.38}%
-\contentsline {paragraph}{Partial Volume Effect}{66}{paragraph*.39}%
-\contentsline {paragraph}{Thresholding structures}{66}{paragraph*.40}%
-\contentsline {paragraph}{When is a sphere really a sphere?}{67}{paragraph*.41}%
-\contentsline {paragraph}{Rescaling}{67}{paragraph*.42}%
-\contentsline {subsubsection}{Summary}{68}{subsubsection*.43}%
+\contentsline {subparagraph}{ROC curve for mitochondria image segmentation}{51}{subparagraph*.13}%
+\contentsline {paragraph}{Explore the impact of different filters on the ROC}{51}{paragraph*.14}%
+\contentsline {subparagraph}{ROC curves of filtered images}{52}{subparagraph*.15}%
+\contentsline {paragraph}{Area Under the Curve (AUC)}{53}{paragraph*.16}%
+\contentsline {subsubsection}{Segmenting multiple phases}{54}{subsubsection*.17}%
+\contentsline {paragraph}{Multiple Phases example: Segmenting Shale}{54}{paragraph*.18}%
+\contentsline {subparagraph}{Finding three categories}{55}{subparagraph*.19}%
+\contentsline {subsubsection}{Multiple Segmentations}{56}{subsubsection*.20}%
+\contentsline {paragraph}{Segmentation result}{56}{paragraph*.21}%
+\contentsline {subsubsection}{Implementation of thresholding}{57}{subsubsection*.22}%
+\contentsline {paragraph}{Implementation using script languages}{57}{paragraph*.23}%
+\contentsline {subparagraph}{Python (numpy) and Matlab}{57}{subparagraph*.24}%
+\contentsline {subparagraph}{Python}{57}{subparagraph*.25}%
+\contentsline {paragraph}{Implementation using traditional programming languages}{58}{paragraph*.26}%
+\contentsline {subparagraph}{Java}{58}{subparagraph*.27}%
+\contentsline {subparagraph}{C/C++}{58}{subparagraph*.28}%
+\contentsline {subparagraph}{Alternative solution}{58}{subparagraph*.29}%
+\contentsline {subsubsection}{Morphology}{58}{subsubsection*.30}%
+\contentsline {paragraph}{Noisy segmentation}{59}{paragraph*.31}%
+\contentsline {paragraph}{Fundamentals: Neighborhood}{59}{paragraph*.32}%
+\contentsline {subparagraph}{Why do we need neighborhods}{60}{subparagraph*.33}%
+\contentsline {subparagraph}{Fundamentals: Neighbors in 2D}{60}{subparagraph*.34}%
+\contentsline {subparagraph}{More neighborhood shapes}{62}{subparagraph*.35}%
+\contentsline {subparagraph}{Fundamentals: Neighbors in 3D}{63}{subparagraph*.36}%
+\contentsline {paragraph}{Erosion and Dilation}{63}{paragraph*.37}%
+\contentsline {subparagraph}{Applied Erosion and Dilation}{65}{subparagraph*.38}%
+\contentsline {subparagraph}{Dilation}{65}{subparagraph*.39}%
+\contentsline {subparagraph}{Erosion}{66}{subparagraph*.40}%
+\contentsline {paragraph}{Opening and Closing}{67}{paragraph*.41}%
+\contentsline {subparagraph}{Morphological Closing}{67}{subparagraph*.42}%
+\contentsline {subparagraph}{Morphological opening}{68}{subparagraph*.43}%
+\contentsline {subsubsection}{Pitfalls with Segmentation}{69}{subsubsection*.44}%
+\contentsline {paragraph}{Partial Volume Effect}{69}{paragraph*.45}%
+\contentsline {paragraph}{Thresholding structures}{69}{paragraph*.46}%
+\contentsline {paragraph}{When is a sphere really a sphere?}{70}{paragraph*.47}%
+\contentsline {paragraph}{Rescaling}{70}{paragraph*.48}%
+\contentsline {subsubsection}{Summary}{71}{subsubsection*.49}%
