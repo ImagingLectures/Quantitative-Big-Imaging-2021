@@ -1,2 +1,3 @@
-- file: 05-AdvancedSegmentation.ipynb	
-- file: 05-SupervisedSegmentation.ipynb
+file: 05-AdvancedSegmentation
+sections:
+- file: 05-SupervisedSegmentation
