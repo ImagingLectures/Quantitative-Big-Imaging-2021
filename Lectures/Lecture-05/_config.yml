@@ -1,5 +1,6 @@
 # Book settings
 title: Quantitative Big Imaging - Advanced segmentation
+only_build_toc_files: true
 
 author: Anders Kaestner
 #logo: 'images/logo.png'
