@@ -1,3 +1,4 @@
-file: 05-AdvancedSegmentation
+file: preface
 sections:
+- file: 05-AdvancedSegmentation
 - file: 05-SupervisedSegmentation
