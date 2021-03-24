@@ -48,18 +48,14 @@
 
 - [Overview](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/04-Segmentation/04-Overview.md)
 
----
----
-
-Last year's material - not yet updated
 
 ## 25th March - Advanced Segmentation
 
--  Part 1: Advanced segmentation [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/05-AdvancedSegmentation.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/05-AdvancedSegmentation.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/05-AdvancedSegmentation.ipynb)
+| Downloads| Videos |
+|:---:|:---|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture05-AdvancedSegmentation.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-05/05-AdvancedSegmentation.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-05/05-AdvancedSegmentation.ipynb) &nbsp;&nbsp;&nbsp;  [<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-05/05-SupervisedSegmentation.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-05/05-SupervisedSegmentation.ipynb)| <a href="https://youtu.be/9nzLKOiDK6M">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/6ax1_lvo8Gk">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
 
-- Part 2: Supervised segmentation [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/05-SupervisedSegmentation.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/05-SupervisedSegmentation.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/05-SupervisedSegmentation.ipynb)
-
-#### Lecture Videos
+#### Lecture Videos (last year)
 - [Part 1: Advanced segmentation](https://youtu.be/tWhOfT9sgnY) 
 - [Part 2: Supervised segmentation approaches](https://youtu.be/wNXohNppc9w)
 
@@ -68,6 +64,9 @@ Last year's material - not yet updated
 - [Overview](../Exercises/05-AdvancedSegmentation/05-Overview.md)
 
 ---
+---
+
+Last year's material - not yet updated
 
 ## 1st April - Analyzing Single Objects, Shape and Texture
 
