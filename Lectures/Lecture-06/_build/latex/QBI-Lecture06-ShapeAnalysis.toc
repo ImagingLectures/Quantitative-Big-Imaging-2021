@@ -1,0 +1,146 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Shape analysis}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Previously on QBI …}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Learning Objectives}{3}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Motivation (Why and How?)}{3}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}Outline}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Metrics}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Motivation}{4}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}What did we want in the first place?}{5}{subsection.1.5.1}%
+\contentsline {section}{\numberline {1.6}Literature / Useful References}{5}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Let’s load some modules for python}{6}{section.1.7}%
+\contentsline {chapter}{\numberline {2}Component labelling}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Segmentation}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}To measure objects in an image, they need to be uniquely identified.}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}A cityscape image}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Connected component labeling in python}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Labels in the cityscape image}{10}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Area of each segment}{10}{section.2.6}%
+\contentsline {chapter}{\numberline {3}A component labeling algorithm}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Labeling initialization}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}A brushfire labeling algorithm}{14}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Implementation of the brush fire algorithm}{14}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Looking at the iterations}{16}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Some comments on the brushfire algorithm}{16}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Let’s animate the iterations}{17}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}Bigger Images}{17}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Run the labelling on the car image}{18}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Let’s animate the iterations}{19}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Different Neighborhoods}{19}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Or a smaller kernel}{21}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Comparing different neighborhoods}{22}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Beyond component labeling \sphinxhyphen {} what can we measure?}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}What we would like to to do}{23}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Object position \sphinxhyphen {} Center of Volume (COV): With a single object}{23}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Define a center}{24}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Center of a labeled item}{24}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Center of Mass (COM): With a single object}{25}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Define a center}{25}{subsection.4.3.1}%
+\contentsline {section}{\numberline {4.4}Further object metrics}{27}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Regionprops manual page}{28}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Let’s try regionprops on our image}{31}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Lots of information}{32}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Extents: With a single object}{33}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Where is this information useful?}{33}{subsection.4.5.1}%
+\contentsline {subsubsection}{Let’s look at a car item}{33}{subsubsection*.3}%
+\contentsline {subsection}{\numberline {4.5.2}Finding a bounding box}{34}{subsection.4.5.2}%
+\contentsline {chapter}{\numberline {5}Using regionprops on real images}{37}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Shape Analysis}{37}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Statistics}{38}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Object anisotropy}{41}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Anisotropy: What is it?}{41}{section.6.1}%
+\contentsline {section}{\numberline {6.2}A very vague definition}{41}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Let’s define some of these metrics}{42}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}How does the anisotropy metrics respond?}{42}{subsection.6.2.2}%
+\contentsline {chapter}{\numberline {7}Statistical tools}{45}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Useful Statistical Tools}{45}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Principal Component Analysis}{45}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}PCA on spectroscopy}{45}{subsection.7.2.1}%
+\contentsline {section}{\numberline {7.3}Test Dataset of a number of curves}{46}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}How can we analyze this data without specifically looking for peaks or building models?}{47}{subsection.7.3.1}%
+\contentsline {chapter}{\numberline {8}Principal Component Analysis}{49}{chapter.8}%
+\contentsline {section}{\numberline {8.1}scikit\sphinxhyphen {}learn Face Analyis}{49}{section.8.1}%
+\contentsline {chapter}{\numberline {9}Applied PCA: Shape Tensor}{53}{chapter.9}%
+\contentsline {section}{\numberline {9.1}How do these statistical analyses help us?}{53}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Eigenvectors of the positions}{54}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Rotate object using eigenvectors}{55}{subsection.9.1.2}%
+\contentsline {section}{\numberline {9.2}Principal Component Analysis: Take home message}{56}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Principal Component Analysis: Elliptical Model}{57}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Ellipsoidal Representation}{57}{subsection.9.3.1}%
+\contentsline {chapter}{\numberline {10}Meshing}{59}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Meshing}{59}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Marching Cubes}{59}{section.10.2}%
+\contentsline {chapter}{\numberline {11}Next Time on QBI}{61}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Why}{61}{section.11.1}%
+\contentsline {section}{\numberline {11.2}What to do?}{61}{section.11.2}%
+\contentsline {chapter}{\numberline {12}Advanced Shape and Texture}{63}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Literature / Useful References}{63}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}Books}{63}{subsection.12.1.1}%
+\contentsline {subsection}{\numberline {12.1.2}Papers / Sites}{63}{subsection.12.1.2}%
+\contentsline {section}{\numberline {12.2}Outline}{64}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Learning Objectives}{64}{section.12.3}%
+\contentsline {subsection}{\numberline {12.3.1}Motivation (Why and How?)}{64}{subsection.12.3.1}%
+\contentsline {subsubsection}{Objects}{64}{subsubsection*.4}%
+\contentsline {subsubsection}{Patterns}{64}{subsubsection*.5}%
+\contentsline {section}{\numberline {12.4}Let’s load some modules for the notebook}{64}{section.12.4}%
+\contentsline {chapter}{\numberline {13}Distance Maps: What are they?}{67}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Distance maps in python}{67}{section.13.1}%
+\contentsline {section}{\numberline {13.2}What does a distance map look like?}{69}{section.13.2}%
+\contentsline {subsection}{\numberline {13.2.1}The Euclidean distance map}{70}{subsection.13.2.1}%
+\contentsline {subsection}{\numberline {13.2.2}The distance map depends on the neighborhood}{71}{subsection.13.2.2}%
+\contentsline {section}{\numberline {13.3}Why does speed matter?}{72}{section.13.3}%
+\contentsline {subsection}{\numberline {13.3.1}Extrapolated execution time}{72}{subsection.13.3.1}%
+\contentsline {section}{\numberline {13.4}Distance map \sphinxhyphen {} Definition}{73}{section.13.4}%
+\contentsline {subsection}{\numberline {13.4.1}Animating the iterations}{74}{subsection.13.4.1}%
+\contentsline {section}{\numberline {13.5}Distance Maps: Types}{75}{section.13.5}%
+\contentsline {subsection}{\numberline {13.5.1}Animating City\sphinxhyphen {}block distance}{75}{subsection.13.5.1}%
+\contentsline {section}{\numberline {13.6}Distance Maps: Precaution}{76}{section.13.6}%
+\contentsline {subsection}{\numberline {13.6.1}Anisotropic}{76}{subsection.13.6.1}%
+\contentsline {section}{\numberline {13.7}What does the Distance Maps show?}{76}{section.13.7}%
+\contentsline {section}{\numberline {13.8}Distance Map}{77}{section.13.8}%
+\contentsline {subsection}{\numberline {13.8.1}Animate the distances}{79}{subsection.13.8.1}%
+\contentsline {chapter}{\numberline {14}Distance Map of Real Images}{81}{chapter.14}%
+\contentsline {section}{\numberline {14.1}The bone slice}{81}{section.14.1}%
+\contentsline {section}{\numberline {14.2}The cortex}{81}{section.14.2}%
+\contentsline {section}{\numberline {14.3}How can we utilize this information?}{82}{section.14.3}%
+\contentsline {chapter}{\numberline {15}The thickness map}{83}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Applications}{83}{section.15.1}%
+\contentsline {subsection}{\numberline {15.1.1}A thickness map implementation}{83}{subsection.15.1.1}%
+\contentsline {section}{\numberline {15.2}Thickness map on foregrund and background}{84}{section.15.2}%
+\contentsline {subsection}{\numberline {15.2.1}Thickness distributions}{84}{subsection.15.2.1}%
+\contentsline {chapter}{\numberline {16}Distance Maps in 3D}{85}{chapter.16}%
+\contentsline {section}{\numberline {16.1}Let’s load a 3D image}{85}{section.16.1}%
+\contentsline {subsection}{\numberline {16.1.1}Inspecting the data in 3D}{86}{subsection.16.1.1}%
+\contentsline {subsection}{\numberline {16.1.2}Rendering the mesh as a surface}{87}{subsection.16.1.2}%
+\contentsline {section}{\numberline {16.2}Look at the distance transform}{88}{section.16.2}%
+\contentsline {chapter}{\numberline {17}Thickness in 3D Images}{89}{chapter.17}%
+\contentsline {chapter}{\numberline {18}Interactive 3D Views}{91}{chapter.18}%
+\contentsline {chapter}{\numberline {19}Interfaces / Surfaces}{93}{chapter.19}%
+\contentsline {chapter}{\numberline {20}Surface Area / Perimeter}{95}{chapter.20}%
+\contentsline {chapter}{\numberline {21}Meshing (again)}{97}{chapter.21}%
+\contentsline {chapter}{\numberline {22}Marching Cubes}{99}{chapter.22}%
+\contentsline {section}{\numberline {22.1}Why}{99}{section.22.1}%
+\contentsline {section}{\numberline {22.2}How}{99}{section.22.2}%
+\contentsline {chapter}{\numberline {23}Curvature}{101}{chapter.23}%
+\contentsline {section}{\numberline {23.1}Curvature: Surface Normal}{101}{section.23.1}%
+\contentsline {section}{\numberline {23.2}Curvature: 3D}{102}{section.23.2}%
+\contentsline {subsection}{\numberline {23.2.1}Mean Curvature}{102}{subsection.23.2.1}%
+\contentsline {subsection}{\numberline {23.2.2}Gaussian Curvature}{102}{subsection.23.2.2}%
+\contentsline {section}{\numberline {23.3}Curvature: 3D Examples}{102}{section.23.3}%
+\contentsline {chapter}{\numberline {24}Characteristic Shape}{103}{chapter.24}%
+\contentsline {chapter}{\numberline {25}Curvature: Take Home Message}{105}{chapter.25}%
+\contentsline {chapter}{\numberline {26}Other Techniques}{107}{chapter.26}%
+\contentsline {chapter}{\numberline {27}Other Techniques}{109}{chapter.27}%
+\contentsline {section}{\numberline {27.1}References to other techniques}{109}{section.27.1}%
+\contentsline {chapter}{\numberline {28}Texture Analysis}{111}{chapter.28}%
+\contentsline {section}{\numberline {28.1}Sample Textures}{111}{section.28.1}%
+\contentsline {section}{\numberline {28.2}Methods to characterize textures: Co\sphinxhyphen {}occurrence matrix}{112}{section.28.2}%
+\contentsline {section}{\numberline {28.3}Simple Correlation}{114}{section.28.3}%
+\contentsline {section}{\numberline {28.4}Applying Texture to Brain}{115}{section.28.4}%
+\contentsline {chapter}{\numberline {29}Tiling}{117}{chapter.29}%
+\contentsline {chapter}{\numberline {30}Calculating Texture}{119}{chapter.30}%
+\contentsline {chapter}{\numberline {31}Summary}{123}{chapter.31}%
+\contentsline {section}{\numberline {31.1}Distance maps}{123}{section.31.1}%
+\contentsline {section}{\numberline {31.2}Visualizing 3D data}{123}{section.31.2}%
+\contentsline {section}{\numberline {31.3}Surface description}{123}{section.31.3}%
+\contentsline {section}{\numberline {31.4}Texture}{123}{section.31.4}%
