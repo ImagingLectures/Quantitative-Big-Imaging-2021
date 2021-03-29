@@ -3,14 +3,11 @@
 <h1>Shape analysis</h1>
 
 <p>
-
-<b>Quantitative Big Imaging</b> ETHZ: 227-0966-00L
+<b>Quantitative Big Imaging - ETHZ: 227-0966-00L</b>
 <br />
-    
 <b>Part 1</b>
-    
 </p>
-
+<br />
 <p style="font-size:1em;">April 1, 2021</p>
 <br /><br />
 <p style="font-size:1.5em;padding-bottom: 0.25em;">Anders Kaestner</p>  
