@@ -1,4 +1,5 @@
 file: preface
 sections:
+- file: 06-ShapeAnalysis
 - file: 06-AdvancedShapeAndTexture
-- file: 06-ShapeAnalysis.ipynb
+
