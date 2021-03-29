@@ -1,16 +1,12 @@
 # Supervised Segmentation Approaches
 
 <h1>Supervised Segmentation Approaches</h1>
-
+<br />
 <p>
-
-__Quantitative Big Imaging__ ETHZ: 227-0966-00L
-
-    
-__Part 2__
-    
+<b>Quantitative Big Imaging</b> ETHZ: 227-0966-00L
+<br />
+<b>Part 2</b>  
 </p>
-
 <p style="font-size:1em;">March 25, 2021</p>
 <br /><br />
 <p style="font-size:1.5em;padding-bottom: 0.25em;">Anders Kaestner</p>  
@@ -160,7 +156,7 @@ print(k_class.predict(np.reshape([0, 1, 2, 3],
 
 ### Testing with different values
 
-print("Input 1.5 :",k_class.predict(np.reshape([1.5], (1, 1))))
+print("Input  :",k_class.predict(np.reshape([1.5], (1, 1))))
 print("Input 100 :",k_class.predict(np.reshape([100], (1, 1))))
 
 ## Let's come back to the blob data
@@ -205,7 +201,7 @@ ax2.scatter(grid_pts.x, grid_pts.y, c=grid_pts.predicted_id, cmap='viridis'); ax
 - We can see here that the result is thrown off by single points
 - Prediction can be improved by using more than the nearest neighbor
 
-k_class = KNeighborsClassifier(4)
+k_class =  
 k_class.fit(test_pts[['x', 'y']], test_pts['group_id'])
 xx, yy = np.meshgrid(np.linspace(test_pts.x.min(), test_pts.x.max(), 30),
                      np.linspace(test_pts.y.min(), test_pts.y.max(), 30),
@@ -294,6 +290,7 @@ ax4.scatter(test_pts.x, test_pts.y, c=test_pts.group_id, cmap='viridis'); ax4.se
 
 # Decision trees
 - [SciKit Learn documentation on trees](https://scikit-learn.org/stable/modules/tree.html)
+- [SciKit Learn trees explained](https://towardsdatascience.com/scikit-learn-decision-trees-explained-803f3812290d)
 - [Hastie et al., Elements Of Statistical Learning, 2009](https://doi.org/10.1007/978-0-387-84858-7) Section 9.2 Trees.
 
 from sklearn.tree import export_graphviz
@@ -386,7 +383,7 @@ rf_class.fit(test_pts[['x', 'y']], test_pts['group_id'])
 
 print('Build ', len(rf_class.estimators_), 'decision trees')
 
-show_tree(rf_class.estimators_[0])
+show_tree(rf_class.estimators_[1])
 
 xx, yy = np.meshgrid(np.linspace(test_pts.x.min(), test_pts.x.max(), 20),
                      np.linspace(test_pts.y.min(), test_pts.y.max(), 20),

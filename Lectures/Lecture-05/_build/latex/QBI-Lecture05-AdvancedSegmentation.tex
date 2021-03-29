@@ -96,28 +96,6 @@ This is the lecture notes fot the 5th lecture of the Quantitative big imaging cl
 \chapter{Advanced segmentation}
 \label{\detokenize{05-AdvancedSegmentation:advanced-segmentation}}\label{\detokenize{05-AdvancedSegmentation::doc}}
 
-\chapter{Advanced segmentation}
-\label{\detokenize{05-AdvancedSegmentation:id1}}
-
-
-\sphinxAtStartPar
-\sphinxstylestrong{Quantitative Big Imaging} ETHZ: 227\sphinxhyphen{}0966\sphinxhyphen{}00L
-
-\sphinxAtStartPar
-\sphinxstylestrong{Part 1}: Advanced segmentation
-
-
-
-
-
-
-\section{Literature / Useful References}
-\label{\detokenize{05-AdvancedSegmentation:literature-useful-references}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{http://ivrg.epfl.ch/research/superpixels}{Superpixels}
-
-\end{itemize}
 
 
 \section{Today’s Outline}
@@ -170,15 +148,20 @@ Superpixels
 
 \item {} 
 \sphinxAtStartPar
-Probabalistic Models
-
-\item {} 
-\sphinxAtStartPar
 Working with Segmented Images
 
 \item {} 
 \sphinxAtStartPar
 Contouring
+
+\end{itemize}
+
+
+\section{Literature / Useful References}
+\label{\detokenize{05-AdvancedSegmentation:literature-useful-references}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxhref{http://ivrg.epfl.ch/research/superpixels}{Superpixels}
 
 \end{itemize}
 
@@ -305,7 +288,7 @@ In fact, segmentation is rarely an obvious task. What you want to find is often 
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.75]{{doolittle_woodlandencounter}.png}
-\caption{Cases making the segmentation task harder than just applying a single thresshold.}\label{\detokenize{05-AdvancedSegmentation:id3}}\end{figure}
+\caption{Cases making the segmentation task harder than just applying a single thresshold.}\label{\detokenize{05-AdvancedSegmentation:id2}}\end{figure}
 
 
 
@@ -444,7 +427,7 @@ and noise.
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.5]{{cortex_mask}.png}
-\caption{Brain image with masked cortex.}\label{\detokenize{05-AdvancedSegmentation:id4}}\end{figure}
+\caption{Brain image with masked cortex.}\label{\detokenize{05-AdvancedSegmentation:id3}}\end{figure}
 
 
 \begin{itemize}
@@ -475,17 +458,6 @@ Other filtering techniques are unlikely to magicially fix this problem
 \chapter{Apply thresholds}
 \label{\detokenize{05-AdvancedSegmentation:apply-thresholds}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{In} \PYG{n}{the} \PYG{n}{previous} 
-\end{sphinxVerbatim}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gt}{  File}\PYG{n+nn}{ \PYGZdq{}\PYGZlt{}ipython\PYGZhy{}input\PYGZhy{}12\PYGZhy{}bc0b13113fa2\PYGZgt{}\PYGZdq{}}\PYG{g+gt}{, line }\PYG{l+m+mi}{1}
-    \PYG{n}{In} \PYG{n}{the} \PYG{n}{previous}
-       \PYG{o}{\PYGZca{}}
-\PYG{n+ne}{SyntaxError}: invalid syntax
-\end{sphinxVerbatim}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{io} \PYG{k+kn}{import} \PYG{n}{imread}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -507,7 +479,7 @@ Other filtering techniques are unlikely to magicially fix this problem
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{out\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gist\PYGZus{}earth}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_29_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_28_0}.png}
 
 
 \section{Automated Threshold Selection}
@@ -553,7 +525,7 @@ More specific requirements need to be implemented manually
 
 
 \section{Histogram\sphinxhyphen{}based Methods}
-\label{\detokenize{05-AdvancedSegmentation:id2}}
+\label{\detokenize{05-AdvancedSegmentation:id1}}
 \sphinxAtStartPar
 Taking a typical image of a bone slice, we can examine the variations in calcification density in the image
 
@@ -581,7 +553,7 @@ We can see in the histogram that there are two peaks, one at 0 (no absorption / 
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{bone\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{bins}\PYG{o}{=}\PYG{l+m+mi}{256}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_35_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_34_0}.png}
 
 
 \section{Histogram\sphinxhyphen{}Methods}
@@ -661,7 +633,7 @@ Both Fiji and scikit\sphinxhyphen{}image offers many of them as built in functio
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{try\PYGZus{}all\PYGZus{}threshold}\PYG{p}{(}\PYG{n}{bone\PYGZus{}img}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{,} \PYG{n}{verbose}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_39_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_38_0}.png}
 
 
 \section{Pitfalls of different thresholding methods}
@@ -793,7 +765,7 @@ smaller structures are difficult to differentiate (see \sphinxhref{http://bit.ly
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{th\PYGZus{}ax}\PYG{p}{,}\PYG{n}{shrink}\PYG{o}{=}\PYG{l+m+mf}{0.6}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_44_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_43_0}.png}
 
 
 \section{Goldilocks Situation}
@@ -830,7 +802,7 @@ one is too low and the other is too high
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_46_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_45_0}.png}
 
 
 \subsection{Baby Bear}
@@ -907,7 +879,7 @@ Keep the \sphinxstyleemphasis{between} pixels which are connected (by looking ag
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{) }\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{c\PYGZus{}title}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_52_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_51_0}.png}
 
 
 \chapter{More Complicated Images}
@@ -963,7 +935,7 @@ We are used to seeing images in a grid format where the position indicates the r
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{just\PYGZus{}text}\PYG{p}{,} \PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Just text}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_57_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_56_0}.png}
 
 \sphinxAtStartPar
 The gradient in the original is removed using a combination of filters to reconstruct the illumination
@@ -1010,7 +982,7 @@ The gradient in the original is removed using a combination of filters to recons
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_62_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_61_0}.png}
 
 
 \section{What does the ROC curve look like?}
@@ -1028,7 +1000,7 @@ The gradient in the original is removed using a combination of filters to recons
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Receiver operating characteristic example}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{lower right}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_64_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_63_0}.png}
 
 
 \chapter{Adding Information}
@@ -1059,7 +1031,7 @@ How about:
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_66_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_65_0}.png}
 
 
 \section{Histogram of enhanced image}
@@ -1077,7 +1049,7 @@ Let’s look at the gray level distribution after applying the enhancement filte
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Histograms of DoG enhanced image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}yscale}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{log}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{nonpositive}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{clip}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_69_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_68_0}.png}
 
 \sphinxAtStartPar
 We see here that the text pixels have been compressed into a narrow interval with some tail toward the lower intensities.
@@ -1106,7 +1078,7 @@ Now, we can compute the ROC curve to see if the enhanced image performs better t
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{lower right}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_73_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_72_0}.png}
 
 \sphinxAtStartPar
 We can see that it is doing better already bey looking at the curves. Also the AUC confirms this which is great. We have made and improvement thanks to the preprocessing of the data.
@@ -1135,7 +1107,7 @@ We can see the reason for the performance improvemnt when we compare the histogr
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_77_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_76_0}.png}
 
 \sphinxAtStartPar
 The two classes are more or less overlapping each other in the original image. After filtering the gray levels are more compact for each class with some slight overlap in the tail distributions.
@@ -1186,15 +1158,15 @@ With clustering methods you aim to group data points together into a limited num
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-            x         y
-33  \PYGZhy{}0.710215  2.507882
-21   7.383034 \PYGZhy{}4.023513
-183  8.068841 \PYGZhy{}7.208665
-83   7.653628 \PYGZhy{}8.389988
-86   8.385052 \PYGZhy{}3.041870
+             x         y
+190   7.504196 \PYGZhy{}7.803367
+96    8.428999 \PYGZhy{}7.504711
+135   8.877641 \PYGZhy{}6.836999
+73    5.160910 \PYGZhy{}6.364902
+81   10.318225 \PYGZhy{}3.544903
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_85_1}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_84_1}.png}
 
 
 \subsection{First clustering attempt}
@@ -1212,21 +1184,21 @@ The generated data set has two obvoius clusters, but if look closer it is even p
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-                  x         y  group
-group                               
-0     101 \PYGZhy{}0.693470  1.900714      0
-      129 \PYGZhy{}2.166615  3.444121      0
-      8   \PYGZhy{}0.737558  2.935987      0
-      26  \PYGZhy{}1.428551  3.810784      0
-      65  \PYGZhy{}2.663886  3.213339      0
-1     86   8.385052 \PYGZhy{}3.041870      1
-      97   6.843611 \PYGZhy{}7.909445      1
-      195  7.720958 \PYGZhy{}2.120741      1
-      103  7.718868 \PYGZhy{}9.528639      1
-      124  7.623013 \PYGZhy{}3.395907      1
+                   x         y  group
+group                                
+0     174  \PYGZhy{}1.104400  1.871711      0
+      8    \PYGZhy{}0.737558  2.935987      0
+      101  \PYGZhy{}0.693470  1.900714      0
+      122  \PYGZhy{}0.578495  3.237306      0
+      27   \PYGZhy{}0.678995  2.546154      0
+1     81   10.318225 \PYGZhy{}3.544903      1
+      57    8.529693 \PYGZhy{}3.438141      1
+      74    6.436361 \PYGZhy{}8.220122      1
+      193  10.677735 \PYGZhy{}4.628090      1
+      96    8.428999 \PYGZhy{}7.504711      1
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_88_1}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_87_1}.png}
 
 
 \section{K\sphinxhyphen{}Means Algorithm}
@@ -1276,7 +1248,7 @@ The distance from pixel \sphinxstyleemphasis{i} to centroid \sphinxstyleemphasis
 \capstart
 
 \noindent\sphinxincludegraphics[scale=1.0]{{FuzzyCMeans}.pdf}
-\caption{Flow chart for the k\sphinxhyphen{}means clustering iterations.}\label{\detokenize{05-AdvancedSegmentation:id5}}\end{figure}
+\caption{Flow chart for the k\sphinxhyphen{}means clustering iterations.}\label{\detokenize{05-AdvancedSegmentation:id4}}\end{figure}
 
 
 \subsection{Increasing the number of clusters}
@@ -1294,7 +1266,7 @@ In this example we will use the blob data we previously generated and to see how
     \PYG{n}{ax}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}0\PYGZcb{}}\PYG{l+s+s1}{ groups}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_93_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_92_0}.png}
 
 \sphinxAtStartPar
 \sphinxstylestrong{Note:}  If you look for N groups you will almost always find N groups with K\sphinxhyphen{}Means, whether or not they make any sense
@@ -1338,7 +1310,7 @@ It is important to note that k\sphinxhyphen{}means by definition is not position
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{flt}\PYG{o}{.}\PYG{n}{sobel\PYGZus{}v}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}img}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Vertical edges}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_99_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_98_0}.png}
 
 
 \subsection{K\sphinxhyphen{}Means Applied to Cortex Image}
@@ -1371,7 +1343,7 @@ In this example we use position and intensity as feature vectors.
 \PYG{n}{ax0}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_102_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_101_0}.png}
 
 
 \subsection{First segmentation attempt}
@@ -1396,7 +1368,7 @@ We use \(N_{clusters}=4\)
 \PYG{n}{ax0}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_104_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_103_0}.png}
 
 
 \subsection{Why is the image segmented like this?}
@@ -1429,7 +1401,7 @@ Since the distance is currently calculated by \(||\vec{v}_i-\vec{v}_j||\) and th
 \PYG{n}{ax0}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_107_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_106_0}.png}
 
 
 \subsubsection{Let’s try a different position scaling}
@@ -1459,7 +1431,7 @@ Since the distance is currently calculated by \(||\vec{v}_i-\vec{v}_j||\) and th
 \PYG{n}{ax0}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_109_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_108_0}.png}
 
 
 \section{When can clustering be used on images?}
@@ -1529,7 +1501,7 @@ The figure below illustrates how an image is decomposed into a quad tree. Here y
 \capstart
 
 \noindent\sphinxincludegraphics[scale=0.5]{{quad_principle}.png}
-\caption{A quad tree decomposition.}\label{\detokenize{05-AdvancedSegmentation:id6}}\end{figure}
+\caption{A quad tree decomposition.}\label{\detokenize{05-AdvancedSegmentation:id5}}\end{figure}
 
 
 
@@ -1544,7 +1516,7 @@ Next we try to decompose an natural image as a quad tree.
 \capstart
 
 \noindent\sphinxincludegraphics[scale=1.0]{{qt_demo}.pdf}
-\caption{A neutron radiograph of a grasshopper decomposed using a quad tree.}\label{\detokenize{05-AdvancedSegmentation:id7}}\end{figure}
+\caption{A neutron radiograph of a grasshopper decomposed using a quad tree.}\label{\detokenize{05-AdvancedSegmentation:id6}}\end{figure}
 
 
 
@@ -1621,7 +1593,7 @@ We start the analysis with using plain threshold based on the histogram. You can
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{out\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gist\PYGZus{}earth}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_128_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_127_0}.png}
 
 
 \section{Super pixels}
@@ -1650,7 +1622,7 @@ Using the SLIC algorithm
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Superpixel Overlay}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_132_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_131_0}.png}
 
 
 \section{Merging super pixels}
@@ -1671,7 +1643,7 @@ Usually, to many super pixels are identified. They are also not really represent
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{flat\PYGZus{}shale\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Paired}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Merged super pixels (alternative color)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_135_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_134_0}.png}
 
 
 \section{Segmentation using super pixels}
@@ -1691,7 +1663,7 @@ Usually, to many super pixels are identified. They are also not really represent
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Superpixel Segmentation}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_137_0}.png}
+\noindent\sphinxincludegraphics{{05-AdvancedSegmentation_136_0}.png}
 
 
 \chapter{Probabilistic Models of Segmentation}
@@ -1760,18 +1732,6 @@ Super pixels
 
 \chapter{Supervised Segmentation Approaches}
 \label{\detokenize{05-SupervisedSegmentation:supervised-segmentation-approaches}}\label{\detokenize{05-SupervisedSegmentation::doc}}
-
-
-
-
-\sphinxAtStartPar
-\sphinxstylestrong{Quantitative Big Imaging} ETHZ: 227\sphinxhyphen{}0966\sphinxhyphen{}00L
-
-\sphinxAtStartPar
-\sphinxstylestrong{Part 2}
-
-
-
 
 
 
@@ -2090,7 +2050,7 @@ Same values as training
 \subsection{Testing with different values}
 \label{\detokenize{05-SupervisedSegmentation:testing-with-different-values}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Input 1.5 :}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{k\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{1.5}\PYG{p}{]}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Input  :}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{k\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{1.5}\PYG{p}{]}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Input 100 :}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{k\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{]}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
@@ -2170,7 +2130,7 @@ Prediction can be improved by using more than the nearest neighbor
 \end{itemize}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{k\PYGZus{}class} \PYG{o}{=} \PYG{n}{KNeighborsClassifier}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{)}
+\PYG{n}{k\PYGZus{}class} \PYG{o}{=}  
 \PYG{n}{k\PYGZus{}class}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{test\PYGZus{}pts}\PYG{p}{[}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,} \PYG{n}{test\PYGZus{}pts}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{group\PYGZus{}id}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{xx}\PYG{p}{,} \PYG{n}{yy} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{n}{test\PYGZus{}pts}\PYG{o}{.}\PYG{n}{x}\PYG{o}{.}\PYG{n}{min}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{test\PYGZus{}pts}\PYG{o}{.}\PYG{n}{x}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{30}\PYG{p}{)}\PYG{p}{,}
                      \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{n}{test\PYGZus{}pts}\PYG{o}{.}\PYG{n}{y}\PYG{o}{.}\PYG{n}{min}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{test\PYGZus{}pts}\PYG{o}{.}\PYG{n}{y}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{30}\PYG{p}{)}\PYG{p}{,}
@@ -2330,6 +2290,10 @@ Offset 1.346929708594462
 
 \item {} 
 \sphinxAtStartPar
+\sphinxhref{https://towardsdatascience.com/scikit-learn-decision-trees-explained-803f3812290d}{SciKit Learn trees explained}
+
+\item {} 
+\sphinxAtStartPar
 \sphinxhref{https://doi.org/10.1007/978-0-387-84858-7}{Hastie et al., Elements Of Statistical Learning, 2009} Section 9.2 Trees.
 
 \end{itemize}
@@ -2362,7 +2326,7 @@ DecisionTreeClassifier()
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.files.Source at 0x7f858099f100\PYGZgt{}
+\PYGZlt{}graphviz.files.Source at 0x7faf282d1af0\PYGZgt{}
 \end{sphinxVerbatim}
 
 
@@ -2401,7 +2365,7 @@ DecisionTreeClassifier()
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.files.Source at 0x7fb281c7e580\PYGZgt{}
+\PYGZlt{}graphviz.files.Source at 0x7faf282d1a00\PYGZgt{}
 \end{sphinxVerbatim}
 
 
@@ -2474,11 +2438,11 @@ Build  5 decision trees
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{show\PYGZus{}tree}\PYG{p}{(}\PYG{n}{rf\PYGZus{}class}\PYG{o}{.}\PYG{n}{estimators\PYGZus{}}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{show\PYGZus{}tree}\PYG{p}{(}\PYG{n}{rf\PYGZus{}class}\PYG{o}{.}\PYG{n}{estimators\PYGZus{}}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.files.Source at 0x7fb2a0daa3d0\PYGZgt{}
+\PYGZlt{}graphviz.files.Source at 0x7faee8199910\PYGZgt{}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -4013,11 +3977,7 @@ Another popular metric is the Dice score
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}matplotlib.legend.Legend at 0x7f939ba91370\PYGZgt{}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{05-SupervisedSegmentation_160_1}.png}
+\noindent\sphinxincludegraphics{{05-SupervisedSegmentation_160_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,}
@@ -4105,7 +4065,7 @@ but hasn’t generalized to other kinds of problems
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}matplotlib.legend.Legend at 0x7f93a8bc4310\PYGZgt{}
+\PYGZlt{}matplotlib.legend.Legend at 0x7faf0a3598e0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{05-SupervisedSegmentation_164_1}.png}
@@ -4136,7 +4096,11 @@ but hasn’t generalized to other kinds of problems
 \PYG{n}{ax5}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ground Truth}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{05-SupervisedSegmentation_165_0}.png}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+WARNING:tensorflow:5 out of the last 5 calls to \PYGZlt{}function Model.make\PYGZus{}predict\PYGZus{}function.\PYGZlt{}locals\PYGZgt{}.predict\PYGZus{}function at 0x7faed96dcee0\PYGZgt{} triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental\PYGZus{}relax\PYGZus{}shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function\PYGZsh{}controlling\PYGZus{}retracing and https://www.tensorflow.org/api\PYGZus{}docs/python/tf/function for  more details.
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{05-SupervisedSegmentation_165_1}.png}
 
 
 \chapter{Summary}

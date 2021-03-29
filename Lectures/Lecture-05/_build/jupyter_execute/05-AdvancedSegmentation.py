@@ -1,24 +1,17 @@
 # Advanced segmentation
 
-# Advanced segmentation
+<h1>Advanced segmentation</h1>
+<br/>
 <p>
-
-__Quantitative Big Imaging__ ETHZ: 227-0966-00L
-
-    
-__Part 1__: Advanced segmentation
-    
+    <b>Quantitative Big Imaging</b> ETHZ: 227-0966-00L
+    <br/>
+    <b>Part 1:</b> Advanced segmentation
 </p>
-
+<br/>
 <p style="font-size:1em;">March 25, 2021</p>
 <br /><br />
 <p style="font-size:1.5em;padding-bottom: 0.25em;">Anders Kaestner</p>  
 <p style="font-size:1em;">Laboratory for Neutron Scattering and Imaging<br />Paul Scherrer Institut</p>
-
-## Literature / Useful References
-
-- [Superpixels](http://ivrg.epfl.ch/research/superpixels)
-
 
 ## Today's Outline
 
@@ -35,9 +28,13 @@ __Part 1__: Advanced segmentation
 - Feature Vectors
  - K-Means Clustering
  - Superpixels
- - Probabalistic Models
 - Working with Segmented Images
  - Contouring
+
+
+## Literature / Useful References
+
+- [Superpixels](http://ivrg.epfl.ch/research/superpixels)
 
 
 ## Load some needed modules
@@ -201,8 +198,6 @@ __Our problem__
 - Other filtering techniques are unlikely to magicially fix this problem
 
 # Apply thresholds
-
-In the previous 
 
 %matplotlib inline
 from skimage.io import imread
@@ -955,4 +950,3 @@ $$P(\{\vec{x} , I(\vec{x})\}  | \alpha) \propto P(\alpha) + P(I(\vec{x}) | \alph
 ## Similar region segmentations
 - Quad trees
 - Super pixels
-
