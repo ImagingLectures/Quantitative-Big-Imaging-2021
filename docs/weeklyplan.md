@@ -55,10 +55,6 @@
 |:---:|:---|
 | <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture05-AdvancedSegmentation.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-05/05-AdvancedSegmentation.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-05/05-AdvancedSegmentation.ipynb) &nbsp;&nbsp;&nbsp;  [<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-05/05-SupervisedSegmentation.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-05/05-SupervisedSegmentation.ipynb)| <a href="https://youtu.be/0v7sA300Dbc">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/8tgReR_U3nI">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
 
-#### Lecture Videos (last year)
-- [Part 1: Advanced segmentation](https://youtu.be/tWhOfT9sgnY) 
-- [Part 2: Supervised segmentation approaches](https://youtu.be/wNXohNppc9w)
-
 #### Exercises
 
 - [Overview](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/05-AdvancedSegmentation/05-Overview.md)
