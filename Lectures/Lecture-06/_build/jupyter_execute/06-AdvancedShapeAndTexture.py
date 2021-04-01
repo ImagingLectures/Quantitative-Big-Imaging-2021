@@ -96,10 +96,6 @@ import plotly.figure_factory as FF
 
 import ipyvolume as p3
 
-
-
-
-
 %matplotlib inline
 
 plt.rcParams["figure.figsize"] = (8, 8)
@@ -107,7 +103,7 @@ plt.rcParams["figure.dpi"] = 150
 plt.rcParams["font.size"] = 14
 plt.rcParams['font.family'] = ['sans-serif']
 plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
-plt.style.use('ggplot')
+plt.style.use('default')
 sns.set_style("whitegrid", {'axes.grid': False})
 
 # Distance Maps: What are they?
@@ -119,10 +115,6 @@ A distance map is:
     - Euclidean (and approximations)
     - City block (4-connected)
     - Checkerboard (8-connected)
-
-### Distance maps in python
-
-help(ndimage.distance_transform_edt)
 
 ## What does a distance map look like?
 
@@ -157,6 +149,10 @@ for dmap_func, c_ax in zip(dmap_list, m_axs):
     c_ax.set_title('{}\n{} - {} us'.format(dmap_func.__doc__.split('\n')[1].strip(),
                                            dmap_func.__name__,
                                            '%2.2f' % ms_time))
+
+### Distance maps in python
+
+help(ndimage.distance_transform_edt)
 
 ## Why does speed matter?
 As for the question why speed matters, 
@@ -205,6 +201,8 @@ def simple_distance_iteration(last_img):
                                 if cur_img[x+xp, y+yp] > (last_img[x, y]+p_dist):
                                     cur_img[x+xp, y+yp] = last_img[x, y]+p_dist
     return cur_img
+
+### A test image for distance transform
 
 fig, ax=plt.subplots(1,1, figsize=(10,8), dpi=100)
 img_bw = generate_dot_image(10, 1.0)
@@ -347,6 +345,7 @@ One of the most useful components of the distance map is that it is _relatively_
  - One has 4 small circles
  - One has 1 big blob
 
+### Some code for the demo
 
 def update_frame(i):
     [tax.cla() for tax in m_axs.flatten()]
@@ -492,7 +491,7 @@ Taken from [Hildebrand 1997](https://doi.org/10.1046/j.1365-2818.1997.1340694.x)
 - Ideal for spherical and cylindrical objects since it shows their radius
 - Also relevant for flow and diffusion since it can highlight bottlenecks in structure (then called pore radius map) [Lehmann 2006](https://doi.org/10.2136/vzj2004.0177)
 
-### A thickness map implementation
+## A thickness map implementation
 
 def simple_thickness_func(distance_map):
     dm = distance_map.ravel()
@@ -520,7 +519,7 @@ fig, (ax3, ax4) = plt.subplots(1, 2, figsize=(20, 6), dpi=100)
 ax3.imshow(fg_th_map, cmap='nipy_spectral'); ax3.set_title('Thickness Map - Foreground');
 ax4.imshow(bg_th_map, cmap='nipy_spectral'); ax4.set_title('Thickness Map - Background');
 
-### Thickness distributions
+## Thickness distributions
 
 fig, (ax3, ax4) = plt.subplots(1, 2, figsize=(20, 6), dpi=100)
 
@@ -528,7 +527,8 @@ ax3.hist(fg_th_map[fg_th_map > 0].ravel(), 20); ax3.set_title('Thickness Map - F
 ax4.hist(bg_th_map[bg_th_map > 0].ravel(), 20); ax4.set_title('Thickness Map - Background');
 
 # Distance Maps in 3D
-Distance maps work in more than two dimensions and can be used in n-d problems although beyond 3D requires serious thought about what the meaning of this distance is. 
+- Distance maps work in more than two dimensions and can be used in n-d problems. 
+- Beyond 3D requires serious thought about what the meaning of this distance is. 
 
 ## Let's load a 3D image 
 
@@ -541,7 +541,7 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 8))
 ax1.imshow(montage_pad(bw_img[::10]), cmap='bone');ax1.set_title('Axial Slices')
 ax2.imshow(montage_pad(bw_img.swapaxes(0, 1)[::10]), cmap='bone'); ax2.set_title('Sagittal Slices');
 
-### Inspecting the data in 3D
+## Inspecting the data in 3D
 
 def show_3d_mesh(image, thresholds, edgecolor='none', alpha=0.5):
     p = image[::-1].swapaxes(1, 2)
@@ -635,7 +635,7 @@ for label_idx, (x, y, z) in enumerate(sorted_candidates):
                   np.power(zz-float(z), 2)) <= np.power(cur_bubble_radius, 2)
     thickness_map[cur_bubble] = cur_bubble_radius
 
-fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 4))
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 4), dpi=150)
 for i, (cax, clabel) in enumerate(zip([ax1, ax2, ax3], ['xy', 'zy', 'zx'])):
     cax.imshow(np.max(thickness_map, i).squeeze(),
                interpolation='none', cmap='jet')
@@ -643,16 +643,15 @@ for i, (cax, clabel) in enumerate(zip([ax1, ax2, ax3], ['xy', 'zy', 'zx'])):
     cax.set_xlabel(clabel[0])
     cax.set_ylabel(clabel[1])
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 8))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 8),dpi=100)
 ax1.imshow(montage_pad(thickness_map[::10]), cmap='nipy_spectral')
 ax1.set_title('Axial Slices')
 ax2.imshow(montage_pad(thickness_map.swapaxes(
     0, 1)[::10]), cmap='nipy_spectral')
-ax2.set_title('Sagittal Slices')
+ax2.set_title('Sagittal Slices');
 
 # Interactive 3D Views
 Here we can show the thickness map in an interactive 3D manner using the ipyvolume tools (probably only works in the Chrome browser)
-
 
 fig = p3.figure()
 # create a custom LUT
@@ -684,26 +683,58 @@ Many physical and chemical processes occur at surfaces and interfaces and conseq
 
 We see that the dilation and erosion affects are strongly related to the surface area of an object: 
 - the more surface area 
-- the larger the affect of a single dilation or erosion step. 
-
-# Meshing (again)
+- the larger the effect of a single dilation or erosion step. 
 
 
-Constructing a mesh for an image provides very different information than the image data itself. Most crucially this comes when looking at physical processes like deformation.
+# Meshing
 
-While the images are helpful for visualizing we rarely have models for quantifying how difficult it is to turn a pixel __off__
+The process of turning a (connected) set of pixels into a list of vertices and edges
 
-If the image is turned into a mesh we now have a list of vertices and edges. For these vertices and edges we can define forces. For example when looking at stress-strain relationships in mechanics using Hooke's Model 
+- For these vertices and edges we can define forces. 
+- Most crucially this comes when looking at physical processes like deformation.
+- Meshes are also useful for visualization.
+
+![](figures/Approx-3tori.png)
+
+__Example__
+
+Looking at stress-strain relationships in mechanics using Hooke's Model 
+
 $$ \vec{F}=k (\vec{x}_0-\vec{x}) $$ 
+
 the force needed to stretch one of these edges is proportional to how far it is stretched. 
 
-# Marching Cubes
+## Meshing of images
 
-### Why
-Voxels are very poor approximations for the surface and are very rough (they are either normal to the x, y, or z axis and nothing between). Because of their inherently orthogonal surface normals, any analysis which utilizes the surface normal to calculate another value (growth, curvature, etc) is going to be very inaccurate at best and very wrong at worst.
 
-### [How](http://en.wikipedia.org/wiki/marching_cubes_lewiner)
+Since we uses voxels to image and identify the volume we can use the voxels themselves as an approimation for the surface of the structure. 
+- Each 'exposed' face of a voxel belongs to the surface
+
+From this we can create a mesh by 
+
+- adding each exposed voxel face to a list of surface squares. 
+- adding connectivity information for the different squares (shared edges and vertices)
+
+A wide variety of methods of which we will only graze the surface (http://en.wikipedia.org/wiki/Image-based_meshing)
+
+## Marching Cubes
+
+__Why__
+
+Voxels are very poor approximations for the surface and are very rough (they are either normal to the x, y, or z axis and nothing between).
+
+Because of their inherently orthogonal surface normals, any analysis which utilizes the surface normal to calculate another value (growth, curvature, etc) is going to be very inaccurate at best and very wrong at worst.
+
+<img src="../Lecture-04/figures/sphere_comparison.svg" style="height:300px" />
+
+__How__ (https://en.wikipedia.org/wiki/Marching_cubes)
+
 The image is processed one voxel at a time and the neighborhood (not quite the same is the morphological definition) is checked at every voxel. From this configuration of values, faces are added to the mesh to incorporate the most simple surface which would explain the values. 
+
+1. The 2x2x2 neighborhood is checked at every voxel. 
+2. Different faces are assigned depending on the neighborhood configuration. 
+
+This algortihm is nicely explained in this [video](https://youtu.be/M3iI2l0ltbE)
 
 [Marching tetrahedra](http://en.wikipedia.org/wiki/Marching_tetrahedra) is for some applications a better suited approach
 
@@ -731,12 +762,12 @@ We thus define a surface normal vector as a vector oriented orthogonally to the 
 
 <table>
     <tr>
-        <td><img src="figures/3Dsurface.png" style="height:400px"></td>
-        <td><img src="figures/3DsurfaceWiNormals.png" style="height:400px"></td>
+        <td><img src="figures/3Dsurface.png" style="height:600px"></td>
+        <td><img src="figures/3DsurfaceWiNormals.png" style="height:600px"></td>
     </tr>
 </table>
 
-## Curvature: 3D
+## Curvature in 3D
 
 With the notion of surface normal defined ($\vec{N}$), we can define many curvatures at point $\vec{x}$ on the surface. 
 - This is because there are infinitely many planes which contain both point $\vec{x}$ and $\vec{N}$ 
@@ -752,7 +783,7 @@ $$ H = \frac{1}{2}(\kappa_1+\kappa_2) $$
 
 ### Gaussian Curvature
 
-The mean of the two principal curvatures
+The product of the two principal curvatures
 $$ K = \kappa_1\kappa_2 $$
 - positive for spheres (or spherical inclusions)
  - curvatures agree in sign
@@ -768,46 +799,52 @@ The images themselves show the type of substructures and shapes which are presen
 
 <table>
 <tr>
-<th>
-<b>Mean Curvature</b>
-</th>
-<th>
-<b>Gaussian Curvature</b>
-</th>
+    <th>
+    <b>Mean Curvature</b>
+    </th>
+    <th>
+    <b>Gaussian Curvature</b>
+    </th>
 </tr>
     <tr>
         <td><img src="figures/Complicated3DsurfaceMCurv.png" style="height:400px"></td>
         <td><img src="figures/Complicated3DsurfaceGCurv.png" style="height:400px"></td>
     </tr>
 <tr>
+<td></td>    
 <td>
-</td>
-<td>
-  
-- gaussian curvature:  the comparative amount of surface at, above, and below 0 
-    - from spherical particles into annealed mesh of balls
     
+- the comparative amount of surface at, above, and below 0 
+- from spherical particles into annealed mesh of balls 
+
 </td>
 </tr>
 </table>
 
 
-Characteristic Shape
-===
+## Characteristic Shape
 
-Characteristic shape can be calculated by measuring principal curvatures and normalizing them by scaling to the structure size. A distribution of these curvatures then provides shape information on a structure indepedent of the size. 
 
-For example a structure transitioning from a collection of perfectly spherical particles to a annealed solid will go from having many round spherical faces with positive gaussian curvature to many saddles and more complicated structures with 0 or negative curvature.
+Characteristic shape can be calculated by 
+- measuring principal curvatures and normalizing them by scaling to the structure size. 
+- A distribution of these curvatures then provides shape information on a structure indepedent of the size. 
+<br />
+<br />
+<br />
 
-Curvature: Take Home Message
-===
+For example a structure transitioning from a collection of perfectly spherical particles to a annealed solid will go  
+- __from__ having many round spherical faces with positive gaussian curvature 
+- __to__ many saddles and more complicated structures with 0 or negative curvature.
+
+## Curvature: Take Home Message
+
 It provides another metric for characterizing complex shapes
 - Particularly useful for examining interfaces
- - Folds, saddles, and many other types of points are not characterized well be ellipsoids or thickness maps
+ - Folds, 
+ - saddles, 
+ - and many other types of points that are not characterized well with ellipsoids or thickness maps
 - Provides a scale-free metric for assessing structures
 - Can provide visual indications of structural changes
-
-# Other Techniques
 
 # Other Techniques
 
@@ -832,7 +869,7 @@ Of the more general techniques several which are easily testable inside of FIJI 
 # Texture Analysis
 The world is full of patterns (aka Textures)
 
-<img src="figures/textures.png" style="height:300px" />
+<img src="figures/textures.png" style="height:600px" />
 
 [Example taken from](https://www.cs.auckland.ac.nz/~georgy/research/texture/thesis-html/node5.html)
 
@@ -845,12 +882,10 @@ Let's create some sample textures
 
 x, y = np.meshgrid(range(8), range(8))
 
-
 def blur_img(c_img): return (ndimage.zoom(c_img.astype('float'),
                                           3,
                                           order=3,
                                           prefilter=False)*4).astype(int).clip(1, 4)-1
-
 
 text_imgs = [blur_img(c_img)
              for c_img in [x % 2,
@@ -863,8 +898,7 @@ text_imgs = [blur_img(c_img)
 fig, m_axs = plt.subplots(2, 3, figsize=(20, 10))
 
 for c_ax, c_img in zip(m_axs.flatten(), text_imgs):
-    sns.heatmap(c_img, annot=False, fmt='2d', ax=c_ax,
-                cmap='viridis', vmin=0, vmax=3)
+    c_ax.imshow(c_img,cmap='viridis', vmin=0, vmax=3)
 
 ## Methods to characterize textures: Co-occurrence matrix
 
@@ -887,9 +921,8 @@ def montage_nd(in_img):
         return in_img
 
 
-dist_list = np.linspace(1, 6, 15)
+dist_list  = np.linspace(1, 6, 15)
 angle_list = np.linspace(0, 2*np.pi, 15)
-
 
 def calc_coomatrix(in_img):
     return greycomatrix(image=in_img,
@@ -897,29 +930,28 @@ def calc_coomatrix(in_img):
                         angles=angle_list,
                         levels=4)
 
-
 def coo_tensor_to_df(x): return pd.DataFrame(
     np.stack([x.ravel()]+[c_vec.ravel() for c_vec in np.meshgrid(range(x.shape[0]),
-                                                                 range(
-                                                                     x.shape[1]),
+                                                                 range(x.shape[1]),
                                                                  dist_list,
                                                                  angle_list,
                                                                  indexing='xy')], -1),
     columns=['E', 'i', 'j', 'd', 'theta'])
 
 
-coo_tensor_to_df(calc_coomatrix(text_imgs[0])).head(5)
+coo_tensor_to_df(calc_coomatrix(text_imgs[0])).sample(5)
+
+### Co-occurence matrices for the test patterns
 
 fig, m_axs = plt.subplots(3, 6, figsize=(15, 10), dpi=150)
 
 for (c_ax, d_ax, f_ax), c_img in zip(m_axs.T, text_imgs):
-    c_ax.imshow(c_img, vmin=0, vmax=4, cmap='gray')
-    c_ax.set_title('Pattern')
+    c_ax.imshow(c_img, vmin=0, vmax=4, cmap='gray'); c_ax.set_title('Pattern')
     full_coo_matrix = calc_coomatrix(c_img)
     d_ax.imshow(montage_nd(full_coo_matrix), cmap='gray')
     d_ax.set_title('Co-occurence Matrix\n{}'.format(full_coo_matrix.shape))
     d_ax.axis('off')
-    avg_coo_matrix = np.mean(full_coo_matrix*1.0, (0, 1))
+    avg_coo_matrix = np.mean(full_coo_matrix*1.0, axis=(0, 1))
     f_ax.imshow(avg_coo_matrix, cmap='gray')
     f_ax.set_title('Average Co-occurence\n{}'.format(avg_coo_matrix.shape))
 
@@ -931,7 +963,9 @@ text_df = coo_tensor_to_df(calc_coomatrix(text_imgs[0]))
 text_df['ij_diff'] = text_df.apply(lambda x: x['i']-x['j'], axis=1)
 
 simple_corr_df = text_df.groupby(['ij_diff', 'd', 'theta']).agg({'E': 'mean'}).reset_index()
-simple_corr_df.head(5)
+simple_corr_df.sample(5).round(decimals=3)
+
+### Inspecting the mean difference
 
 def grouped_weighted_avg(values, weights, by):
     return (values * weights).groupby(by).sum() / weights.groupby(by).sum()
@@ -958,7 +992,7 @@ for (c_ax, d_ax, f_ax), c_img in zip(m_axs.T, text_imgs):
     f_ax.plot(gwa_theta.index, gwa_theta.values)
     f_ax.set_title('Angular Co-occurence')
 
-## Applying Texture to Brain
+## Applying Texture analysis to Brain
 
 cortex_img = np.clip(imread("figures/example_poster.tif")
                      [::2, ::2]/270, 0, 255).astype(np.uint8)
@@ -966,20 +1000,16 @@ cortex_img = np.clip(imread("figures/example_poster.tif")
 cortex_mask = imread("figures/example_poster_mask.tif")[::1, ::1, 0]/255.0
 
 # show the slice and threshold
-fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(11, 5))
-ax1.imshow(cortex_img, cmap='gray')
-ax1.axis('off')
-ax1.set_title('Image')
-ax2.imshow(cortex_mask, cmap='gray')
-ax2.axis('off')
-ax2.set_title('Segmentation')
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(11, 5),dpi=100)
+ax1.imshow(cortex_img, cmap='gray'); ax1.axis('off') ; ax1.set_title('Image')
+ax2.imshow(cortex_mask, cmap='gray'); ax2.axis('off'); ax2.set_title('Segmentation')
 # here we mark the threshold on the original image
 
 ax3.imshow(label2rgb(cortex_mask > 0, cortex_img, bg_label=0))
 ax3.axis('off'); ax3.set_title('Overlayed');
 
-# Tiling
-Here we divide the image up into unique tiles for further processing
+## Tiling the image
+Here we divide the image up into unique tiles for further processing. Each tile is 48$\times{}$48 pixels.
 
 xx, yy = np.meshgrid(
     np.arange(cortex_img.shape[1]),
@@ -993,13 +1023,13 @@ sns.heatmap(region_labels[::48, ::48].astype(int),
             cbar=False,
             );
 
-# Calculating Texture
+## Calculating Texture
 Here we calculate the texture by using a tool called the gray level co-occurrence matrix which are part of the [features library in skimage][1]. We focus on two metrics in this, specifically dissimilarity and correlation which we calculate for each tile. We then want to see which of these parameters correlated best with belonging to a nerve fiber.
 
 
   [1]: http://scikit-image.org/docs/dev/auto_examples/features_detection/plot_glcm.html
 
-# compute some GLCM properties each patch
+# compute some gray level co-occurrence matrix (GLCM) properties each patch
 from skimage.feature import greycomatrix, greycoprops
 from tqdm.notebook import tqdm
 grayco_prop_list = ['contrast', 'dissimilarity',
@@ -1011,7 +1041,7 @@ for c_prop in grayco_prop_list:
     prop_imgs[c_prop] = np.zeros_like(cortex_img, dtype=np.float32)
 score_img = np.zeros_like(cortex_img, dtype=np.float32)
 out_df_list = []
-for patch_idx in tqdm(np.unique(region_labels)):
+for patch_idx in np.unique(region_labels):
     xx_box, yy_box = np.where(region_labels == patch_idx)
 
     glcm = greycomatrix(cortex_img[xx_box.min():xx_box.max(),
@@ -1030,7 +1060,9 @@ for patch_idx in tqdm(np.unique(region_labels)):
         out_row[c_prop] = greycoprops(glcm, c_prop)[0, 0]
         prop_imgs[c_prop][region_labels == patch_idx] = out_row[c_prop]
 
-    out_df_list += [out_row]
+    out_df_list += [out_row];
+
+### Resulting gray level co-occurrence properties
 
 # show the slice and threshold
 fig, m_axs = plt.subplots(2, 4, figsize=(20, 10))
@@ -1048,16 +1080,17 @@ for c_ax, c_prop in zip(n_axs[2:], grayco_prop_list):
     c_ax.axis('off')
     c_ax.set_title('{} Image'.format(c_prop))
 
+### Resulting gray level co-occurrence properties
+
 import pandas as pd
 out_df = pd.DataFrame(out_df_list)
 out_df['positive_score'] = out_df['score'].map(
     lambda x: 'FG' if x > 0 else 'BG')
 out_df.describe()
 
-import seaborn as sns
-sns.pairplot(out_df,
-             hue='positive_score',
-             kind="reg");
+### A pair plot to show how the properties are related
+
+sns.pairplot(out_df, hue='positive_score', kind="reg");
 
 # Summary
 

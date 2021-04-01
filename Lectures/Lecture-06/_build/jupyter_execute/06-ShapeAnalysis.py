@@ -152,6 +152,7 @@ from skimage.io           import imread
 
 from IPython.display        import Markdown, display
 from sklearn.neighbors      import KNeighborsClassifier
+from sklearn.decomposition  import PCA
 import webcolors
 
 from collections import defaultdict
@@ -163,7 +164,7 @@ plt.rcParams["figure.dpi"] = 150
 plt.rcParams["font.size"] = 14
 plt.rcParams['font.family'] = ['sans-serif']
 plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
-plt.style.use('ggplot')
+plt.style.use('default')
 sns.set_style("whitegrid", {'axes.grid': False})
 
 # Component labelling
@@ -210,7 +211,7 @@ help(label)
 
 When we apply the ```label``` operation on the car mask, we see the that each car is assigned a color. There are however some cars that get multiple classes. This is because they were divided into several segments due to objects like tree and trafic signs.
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 8))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 8), dpi=100)
 ax1.imshow(seg_img, cmap='bone')
 ax1.set_title('Segmented Image')
 lab_img = label(seg_img)
@@ -227,7 +228,7 @@ Usually, we want to know the are of all items in the images. We could do this by
 
 We can use a histogram with the same number of bins are there are labels in the image. This would give us the size distribution in of the objects in one single operation.
 
-fig, (ax3) = plt.subplots(1, 1)
+fig, (ax3) = plt.subplots(1, 1, dpi=150)
 ax3.hist(lab_img.ravel())
 ax3.set_title('Label Counts')
 ax3.set_yscale('log')
@@ -238,7 +239,7 @@ We start off with all of the pixels in either foreground (1) or background (0)
 
 seg_img = np.eye(9, dtype=int)
 seg_img[4, 4] = 0
-seg_img += seg_img[::-1]
+seg_img += seg_img[::-1] 
 sns.heatmap(seg_img, annot=True, fmt="d");
 
 ## Labeling initialization
@@ -441,6 +442,7 @@ for iteration in range(99):
               'Changes', np.sum(cur_img != last_img))
         last_img = cur_img
 
+### Animate the labeling iterations
 
 fig, c_ax = plt.subplots(1, 1, figsize=(5, 5), dpi=100)
 
@@ -456,7 +458,6 @@ def update_frame(i):
                 vmax=img_list[0].max())
     c_ax.set_title('Iteration #{}, Groups {}'.format(i+1,
                                                      len(np.unique(img_list[i][img_list[i] > 0].ravel()))))
-
 
 # write animation frames
 anim_code = FuncAnimation(fig,
@@ -568,7 +569,6 @@ $$ I_{id}(x,y) =
 \end{cases}$$
 
 
-
 seg_img = imread('figures/aachen_label.png') == 26
 seg_img = seg_img[::4, ::4]
 seg_img = seg_img[110:130:2, 370:420:3]
@@ -598,7 +598,7 @@ for x in range(lab_img.shape[0]):
             y_coord += [y]
 items = pd.DataFrame.from_dict({'x': x_coord, 'y': y_coord})
 
-fig, ax = plt.subplots(1,2,figsize=[12,6],dpi=100)
+fig, ax = plt.subplots(1,2,figsize=[15,6],dpi=100)
 # Using matshow here just because it sets the ticks up nicely. imshow is faster.
 ax[1].matshow(lab_img,cmap='viridis')
 ax[1].plot(np.mean(y_coord),np.mean(x_coord),'rX',
@@ -649,10 +649,12 @@ y_coord = np.array(y_coord)
 i_val   = np.array(i_val)
 cov_x   = np.mean(x_coord)
 cov_y   = np.mean(y_coord)
+com_x   = np.mean(x_coord*i_val)/i_val.mean()
+com_y   = np.mean(y_coord*i_val)/i_val.mean()
 
 _, (ax1) = plt.subplots(1, 1, figsize=(6, 6), dpi=150)
 
-ax1.matshow(gray_img,cmap='bone_r')
+im=ax1.matshow(gray_img,cmap='bone_r'); fig.colorbar(im,ax=ax1, shrink=0.8)
 ax1.set_title('Intensity Image')
 ax1.plot([cov_y], [cov_x], 'ro', label='COV: $x_v=$ {0:0.2f}, $y_v=${1:0.2f}'.format(cov_x,cov_y), markersize=10)
 ax1.plot([com_y], [com_x], 'bo', label='COM: $x_m=$ {0:0.2f}, $y_m=${1:0.2f}'.format(com_x,com_y), markersize=10); ax1.legend();
@@ -736,6 +738,8 @@ ymax = np.max(y_coord)
 print('X -> ', 'Min:', xmin,'Max:', xmax)
 print('Y -> ', 'Min:', ymin,'Max:', ymax)
 
+### Draw the box
+
 _, (ax1) = plt.subplots(1, 1, figsize=(7, 7), dpi=100)
 
 ax1.matshow(seg_img, cmap='bone_r')
@@ -802,52 +806,46 @@ def ed_img(in_img):
         cur_img = erosion(cur_img, disk(1))
     return last_img
 
-
 # guess color name based on rgb value
 color_name_class = KNeighborsClassifier(1)
 c_names = sorted(webcolors.CSS3_NAMES_TO_HEX.keys())
 color_name_class.fit([tuple(webcolors.name_to_rgb(k)) for k in c_names],c_names)
 
-
-reg_df = pd.DataFrame([dict(label    = c_reg.label,
-                            bbox     = c_reg.bbox,
-                            area     = c_reg.area,
-                            centroid = c_reg.centroid,
+reg_df = pd.DataFrame([dict(label    = c_reg.label, bbox     = c_reg.bbox,
+                            area     = c_reg.area,  centroid = c_reg.centroid,
                             color    = color_name_class.predict(np.mean(car_img[ed_img(lab_img == c_reg.label)], 0)[:3].reshape((1, -1)))[0])
                        for c_reg in all_regions])
 
 fig, m_axs = plt.subplots(np.floor(len(all_regions)/3).astype(int),3, figsize=(10,10))
 for c_ax, c_reg in zip(m_axs.ravel(), all_regions):
-    c_ax.imshow(car_img[c_reg.bbox[0]:c_reg.bbox[2],
-                        c_reg.bbox[1]:c_reg.bbox[3]
-                        ])
-    c_ax.axis('off')
-    c_ax.set_title('Label {}'.format(c_reg.label))
+    c_ax.imshow(car_img[c_reg.bbox[0]:c_reg.bbox[2],c_reg.bbox[1]:c_reg.bbox[3]])
+    c_ax.axis('off');     c_ax.set_title('Label {} '.format(c_reg.label))
+
 reg_df
 
 # Object anisotropy
 
 ## Anisotropy: What is it?
 
-By definition (New Oxford American): ```varying in magnitude according to the direction of measurement.```
-
-- It allows us to define metrics in respect to one another and thereby characterize shape.
+By definition (New Oxford American): __varying in magnitude according to the direction of measurement.__
+<br/><br/><br/><br/>
+It allows us to define metrics in respect to one another and thereby characterize shape.
 - Is it:
     - tall and skinny, 
     - short and fat, 
-    - or perfectly round
+    - or perfectly round?
 
 ## A very vague definition
 It can be mathematically characterized in many different very much unequal ways (in all cases 0 represents a sphere)
 
 $$ A_{iso1} = \frac{\text{Longest Side}}{\text{Shortest Side}} - 1 $$
-
+<br/><br/>
 $$ A_{iso2} = \frac{\text{Longest Side}-\text{Shortest Side}}{\text{Longest Side}} $$
-
+<br/><br/>
 $$ A_{iso3} = \frac{\text{Longest Side}}{\text{Average Side Length}} - 1 $$
-
+<br/><br/>
 $$ A_{iso4} = \frac{\text{Longest Side}-\text{Shortest Side}}{\text{Average Side Length}} $$
-
+<br/><br/>
 $$ \cdots \rightarrow \text{ ad nauseum} $$
 
 from collections import defaultdict
@@ -885,7 +883,7 @@ ab_list = [(2, 2), (2, 3), (2, 4), (2, 5), (1.5, 5),
            (1, 5), (0.5, 5), (0.1, 5),  (0.05, 5)]
 func_pts = defaultdict(list)
 
-fig, m_axs = plt.subplots(2, 3, figsize=(10, 7), dpi=100)
+fig, m_axs = plt.subplots(2, 3, figsize=(9, 6), dpi=100)
 
 def update_frame(i):
     plt.cla()
@@ -907,7 +905,7 @@ anim_code = FuncAnimation(fig,
                           update_frame,
                           frames=len(ab_list)-1,
                           interval=500,
-                          repeat_delay=1000).to_html5_video()
+                          repeat_delay=2000).to_html5_video()
 plt.close('all')
 HTML(anim_code)
 
@@ -926,15 +924,26 @@ at least a few of them come in handy for dealing distributions of pixels
 
 _(they will only be briefly covered, for more detailed review look at some of the suggested material)_
 
-## Principal Component Analysis
+## Principal Component Analysis - PCA
 - Similar to K-Means insofar as we start with a series of points in a vector space and want to condense the information. 
 
 With PCA
 - doesn't search for distinct groups, 
 - we find a linear combination of components which best explain the variance in the system.
 
-### PCA on spectroscopy
-As an example we will use a very simple example from spectroscopy:
+To read
+[Principal component analysis: a review and recent developments](https://doi.org/10.1098/rsta.2015.0202)
+
+## PCA definition
+
+1. Compute the covariance or correlation matrix from a set of images
+2. Make an Eigen value or Singular Value Decomposition
+3. Use 
+    - singular values to measure the importance of each eigen value 
+    - eigen vectors to transform the data
+
+## PCA on spectroscopy
+As an example we will use a very simple (simulated) example from spectroscopy:
 
 cm_dm = np.linspace(1000, 4000, 300)
 
@@ -942,30 +951,23 @@ cm_dm = np.linspace(1000, 4000, 300)
 def peak(cent, wid, h): return h/(wid*np.sqrt(2*np.pi)) * \
     np.exp(-np.square((cm_dm-cent)/wid))
 
-
 def peaks(plist): return np.sum(np.stack(
     [peak(cent, wid, h) for cent, wid, h in plist], 0), 0)+np.random.uniform(0, 1, size=cm_dm.shape)
 
 # Define material spectra
-fat_curve = [(2900, 100, 500), (1680, 200, 400)]
+fat_curve     = [(2900, 100, 500), (1680, 200, 400)]
 protein_curve = [(2900, 50, 200), (3400, 100, 600), (1680, 200, 300)]
-noise_curve = [(3000, 50, 1)]
+noise_curve   = [(3000, 50, 1)]
 
-fig, (ax0, ax1, ax2) = plt.subplots(1, 3, figsize=(12, 4))
-
-ax1.plot(cm_dm, peaks(fat_curve))
-ax1.set_title('Fat IR Spectra')
-
-ax2.plot(cm_dm, peaks(protein_curve))
-ax2.set_title('Protein IR Spectra')
-
-ax0.plot(cm_dm, peaks(noise_curve))
-ax0.set_title('Noise IR Spectra')
-
-ax0.set_ylim(ax2.get_ylim())
-ax2.set_ylim(ax2.get_ylim())
-
-pd.DataFrame({'cm^(-1)': cm_dm, 'intensity': peaks(protein_curve)}).head(5)
+# Plotting
+fig, ax = plt.subplots(1, 4, figsize=(15, 4))
+ax[2].plot(cm_dm, peaks(fat_curve));     ax[2].set_title('Fat IR Spectra')
+ax[3].plot(cm_dm, peaks(protein_curve)); ax[3].set_title('Protein IR Spectra')
+ax[1].plot(cm_dm, peaks(noise_curve));   ax[1].set_title('Noise IR Spectra')
+ax[1].set_ylim(ax[3].get_ylim())
+ax[2].set_ylim(ax[3].get_ylim())
+data=pd.DataFrame({'cm^(-1)': cm_dm, 'intensity': peaks(protein_curve)}).head(8)
+pd.plotting.table(data=data.round(decimals=2), ax=ax[0], loc='center'); ax[0].axis('off'); ax[0].set_title('Protein spectrum data');
 
 ## Test Dataset of a number of curves
 We want to sort cells or samples into groups of being 
@@ -985,11 +987,15 @@ ax2.scatter(test_data[:, 0], test_data[:,1], c=range(test_data.shape[0]),
             s=20, cmap='nipy_spectral')
 ax2.set_title('Scatter plot of curve 1 and 2'); ax2.set_xlabel('Curve 1'); ax2.set_ylabel('Curve 2'); 
 
+### Fit the data with PCA
+
 from sklearn.decomposition import PCA
 pca_tool = PCA(5)
 pca_tool.fit(test_data)
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+### Plot principal components
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5),dpi=100)
 score_matrix = pca_tool.transform(test_data)
 ax1.plot(cm_dm, pca_tool.components_[0, :], label='Component #1')
 ax1.plot(cm_dm, pca_tool.components_[
@@ -1002,14 +1008,124 @@ ax2.scatter(score_matrix[:, 0],
 ax2.set_xlabel('Component 1')
 ax2.set_ylabel('Component 2');
 
+### How important is each component?
+
 fig, ax1 = plt.subplots(1, 1, figsize=(8, 4), dpi=100)
 ax1.bar(x=range(pca_tool.explained_variance_ratio_.shape[0]),
         height=100*pca_tool.explained_variance_ratio_)
 ax1.set_xlabel('Components')
 ax1.set_ylabel('Explained Variance (%)');
 
+# PCA in materials science
+
+Explore crystal textures in metals.
+
+### Bragg egde imaging - the imaging technique
+- Wavelength resolved neutron imaging provides spectral images
+- Crystaline properties can be explored in the spectra
+- Bragg edges appear when the Bragg criterion is fulfilled
+$$2d\sin{\theta}=n\lambda{}$$
+
+![](figures/Braggs_Law.png)
+
+## Bragg edge imaging example
+|Samples| Spectrum| Wavelength scan|
+|:---:|:---:|:---:|
+|![](figures/icon-spectrum.png)|![](figures/energysamples.png)|![](figures/energy_scan.png)|
+
+Images courtesy of S. Peetermans
+
+## Bragg edge imaging and PCA 
+
+### The data
+
+data=np.load('data/tofdata.npy')
+fig,ax=plt.subplots(1,3,figsize=(15,4),dpi=100)
+ax[0].imshow(data.mean(axis=2), cmap='viridis'), ax[0].set_title('Average image');
+ax[1].imshow(data[:,:,100], cmap='viridis'), ax[1].set_title('Single wavelength bin');
+ax[2].plot(data[20:40,10:20].mean(axis=0).mean(axis=0), color='Cornflowerblue', label = 'Material');
+ax[2].plot(data[0:5,40:60].mean(axis=0).mean(axis=0),   color='coral',          label = 'Air');
+ax[2].plot(data[20:40,32:35].mean(axis=0).mean(axis=0), color='green',          label = 'Spacer');
+ax[2].set_title('Spectra'); ax[2].set_xlabel('Wavelength bins'); ax[2].set_ylabel('Transmission'); ax[2].legend();
+
+### Prepare the data for analysis
+
+1. Rearrange the images into 1D arrays $M\times{}N\times{}T\rightarrow{}M\cdot{}N\times{}T$
+
+fdata=data.reshape(data.shape[0]*data.shape[1],data.shape[2])
+
+2. Compute mean and standard deviation
+
+m  = np.reshape(fdata.mean(axis=0),(1,fdata.shape[1]))
+mm = np.ones((fdata.shape[0],1))*m
+s  = np.reshape(fdata.std(axis=0),(1,fdata.shape[1]))
+ss = np.ones((fdata.shape[0],1))*m
+
+3. Normalize data
+
+mfdata=(fdata-mm)/ss
+
+### Run the PCA
+
+1. Initialize PCA with 5 components
+
+pca_tool = PCA(5)
+
+2. Fit data with PCA
+
+pca_tool.fit(mfdata)
+
+### Inspect the PCA fit
+
+score_matrix = pca_tool.transform(mfdata)
+
+fig, ax = plt.subplots(1, 3, figsize=(15, 5),dpi=100)
+ax[0].semilogy(pca_tool.explained_variance_ratio_,'o-'); 
+ax[0].set_title('Explained variance ratio'); ax[0].set_xlabel('Principal component #')
+ax[1].plot(pca_tool.components_[0, :], label='Component #1')
+ax[1].plot(pca_tool.components_[1, :], label='Component #2')
+ax[1].plot(pca_tool.components_[2, :], label='Component #3')
+ax[1].legend(); ax[1].set_title('Components')
+ax[2].scatter(score_matrix[:, 0], score_matrix[:, 1]); ax[2].set_xlabel('Component 1'); ax[2].set_ylabel('Component 2');
+
+### Improve the scatter plot
+
+fig, ax = plt.subplots(1, 2, figsize=(15, 7),dpi=100)
+ax[0].scatter(score_matrix[:, 0], score_matrix[:, 1]); ax[1].set_xlabel('Component 1'); ax[0].set_ylabel('Component 2');
+ax[0].set_title(r'Marker $\alpha$=1');
+ax[1].scatter(score_matrix[:, 0], score_matrix[:, 1], alpha=0.05); ax[1].set_xlabel('Component 1'); ax[1].set_ylabel('Component 2');
+ax[1].set_title(r'Marker $\alpha$=0.05');
+
+### Visualize the PCAs with color coding
+Inspired by [PCA in materials science](https://doi.org/10.1088/2399-6528/ab5575)
+
+# Reshape the first three principal components
+cdata = score_matrix[:,:3].reshape([data.shape[0],data.shape[1],3])
+
+# Normalize the chanels
+for i in range(3) :
+    cdata[:,:,i]=(cdata[:,:,i]-cdata[:,:,i].min())/(cdata[:,:,i].max()-cdata[:,:,i].min())
+    
+fig, ax = plt.subplots(1,2,figsize=(12,6), dpi=150)
+ax[0].imshow(data.mean(axis=2)); ax[0].set_title('White beam image')
+ax[1].imshow(cdata); ax[1].set_title('PCA enhanced image');
+
+The PCA enhanced image does not represent a physical reality, but it can be used as a qualitative tool to guide the material analysis.
+
+### PCA and segmentation
+
+The next step is to use the enhanced image for segmentation:
+
+fig, ax = plt.subplots(1,2,figsize=(12,6), dpi=150)
+ax[0].imshow(cdata); ax[0].set_title('PCA enhanced image');
+ax[1].scatter(score_matrix[:, 0], score_matrix[:, 1], alpha=0.05); ax[1].set_xlabel('Component 1'); ax[1].set_ylabel('Component 2');
+ax[1].set_title(r'Principal components');
+
+A project task...
+1. Combine clustering and PCA to identify regions in the samples
+
 # Principal Component Analysis
-## scikit-learn [Face Analyis](http://scikit-learn.org/stable/auto_examples/decomposition/plot_faces_decomposition.html)
+## SciKit-learn [Face Analyis](http://scikit-learn.org/stable/auto_examples/decomposition/plot_faces_decomposition.html)
 
 Here we show a more imaging related example from the scikit-learn documentation where we do basic face analysis with scikit-learn.
 
@@ -1178,55 +1294,6 @@ While the eigenvalues and eigenvectors are in their own right useful
 
 ***
 
-
-# Meshing
-
-The process of turning a (connected) set of pixels into a list of vertices and edges
-
-- For these vertices and edges we can define forces. 
-- Most crucially this comes when looking at physical processes like deformation.
-- Meshes are also useful for visualization.
-
-
-__Example__
-
-Looking at stress-strain relationships in mechanics using Hooke's Model 
-
-$$ \vec{F}=k (\vec{x}_0-\vec{x}) $$ 
-
-the force needed to stretch one of these edges is proportional to how far it is stretched. 
-
-## Meshing
-
-
-Since we uses voxels to image and identify the volume we can use the voxels themselves as an approimation for the surface of the structure. 
-- Each 'exposed' face of a voxel belongs to the surface
-
-From this we can create a mesh by 
-
-- adding each exposed voxel face to a list of surface squares. 
-- adding connectivity information for the different squares (shared edges and vertices)
-
-A wide variety of methods of which we will only graze the surface (http://en.wikipedia.org/wiki/Image-based_meshing)
-
-## Marching Cubes
-
-__Why__
-
-Voxels are very poor approximations for the surface and are very rough (they are either normal to the x, y, or z axis and nothing between).
-
-<img src="../Lecture-04/figures/sphere_comparison.svg" style="height:150px" />
-
-__How__ (https://en.wikipedia.org/wiki/Marching_cubes)
-
-1. The image is processed one voxel at a time 
-2. The 2x2x2 neighborhood is checked at every voxel. 
-3. From this configuration of values, faces are added to the mesh to incorporate the most simple surface which would explain the values. 
-
-This algortihm is nicely explained in this [video](https://youtu.be/M3iI2l0ltbE)
-
-[Marching tetrahedra](http://en.wikipedia.org/wiki/Marching_tetrahedra) is for some applications a better suited approach
-
 # Next Time on QBI
 
 
@@ -1246,3 +1313,18 @@ So, while bounding box and ellipse-based models are useful for many object and c
 - Is it one network of objects and we want to know about the constrictions?
 - Is it a cell or organelle with docking sites for cell?
 - Neither extents nor anisotropy are very meaningful, we need a __more specific metric__ which can characterize
+
+# Summary
+
+## Component labeling
+- What is it
+- What is the impact of difference neighborhoods
+
+## Object description
+- Center of objects
+- Bounding boxes - extents
+
+## Principal component analysis
+- Definition
+- PCA in spectroscopy
+- PCA to analyze shapes

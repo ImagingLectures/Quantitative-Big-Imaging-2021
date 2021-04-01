@@ -71,7 +71,7 @@
 
 #### Exercises
 
-- [Overview](../Exercises/06-Shapes/06-Overview.md)
+- [Overview](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/06-Shapes/06-Overview.md)
 
 ---
 ---

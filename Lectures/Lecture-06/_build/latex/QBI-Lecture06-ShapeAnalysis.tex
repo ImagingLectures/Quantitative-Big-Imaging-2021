@@ -73,7 +73,7 @@
 
 
 \title{Quantitative Big Imaging - Shape Analysis}
-\date{Mar 29, 2021}
+\date{Apr 01, 2021}
 \release{}
 \author{Anders Kaestner}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -411,6 +411,7 @@ Berlin, 1993.
 
 \PYG{k+kn}{from} \PYG{n+nn}{IPython}\PYG{n+nn}{.}\PYG{n+nn}{display}        \PYG{k+kn}{import} \PYG{n}{Markdown}\PYG{p}{,} \PYG{n}{display}
 \PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{neighbors}      \PYG{k+kn}{import} \PYG{n}{KNeighborsClassifier}
+\PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{decomposition}  \PYG{k+kn}{import} \PYG{n}{PCA}
 \PYG{k+kn}{import} \PYG{n+nn}{webcolors}
 
 \PYG{k+kn}{from} \PYG{n+nn}{collections} \PYG{k+kn}{import} \PYG{n}{defaultdict}
@@ -422,14 +423,14 @@ Berlin, 1993.
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{font.size}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{14}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{font.family}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sans\PYGZhy{}serif}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{font.sans\PYGZhy{}serif}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{DejaVu Sans}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{style}\PYG{o}{.}\PYG{n}{use}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ggplot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{style}\PYG{o}{.}\PYG{n}{use}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{default}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{sns}\PYG{o}{.}\PYG{n}{set\PYGZus{}style}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{whitegrid}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{axes.grid}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{k+kc}{False}\PYG{p}{\PYGZcb{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
 \PYG{n+ne}{ModuleNotFoundError}\PYG{g+gWhitespace}{                       }Traceback (most recent call last)
-\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{86}\PYG{n}{d75419166a}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
+\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{309296}\PYG{n}{dda6d3}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{1} \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{2} \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{3} \PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
@@ -620,7 +621,7 @@ label(input, neighbors=None, background=None, return\PYGZus{}num=False, connecti
 When we apply the \sphinxcode{\sphinxupquote{label}} operation on the car mask, we see the that each car is assigned a color. There are however some cars that get multiple classes. This is because they were divided into several segments due to objects like tree and trafic signs.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{seg\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Segmented Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{lab\PYGZus{}img} \PYG{o}{=} \PYG{n}{label}\PYG{p}{(}\PYG{n}{seg\PYGZus{}img}\PYG{p}{)}
@@ -645,7 +646,7 @@ Usually, we want to know the are of all items in the images. We could do this by
 We can use a histogram with the same number of bins are there are labels in the image. This would give us the size distribution in of the objects in one single operation.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax3}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax3}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{lab\PYGZus{}img}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Label Counts}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}yscale}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{log}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -662,7 +663,7 @@ We start off with all of the pixels in either foreground (1) or background (0)
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{seg\PYGZus{}img} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{eye}\PYG{p}{(}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{n}{dtype}\PYG{o}{=}\PYG{n+nb}{int}\PYG{p}{)}
 \PYG{n}{seg\PYGZus{}img}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
-\PYG{n}{seg\PYGZus{}img} \PYG{o}{+}\PYG{o}{=} \PYG{n}{seg\PYGZus{}img}\PYG{p}{[}\PYG{p}{:}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+\PYG{n}{seg\PYGZus{}img} \PYG{o}{+}\PYG{o}{=} \PYG{n}{seg\PYGZus{}img}\PYG{p}{[}\PYG{p}{:}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} 
 \PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{seg\PYGZus{}img}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{d}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
@@ -1015,6 +1016,9 @@ Iteration 4 Groups 1 Changes 1
 Done
 \end{sphinxVerbatim}
 
+
+\subsection{Animate the labeling iterations}
+\label{\detokenize{06-ShapeAnalysis:animate-the-labeling-iterations}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 
@@ -1030,7 +1034,6 @@ Done
                 \PYG{n}{vmax}\PYG{o}{=}\PYG{n}{img\PYGZus{}list}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Iteration \PYGZsh{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{, Groups }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}
                                                      \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{unique}\PYG{p}{(}\PYG{n}{img\PYGZus{}list}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{img\PYGZus{}list}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
-
 
 \PYG{c+c1}{\PYGZsh{} write animation frames}
 \PYG{n}{anim\PYGZus{}code} \PYG{o}{=} \PYG{n}{FuncAnimation}\PYG{p}{(}\PYG{n}{fig}\PYG{p}{,}
@@ -1296,7 +1299,7 @@ Compare the cells in this image to another image
     \PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{z}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ha}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{center}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{va}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{center}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_56_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_57_0}.png}
 
 
 \subsection{Define a center}
@@ -1322,7 +1325,7 @@ i.e. the average position of all pixels in each direction.
             \PYG{n}{y\PYGZus{}coord} \PYG{o}{+}\PYG{o}{=} \PYG{p}{[}\PYG{n}{y}\PYG{p}{]}
 \PYG{n}{items} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{o}{.}\PYG{n}{from\PYGZus{}dict}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{x\PYGZus{}coord}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{y\PYGZus{}coord}\PYG{p}{\PYGZcb{}}\PYG{p}{)}
 
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{]}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{]}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} Using matshow here just because it sets the ticks up nicely. imshow is faster.}
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{lab\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{y\PYGZus{}coord}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{x\PYGZus{}coord}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{rX}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
@@ -1334,7 +1337,7 @@ i.e. the average position of all pixels in each direction.
 \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Coordinates of Item 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_59_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_60_0}.png}
 
 
 \section{Center of Mass (COM): With a single object}
@@ -1370,7 +1373,7 @@ If the gray values are kept (or other meaningful ones are used), this can be see
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Segmented Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_61_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_62_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c+c1}{\PYGZsh{} Collect information}
@@ -1387,16 +1390,18 @@ If the gray values are kept (or other meaningful ones are used), this can be see
 \PYG{n}{i\PYGZus{}val}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{i\PYGZus{}val}\PYG{p}{)}
 \PYG{n}{cov\PYGZus{}x}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{x\PYGZus{}coord}\PYG{p}{)}
 \PYG{n}{cov\PYGZus{}y}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{y\PYGZus{}coord}\PYG{p}{)}
+\PYG{n}{com\PYGZus{}x}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{x\PYGZus{}coord}\PYG{o}{*}\PYG{n}{i\PYGZus{}val}\PYG{p}{)}\PYG{o}{/}\PYG{n}{i\PYGZus{}val}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{com\PYGZus{}y}   \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{y\PYGZus{}coord}\PYG{o}{*}\PYG{n}{i\PYGZus{}val}\PYG{p}{)}\PYG{o}{/}\PYG{n}{i\PYGZus{}val}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
 
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{gray\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone\PYGZus{}r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{im}\PYG{o}{=}\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{gray\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone\PYGZus{}r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{im}\PYG{p}{,}\PYG{n}{ax}\PYG{o}{=}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{shrink}\PYG{o}{=}\PYG{l+m+mf}{0.8}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Intensity Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{[}\PYG{n}{cov\PYGZus{}y}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{n}{cov\PYGZus{}x}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ro}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{COV: \PYGZdl{}x\PYGZus{}v=\PYGZdl{} }\PYG{l+s+si}{\PYGZob{}0:0.2f\PYGZcb{}}\PYG{l+s+s1}{, \PYGZdl{}y\PYGZus{}v=\PYGZdl{}}\PYG{l+s+si}{\PYGZob{}1:0.2f\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{cov\PYGZus{}x}\PYG{p}{,}\PYG{n}{cov\PYGZus{}y}\PYG{p}{)}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{[}\PYG{n}{com\PYGZus{}y}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{n}{com\PYGZus{}x}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{COM: \PYGZdl{}x\PYGZus{}m=\PYGZdl{} }\PYG{l+s+si}{\PYGZob{}0:0.2f\PYGZcb{}}\PYG{l+s+s1}{, \PYGZdl{}y\PYGZus{}m=\PYGZdl{}}\PYG{l+s+si}{\PYGZob{}1:0.2f\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{com\PYGZus{}x}\PYG{p}{,}\PYG{n}{com\PYGZus{}y}\PYG{p}{)}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_62_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_63_0}.png}
 
 
 \section{Further object metrics}
@@ -1761,7 +1766,7 @@ Define extents as the minimum and maximum values along the projection of the sha
             \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone\PYGZus{}r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_71_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_72_0}.png}
 
 
 \subsection{Finding a bounding box}
@@ -1786,6 +1791,9 @@ X \PYGZhy{}\PYGZgt{}  Min: 4 Max: 12
 Y \PYGZhy{}\PYGZgt{}  Min: 3 Max: 15
 \end{sphinxVerbatim}
 
+
+\subsection{Draw the box}
+\label{\detokenize{06-ShapeAnalysis:draw-the-box}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 
@@ -1806,7 +1814,7 @@ Y \PYGZhy{}\PYGZgt{}  Min: 3 Max: 15
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{add\PYGZus{}collection}\PYG{p}{(}\PYG{n}{c\PYGZus{}bb\PYGZus{}patch}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_74_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_76_0}.png}
 
 
 \chapter{Using regionprops on real images}
@@ -1829,7 +1837,7 @@ We take the original car scene from before.
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Labeled Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_76_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_78_0}.png}
 
 
 \section{Shape Analysis}
@@ -1862,7 +1870,7 @@ We can perform shape analysis on the image and calculate basic shape parameters 
 Found  9 regions
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_78_1}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_80_1}.png}
 
 
 \section{Statistics}
@@ -1879,27 +1887,21 @@ We can then generate a table full of these basic parameters for each object. In 
         \PYG{n}{cur\PYGZus{}img} \PYG{o}{=} \PYG{n}{erosion}\PYG{p}{(}\PYG{n}{cur\PYGZus{}img}\PYG{p}{,} \PYG{n}{disk}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
     \PYG{k}{return} \PYG{n}{last\PYGZus{}img}
 
-
 \PYG{c+c1}{\PYGZsh{} guess color name based on rgb value}
 \PYG{n}{color\PYGZus{}name\PYGZus{}class} \PYG{o}{=} \PYG{n}{KNeighborsClassifier}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
 \PYG{n}{c\PYGZus{}names} \PYG{o}{=} \PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n}{webcolors}\PYG{o}{.}\PYG{n}{CSS3\PYGZus{}NAMES\PYGZus{}TO\PYGZus{}HEX}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{color\PYGZus{}name\PYGZus{}class}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{tuple}\PYG{p}{(}\PYG{n}{webcolors}\PYG{o}{.}\PYG{n}{name\PYGZus{}to\PYGZus{}rgb}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)}\PYG{p}{)} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{c\PYGZus{}names}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c\PYGZus{}names}\PYG{p}{)}
 
-
-\PYG{n}{reg\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{dict}\PYG{p}{(}\PYG{n}{label}    \PYG{o}{=} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{label}\PYG{p}{,}
-                            \PYG{n}{bbox}     \PYG{o}{=} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{,}
-                            \PYG{n}{area}     \PYG{o}{=} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{area}\PYG{p}{,}
-                            \PYG{n}{centroid} \PYG{o}{=} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{centroid}\PYG{p}{,}
+\PYG{n}{reg\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{dict}\PYG{p}{(}\PYG{n}{label}    \PYG{o}{=} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{label}\PYG{p}{,} \PYG{n}{bbox}     \PYG{o}{=} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{,}
+                            \PYG{n}{area}     \PYG{o}{=} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{area}\PYG{p}{,}  \PYG{n}{centroid} \PYG{o}{=} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{centroid}\PYG{p}{,}
                             \PYG{n}{color}    \PYG{o}{=} \PYG{n}{color\PYGZus{}name\PYGZus{}class}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{car\PYGZus{}img}\PYG{p}{[}\PYG{n}{ed\PYGZus{}img}\PYG{p}{(}\PYG{n}{lab\PYGZus{}img} \PYG{o}{==} \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{label}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
                        \PYG{k}{for} \PYG{n}{c\PYGZus{}reg} \PYG{o+ow}{in} \PYG{n}{all\PYGZus{}regions}\PYG{p}{]}\PYG{p}{)}
 
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{floor}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{all\PYGZus{}regions}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{c\PYGZus{}reg} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{all\PYGZus{}regions}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{car\PYGZus{}img}\PYG{p}{[}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{:}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}
-                        \PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{:}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}
-                        \PYG{p}{]}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Label }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{label}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{car\PYGZus{}img}\PYG{p}{[}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{:}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{:}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{bbox}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Label }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ }\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{c\PYGZus{}reg}\PYG{o}{.}\PYG{n}{label}\PYG{p}{)}\PYG{p}{)}
+
 \PYG{n}{reg\PYGZus{}df}
 \end{sphinxVerbatim}
 
@@ -1927,7 +1929,7 @@ We can then generate a table full of these basic parameters for each object. In 
 8           grey  
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_80_1}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_82_1}.png}
 
 
 \chapter{Object anisotropy}
@@ -1936,12 +1938,10 @@ We can then generate a table full of these basic parameters for each object. In 
 \section{Anisotropy: What is it?}
 \label{\detokenize{06-ShapeAnalysis:anisotropy-what-is-it}}
 \sphinxAtStartPar
-By definition (New Oxford American): \sphinxcode{\sphinxupquote{varying in magnitude according to the direction of measurement.}}
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-It allows us to define metrics in respect to one another and thereby characterize shape.
+By definition (New Oxford American): \sphinxstylestrong{varying in magnitude according to the direction of measurement.}
 
+It allows us to define metrics in respect to one another and thereby characterize shape.
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Is it:
@@ -1956,7 +1956,7 @@ short and fat,
 
 \item {} 
 \sphinxAtStartPar
-or perfectly round
+or perfectly round?
 
 \end{itemize}
 
@@ -1969,15 +1969,17 @@ or perfectly round
 It can be mathematically characterized in many different very much unequal ways (in all cases 0 represents a sphere)
 \begin{equation*}
 \begin{split} A_{iso1} = \frac{\text{Longest Side}}{\text{Shortest Side}} - 1 \end{split}
-\end{equation*}\begin{equation*}
-\begin{split} A_{iso2} = \frac{\text{Longest Side}-\text{Shortest Side}}{\text{Longest Side}} \end{split}
-\end{equation*}\begin{equation*}
-\begin{split} A_{iso3} = \frac{\text{Longest Side}}{\text{Average Side Length}} - 1 \end{split}
-\end{equation*}\begin{equation*}
-\begin{split} A_{iso4} = \frac{\text{Longest Side}-\text{Shortest Side}}{\text{Average Side Length}} \end{split}
-\end{equation*}\begin{equation*}
-\begin{split} \cdots \rightarrow \text{ ad nauseum} \end{split}
 \end{equation*}
+\sphinxAtStartPar
+
+\$\( A_{iso2} = \frac{\text{Longest Side}-\text{Shortest Side}}{\text{Longest Side}} \)\(
+<br/><br/>
+\)\( A_{iso3} = \frac{\text{Longest Side}}{\text{Average Side Length}} - 1 \)\(
+<br/><br/>
+\)\( A_{iso4} = \frac{\text{Longest Side}-\text{Shortest Side}}{\text{Average Side Length}} \)\(
+<br/><br/>
+\)\( \cdots \rightarrow \text{ ad nauseum} \)\$
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{collections} \PYG{k+kn}{import} \PYG{n}{defaultdict}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{measure} \PYG{k+kn}{import} \PYG{n}{regionprops}
@@ -2022,7 +2024,7 @@ Much of the code below is for the animated display.
            \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}  \PYG{p}{(}\PYG{l+m+mf}{0.05}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{]}
 \PYG{n}{func\PYGZus{}pts} \PYG{o}{=} \PYG{n}{defaultdict}\PYG{p}{(}\PYG{n+nb}{list}\PYG{p}{)}
 
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 
 \PYG{k}{def} \PYG{n+nf}{update\PYGZus{}frame}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{cla}\PYG{p}{(}\PYG{p}{)}
@@ -2044,7 +2046,7 @@ Much of the code below is for the animated display.
                           \PYG{n}{update\PYGZus{}frame}\PYG{p}{,}
                           \PYG{n}{frames}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{ab\PYGZus{}list}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}
                           \PYG{n}{interval}\PYG{o}{=}\PYG{l+m+mi}{500}\PYG{p}{,}
-                          \PYG{n}{repeat\PYGZus{}delay}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)}\PYG{o}{.}\PYG{n}{to\PYGZus{}html5\PYGZus{}video}\PYG{p}{(}\PYG{p}{)}
+                          \PYG{n}{repeat\PYGZus{}delay}\PYG{o}{=}\PYG{l+m+mi}{2000}\PYG{p}{)}\PYG{o}{.}\PYG{n}{to\PYGZus{}html5\PYGZus{}video}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{close}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{all}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{HTML}\PYG{p}{(}\PYG{n}{anim\PYGZus{}code}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -2082,8 +2084,8 @@ at least a few of them come in handy for dealing distributions of pixels
 \sphinxstyleemphasis{(they will only be briefly covered, for more detailed review look at some of the suggested material)}
 
 
-\section{Principal Component Analysis}
-\label{\detokenize{06-ShapeAnalysis:principal-component-analysis}}\begin{itemize}
+\section{Principal Component Analysis \sphinxhyphen{} PCA}
+\label{\detokenize{06-ShapeAnalysis:principal-component-analysis-pca}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Similar to K\sphinxhyphen{}Means insofar as we start with a series of points in a vector space and want to condense the information.
@@ -2103,11 +2105,43 @@ we find a linear combination of components which best explain the variance in th
 
 \end{itemize}
 
+\sphinxAtStartPar
+To read
+\sphinxhref{https://doi.org/10.1098/rsta.2015.0202}{Principal component analysis: a review and recent developments}
 
-\subsection{PCA on spectroscopy}
+
+\section{PCA definition}
+\label{\detokenize{06-ShapeAnalysis:pca-definition}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Compute the covariance or correlation matrix from a set of images
+
+\item {} 
+\sphinxAtStartPar
+Make an Eigen value or Singular Value Decomposition
+
+\item {} 
+\sphinxAtStartPar
+Use
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+singular values to measure the importance of each eigen value
+
+\item {} 
+\sphinxAtStartPar
+eigen vectors to transform the data
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{PCA on spectroscopy}
 \label{\detokenize{06-ShapeAnalysis:pca-on-spectroscopy}}
 \sphinxAtStartPar
-As an example we will use a very simple example from spectroscopy:
+As an example we will use a very simple (simulated) example from spectroscopy:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{cm\PYGZus{}dm} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{l+m+mi}{4000}\PYG{p}{,} \PYG{l+m+mi}{300}\PYG{p}{)}
@@ -2116,42 +2150,26 @@ As an example we will use a very simple example from spectroscopy:
 \PYG{k}{def} \PYG{n+nf}{peak}\PYG{p}{(}\PYG{n}{cent}\PYG{p}{,} \PYG{n}{wid}\PYG{p}{,} \PYG{n}{h}\PYG{p}{)}\PYG{p}{:} \PYG{k}{return} \PYG{n}{h}\PYG{o}{/}\PYG{p}{(}\PYG{n}{wid}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{p}{)}\PYG{p}{)} \PYG{o}{*} \PYGZbs{}
     \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{o}{\PYGZhy{}}\PYG{n}{cent}\PYG{p}{)}\PYG{o}{/}\PYG{n}{wid}\PYG{p}{)}\PYG{p}{)}
 
-
 \PYG{k}{def} \PYG{n+nf}{peaks}\PYG{p}{(}\PYG{n}{plist}\PYG{p}{)}\PYG{p}{:} \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{stack}\PYG{p}{(}
     \PYG{p}{[}\PYG{n}{peak}\PYG{p}{(}\PYG{n}{cent}\PYG{p}{,} \PYG{n}{wid}\PYG{p}{,} \PYG{n}{h}\PYG{p}{)} \PYG{k}{for} \PYG{n}{cent}\PYG{p}{,} \PYG{n}{wid}\PYG{p}{,} \PYG{n}{h} \PYG{o+ow}{in} \PYG{n}{plist}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{size}\PYG{o}{=}\PYG{n}{cm\PYGZus{}dm}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Define material spectra}
-\PYG{n}{fat\PYGZus{}curve} \PYG{o}{=} \PYG{p}{[}\PYG{p}{(}\PYG{l+m+mi}{2900}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{l+m+mi}{500}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1680}\PYG{p}{,} \PYG{l+m+mi}{200}\PYG{p}{,} \PYG{l+m+mi}{400}\PYG{p}{)}\PYG{p}{]}
+\PYG{n}{fat\PYGZus{}curve}     \PYG{o}{=} \PYG{p}{[}\PYG{p}{(}\PYG{l+m+mi}{2900}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{l+m+mi}{500}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1680}\PYG{p}{,} \PYG{l+m+mi}{200}\PYG{p}{,} \PYG{l+m+mi}{400}\PYG{p}{)}\PYG{p}{]}
 \PYG{n}{protein\PYGZus{}curve} \PYG{o}{=} \PYG{p}{[}\PYG{p}{(}\PYG{l+m+mi}{2900}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{,} \PYG{l+m+mi}{200}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3400}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{l+m+mi}{600}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1680}\PYG{p}{,} \PYG{l+m+mi}{200}\PYG{p}{,} \PYG{l+m+mi}{300}\PYG{p}{)}\PYG{p}{]}
-\PYG{n}{noise\PYGZus{}curve} \PYG{o}{=} \PYG{p}{[}\PYG{p}{(}\PYG{l+m+mi}{3000}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}
+\PYG{n}{noise\PYGZus{}curve}   \PYG{o}{=} \PYG{p}{[}\PYG{p}{(}\PYG{l+m+mi}{3000}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}
 
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax0}\PYG{p}{,} \PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
-
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{n}{peaks}\PYG{p}{(}\PYG{n}{fat\PYGZus{}curve}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Fat IR Spectra}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{n}{peaks}\PYG{p}{(}\PYG{n}{protein\PYGZus{}curve}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Protein IR Spectra}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{ax0}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{n}{peaks}\PYG{p}{(}\PYG{n}{noise\PYGZus{}curve}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{ax0}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Noise IR Spectra}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{ax0}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{get\PYGZus{}ylim}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{get\PYGZus{}ylim}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
-
-\PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cm\PYGZca{}(\PYGZhy{}1)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{peaks}\PYG{p}{(}\PYG{n}{protein\PYGZus{}curve}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Plotting}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{n}{peaks}\PYG{p}{(}\PYG{n}{fat\PYGZus{}curve}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}     \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Fat IR Spectra}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{n}{peaks}\PYG{p}{(}\PYG{n}{protein\PYGZus{}curve}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Protein IR Spectra}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{n}{peaks}\PYG{p}{(}\PYG{n}{noise\PYGZus{}curve}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}   \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Noise IR Spectra}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{get\PYGZus{}ylim}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{get\PYGZus{}ylim}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{data}\PYG{o}{=}\PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cm\PYGZca{}(\PYGZhy{}1)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{intensity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{peaks}\PYG{p}{(}\PYG{n}{protein\PYGZus{}curve}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{)}
+\PYG{n}{pd}\PYG{o}{.}\PYG{n}{plotting}\PYG{o}{.}\PYG{n}{table}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n}{data}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{decimals}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{=}\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{center}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Protein spectrum data}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-       cm\PYGZca{}(\PYGZhy{}1)  intensity
-0  1000.000000   0.082790
-1  1010.033445   0.554745
-2  1020.066890   0.340015
-3  1030.100334   0.069390
-4  1040.133779   0.083648
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_94_1}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_97_0}.png}
 
 
 \section{Test Dataset of a number of curves}
@@ -2185,8 +2203,11 @@ or more protein like.
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Scatter plot of curve 1 and 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Curve 1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Curve 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} 
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_97_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_100_0}.png}
 
+
+\subsection{Fit the data with PCA}
+\label{\detokenize{06-ShapeAnalysis:fit-the-data-with-pca}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{decomposition} \PYG{k+kn}{import} \PYG{n}{PCA}
 \PYG{n}{pca\PYGZus{}tool} \PYG{o}{=} \PYG{n}{PCA}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}
@@ -2194,12 +2215,14 @@ or more protein like.
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-PCA(copy=True, iterated\PYGZus{}power=\PYGZsq{}auto\PYGZsq{}, n\PYGZus{}components=5, random\PYGZus{}state=None,
-    svd\PYGZus{}solver=\PYGZsq{}auto\PYGZsq{}, tol=0.0, whiten=False)
+PCA(n\PYGZus{}components=5)
 \end{sphinxVerbatim}
 
+
+\subsection{Plot principal components}
+\label{\detokenize{06-ShapeAnalysis:plot-principal-components}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 \PYG{n}{score\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{transform}\PYG{p}{(}\PYG{n}{test\PYGZus{}data}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{components\PYGZus{}}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component \PYGZsh{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{cm\PYGZus{}dm}\PYG{p}{,} \PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{components\PYGZus{}}\PYG{p}{[}
@@ -2213,8 +2236,11 @@ PCA(copy=True, iterated\PYGZus{}power=\PYGZsq{}auto\PYGZsq{}, n\PYGZus{}componen
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_99_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_104_0}.png}
 
+
+\subsection{How important is each component?}
+\label{\detokenize{06-ShapeAnalysis:how-important-is-each-component}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{bar}\PYG{p}{(}\PYG{n}{x}\PYG{o}{=}\PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{explained\PYGZus{}variance\PYGZus{}ratio\PYGZus{}}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
@@ -2223,13 +2249,243 @@ PCA(copy=True, iterated\PYGZus{}power=\PYGZsq{}auto\PYGZsq{}, n\PYGZus{}componen
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Explained Variance (}\PYG{l+s+s1}{\PYGZpc{}}\PYG{l+s+s1}{)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_100_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_106_0}.png}
+
+
+\chapter{PCA in materials science}
+\label{\detokenize{06-ShapeAnalysis:pca-in-materials-science}}
+\sphinxAtStartPar
+Explore crystal textures in metals.
+
+
+\section{Bragg egde imaging \sphinxhyphen{} the imaging technique}
+\label{\detokenize{06-ShapeAnalysis:bragg-egde-imaging-the-imaging-technique}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Wavelength resolved neutron imaging provides spectral images
+
+\item {} 
+\sphinxAtStartPar
+Crystaline properties can be explored in the spectra
+
+\item {} 
+\sphinxAtStartPar
+Bragg edges appear when the Bragg criterion is fulfilled
+\$\(2d\sin{\theta}=n\lambda{}\)\$
+
+\end{itemize}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{Braggs_Law}.png}
+
+
+\section{Bragg edge imaging example}
+\label{\detokenize{06-ShapeAnalysis:bragg-edge-imaging-example}}
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Samples
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Spectrum
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Wavelength scan
+\\
+\hline
+\sphinxAtStartPar
+\sphinxincludegraphics{{icon-spectrum}.png}
+&
+\sphinxAtStartPar
+\sphinxincludegraphics{{energysamples}.png}
+&
+\sphinxAtStartPar
+\sphinxincludegraphics{{energy_scan}.png}
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+Images courtesy of S. Peetermans
+
+
+\section{Bragg edge imaging and PCA}
+\label{\detokenize{06-ShapeAnalysis:bragg-edge-imaging-and-pca}}
+
+\subsection{The data}
+\label{\detokenize{06-ShapeAnalysis:the-data}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{data}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{data/tofdata.npy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,}\PYG{n}{ax}\PYG{o}{=}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{data}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Average image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{data}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{100}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Single wavelength bin}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{data}\PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{:}\PYG{l+m+mi}{40}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{:}\PYG{l+m+mi}{20}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Cornflowerblue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Material}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{data}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{40}\PYG{p}{:}\PYG{l+m+mi}{60}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,}   \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{coral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}          \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Air}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{data}\PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{:}\PYG{l+m+mi}{40}\PYG{p}{,}\PYG{l+m+mi}{32}\PYG{p}{:}\PYG{l+m+mi}{35}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}          \PYG{n}{label} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Spacer}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Spectra}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Wavelength bins}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Transmission}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_111_0}.png}
+
+
+\subsection{Prepare the data for analysis}
+\label{\detokenize{06-ShapeAnalysis:prepare-the-data-for-analysis}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Rearrange the images into 1D arrays \(M\times{}N\times{}T\rightarrow{}M\cdot{}N\times{}T\)
+
+\end{enumerate}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{fdata}\PYG{o}{=}\PYG{n}{data}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{n}{data}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{n}{data}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{data}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Compute mean and standard deviation
+
+\end{enumerate}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{m}  \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{n}{fdata}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{fdata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{mm} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{p}{(}\PYG{n}{fdata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{*}\PYG{n}{m}
+\PYG{n}{s}  \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{n}{fdata}\PYG{o}{.}\PYG{n}{std}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{fdata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{ss} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{p}{(}\PYG{n}{fdata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{*}\PYG{n}{m}
+\end{sphinxVerbatim}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Normalize data
+
+\end{enumerate}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{mfdata}\PYG{o}{=}\PYG{p}{(}\PYG{n}{fdata}\PYG{o}{\PYGZhy{}}\PYG{n}{mm}\PYG{p}{)}\PYG{o}{/}\PYG{n}{ss}
+\end{sphinxVerbatim}
+
+
+\subsection{Run the PCA}
+\label{\detokenize{06-ShapeAnalysis:run-the-pca}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Initialize PCA with 5 components
+
+\end{enumerate}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{pca\PYGZus{}tool} \PYG{o}{=} \PYG{n}{PCA}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}
+\end{sphinxVerbatim}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Fit data with PCA
+
+\end{enumerate}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{mfdata}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+PCA(n\PYGZus{}components=5)
+\end{sphinxVerbatim}
+
+
+\subsection{Inspect the PCA fit}
+\label{\detokenize{06-ShapeAnalysis:inspect-the-pca-fit}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{score\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{transform}\PYG{p}{(}\PYG{n}{mfdata}\PYG{p}{)}
+
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{semilogy}\PYG{p}{(}\PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{explained\PYGZus{}variance\PYGZus{}ratio\PYGZus{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{o\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} 
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Explained variance ratio}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Principal component \PYGZsh{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{components\PYGZus{}}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component \PYGZsh{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{components\PYGZus{}}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component \PYGZsh{}2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{pca\PYGZus{}tool}\PYG{o}{.}\PYG{n}{components\PYGZus{}}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component \PYGZsh{}3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Components}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_124_0}.png}
+
+
+\subsection{Improve the scatter plot}
+\label{\detokenize{06-ShapeAnalysis:improve-the-scatter-plot}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Marker \PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{alpha\PYGZdl{}=1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.05}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Marker \PYGZdl{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{alpha\PYGZdl{}=0.05}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_126_0}.png}
+
+
+\subsection{Visualize the PCAs with color coding}
+\label{\detokenize{06-ShapeAnalysis:visualize-the-pcas-with-color-coding}}
+\sphinxAtStartPar
+Inspired by \sphinxhref{https://doi.org/10.1088/2399-6528/ab5575}{PCA in materials science}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Reshape the first three principal components}
+\PYG{n}{cdata} \PYG{o}{=} \PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{p}{:}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{p}{[}\PYG{n}{data}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{data}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Normalize the chanels}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)} \PYG{p}{:}
+    \PYG{n}{cdata}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{p}{:}\PYG{p}{,}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{p}{(}\PYG{n}{cdata}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{p}{:}\PYG{p}{,}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{cdata}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{p}{:}\PYG{p}{,}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{min}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{n}{cdata}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{p}{:}\PYG{p}{,}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{cdata}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{p}{:}\PYG{p}{,}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{min}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+    
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{data}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{White beam image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cdata}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PCA enhanced image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_128_0}.png}
+
+\sphinxAtStartPar
+The PCA enhanced image does not represent a physical reality, but it can be used as a qualitative tool to guide the material analysis.
+
+
+\subsection{PCA and segmentation}
+\label{\detokenize{06-ShapeAnalysis:pca-and-segmentation}}
+\sphinxAtStartPar
+The next step is to use the enhanced image for segmentation:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cdata}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PCA enhanced image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{score\PYGZus{}matrix}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.05}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Component 2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ax}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Principal components}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_131_0}.png}
+
+\sphinxAtStartPar
+A project task…
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Combine clustering and PCA to identify regions in the samples
+
+\end{enumerate}
 
 
 \chapter{Principal Component Analysis}
-\label{\detokenize{06-ShapeAnalysis:id4}}
+\label{\detokenize{06-ShapeAnalysis:principal-component-analysis}}
 
-\section{scikit\sphinxhyphen{}learn Face Analyis}
+\section{SciKit\sphinxhyphen{}learn Face Analyis}
 \label{\detokenize{06-ShapeAnalysis:scikit-learn-face-analyis}}
 \sphinxAtStartPar
 Here we show a more imaging related example from the scikit\sphinxhyphen{}learn documentation where we do basic face analysis with scikit\sphinxhyphen{}learn.
@@ -2317,9 +2573,9 @@ Dataset consists of 400 faces
 Extracting the top 6 Eigenfaces \PYGZhy{} PCA using randomized SVD...
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_103_1}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_135_1}.png}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_103_2}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_135_2}.png}
 
 
 \chapter{Applied PCA: Shape Tensor}
@@ -2388,7 +2644,7 @@ The principal components tell us about the orientation of the object and the sco
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{matshow}\PYG{p}{(}\PYG{n}{seg\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone\PYGZus{}r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_106_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_138_0}.png}
 
 
 \subsection{Eigenvectors of the positions}
@@ -2410,7 +2666,7 @@ The principal components tell us about the orientation of the object and the sco
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_108_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_140_0}.png}
 
 
 \subsection{Rotate object using eigenvectors}
@@ -2428,7 +2684,7 @@ The principal components tell us about the orientation of the object and the sco
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{pca\PYGZus{}xy\PYGZus{}vals}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{pca\PYGZus{}xy\PYGZus{}vals}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{s}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{limegreen}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-ShapeAnalysis_110_0}.png}
+\noindent\sphinxincludegraphics{{06-ShapeAnalysis_142_0}.png}
 
 
 \section{Principal Component Analysis: Take home message}
@@ -2490,100 +2746,6 @@ Eigenvectors represent the unit vectors for the semiaxes of the ellipsoid
 
 
 
-\chapter{Meshing}
-\label{\detokenize{06-ShapeAnalysis:meshing}}
-\sphinxAtStartPar
-The process of turning a (connected) set of pixels into a list of vertices and edges
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-For these vertices and edges we can define forces.
-
-\item {} 
-\sphinxAtStartPar
-Most crucially this comes when looking at physical processes like deformation.
-
-\item {} 
-\sphinxAtStartPar
-Meshes are also useful for visualization.
-
-\end{itemize}
-
-\sphinxAtStartPar
-\sphinxstylestrong{Example}
-
-\sphinxAtStartPar
-Looking at stress\sphinxhyphen{}strain relationships in mechanics using Hooke’s Model
-\begin{equation*}
-\begin{split} \vec{F}=k (\vec{x}_0-\vec{x}) \end{split}
-\end{equation*}
-\sphinxAtStartPar
-the force needed to stretch one of these edges is proportional to how far it is stretched.
-
-
-\section{Meshing}
-\label{\detokenize{06-ShapeAnalysis:id5}}
-\sphinxAtStartPar
-Since we uses voxels to image and identify the volume we can use the voxels themselves as an approimation for the surface of the structure.
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Each ‘exposed’ face of a voxel belongs to the surface
-
-\end{itemize}
-
-\sphinxAtStartPar
-From this we can create a mesh by
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-adding each exposed voxel face to a list of surface squares.
-
-\item {} 
-\sphinxAtStartPar
-adding connectivity information for the different squares (shared edges and vertices)
-
-\end{itemize}
-
-\sphinxAtStartPar
-A wide variety of methods of which we will only graze the surface (\sphinxurl{http://en.wikipedia.org/wiki/Image-based\_meshing})
-
-
-\section{Marching Cubes}
-\label{\detokenize{06-ShapeAnalysis:marching-cubes}}
-\sphinxAtStartPar
-\sphinxstylestrong{Why}
-
-\sphinxAtStartPar
-Voxels are very poor approximations for the surface and are very rough (they are either normal to the x, y, or z axis and nothing between).
-
-
-
-\sphinxAtStartPar
-\sphinxstylestrong{How} (\sphinxurl{https://en.wikipedia.org/wiki/Marching\_cubes})
-\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
-\sphinxAtStartPar
-The image is processed one voxel at a time
-
-\item {} 
-\sphinxAtStartPar
-The 2x2x2 neighborhood is checked at every voxel.
-
-\item {} 
-\sphinxAtStartPar
-From this configuration of values, faces are added to the mesh to incorporate the most simple surface which would explain the values.
-
-\end{enumerate}
-
-\sphinxAtStartPar
-This algortihm is nicely explained in this \sphinxhref{https://youtu.be/M3iI2l0ltbE}{video}
-
-\sphinxAtStartPar
-\sphinxhref{http://en.wikipedia.org/wiki/Marching\_tetrahedra}{Marching tetrahedra} is for some applications a better suited approach
-
-
 \chapter{Next Time on QBI}
 \label{\detokenize{06-ShapeAnalysis:next-time-on-qbi}}
 \sphinxAtStartPar
@@ -2628,6 +2790,52 @@ Is it a cell or organelle with docking sites for cell?
 \item {} 
 \sphinxAtStartPar
 Neither extents nor anisotropy are very meaningful, we need a \sphinxstylestrong{more specific metric} which can characterize
+
+\end{itemize}
+
+
+\chapter{Summary}
+\label{\detokenize{06-ShapeAnalysis:summary}}
+
+\section{Component labeling}
+\label{\detokenize{06-ShapeAnalysis:component-labeling}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+What is it
+
+\item {} 
+\sphinxAtStartPar
+What is the impact of difference neighborhoods
+
+\end{itemize}
+
+
+\section{Object description}
+\label{\detokenize{06-ShapeAnalysis:object-description}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Center of objects
+
+\item {} 
+\sphinxAtStartPar
+Bounding boxes \sphinxhyphen{} extents
+
+\end{itemize}
+
+
+\section{Principal component analysis}
+\label{\detokenize{06-ShapeAnalysis:id4}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Definition
+
+\item {} 
+\sphinxAtStartPar
+PCA in spectroscopy
+
+\item {} 
+\sphinxAtStartPar
+PCA to analyze shapes
 
 \end{itemize}
 
@@ -2825,10 +3033,6 @@ How can we quantify as radiologists say \sphinxstyleemphasis{looking evil}?
 
 \PYG{k+kn}{import} \PYG{n+nn}{ipyvolume} \PYG{k}{as} \PYG{n+nn}{p3}
 
-
-
-
-
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}
@@ -2836,14 +3040,14 @@ How can we quantify as radiologists say \sphinxstyleemphasis{looking evil}?
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{font.size}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{14}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{font.family}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sans\PYGZhy{}serif}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{font.sans\PYGZhy{}serif}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{DejaVu Sans}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{style}\PYG{o}{.}\PYG{n}{use}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ggplot}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{style}\PYG{o}{.}\PYG{n}{use}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{default}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{sns}\PYG{o}{.}\PYG{n}{set\PYGZus{}style}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{whitegrid}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{axes.grid}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{k+kc}{False}\PYG{p}{\PYGZcb{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gt}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
 \PYG{n+ne}{ModuleNotFoundError}\PYG{g+gWhitespace}{                       }Traceback (most recent call last)
-\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1954032}\PYG{n}{d1812}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
+\PYG{o}{\PYGZlt{}}\PYG{n}{ipython}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{input}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{d2b2621de869}\PYG{o}{\PYGZgt{}} \PYG{o+ow}{in} \PYG{o}{\PYGZlt{}}\PYG{n}{module}\PYG{o}{\PYGZgt{}}
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{3} 
 \PYG{g+gWhitespace}{      }\PYG{l+m+mi}{4} \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{n+ne}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+m+mi}{5} \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
@@ -2888,7 +3092,56 @@ Checkerboard (8\sphinxhyphen{}connected)
 \end{itemize}
 
 
-\section{Distance maps in python}
+\section{What does a distance map look like?}
+\label{\detokenize{06-AdvancedShapeAndTexture:what-does-a-distance-map-look-like}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{generate\PYGZus{}dot\PYGZus{}image}\PYG{p}{(}\PYG{n}{size}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{,} \PYG{n}{rad\PYGZus{}a}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{rad\PYGZus{}b}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{xx}\PYG{p}{,} \PYG{n}{yy} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{size}\PYG{p}{)}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{size}\PYG{p}{)}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{rad\PYGZus{}b} \PYG{o+ow}{is} \PYG{k+kc}{None}\PYG{p}{:}
+        \PYG{n}{rad\PYGZus{}b} \PYG{o}{=} \PYG{n}{rad\PYGZus{}a}
+    \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{n}{xx}\PYG{o}{/}\PYG{n}{rad\PYGZus{}a}\PYG{p}{)}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{n}{yy}\PYG{o}{/}\PYG{n}{rad\PYGZus{}b}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZlt{}}\PYG{o}{=} \PYG{l+m+mf}{1.0}
+
+
+\PYG{n}{img\PYGZus{}bw} \PYG{o}{=} \PYG{n}{generate\PYGZus{}dot\PYGZus{}image}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mf}{0.8}\PYG{p}{)}
+
+\PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{img\PYGZus{}bw}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{d}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{gca}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{set\PYGZus{}aspect}\PYG{p}{(}\PYG{n}{aspect}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{equal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_10_0}.png}
+
+
+\subsection{The Euclidean distance map}
+\label{\detokenize{06-AdvancedShapeAndTexture:the-euclidean-distance-map}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{dmap} \PYG{o}{=} \PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}edt}\PYG{p}{(}\PYG{n}{img\PYGZus{}bw}\PYG{p}{)}
+\PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{dmap}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+            \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{2.1f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{gca}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{set\PYGZus{}aspect}\PYG{p}{(}\PYG{n}{aspect}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{equal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_12_0}.png}
+
+
+\subsection{The distance map depends on the neighborhood}
+\label{\detokenize{06-AdvancedShapeAndTexture:the-distance-map-depends-on-the-neighborhood}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{timeit} \PYG{k+kn}{import} \PYG{n}{timeit}
+\PYG{n}{dmap\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}\PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}edt}\PYG{p}{,}
+             \PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}bf}\PYG{p}{,} \PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}cdt}\PYG{p}{]}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{dmap\PYGZus{}list}\PYG{p}{)}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{)}
+\PYG{k}{for} \PYG{n}{dmap\PYGZus{}func}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{dmap\PYGZus{}list}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{ms\PYGZus{}time} \PYG{o}{=} \PYG{n}{timeit}\PYG{p}{(}\PYG{k}{lambda}\PYG{p}{:} \PYG{n}{dmap\PYGZus{}func}\PYG{p}{(}\PYG{n}{img\PYGZus{}bw}\PYG{p}{)}\PYG{p}{,} \PYG{n}{number}\PYG{o}{=}\PYG{l+m+mi}{10000}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{10000}\PYG{o}{*}\PYG{l+m+mf}{1e6}
+    \PYG{n}{dmap} \PYG{o}{=} \PYG{n}{dmap\PYGZus{}func}\PYG{p}{(}\PYG{n}{img\PYGZus{}bw}\PYG{p}{)}
+    \PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{dmap}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+                \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{2.1f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{=}\PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{cbar}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ \PYGZhy{} }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ us}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{dmap\PYGZus{}func}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}doc\PYGZus{}\PYGZus{}}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
+                                           \PYG{n}{dmap\PYGZus{}func}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{,}
+                                           \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}2.2f}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{ms\PYGZus{}time}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_14_0}.png}
+
+
+\subsection{Distance maps in python}
 \label{\detokenize{06-AdvancedShapeAndTexture:distance-maps-in-python}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{help}\PYG{p}{(}\PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}edt}\PYG{p}{)}
@@ -3005,55 +3258,6 @@ distance\PYGZus{}transform\PYGZus{}edt(input, sampling=None, return\PYGZus{}dist
 \end{sphinxVerbatim}
 
 
-\section{What does a distance map look like?}
-\label{\detokenize{06-AdvancedShapeAndTexture:what-does-a-distance-map-look-like}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{def} \PYG{n+nf}{generate\PYGZus{}dot\PYGZus{}image}\PYG{p}{(}\PYG{n}{size}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{,} \PYG{n}{rad\PYGZus{}a}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{rad\PYGZus{}b}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{xx}\PYG{p}{,} \PYG{n}{yy} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{size}\PYG{p}{)}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{size}\PYG{p}{)}\PYG{p}{)}
-    \PYG{k}{if} \PYG{n}{rad\PYGZus{}b} \PYG{o+ow}{is} \PYG{k+kc}{None}\PYG{p}{:}
-        \PYG{n}{rad\PYGZus{}b} \PYG{o}{=} \PYG{n}{rad\PYGZus{}a}
-    \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{n}{xx}\PYG{o}{/}\PYG{n}{rad\PYGZus{}a}\PYG{p}{)}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{square}\PYG{p}{(}\PYG{n}{yy}\PYG{o}{/}\PYG{n}{rad\PYGZus{}b}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZlt{}}\PYG{o}{=} \PYG{l+m+mf}{1.0}
-
-
-\PYG{n}{img\PYGZus{}bw} \PYG{o}{=} \PYG{n}{generate\PYGZus{}dot\PYGZus{}image}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mf}{0.8}\PYG{p}{)}
-
-\PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{img\PYGZus{}bw}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{d}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{gca}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{set\PYGZus{}aspect}\PYG{p}{(}\PYG{n}{aspect}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{equal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_12_0}.png}
-
-
-\subsection{The Euclidean distance map}
-\label{\detokenize{06-AdvancedShapeAndTexture:the-euclidean-distance-map}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{dmap} \PYG{o}{=} \PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}edt}\PYG{p}{(}\PYG{n}{img\PYGZus{}bw}\PYG{p}{)}
-\PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{dmap}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
-            \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{2.1f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{gca}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{set\PYGZus{}aspect}\PYG{p}{(}\PYG{n}{aspect}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{equal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_14_0}.png}
-
-
-\subsection{The distance map depends on the neighborhood}
-\label{\detokenize{06-AdvancedShapeAndTexture:the-distance-map-depends-on-the-neighborhood}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{from} \PYG{n+nn}{timeit} \PYG{k+kn}{import} \PYG{n}{timeit}
-\PYG{n}{dmap\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}\PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}edt}\PYG{p}{,}
-             \PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}bf}\PYG{p}{,} \PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{distance\PYGZus{}transform\PYGZus{}cdt}\PYG{p}{]}
-\PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{dmap\PYGZus{}list}\PYG{p}{)}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{)}
-\PYG{k}{for} \PYG{n}{dmap\PYGZus{}func}\PYG{p}{,} \PYG{n}{c\PYGZus{}ax} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{dmap\PYGZus{}list}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{ms\PYGZus{}time} \PYG{o}{=} \PYG{n}{timeit}\PYG{p}{(}\PYG{k}{lambda}\PYG{p}{:} \PYG{n}{dmap\PYGZus{}func}\PYG{p}{(}\PYG{n}{img\PYGZus{}bw}\PYG{p}{)}\PYG{p}{,} \PYG{n}{number}\PYG{o}{=}\PYG{l+m+mi}{10000}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{10000}\PYG{o}{*}\PYG{l+m+mf}{1e6}
-    \PYG{n}{dmap} \PYG{o}{=} \PYG{n}{dmap\PYGZus{}func}\PYG{p}{(}\PYG{n}{img\PYGZus{}bw}\PYG{p}{)}
-    \PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{dmap}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
-                \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{2.1f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{=}\PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{cbar}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ \PYGZhy{} }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ us}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{dmap\PYGZus{}func}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}doc\PYGZus{}\PYGZus{}}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
-                                           \PYG{n}{dmap\PYGZus{}func}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{,}
-                                           \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}2.2f}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{ms\PYGZus{}time}\PYG{p}{)}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_16_0}.png}
-
-
 \section{Why does speed matter?}
 \label{\detokenize{06-AdvancedShapeAndTexture:why-does-speed-matter}}
 \sphinxAtStartPar
@@ -3135,6 +3339,9 @@ We will use Euclidean distance \(||\vec{x}-\vec{y}||\) for this class but there 
     \PYG{k}{return} \PYG{n}{cur\PYGZus{}img}
 \end{sphinxVerbatim}
 
+
+\subsection{A test image for distance transform}
+\label{\detokenize{06-AdvancedShapeAndTexture:a-test-image-for-distance-transform}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{=}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 \PYG{n}{img\PYGZus{}bw} \PYG{o}{=} \PYG{n}{generate\PYGZus{}dot\PYGZus{}image}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{)}
@@ -3143,7 +3350,7 @@ We will use Euclidean distance \(||\vec{x}-\vec{y}||\) for this class but there 
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}aspect}\PYG{p}{(}\PYG{n}{aspect}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{equal}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_22_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_23_0}.png}
 
 
 \subsection{Animating the iterations}
@@ -3342,7 +3549,7 @@ Information about the distance / space between objects
             \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{2.1f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{=}\PYG{n}{ax3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Background to Foreground}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_32_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_33_0}.png}
 
 
 \section{Distance Map}
@@ -3364,6 +3571,9 @@ One has 1 big blob
 
 \end{itemize}
 
+
+\subsection{Some code for the demo}
+\label{\detokenize{06-AdvancedShapeAndTexture:some-code-for-the-demo}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{update\PYGZus{}frame}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{:}
     \PYG{p}{[}\PYG{n}{tax}\PYG{o}{.}\PYG{n}{cla}\PYG{p}{(}\PYG{p}{)} \PYG{k}{for} \PYG{n}{tax} \PYG{o+ow}{in} \PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}
@@ -3465,7 +3675,7 @@ We now have a basic idea of how the distance map works we can now try to apply i
 \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{bg\PYGZus{}dmap}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distance Map}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Background}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_39_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_40_0}.png}
 
 
 \section{The cortex}
@@ -3481,7 +3691,7 @@ We now have a basic idea of how the distance map works we can now try to apply i
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}dmap}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distance map of cortex}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_41_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_42_0}.png}
 
 
 \section{How can we utilize this information?}
@@ -3509,7 +3719,7 @@ but the raw values and taking a histogram do not seem to provide this very clear
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}dmap\PYGZus{}roi}\PYG{p}{[}\PYG{n}{cortex\PYGZus{}dmap\PYGZus{}roi} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Histogram of distances}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_43_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_44_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{binary\PYGZus{}opening}\PYG{p}{,} \PYG{n}{binary\PYGZus{}closing}\PYG{p}{,} \PYG{n}{disk}
@@ -3566,7 +3776,7 @@ Also relevant for flow and diffusion since it can highlight bottlenecks in struc
 \end{itemize}
 
 
-\subsection{A thickness map implementation}
+\section{A thickness map implementation}
 \label{\detokenize{06-AdvancedShapeAndTexture:a-thickness-map-implementation}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{simple\PYGZus{}thickness\PYGZus{}func}\PYG{p}{(}\PYG{n}{distance\PYGZus{}map}\PYG{p}{)}\PYG{p}{:}
@@ -3601,10 +3811,10 @@ Also relevant for flow and diffusion since it can highlight bottlenecks in struc
 \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{bg\PYGZus{}th\PYGZus{}map}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Thickness Map \PYGZhy{} Background}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_50_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_51_0}.png}
 
 
-\subsection{Thickness distributions}
+\section{Thickness distributions}
 \label{\detokenize{06-AdvancedShapeAndTexture:thickness-distributions}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax3}\PYG{p}{,} \PYG{n}{ax4}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
@@ -3613,13 +3823,20 @@ Also relevant for flow and diffusion since it can highlight bottlenecks in struc
 \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{bg\PYGZus{}th\PYGZus{}map}\PYG{p}{[}\PYG{n}{bg\PYGZus{}th\PYGZus{}map} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Thickness Map \PYGZhy{} Background}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_52_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_53_0}.png}
 
 
 \chapter{Distance Maps in 3D}
-\label{\detokenize{06-AdvancedShapeAndTexture:distance-maps-in-3d}}
+\label{\detokenize{06-AdvancedShapeAndTexture:distance-maps-in-3d}}\begin{itemize}
+\item {} 
 \sphinxAtStartPar
-Distance maps work in more than two dimensions and can be used in n\sphinxhyphen{}d problems although beyond 3D requires serious thought about what the meaning of this distance is.
+Distance maps work in more than two dimensions and can be used in n\sphinxhyphen{}d problems.
+
+\item {} 
+\sphinxAtStartPar
+Beyond 3D requires serious thought about what the meaning of this distance is.
+
+\end{itemize}
 
 
 \section{Let’s load a 3D image}
@@ -3639,10 +3856,10 @@ Distance maps work in more than two dimensions and can be used in n\sphinxhyphen
 Loaded Image: (154, 150, 150) 255
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_55_1}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_56_1}.png}
 
 
-\subsection{Inspecting the data in 3D}
+\section{Inspecting the data in 3D}
 \label{\detokenize{06-AdvancedShapeAndTexture:inspecting-the-data-in-3d}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{show\PYGZus{}3d\PYGZus{}mesh}\PYG{p}{(}\PYG{n}{image}\PYG{p}{,} \PYG{n}{thresholds}\PYG{p}{,} \PYG{n}{edgecolor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{none}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{p}{:}
@@ -3666,7 +3883,7 @@ Loaded Image: (154, 150, 150) 255
              \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.75}\PYG{p}{,} \PYG{n}{edgecolor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_57_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_58_0}.png}
 
 
 \subsection{Rendering the mesh as a surface}
@@ -3707,7 +3924,7 @@ Loaded Image: (154, 150, 150) 255
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distance maps \PYGZhy{} Sagittal Slices}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} 
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_61_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_62_0}.png}
 
 
 \chapter{Thickness in 3D Images}
@@ -3753,7 +3970,7 @@ Found 180 bubbles
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{,} \PYG{n}{ax3}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{,} \PYG{n}{ax3}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
 \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{p}{(}\PYG{n}{cax}\PYG{p}{,} \PYG{n}{clabel}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{p}{[}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{,} \PYG{n}{ax3}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{xy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{zy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{zx}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{cax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{n}{thickness\PYGZus{}map}\PYG{p}{,} \PYG{n}{i}\PYG{p}{)}\PYG{o}{.}\PYG{n}{squeeze}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
                \PYG{n}{interpolation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{none}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{jet}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
@@ -3762,22 +3979,18 @@ Found 180 bubbles
     \PYG{n}{cax}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{n}{clabel}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_64_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_65_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{18}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{18}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{montage\PYGZus{}pad}\PYG{p}{(}\PYG{n}{thickness\PYGZus{}map}\PYG{p}{[}\PYG{p}{:}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Axial Slices}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{montage\PYGZus{}pad}\PYG{p}{(}\PYG{n}{thickness\PYGZus{}map}\PYG{o}{.}\PYG{n}{swapaxes}\PYG{p}{(}
     \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{[}\PYG{p}{:}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Sagittal Slices}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Sagittal Slices}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-Text(0.5, 1.0, \PYGZsq{}Sagittal Slices\PYGZsq{})
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_65_1}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_66_0}.png}
 
 
 \chapter{Interactive 3D Views}
@@ -3800,12 +4013,6 @@ Here we can show the thickness map in an interactive 3D manner using the ipyvolu
 
 \PYG{n}{p3}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{p3}\PYG{o}{.}\PYG{n}{save}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bubbles.html}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-/Users/kaestner/opt/anaconda3/lib/python3.8/site\PYGZhy{}packages/ipyvolume/serialize.py:92: RuntimeWarning:
-
-invalid value encountered in true\PYGZus{}divide
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -3856,38 +4063,105 @@ the more surface area
 
 \item {} 
 \sphinxAtStartPar
-the larger the affect of a single dilation or erosion step.
+the larger the effect of a single dilation or erosion step.
 
 \end{itemize}
 
 
-\chapter{Meshing (again)}
-\label{\detokenize{06-AdvancedShapeAndTexture:meshing-again}}
+\chapter{Meshing}
+\label{\detokenize{06-AdvancedShapeAndTexture:meshing}}
 \sphinxAtStartPar
-Constructing a mesh for an image provides very different information than the image data itself. Most crucially this comes when looking at physical processes like deformation.
+The process of turning a (connected) set of pixels into a list of vertices and edges
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+For these vertices and edges we can define forces.
+
+\item {} 
+\sphinxAtStartPar
+Most crucially this comes when looking at physical processes like deformation.
+
+\item {} 
+\sphinxAtStartPar
+Meshes are also useful for visualization.
+
+\end{itemize}
 
 \sphinxAtStartPar
-While the images are helpful for visualizing we rarely have models for quantifying how difficult it is to turn a pixel \sphinxstylestrong{off}
+\sphinxincludegraphics{{Approx-3tori}.png}
 
 \sphinxAtStartPar
-If the image is turned into a mesh we now have a list of vertices and edges. For these vertices and edges we can define forces. For example when looking at stress\sphinxhyphen{}strain relationships in mechanics using Hooke’s Model
-\$\( \vec{F}=k (\vec{x}_0-\vec{x}) \)\$
+\sphinxstylestrong{Example}
+
+\sphinxAtStartPar
+Looking at stress\sphinxhyphen{}strain relationships in mechanics using Hooke’s Model
+\begin{equation*}
+\begin{split} \vec{F}=k (\vec{x}_0-\vec{x}) \end{split}
+\end{equation*}
+\sphinxAtStartPar
 the force needed to stretch one of these edges is proportional to how far it is stretched.
 
 
-\chapter{Marching Cubes}
-\label{\detokenize{06-AdvancedShapeAndTexture:marching-cubes}}
-
-\section{Why}
-\label{\detokenize{06-AdvancedShapeAndTexture:why}}
+\section{Meshing of images}
+\label{\detokenize{06-AdvancedShapeAndTexture:meshing-of-images}}
 \sphinxAtStartPar
-Voxels are very poor approximations for the surface and are very rough (they are either normal to the x, y, or z axis and nothing between). Because of their inherently orthogonal surface normals, any analysis which utilizes the surface normal to calculate another value (growth, curvature, etc) is going to be very inaccurate at best and very wrong at worst.
+Since we uses voxels to image and identify the volume we can use the voxels themselves as an approimation for the surface of the structure.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Each ‘exposed’ face of a voxel belongs to the surface
+
+\end{itemize}
+
+\sphinxAtStartPar
+From this we can create a mesh by
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+adding each exposed voxel face to a list of surface squares.
+
+\item {} 
+\sphinxAtStartPar
+adding connectivity information for the different squares (shared edges and vertices)
+
+\end{itemize}
+
+\sphinxAtStartPar
+A wide variety of methods of which we will only graze the surface (\sphinxurl{http://en.wikipedia.org/wiki/Image-based\_meshing})
 
 
-\section{How}
-\label{\detokenize{06-AdvancedShapeAndTexture:how}}
+\section{Marching Cubes}
+\label{\detokenize{06-AdvancedShapeAndTexture:marching-cubes}}
+\sphinxAtStartPar
+\sphinxstylestrong{Why}
+
+\sphinxAtStartPar
+Voxels are very poor approximations for the surface and are very rough (they are either normal to the x, y, or z axis and nothing between).
+
+\sphinxAtStartPar
+Because of their inherently orthogonal surface normals, any analysis which utilizes the surface normal to calculate another value (growth, curvature, etc) is going to be very inaccurate at best and very wrong at worst.
+
+
+
+\sphinxAtStartPar
+\sphinxstylestrong{How} (\sphinxurl{https://en.wikipedia.org/wiki/Marching\_cubes})
+
 \sphinxAtStartPar
 The image is processed one voxel at a time and the neighborhood (not quite the same is the morphological definition) is checked at every voxel. From this configuration of values, faces are added to the mesh to incorporate the most simple surface which would explain the values.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+The 2x2x2 neighborhood is checked at every voxel.
+
+\item {} 
+\sphinxAtStartPar
+Different faces are assigned depending on the neighborhood configuration.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+This algortihm is nicely explained in this \sphinxhref{https://youtu.be/M3iI2l0ltbE}{video}
 
 \sphinxAtStartPar
 \sphinxhref{http://en.wikipedia.org/wiki/Marching\_tetrahedra}{Marching tetrahedra} is for some applications a better suited approach
@@ -3937,8 +4211,8 @@ We thus define a surface normal vector as a vector oriented orthogonally to the 
 
 
 
-\section{Curvature: 3D}
-\label{\detokenize{06-AdvancedShapeAndTexture:curvature-3d}}
+\section{Curvature in 3D}
+\label{\detokenize{06-AdvancedShapeAndTexture:curvature-in-3d}}
 \sphinxAtStartPar
 With the notion of surface normal defined (\(\vec{N}\)), we can define many curvatures at point \(\vec{x}\) on the surface.
 \begin{itemize}
@@ -3971,7 +4245,7 @@ The mean of the two principal curvatures
 \subsection{Gaussian Curvature}
 \label{\detokenize{06-AdvancedShapeAndTexture:gaussian-curvature}}
 \sphinxAtStartPar
-The mean of the two principal curvatures
+The product of the two principal curvatures
 \$\( K = \kappa_1\kappa_2 \)\$
 \begin{itemize}
 \item {} 
@@ -4009,29 +4283,50 @@ The images themselves show the type of substructures and shapes which are presen
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-gaussian curvature:  the comparative amount of surface at, above, and below 0
-\begin{itemize}
+the comparative amount of surface at, above, and below 0
+
 \item {} 
 \sphinxAtStartPar
 from spherical particles into annealed mesh of balls
 
 \end{itemize}
 
+
+
+
+\section{Characteristic Shape}
+\label{\detokenize{06-AdvancedShapeAndTexture:characteristic-shape}}
+\sphinxAtStartPar
+Characteristic shape can be calculated by
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+measuring principal curvatures and normalizing them by scaling to the structure size.
+
+\item {} 
+\sphinxAtStartPar
+A distribution of these curvatures then provides shape information on a structure indepedent of the size.
+
+
+
+
+\end{itemize}
+
+\sphinxAtStartPar
+For example a structure transitioning from a collection of perfectly spherical particles to a annealed solid will go
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{from} having many round spherical faces with positive gaussian curvature
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{to} many saddles and more complicated structures with 0 or negative curvature.
+
 \end{itemize}
 
 
-
-
-\chapter{Characteristic Shape}
-\label{\detokenize{06-AdvancedShapeAndTexture:characteristic-shape}}
-\sphinxAtStartPar
-Characteristic shape can be calculated by measuring principal curvatures and normalizing them by scaling to the structure size. A distribution of these curvatures then provides shape information on a structure indepedent of the size.
-
-\sphinxAtStartPar
-For example a structure transitioning from a collection of perfectly spherical particles to a annealed solid will go from having many round spherical faces with positive gaussian curvature to many saddles and more complicated structures with 0 or negative curvature.
-
-
-\chapter{Curvature: Take Home Message}
+\section{Curvature: Take Home Message}
 \label{\detokenize{06-AdvancedShapeAndTexture:curvature-take-home-message}}
 \sphinxAtStartPar
 It provides another metric for characterizing complex shapes
@@ -4042,7 +4337,15 @@ Particularly useful for examining interfaces
 
 \item {} 
 \sphinxAtStartPar
-Folds, saddles, and many other types of points are not characterized well be ellipsoids or thickness maps
+Folds,
+
+\item {} 
+\sphinxAtStartPar
+saddles,
+
+\item {} 
+\sphinxAtStartPar
+and many other types of points that are not characterized well with ellipsoids or thickness maps
 
 \item {} 
 \sphinxAtStartPar
@@ -4057,9 +4360,6 @@ Can provide visual indications of structural changes
 
 \chapter{Other Techniques}
 \label{\detokenize{06-AdvancedShapeAndTexture:other-techniques}}
-
-\chapter{Other Techniques}
-\label{\detokenize{06-AdvancedShapeAndTexture:id1}}
 \sphinxAtStartPar
 There are hundreds of other techniques which can be applied to these complicated structures, but they go beyond the scope of this course.
 
@@ -4132,12 +4432,10 @@ Let’s create some sample textures
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
 
-
 \PYG{k}{def} \PYG{n+nf}{blur\PYGZus{}img}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{)}\PYG{p}{:} \PYG{k}{return} \PYG{p}{(}\PYG{n}{ndimage}\PYG{o}{.}\PYG{n}{zoom}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{float}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}
                                           \PYG{l+m+mi}{3}\PYG{p}{,}
                                           \PYG{n}{order}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,}
                                           \PYG{n}{prefilter}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{)}\PYG{o}{.}\PYG{n}{clip}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
-
 
 \PYG{n}{text\PYGZus{}imgs} \PYG{o}{=} \PYG{p}{[}\PYG{n}{blur\PYGZus{}img}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{)}
              \PYG{k}{for} \PYG{n}{c\PYGZus{}img} \PYG{o+ow}{in} \PYG{p}{[}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{2}\PYG{p}{,}
@@ -4150,11 +4448,10 @@ Let’s create some sample textures
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{)}
 
 \PYG{k}{for} \PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{c\PYGZus{}img} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{text\PYGZus{}imgs}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{2d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{ax}\PYG{o}{=}\PYG{n}{c\PYGZus{}ax}\PYG{p}{,}
-                \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_84_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_91_0}.png}
 
 
 \section{Methods to characterize textures: Co\sphinxhyphen{}occurrence matrix}
@@ -4188,9 +4485,8 @@ In order to use this we need to discretize the image into bins
         \PYG{k}{return} \PYG{n}{in\PYGZus{}img}
 
 
-\PYG{n}{dist\PYGZus{}list} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{dist\PYGZus{}list}  \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{15}\PYG{p}{)}
 \PYG{n}{angle\PYGZus{}list} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{p}{,} \PYG{l+m+mi}{15}\PYG{p}{)}
-
 
 \PYG{k}{def} \PYG{n+nf}{calc\PYGZus{}coomatrix}\PYG{p}{(}\PYG{n}{in\PYGZus{}img}\PYG{p}{)}\PYG{p}{:}
     \PYG{k}{return} \PYG{n}{greycomatrix}\PYG{p}{(}\PYG{n}{image}\PYG{o}{=}\PYG{n}{in\PYGZus{}img}\PYG{p}{,}
@@ -4198,45 +4494,45 @@ In order to use this we need to discretize the image into bins
                         \PYG{n}{angles}\PYG{o}{=}\PYG{n}{angle\PYGZus{}list}\PYG{p}{,}
                         \PYG{n}{levels}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{)}
 
-
 \PYG{k}{def} \PYG{n+nf}{coo\PYGZus{}tensor\PYGZus{}to\PYGZus{}df}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:} \PYG{k}{return} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}
     \PYG{n}{np}\PYG{o}{.}\PYG{n}{stack}\PYG{p}{(}\PYG{p}{[}\PYG{n}{x}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{o}{+}\PYG{p}{[}\PYG{n}{c\PYGZus{}vec}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)} \PYG{k}{for} \PYG{n}{c\PYGZus{}vec} \PYG{o+ow}{in} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{x}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
-                                                                 \PYG{n+nb}{range}\PYG{p}{(}
-                                                                     \PYG{n}{x}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
+                                                                 \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{x}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
                                                                  \PYG{n}{dist\PYGZus{}list}\PYG{p}{,}
                                                                  \PYG{n}{angle\PYGZus{}list}\PYG{p}{,}
                                                                  \PYG{n}{indexing}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{xy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}
     \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{E}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{i}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{j}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{theta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
 
 
-\PYG{n}{coo\PYGZus{}tensor\PYGZus{}to\PYGZus{}df}\PYG{p}{(}\PYG{n}{calc\PYGZus{}coomatrix}\PYG{p}{(}\PYG{n}{text\PYGZus{}imgs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}
+\PYG{n}{coo\PYGZus{}tensor\PYGZus{}to\PYGZus{}df}\PYG{p}{(}\PYG{n}{calc\PYGZus{}coomatrix}\PYG{p}{(}\PYG{n}{text\PYGZus{}imgs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.}\PYG{n}{sample}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-       E    i    j    d     theta
-0  192.0  0.0  0.0  1.0  0.000000
-1  192.0  0.0  0.0  1.0  0.448799
-2  184.0  0.0  0.0  1.0  0.897598
-3  276.0  0.0  0.0  1.0  1.346397
-4  276.0  0.0  0.0  1.0  1.795196
+          E    i    j         d     theta
+284   192.0  1.0  0.0  2.071429  6.283185
+654     0.0  2.0  0.0  5.642857  4.039191
+328   230.0  1.0  0.0  3.142857  5.834386
+1322   40.0  1.0  1.0  5.642857  0.897598
+681     0.0  3.0  0.0  1.000000  2.692794
 \end{sphinxVerbatim}
 
+
+\subsection{Co\sphinxhyphen{}occurence matrices for the test patterns}
+\label{\detokenize{06-AdvancedShapeAndTexture:co-occurence-matrices-for-the-test-patterns}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{)}
 
 \PYG{k}{for} \PYG{p}{(}\PYG{n}{c\PYGZus{}ax}\PYG{p}{,} \PYG{n}{d\PYGZus{}ax}\PYG{p}{,} \PYG{n}{f\PYGZus{}ax}\PYG{p}{)}\PYG{p}{,} \PYG{n}{c\PYGZus{}img} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{m\PYGZus{}axs}\PYG{o}{.}\PYG{n}{T}\PYG{p}{,} \PYG{n}{text\PYGZus{}imgs}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{,} \PYG{n}{vmin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pattern}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{,} \PYG{n}{vmin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Pattern}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{full\PYGZus{}coo\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{calc\PYGZus{}coomatrix}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{)}
     \PYG{n}{d\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{montage\PYGZus{}nd}\PYG{p}{(}\PYG{n}{full\PYGZus{}coo\PYGZus{}matrix}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{d\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Co\PYGZhy{}occurence Matrix}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{full\PYGZus{}coo\PYGZus{}matrix}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}\PYG{p}{)}
     \PYG{n}{d\PYGZus{}ax}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{n}{avg\PYGZus{}coo\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{full\PYGZus{}coo\PYGZus{}matrix}\PYG{o}{*}\PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{avg\PYGZus{}coo\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{full\PYGZus{}coo\PYGZus{}matrix}\PYG{o}{*}\PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
     \PYG{n}{f\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{avg\PYGZus{}coo\PYGZus{}matrix}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
     \PYG{n}{f\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Average Co\PYGZhy{}occurence}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{avg\PYGZus{}coo\PYGZus{}matrix}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_87_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_95_0}.png}
 
 
 \section{Simple Correlation}
@@ -4249,18 +4545,21 @@ Using the mean difference (\(E[i-j]\)) instead of all of the i,j pair possibliti
 \PYG{n}{text\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ij\PYGZus{}diff}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{text\PYGZus{}df}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{i}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{j}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
 
 \PYG{n}{simple\PYGZus{}corr\PYGZus{}df} \PYG{o}{=} \PYG{n}{text\PYGZus{}df}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ij\PYGZus{}diff}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{theta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{o}{.}\PYG{n}{agg}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{E}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{mean}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reset\PYGZus{}index}\PYG{p}{(}\PYG{p}{)}
-\PYG{n}{simple\PYGZus{}corr\PYGZus{}df}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}
+\PYG{n}{simple\PYGZus{}corr\PYGZus{}df}\PYG{o}{.}\PYG{n}{sample}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{decimals}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-   ij\PYGZus{}diff    d     theta    E
-0     \PYGZhy{}3.0  1.0  0.000000  0.0
-1     \PYGZhy{}3.0  1.0  0.448799  0.0
-2     \PYGZhy{}3.0  1.0  0.897598  0.0
-3     \PYGZhy{}3.0  1.0  1.346397  0.0
-4     \PYGZhy{}3.0  1.0  1.795196  0.0
+     ij\PYGZus{}diff      d  theta     E
+53      \PYGZhy{}3.0  2.071  3.590   0.0
+719      0.0  1.714  6.283  48.0
+63      \PYGZhy{}3.0  2.429  1.346   0.0
+813      0.0  4.214  1.346  80.0
+112     \PYGZhy{}3.0  3.500  3.142   0.0
 \end{sphinxVerbatim}
 
+
+\subsection{Inspecting the mean difference}
+\label{\detokenize{06-AdvancedShapeAndTexture:inspecting-the-mean-difference}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{grouped\PYGZus{}weighted\PYGZus{}avg}\PYG{p}{(}\PYG{n}{values}\PYG{p}{,} \PYG{n}{weights}\PYG{p}{,} \PYG{n}{by}\PYG{p}{)}\PYG{p}{:}
     \PYG{k}{return} \PYG{p}{(}\PYG{n}{values} \PYG{o}{*} \PYG{n}{weights}\PYG{p}{)}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{n}{by}\PYG{p}{)}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{p}{)} \PYG{o}{/} \PYG{n}{weights}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{n}{by}\PYG{p}{)}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{p}{)}
@@ -4288,11 +4587,11 @@ Using the mean difference (\(E[i-j]\)) instead of all of the i,j pair possibliti
     \PYG{n}{f\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Angular Co\PYGZhy{}occurence}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_90_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_99_0}.png}
 
 
-\section{Applying Texture to Brain}
-\label{\detokenize{06-AdvancedShapeAndTexture:applying-texture-to-brain}}
+\section{Applying Texture analysis to Brain}
+\label{\detokenize{06-AdvancedShapeAndTexture:applying-texture-analysis-to-brain}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{cortex\PYGZus{}img} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{clip}\PYG{p}{(}\PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures/example\PYGZus{}poster.tif}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
                      \PYG{p}{[}\PYG{p}{:}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{p}{:}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{/}\PYG{l+m+mi}{270}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{255}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{uint8}\PYG{p}{)}
@@ -4300,26 +4599,22 @@ Using the mean difference (\(E[i-j]\)) instead of all of the i,j pair possibliti
 \PYG{n}{cortex\PYGZus{}mask} \PYG{o}{=} \PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures/example\PYGZus{}poster\PYGZus{}mask.tif}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{[}\PYG{p}{:}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{:}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{/}\PYG{l+m+mf}{255.0}
 
 \PYG{c+c1}{\PYGZsh{} show the slice and threshold}
-\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{,} \PYG{n}{ax3}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}mask}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Segmentation}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{,} \PYG{n}{ax3}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{p}{;} \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}mask}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Segmentation}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} here we mark the threshold on the original image}
 
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{label2rgb}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}mask} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{cortex\PYGZus{}img}\PYG{p}{,} \PYG{n}{bg\PYGZus{}label}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Overlayed}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_92_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_101_0}.png}
 
 
-\chapter{Tiling}
-\label{\detokenize{06-AdvancedShapeAndTexture:tiling}}
+\section{Tiling the image}
+\label{\detokenize{06-AdvancedShapeAndTexture:tiling-the-image}}
 \sphinxAtStartPar
-Here we divide the image up into unique tiles for further processing
+Here we divide the image up into unique tiles for further processing. Each tile is 48\(\times{}\)48 pixels.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{xx}\PYG{p}{,} \PYG{n}{yy} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}
@@ -4335,16 +4630,16 @@ Here we divide the image up into unique tiles for further processing
             \PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_94_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_103_0}.png}
 
 
-\chapter{Calculating Texture}
+\section{Calculating Texture}
 \label{\detokenize{06-AdvancedShapeAndTexture:calculating-texture}}
 \sphinxAtStartPar
 Here we calculate the texture by using a tool called the gray level co\sphinxhyphen{}occurrence matrix which are part of the \sphinxhref{http://scikit-image.org/docs/dev/auto\_examples/features\_detection/plot\_glcm.html}{features library in skimage}. We focus on two metrics in this, specifically dissimilarity and correlation which we calculate for each tile. We then want to see which of these parameters correlated best with belonging to a nerve fiber.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} compute some GLCM properties each patch}
+\PYG{c+c1}{\PYGZsh{} compute some gray level co\PYGZhy{}occurrence matrix (GLCM) properties each patch}
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{feature} \PYG{k+kn}{import} \PYG{n}{greycomatrix}\PYG{p}{,} \PYG{n}{greycoprops}
 \PYG{k+kn}{from} \PYG{n+nn}{tqdm}\PYG{n+nn}{.}\PYG{n+nn}{notebook} \PYG{k+kn}{import} \PYG{n}{tqdm}
 \PYG{n}{grayco\PYGZus{}prop\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{contrast}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{dissimilarity}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
@@ -4356,7 +4651,7 @@ Here we calculate the texture by using a tool called the gray level co\sphinxhyp
     \PYG{n}{prop\PYGZus{}imgs}\PYG{p}{[}\PYG{n}{c\PYGZus{}prop}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros\PYGZus{}like}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}img}\PYG{p}{,} \PYG{n}{dtype}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{float32}\PYG{p}{)}
 \PYG{n}{score\PYGZus{}img} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros\PYGZus{}like}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}img}\PYG{p}{,} \PYG{n}{dtype}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{float32}\PYG{p}{)}
 \PYG{n}{out\PYGZus{}df\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
-\PYG{k}{for} \PYG{n}{patch\PYGZus{}idx} \PYG{o+ow}{in} \PYG{n}{tqdm}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{unique}\PYG{p}{(}\PYG{n}{region\PYGZus{}labels}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+\PYG{k}{for} \PYG{n}{patch\PYGZus{}idx} \PYG{o+ow}{in} \PYG{n}{np}\PYG{o}{.}\PYG{n}{unique}\PYG{p}{(}\PYG{n}{region\PYGZus{}labels}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{xx\PYGZus{}box}\PYG{p}{,} \PYG{n}{yy\PYGZus{}box} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{where}\PYG{p}{(}\PYG{n}{region\PYGZus{}labels} \PYG{o}{==} \PYG{n}{patch\PYGZus{}idx}\PYG{p}{)}
 
     \PYG{n}{glcm} \PYG{o}{=} \PYG{n}{greycomatrix}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}img}\PYG{p}{[}\PYG{n}{xx\PYGZus{}box}\PYG{o}{.}\PYG{n}{min}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}\PYG{n}{xx\PYGZus{}box}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
@@ -4375,17 +4670,12 @@ Here we calculate the texture by using a tool called the gray level co\sphinxhyp
         \PYG{n}{out\PYGZus{}row}\PYG{p}{[}\PYG{n}{c\PYGZus{}prop}\PYG{p}{]} \PYG{o}{=} \PYG{n}{greycoprops}\PYG{p}{(}\PYG{n}{glcm}\PYG{p}{,} \PYG{n}{c\PYGZus{}prop}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}
         \PYG{n}{prop\PYGZus{}imgs}\PYG{p}{[}\PYG{n}{c\PYGZus{}prop}\PYG{p}{]}\PYG{p}{[}\PYG{n}{region\PYGZus{}labels} \PYG{o}{==} \PYG{n}{patch\PYGZus{}idx}\PYG{p}{]} \PYG{o}{=} \PYG{n}{out\PYGZus{}row}\PYG{p}{[}\PYG{n}{c\PYGZus{}prop}\PYG{p}{]}
 
-    \PYG{n}{out\PYGZus{}df\PYGZus{}list} \PYG{o}{+}\PYG{o}{=} \PYG{p}{[}\PYG{n}{out\PYGZus{}row}\PYG{p}{]}
+    \PYG{n}{out\PYGZus{}df\PYGZus{}list} \PYG{o}{+}\PYG{o}{=} \PYG{p}{[}\PYG{n}{out\PYGZus{}row}\PYG{p}{]}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-HBox(children=(HTML(value=\PYGZsq{}\PYGZsq{}), FloatProgress(value=0.0, max=99.0), HTML(value=\PYGZsq{}\PYGZsq{})))
-\end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-
-\end{sphinxVerbatim}
-
+\subsection{Resulting gray level co\sphinxhyphen{}occurrence properties}
+\label{\detokenize{06-AdvancedShapeAndTexture:resulting-gray-level-co-occurrence-properties}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c+c1}{\PYGZsh{} show the slice and threshold}
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{m\PYGZus{}axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{)}
@@ -4404,8 +4694,11 @@ HBox(children=(HTML(value=\PYGZsq{}\PYGZsq{}), FloatProgress(value=0.0, max=99.0
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{c\PYGZus{}prop}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_97_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_107_0}.png}
 
+
+\subsection{Resulting gray level co\sphinxhyphen{}occurrence properties}
+\label{\detokenize{06-AdvancedShapeAndTexture:id1}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
 \PYG{n}{out\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{out\PYGZus{}df\PYGZus{}list}\PYG{p}{)}
@@ -4436,11 +4729,11 @@ min       0.033100   0.019123    \PYGZhy{}0.094922   0.000366
 max       0.718922   0.651809     0.958805   0.424854  
 \end{sphinxVerbatim}
 
+
+\subsection{A pair plot to show how the properties are related}
+\label{\detokenize{06-AdvancedShapeAndTexture:a-pair-plot-to-show-how-the-properties-are-related}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
-\PYG{n}{sns}\PYG{o}{.}\PYG{n}{pairplot}\PYG{p}{(}\PYG{n}{out\PYGZus{}df}\PYG{p}{,}
-             \PYG{n}{hue}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{positive\PYGZus{}score}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
-             \PYG{n}{kind}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{reg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{sns}\PYG{o}{.}\PYG{n}{pairplot}\PYG{p}{(}\PYG{n}{out\PYGZus{}df}\PYG{p}{,} \PYG{n}{hue}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{positive\PYGZus{}score}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{kind}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{reg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -4449,11 +4742,7 @@ max       0.718922   0.651809     0.958805   0.424854
 Dataset has 0 variance; skipping density estimate.
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}seaborn.axisgrid.PairGrid at 0x7f9bc6d676d0\PYGZgt{}
-\end{sphinxVerbatim}
-
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_99_2}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_111_1}.png}
 
 
 \chapter{Summary}

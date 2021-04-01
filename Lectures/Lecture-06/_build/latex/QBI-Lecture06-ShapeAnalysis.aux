@@ -82,6 +82,8 @@
 \newlabel{06-ShapeAnalysis:id1}{{3.3.2}{19}{Let’s animate the iterations}{subsection.3.3.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.4}Different Neighborhoods}{19}{section.3.4}\protected@file@percent }
 \newlabel{06-ShapeAnalysis:different-neighborhoods}{{3.4}{19}{Different Neighborhoods}{section.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Animate the labeling iterations}{20}{subsection.3.4.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:animate-the-labeling-iterations}{{3.4.1}{20}{Animate the labeling iterations}{subsection.3.4.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.5}Or a smaller kernel}{21}{section.3.5}\protected@file@percent }
 \newlabel{06-ShapeAnalysis:or-a-smaller-kernel}{{3.5}{21}{Or a smaller kernel}{section.3.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.6}Comparing different neighborhoods}{22}{section.3.6}\protected@file@percent }
@@ -118,6 +120,8 @@
 \newlabel{06-ShapeAnalysis:let-s-look-at-a-car-item}{{4.5.1}{33}{Let’s look at a car item}{subsubsection*.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Finding a bounding box}{34}{subsection.4.5.2}\protected@file@percent }
 \newlabel{06-ShapeAnalysis:finding-a-bounding-box}{{4.5.2}{34}{Finding a bounding box}{subsection.4.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.3}Draw the box}{34}{subsection.4.5.3}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:draw-the-box}{{4.5.3}{34}{Draw the box}{subsection.4.5.3}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {5}Using regionprops on real images}{37}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -144,232 +148,264 @@
 \newlabel{06-ShapeAnalysis:statistical-tools}{{7}{45}{Statistical tools}{chapter.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7.1}Useful Statistical Tools}{45}{section.7.1}\protected@file@percent }
 \newlabel{06-ShapeAnalysis:useful-statistical-tools}{{7.1}{45}{Useful Statistical Tools}{section.7.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Principal Component Analysis}{45}{section.7.2}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:principal-component-analysis}{{7.2}{45}{Principal Component Analysis}{section.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}PCA on spectroscopy}{45}{subsection.7.2.1}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:pca-on-spectroscopy}{{7.2.1}{45}{PCA on spectroscopy}{subsection.7.2.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Test Dataset of a number of curves}{46}{section.7.3}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:test-dataset-of-a-number-of-curves}{{7.3}{46}{Test Dataset of a number of curves}{section.7.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}How can we analyze this data without specifically looking for peaks or building models?}{47}{subsection.7.3.1}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:how-can-we-analyze-this-data-without-specifically-looking-for-peaks-or-building-models}{{7.3.1}{47}{How can we analyze this data without specifically looking for peaks or building models?}{subsection.7.3.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Principal Component Analysis}{49}{chapter.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Principal Component Analysis \sphinxhyphen {} PCA}{45}{section.7.2}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:principal-component-analysis-pca}{{7.2}{45}{Principal Component Analysis \sphinxhyphen {} PCA}{section.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}PCA definition}{45}{section.7.3}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:pca-definition}{{7.3}{45}{PCA definition}{section.7.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}PCA on spectroscopy}{46}{section.7.4}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:pca-on-spectroscopy}{{7.4}{46}{PCA on spectroscopy}{section.7.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}Test Dataset of a number of curves}{46}{section.7.5}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:test-dataset-of-a-number-of-curves}{{7.5}{46}{Test Dataset of a number of curves}{section.7.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.1}How can we analyze this data without specifically looking for peaks or building models?}{47}{subsection.7.5.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:how-can-we-analyze-this-data-without-specifically-looking-for-peaks-or-building-models}{{7.5.1}{47}{How can we analyze this data without specifically looking for peaks or building models?}{subsection.7.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.2}Fit the data with PCA}{47}{subsection.7.5.2}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:fit-the-data-with-pca}{{7.5.2}{47}{Fit the data with PCA}{subsection.7.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.3}Plot principal components}{48}{subsection.7.5.3}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:plot-principal-components}{{7.5.3}{48}{Plot principal components}{subsection.7.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.4}How important is each component?}{48}{subsection.7.5.4}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:how-important-is-each-component}{{7.5.4}{48}{How important is each component?}{subsection.7.5.4}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}PCA in materials science}{51}{chapter.8}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-ShapeAnalysis:id4}{{8}{49}{Principal Component Analysis}{chapter.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.1}scikit\sphinxhyphen {}learn Face Analyis}{49}{section.8.1}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:scikit-learn-face-analyis}{{8.1}{49}{scikit\sphinxhyphen {}learn Face Analyis}{section.8.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {9}Applied PCA: Shape Tensor}{53}{chapter.9}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:pca-in-materials-science}{{8}{51}{PCA in materials science}{chapter.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Bragg egde imaging \sphinxhyphen {} the imaging technique}{51}{section.8.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:bragg-egde-imaging-the-imaging-technique}{{8.1}{51}{Bragg egde imaging \sphinxhyphen {} the imaging technique}{section.8.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Bragg edge imaging example}{52}{section.8.2}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:bragg-edge-imaging-example}{{8.2}{52}{Bragg edge imaging example}{section.8.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Bragg edge imaging and PCA}{52}{section.8.3}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:bragg-edge-imaging-and-pca}{{8.3}{52}{Bragg edge imaging and PCA}{section.8.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}The data}{52}{subsection.8.3.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:the-data}{{8.3.1}{52}{The data}{subsection.8.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Prepare the data for analysis}{53}{subsection.8.3.2}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:prepare-the-data-for-analysis}{{8.3.2}{53}{Prepare the data for analysis}{subsection.8.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.3}Run the PCA}{53}{subsection.8.3.3}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:run-the-pca}{{8.3.3}{53}{Run the PCA}{subsection.8.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.4}Inspect the PCA fit}{53}{subsection.8.3.4}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:inspect-the-pca-fit}{{8.3.4}{53}{Inspect the PCA fit}{subsection.8.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.5}Improve the scatter plot}{54}{subsection.8.3.5}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:improve-the-scatter-plot}{{8.3.5}{54}{Improve the scatter plot}{subsection.8.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.6}Visualize the PCAs with color coding}{55}{subsection.8.3.6}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:visualize-the-pcas-with-color-coding}{{8.3.6}{55}{Visualize the PCAs with color coding}{subsection.8.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.7}PCA and segmentation}{55}{subsection.8.3.7}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:pca-and-segmentation}{{8.3.7}{55}{PCA and segmentation}{subsection.8.3.7}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}Principal Component Analysis}{57}{chapter.9}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-ShapeAnalysis:applied-pca-shape-tensor}{{9}{53}{Applied PCA: Shape Tensor}{chapter.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.1}How do these statistical analyses help us?}{53}{section.9.1}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:how-do-these-statistical-analyses-help-us}{{9.1}{53}{How do these statistical analyses help us?}{section.9.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1.1}Eigenvectors of the positions}{54}{subsection.9.1.1}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:eigenvectors-of-the-positions}{{9.1.1}{54}{Eigenvectors of the positions}{subsection.9.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1.2}Rotate object using eigenvectors}{55}{subsection.9.1.2}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:rotate-object-using-eigenvectors}{{9.1.2}{55}{Rotate object using eigenvectors}{subsection.9.1.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.2}Principal Component Analysis: Take home message}{56}{section.9.2}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:principal-component-analysis-take-home-message}{{9.2}{56}{Principal Component Analysis: Take home message}{section.9.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.3}Principal Component Analysis: Elliptical Model}{57}{section.9.3}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:principal-component-analysis-elliptical-model}{{9.3}{57}{Principal Component Analysis: Elliptical Model}{section.9.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.1}Ellipsoidal Representation}{57}{subsection.9.3.1}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:ellipsoidal-representation}{{9.3.1}{57}{Ellipsoidal Representation}{subsection.9.3.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {10}Meshing}{59}{chapter.10}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:principal-component-analysis}{{9}{57}{Principal Component Analysis}{chapter.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.1}SciKit\sphinxhyphen {}learn Face Analyis}{57}{section.9.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:scikit-learn-face-analyis}{{9.1}{57}{SciKit\sphinxhyphen {}learn Face Analyis}{section.9.1}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {10}Applied PCA: Shape Tensor}{61}{chapter.10}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-ShapeAnalysis:meshing}{{10}{59}{Meshing}{chapter.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10.1}Meshing}{59}{section.10.1}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:id5}{{10.1}{59}{Meshing}{section.10.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10.2}Marching Cubes}{59}{section.10.2}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:marching-cubes}{{10.2}{59}{Marching Cubes}{section.10.2}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {11}Next Time on QBI}{61}{chapter.11}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:applied-pca-shape-tensor}{{10}{61}{Applied PCA: Shape Tensor}{chapter.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.1}How do these statistical analyses help us?}{61}{section.10.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:how-do-these-statistical-analyses-help-us}{{10.1}{61}{How do these statistical analyses help us?}{section.10.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1.1}Eigenvectors of the positions}{62}{subsection.10.1.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:eigenvectors-of-the-positions}{{10.1.1}{62}{Eigenvectors of the positions}{subsection.10.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1.2}Rotate object using eigenvectors}{63}{subsection.10.1.2}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:rotate-object-using-eigenvectors}{{10.1.2}{63}{Rotate object using eigenvectors}{subsection.10.1.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.2}Principal Component Analysis: Take home message}{64}{section.10.2}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:principal-component-analysis-take-home-message}{{10.2}{64}{Principal Component Analysis: Take home message}{section.10.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.3}Principal Component Analysis: Elliptical Model}{65}{section.10.3}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:principal-component-analysis-elliptical-model}{{10.3}{65}{Principal Component Analysis: Elliptical Model}{section.10.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3.1}Ellipsoidal Representation}{65}{subsection.10.3.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:ellipsoidal-representation}{{10.3.1}{65}{Ellipsoidal Representation}{subsection.10.3.1}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {11}Next Time on QBI}{67}{chapter.11}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-ShapeAnalysis:next-time-on-qbi}{{11}{61}{Next Time on QBI}{chapter.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {11.1}Why}{61}{section.11.1}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:why}{{11.1}{61}{Why}{section.11.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {11.2}What to do?}{61}{section.11.2}\protected@file@percent }
-\newlabel{06-ShapeAnalysis:what-to-do}{{11.2}{61}{What to do?}{section.11.2}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {12}Advanced Shape and Texture}{63}{chapter.12}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:next-time-on-qbi}{{11}{67}{Next Time on QBI}{chapter.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.1}Why}{67}{section.11.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:why}{{11.1}{67}{Why}{section.11.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.2}What to do?}{67}{section.11.2}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:what-to-do}{{11.2}{67}{What to do?}{section.11.2}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {12}Summary}{69}{chapter.12}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:advanced-shape-and-texture}{{12}{63}{Advanced Shape and Texture}{chapter.12}{}}
-\newlabel{06-AdvancedShapeAndTexture::doc}{{12}{63}{Advanced Shape and Texture}{chapter.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.1}Literature / Useful References}{63}{section.12.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:literature-useful-references}{{12.1}{63}{Literature / Useful References}{section.12.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.1.1}Books}{63}{subsection.12.1.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:books}{{12.1.1}{63}{Books}{subsection.12.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.1.2}Papers / Sites}{63}{subsection.12.1.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:papers-sites}{{12.1.2}{63}{Papers / Sites}{subsection.12.1.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.2}Outline}{64}{section.12.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:outline}{{12.2}{64}{Outline}{section.12.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.3}Learning Objectives}{64}{section.12.3}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:learning-objectives}{{12.3}{64}{Learning Objectives}{section.12.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.3.1}Motivation (Why and How?)}{64}{subsection.12.3.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:motivation-why-and-how}{{12.3.1}{64}{Motivation (Why and How?)}{subsection.12.3.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Objects}{64}{subsubsection*.4}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:objects}{{12.3.1}{64}{Objects}{subsubsection*.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Patterns}{64}{subsubsection*.5}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:patterns}{{12.3.1}{64}{Patterns}{subsubsection*.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.4}Let’s load some modules for the notebook}{64}{section.12.4}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:let-s-load-some-modules-for-the-notebook}{{12.4}{64}{Let’s load some modules for the notebook}{section.12.4}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {13}Distance Maps: What are they?}{67}{chapter.13}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:summary}{{12}{69}{Summary}{chapter.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.1}Component labeling}{69}{section.12.1}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:component-labeling}{{12.1}{69}{Component labeling}{section.12.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.2}Object description}{69}{section.12.2}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:object-description}{{12.2}{69}{Object description}{section.12.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.3}Principal component analysis}{69}{section.12.3}\protected@file@percent }
+\newlabel{06-ShapeAnalysis:id4}{{12.3}{69}{Principal component analysis}{section.12.3}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {13}Advanced Shape and Texture}{71}{chapter.13}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:distance-maps-what-are-they}{{13}{67}{Distance Maps: What are they?}{chapter.13}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13.1}Distance maps in python}{67}{section.13.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:distance-maps-in-python}{{13.1}{67}{Distance maps in python}{section.13.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13.2}What does a distance map look like?}{69}{section.13.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:what-does-a-distance-map-look-like}{{13.2}{69}{What does a distance map look like?}{section.13.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.2.1}The Euclidean distance map}{70}{subsection.13.2.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:the-euclidean-distance-map}{{13.2.1}{70}{The Euclidean distance map}{subsection.13.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.2.2}The distance map depends on the neighborhood}{71}{subsection.13.2.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:the-distance-map-depends-on-the-neighborhood}{{13.2.2}{71}{The distance map depends on the neighborhood}{subsection.13.2.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13.3}Why does speed matter?}{72}{section.13.3}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:why-does-speed-matter}{{13.3}{72}{Why does speed matter?}{section.13.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.3.1}Extrapolated execution time}{72}{subsection.13.3.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:extrapolated-execution-time}{{13.3.1}{72}{Extrapolated execution time}{subsection.13.3.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13.4}Distance map \sphinxhyphen {} Definition}{73}{section.13.4}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:distance-map-definition}{{13.4}{73}{Distance map \sphinxhyphen {} Definition}{section.13.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.4.1}Animating the iterations}{74}{subsection.13.4.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:animating-the-iterations}{{13.4.1}{74}{Animating the iterations}{subsection.13.4.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13.5}Distance Maps: Types}{75}{section.13.5}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:distance-maps-types}{{13.5}{75}{Distance Maps: Types}{section.13.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.5.1}Animating City\sphinxhyphen {}block distance}{75}{subsection.13.5.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:animating-city-block-distance}{{13.5.1}{75}{Animating City\sphinxhyphen {}block distance}{subsection.13.5.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13.6}Distance Maps: Precaution}{76}{section.13.6}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:distance-maps-precaution}{{13.6}{76}{Distance Maps: Precaution}{section.13.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.6.1}Anisotropic}{76}{subsection.13.6.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:anisotropic}{{13.6.1}{76}{Anisotropic}{subsection.13.6.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13.7}What does the Distance Maps show?}{76}{section.13.7}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:what-does-the-distance-maps-show}{{13.7}{76}{What does the Distance Maps show?}{section.13.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13.8}Distance Map}{77}{section.13.8}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:distance-map}{{13.8}{77}{Distance Map}{section.13.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {13.8.1}Animate the distances}{79}{subsection.13.8.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:animate-the-distances}{{13.8.1}{79}{Animate the distances}{subsection.13.8.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {14}Distance Map of Real Images}{81}{chapter.14}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:advanced-shape-and-texture}{{13}{71}{Advanced Shape and Texture}{chapter.13}{}}
+\newlabel{06-AdvancedShapeAndTexture::doc}{{13}{71}{Advanced Shape and Texture}{chapter.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.1}Literature / Useful References}{71}{section.13.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:literature-useful-references}{{13.1}{71}{Literature / Useful References}{section.13.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.1.1}Books}{71}{subsection.13.1.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:books}{{13.1.1}{71}{Books}{subsection.13.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.1.2}Papers / Sites}{71}{subsection.13.1.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:papers-sites}{{13.1.2}{71}{Papers / Sites}{subsection.13.1.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.2}Outline}{72}{section.13.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:outline}{{13.2}{72}{Outline}{section.13.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.3}Learning Objectives}{72}{section.13.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:learning-objectives}{{13.3}{72}{Learning Objectives}{section.13.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {13.3.1}Motivation (Why and How?)}{72}{subsection.13.3.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:motivation-why-and-how}{{13.3.1}{72}{Motivation (Why and How?)}{subsection.13.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Objects}{72}{subsubsection*.4}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:objects}{{13.3.1}{72}{Objects}{subsubsection*.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Patterns}{72}{subsubsection*.5}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:patterns}{{13.3.1}{72}{Patterns}{subsubsection*.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.4}Let’s load some modules for the notebook}{72}{section.13.4}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:let-s-load-some-modules-for-the-notebook}{{13.4}{72}{Let’s load some modules for the notebook}{section.13.4}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {14}Distance Maps: What are they?}{75}{chapter.14}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:distance-map-of-real-images}{{14}{81}{Distance Map of Real Images}{chapter.14}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {14.1}The bone slice}{81}{section.14.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:the-bone-slice}{{14.1}{81}{The bone slice}{section.14.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {14.2}The cortex}{81}{section.14.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:the-cortex}{{14.2}{81}{The cortex}{section.14.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {14.3}How can we utilize this information?}{82}{section.14.3}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:how-can-we-utilize-this-information}{{14.3}{82}{How can we utilize this information?}{section.14.3}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {15}The thickness map}{83}{chapter.15}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-maps-what-are-they}{{14}{75}{Distance Maps: What are they?}{chapter.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.1}What does a distance map look like?}{75}{section.14.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:what-does-a-distance-map-look-like}{{14.1}{75}{What does a distance map look like?}{section.14.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.1.1}The Euclidean distance map}{76}{subsection.14.1.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:the-euclidean-distance-map}{{14.1.1}{76}{The Euclidean distance map}{subsection.14.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.1.2}The distance map depends on the neighborhood}{77}{subsection.14.1.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:the-distance-map-depends-on-the-neighborhood}{{14.1.2}{77}{The distance map depends on the neighborhood}{subsection.14.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.1.3}Distance maps in python}{78}{subsection.14.1.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-maps-in-python}{{14.1.3}{78}{Distance maps in python}{subsection.14.1.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.2}Why does speed matter?}{80}{section.14.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:why-does-speed-matter}{{14.2}{80}{Why does speed matter?}{section.14.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.2.1}Extrapolated execution time}{80}{subsection.14.2.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:extrapolated-execution-time}{{14.2.1}{80}{Extrapolated execution time}{subsection.14.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.3}Distance map \sphinxhyphen {} Definition}{80}{section.14.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-map-definition}{{14.3}{80}{Distance map \sphinxhyphen {} Definition}{section.14.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.3.1}A test image for distance transform}{81}{subsection.14.3.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:a-test-image-for-distance-transform}{{14.3.1}{81}{A test image for distance transform}{subsection.14.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.3.2}Animating the iterations}{82}{subsection.14.3.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:animating-the-iterations}{{14.3.2}{82}{Animating the iterations}{subsection.14.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.4}Distance Maps: Types}{83}{section.14.4}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-maps-types}{{14.4}{83}{Distance Maps: Types}{section.14.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.4.1}Animating City\sphinxhyphen {}block distance}{83}{subsection.14.4.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:animating-city-block-distance}{{14.4.1}{83}{Animating City\sphinxhyphen {}block distance}{subsection.14.4.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.5}Distance Maps: Precaution}{84}{section.14.5}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-maps-precaution}{{14.5}{84}{Distance Maps: Precaution}{section.14.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.5.1}Anisotropic}{84}{subsection.14.5.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:anisotropic}{{14.5.1}{84}{Anisotropic}{subsection.14.5.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.6}What does the Distance Maps show?}{84}{section.14.6}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:what-does-the-distance-maps-show}{{14.6}{84}{What does the Distance Maps show?}{section.14.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.7}Distance Map}{85}{section.14.7}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-map}{{14.7}{85}{Distance Map}{section.14.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.7.1}Some code for the demo}{85}{subsection.14.7.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:some-code-for-the-demo}{{14.7.1}{85}{Some code for the demo}{subsection.14.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {14.7.2}Animate the distances}{87}{subsection.14.7.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:animate-the-distances}{{14.7.2}{87}{Animate the distances}{subsection.14.7.2}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {15}Distance Map of Real Images}{89}{chapter.15}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:the-thickness-map}{{15}{83}{The thickness map}{chapter.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {15.1}Applications}{83}{section.15.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:applications}{{15.1}{83}{Applications}{section.15.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.1.1}A thickness map implementation}{83}{subsection.15.1.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:a-thickness-map-implementation}{{15.1.1}{83}{A thickness map implementation}{subsection.15.1.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {15.2}Thickness map on foregrund and background}{84}{section.15.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:thickness-map-on-foregrund-and-background}{{15.2}{84}{Thickness map on foregrund and background}{section.15.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {15.2.1}Thickness distributions}{84}{subsection.15.2.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:thickness-distributions}{{15.2.1}{84}{Thickness distributions}{subsection.15.2.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {16}Distance Maps in 3D}{85}{chapter.16}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-map-of-real-images}{{15}{89}{Distance Map of Real Images}{chapter.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {15.1}The bone slice}{89}{section.15.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:the-bone-slice}{{15.1}{89}{The bone slice}{section.15.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {15.2}The cortex}{89}{section.15.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:the-cortex}{{15.2}{89}{The cortex}{section.15.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {15.3}How can we utilize this information?}{90}{section.15.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:how-can-we-utilize-this-information}{{15.3}{90}{How can we utilize this information?}{section.15.3}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {16}The thickness map}{91}{chapter.16}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:distance-maps-in-3d}{{16}{85}{Distance Maps in 3D}{chapter.16}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {16.1}Let’s load a 3D image}{85}{section.16.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:let-s-load-a-3d-image}{{16.1}{85}{Let’s load a 3D image}{section.16.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {16.1.1}Inspecting the data in 3D}{86}{subsection.16.1.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:inspecting-the-data-in-3d}{{16.1.1}{86}{Inspecting the data in 3D}{subsection.16.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {16.1.2}Rendering the mesh as a surface}{87}{subsection.16.1.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:rendering-the-mesh-as-a-surface}{{16.1.2}{87}{Rendering the mesh as a surface}{subsection.16.1.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {16.2}Look at the distance transform}{88}{section.16.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:look-at-the-distance-transform}{{16.2}{88}{Look at the distance transform}{section.16.2}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {17}Thickness in 3D Images}{89}{chapter.17}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:the-thickness-map}{{16}{91}{The thickness map}{chapter.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {16.1}Applications}{91}{section.16.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:applications}{{16.1}{91}{Applications}{section.16.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {16.2}A thickness map implementation}{91}{section.16.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:a-thickness-map-implementation}{{16.2}{91}{A thickness map implementation}{section.16.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {16.3}Thickness map on foregrund and background}{92}{section.16.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:thickness-map-on-foregrund-and-background}{{16.3}{92}{Thickness map on foregrund and background}{section.16.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {16.4}Thickness distributions}{92}{section.16.4}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:thickness-distributions}{{16.4}{92}{Thickness distributions}{section.16.4}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {17}Distance Maps in 3D}{93}{chapter.17}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:thickness-in-3d-images}{{17}{89}{Thickness in 3D Images}{chapter.17}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {18}Interactive 3D Views}{91}{chapter.18}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-maps-in-3d}{{17}{93}{Distance Maps in 3D}{chapter.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {17.1}Let’s load a 3D image}{93}{section.17.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:let-s-load-a-3d-image}{{17.1}{93}{Let’s load a 3D image}{section.17.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {17.2}Inspecting the data in 3D}{94}{section.17.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:inspecting-the-data-in-3d}{{17.2}{94}{Inspecting the data in 3D}{section.17.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {17.2.1}Rendering the mesh as a surface}{95}{subsection.17.2.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:rendering-the-mesh-as-a-surface}{{17.2.1}{95}{Rendering the mesh as a surface}{subsection.17.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {17.3}Look at the distance transform}{96}{section.17.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:look-at-the-distance-transform}{{17.3}{96}{Look at the distance transform}{section.17.3}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {18}Thickness in 3D Images}{97}{chapter.18}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:interactive-3d-views}{{18}{91}{Interactive 3D Views}{chapter.18}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {19}Interfaces / Surfaces}{93}{chapter.19}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:thickness-in-3d-images}{{18}{97}{Thickness in 3D Images}{chapter.18}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {19}Interactive 3D Views}{99}{chapter.19}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:interfaces-surfaces}{{19}{93}{Interfaces / Surfaces}{chapter.19}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {20}Surface Area / Perimeter}{95}{chapter.20}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:interactive-3d-views}{{19}{99}{Interactive 3D Views}{chapter.19}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {20}Interfaces / Surfaces}{101}{chapter.20}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:surface-area-perimeter}{{20}{95}{Surface Area / Perimeter}{chapter.20}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {21}Meshing (again)}{97}{chapter.21}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:interfaces-surfaces}{{20}{101}{Interfaces / Surfaces}{chapter.20}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {21}Surface Area / Perimeter}{103}{chapter.21}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:meshing-again}{{21}{97}{Meshing (again)}{chapter.21}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {22}Marching Cubes}{99}{chapter.22}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:surface-area-perimeter}{{21}{103}{Surface Area / Perimeter}{chapter.21}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {22}Meshing}{105}{chapter.22}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:marching-cubes}{{22}{99}{Marching Cubes}{chapter.22}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {22.1}Why}{99}{section.22.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:why}{{22.1}{99}{Why}{section.22.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {22.2}How}{99}{section.22.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:how}{{22.2}{99}{How}{section.22.2}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {23}Curvature}{101}{chapter.23}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:meshing}{{22}{105}{Meshing}{chapter.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.1}Meshing of images}{107}{section.22.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:meshing-of-images}{{22.1}{107}{Meshing of images}{section.22.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.2}Marching Cubes}{107}{section.22.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:marching-cubes}{{22.2}{107}{Marching Cubes}{section.22.2}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {23}Curvature}{109}{chapter.23}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:curvature}{{23}{101}{Curvature}{chapter.23}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {23.1}Curvature: Surface Normal}{101}{section.23.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:curvature-surface-normal}{{23.1}{101}{Curvature: Surface Normal}{section.23.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {23.2}Curvature: 3D}{102}{section.23.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:curvature-3d}{{23.2}{102}{Curvature: 3D}{section.23.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {23.2.1}Mean Curvature}{102}{subsection.23.2.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:mean-curvature}{{23.2.1}{102}{Mean Curvature}{subsection.23.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {23.2.2}Gaussian Curvature}{102}{subsection.23.2.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:gaussian-curvature}{{23.2.2}{102}{Gaussian Curvature}{subsection.23.2.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {23.3}Curvature: 3D Examples}{102}{section.23.3}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:curvature-3d-examples}{{23.3}{102}{Curvature: 3D Examples}{section.23.3}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {24}Characteristic Shape}{103}{chapter.24}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:curvature}{{23}{109}{Curvature}{chapter.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.1}Curvature: Surface Normal}{109}{section.23.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:curvature-surface-normal}{{23.1}{109}{Curvature: Surface Normal}{section.23.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.2}Curvature in 3D}{110}{section.23.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:curvature-in-3d}{{23.2}{110}{Curvature in 3D}{section.23.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {23.2.1}Mean Curvature}{110}{subsection.23.2.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:mean-curvature}{{23.2.1}{110}{Mean Curvature}{subsection.23.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {23.2.2}Gaussian Curvature}{110}{subsection.23.2.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:gaussian-curvature}{{23.2.2}{110}{Gaussian Curvature}{subsection.23.2.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.3}Curvature: 3D Examples}{110}{section.23.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:curvature-3d-examples}{{23.3}{110}{Curvature: 3D Examples}{section.23.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.4}Characteristic Shape}{110}{section.23.4}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:characteristic-shape}{{23.4}{110}{Characteristic Shape}{section.23.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.5}Curvature: Take Home Message}{111}{section.23.5}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:curvature-take-home-message}{{23.5}{111}{Curvature: Take Home Message}{section.23.5}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {24}Other Techniques}{113}{chapter.24}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:characteristic-shape}{{24}{103}{Characteristic Shape}{chapter.24}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {25}Curvature: Take Home Message}{105}{chapter.25}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:other-techniques}{{24}{113}{Other Techniques}{chapter.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {24.1}References to other techniques}{113}{section.24.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:references-to-other-techniques}{{24.1}{113}{References to other techniques}{section.24.1}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {25}Texture Analysis}{115}{chapter.25}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:curvature-take-home-message}{{25}{105}{Curvature: Take Home Message}{chapter.25}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {26}Other Techniques}{107}{chapter.26}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:texture-analysis}{{25}{115}{Texture Analysis}{chapter.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.1}Sample Textures}{115}{section.25.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:sample-textures}{{25.1}{115}{Sample Textures}{section.25.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.2}Methods to characterize textures: Co\sphinxhyphen {}occurrence matrix}{116}{section.25.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:methods-to-characterize-textures-co-occurrence-matrix}{{25.2}{116}{Methods to characterize textures: Co\sphinxhyphen {}occurrence matrix}{section.25.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.2.1}Co\sphinxhyphen {}occurence matrices for the test patterns}{117}{subsection.25.2.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:co-occurence-matrices-for-the-test-patterns}{{25.2.1}{117}{Co\sphinxhyphen {}occurence matrices for the test patterns}{subsection.25.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.3}Simple Correlation}{118}{section.25.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:simple-correlation}{{25.3}{118}{Simple Correlation}{section.25.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.3.1}Inspecting the mean difference}{119}{subsection.25.3.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:inspecting-the-mean-difference}{{25.3.1}{119}{Inspecting the mean difference}{subsection.25.3.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.4}Applying Texture analysis to Brain}{120}{section.25.4}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:applying-texture-analysis-to-brain}{{25.4}{120}{Applying Texture analysis to Brain}{section.25.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.5}Tiling the image}{120}{section.25.5}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:tiling-the-image}{{25.5}{120}{Tiling the image}{section.25.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.6}Calculating Texture}{121}{section.25.6}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:calculating-texture}{{25.6}{121}{Calculating Texture}{section.25.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.6.1}Resulting gray level co\sphinxhyphen {}occurrence properties}{122}{subsection.25.6.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:resulting-gray-level-co-occurrence-properties}{{25.6.1}{122}{Resulting gray level co\sphinxhyphen {}occurrence properties}{subsection.25.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.6.2}Resulting gray level co\sphinxhyphen {}occurrence properties}{123}{subsection.25.6.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:id1}{{25.6.2}{123}{Resulting gray level co\sphinxhyphen {}occurrence properties}{subsection.25.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.6.3}A pair plot to show how the properties are related}{123}{subsection.25.6.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:a-pair-plot-to-show-how-the-properties-are-related}{{25.6.3}{123}{A pair plot to show how the properties are related}{subsection.25.6.3}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {26}Summary}{125}{chapter.26}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:other-techniques}{{26}{107}{Other Techniques}{chapter.26}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {27}Other Techniques}{109}{chapter.27}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:id1}{{27}{109}{Other Techniques}{chapter.27}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {27.1}References to other techniques}{109}{section.27.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:references-to-other-techniques}{{27.1}{109}{References to other techniques}{section.27.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {28}Texture Analysis}{111}{chapter.28}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:texture-analysis}{{28}{111}{Texture Analysis}{chapter.28}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {28.1}Sample Textures}{111}{section.28.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:sample-textures}{{28.1}{111}{Sample Textures}{section.28.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {28.2}Methods to characterize textures: Co\sphinxhyphen {}occurrence matrix}{112}{section.28.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:methods-to-characterize-textures-co-occurrence-matrix}{{28.2}{112}{Methods to characterize textures: Co\sphinxhyphen {}occurrence matrix}{section.28.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {28.3}Simple Correlation}{114}{section.28.3}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:simple-correlation}{{28.3}{114}{Simple Correlation}{section.28.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {28.4}Applying Texture to Brain}{115}{section.28.4}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:applying-texture-to-brain}{{28.4}{115}{Applying Texture to Brain}{section.28.4}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {29}Tiling}{117}{chapter.29}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:tiling}{{29}{117}{Tiling}{chapter.29}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {30}Calculating Texture}{119}{chapter.30}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:calculating-texture}{{30}{119}{Calculating Texture}{chapter.30}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {31}Summary}{123}{chapter.31}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{06-AdvancedShapeAndTexture:summary}{{31}{123}{Summary}{chapter.31}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {31.1}Distance maps}{123}{section.31.1}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:distance-maps}{{31.1}{123}{Distance maps}{section.31.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {31.2}Visualizing 3D data}{123}{section.31.2}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:visualizing-3d-data}{{31.2}{123}{Visualizing 3D data}{section.31.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {31.3}Surface description}{123}{section.31.3}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:surface-description}{{31.3}{123}{Surface description}{section.31.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {31.4}Texture}{123}{section.31.4}\protected@file@percent }
-\newlabel{06-AdvancedShapeAndTexture:texture}{{31.4}{123}{Texture}{section.31.4}{}}
+\newlabel{06-AdvancedShapeAndTexture:summary}{{26}{125}{Summary}{chapter.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {26.1}Distance maps}{125}{section.26.1}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:distance-maps}{{26.1}{125}{Distance maps}{section.26.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {26.2}Visualizing 3D data}{125}{section.26.2}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:visualizing-3d-data}{{26.2}{125}{Visualizing 3D data}{section.26.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {26.3}Surface description}{125}{section.26.3}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:surface-description}{{26.3}{125}{Surface description}{section.26.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {26.4}Texture}{125}{section.26.4}\protected@file@percent }
+\newlabel{06-AdvancedShapeAndTexture:texture}{{26.4}{125}{Texture}{section.26.4}{}}
