@@ -623,7 +623,7 @@ When we apply the \sphinxcode{\sphinxupquote{label}} operation on the car mask, 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
 \PYG{n}{ax1}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{seg\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Segmented Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax1}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Segmented Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}  
 \PYG{n}{lab\PYGZus{}img} \PYG{o}{=} \PYG{n}{label}\PYG{p}{(}\PYG{n}{seg\PYGZus{}img}\PYG{p}{)}
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{lab\PYGZus{}img}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{cm}\PYG{o}{.}\PYG{n}{tab10}\PYG{p}{)}
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Labeled Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
@@ -3644,6 +3644,9 @@ One has 1 big blob
 
 \subsection{Animate the distances}
 \label{\detokenize{06-AdvancedShapeAndTexture:animate-the-distances}}
+\sphinxAtStartPar
+In this example we grow two objects and observe how the maximum distance changes compared to the area of labeled object. Initially, the two metrics behave similarly. It becomes interesting when the two objects grow into each other. Then the labeling only finds a single object and the area is double compared to before the merge. The distance, however, stay within the same magnitude thoughout the entire growing sequence.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{HTML}\PYG{p}{(}\PYG{n}{anim\PYGZus{}code}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -3675,7 +3678,7 @@ We now have a basic idea of how the distance map works we can now try to apply i
 \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{bg\PYGZus{}dmap}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distance Map}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{Background}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_40_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_41_0}.png}
 
 
 \section{The cortex}
@@ -3691,7 +3694,7 @@ We now have a basic idea of how the distance map works we can now try to apply i
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}dmap}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distance map of cortex}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_42_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_43_0}.png}
 
 
 \section{How can we utilize this information?}
@@ -3719,7 +3722,7 @@ but the raw values and taking a histogram do not seem to provide this very clear
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{cortex\PYGZus{}dmap\PYGZus{}roi}\PYG{p}{[}\PYG{n}{cortex\PYGZus{}dmap\PYGZus{}roi} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Histogram of distances}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_44_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_45_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{skimage}\PYG{n+nn}{.}\PYG{n+nn}{morphology} \PYG{k+kn}{import} \PYG{n}{binary\PYGZus{}opening}\PYG{p}{,} \PYG{n}{binary\PYGZus{}closing}\PYG{p}{,} \PYG{n}{disk}
@@ -3746,6 +3749,29 @@ contains that point
 is entirely contained within the object
 
 \end{itemize}
+
+\sphinxAtStartPar
+The thickness map is quantifying the regional sizes compared to the distance map which describes distances from pixel to pixel. That is, in the thickness map all pixels belonging to a sphere that can be inscribed in the object will have the value of the sphere radius. There will be many overlapping spheres and it is always the largest radius that defines the pixel value.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.6]{{ThickOverview}.png}
+\caption{The largest sphere inscribed in the object.}\label{\detokenize{06-AdvancedShapeAndTexture:id2}}\end{figure}
+
+\sphinxAtStartPar
+In the comparison below, you can see that the distance map has a greater representation of short distances while the thickness map has large areas with great distances.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=0.6]{{poremap}.png}
+\caption{Comparing the thickness map to the distance map.}\label{\detokenize{06-AdvancedShapeAndTexture:id3}}\end{figure}
+
+\sphinxAtStartPar
+The thickness map has many names. So, when you hear terms like pore radius map or pore size map, then it is all the same thing. One little difference would be that the thickness map indicates that you are measuring solid objects while the pore size map focuses on the voids between the objects.
 
 
 
@@ -3811,7 +3837,7 @@ Also relevant for flow and diffusion since it can highlight bottlenecks in struc
 \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{bg\PYGZus{}th\PYGZus{}map}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nipy\PYGZus{}spectral}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Thickness Map \PYGZhy{} Background}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_51_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_55_0}.png}
 
 
 \section{Thickness distributions}
@@ -3823,7 +3849,7 @@ Also relevant for flow and diffusion since it can highlight bottlenecks in struc
 \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{bg\PYGZus{}th\PYGZus{}map}\PYG{p}{[}\PYG{n}{bg\PYGZus{}th\PYGZus{}map} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{ravel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax4}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Thickness Map \PYGZhy{} Background}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_53_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_57_0}.png}
 
 
 \chapter{Distance Maps in 3D}
@@ -3841,6 +3867,9 @@ Beyond 3D requires serious thought about what the meaning of this distance is.
 
 \section{Let’s load a 3D image}
 \label{\detokenize{06-AdvancedShapeAndTexture:let-s-load-a-3d-image}}
+\sphinxAtStartPar
+We need some dadta to demonstrate the distance transform of 3D images. This an image of oblatoid grains which are aligned with the major axis in the vertical direction.
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{montage\PYGZus{}pad}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:} \PYG{k}{return} \PYG{n}{montage2d}\PYG{p}{(}
     \PYG{n}{np}\PYG{o}{.}\PYG{n}{pad}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{p}{[}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,} \PYG{n}{mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{constant}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{constant\PYGZus{}values}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{)}
@@ -3856,7 +3885,7 @@ Beyond 3D requires serious thought about what the meaning of this distance is.
 Loaded Image: (154, 150, 150) 255
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_56_1}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_61_1}.png}
 
 
 \section{Inspecting the data in 3D}
@@ -3883,7 +3912,7 @@ Loaded Image: (154, 150, 150) 255
              \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.75}\PYG{p}{,} \PYG{n}{edgecolor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_58_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_63_0}.png}
 
 
 \subsection{Rendering the mesh as a surface}
@@ -3924,7 +3953,7 @@ Loaded Image: (154, 150, 150) 255
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distance maps \PYGZhy{} Sagittal Slices}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} 
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_62_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_67_0}.png}
 
 
 \chapter{Thickness in 3D Images}
@@ -3979,7 +4008,7 @@ Found 180 bubbles
     \PYG{n}{cax}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{n}{clabel}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_65_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_70_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{18}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}
@@ -3990,7 +4019,7 @@ Found 180 bubbles
 \PYG{n}{ax2}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Sagittal Slices}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_66_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_71_0}.png}
 
 
 \chapter{Interactive 3D Views}
@@ -4451,7 +4480,7 @@ Let’s create some sample textures
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{c\PYGZus{}img}\PYG{p}{,}\PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{viridis}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{vmin}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{vmax}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_91_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_96_0}.png}
 
 
 \section{Methods to characterize textures: Co\sphinxhyphen{}occurrence matrix}
@@ -4508,11 +4537,11 @@ In order to use this we need to discretize the image into bins
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
           E    i    j         d     theta
-284   192.0  1.0  0.0  2.071429  6.283185
-654     0.0  2.0  0.0  5.642857  4.039191
-328   230.0  1.0  0.0  3.142857  5.834386
-1322   40.0  1.0  1.0  5.642857  0.897598
-681     0.0  3.0  0.0  1.000000  2.692794
+805     0.0  3.0  0.0  3.857143  4.487990
+1213   23.0  1.0  1.0  2.785714  5.834386
+2518    0.0  3.0  2.0  1.714286  5.834386
+3197    0.0  2.0  3.0  2.071429  0.897598
+286   184.0  1.0  0.0  2.428571  0.448799
 \end{sphinxVerbatim}
 
 
@@ -4532,7 +4561,7 @@ In order to use this we need to discretize the image into bins
     \PYG{n}{f\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Average Co\PYGZhy{}occurence}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{avg\PYGZus{}coo\PYGZus{}matrix}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_95_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_100_0}.png}
 
 
 \section{Simple Correlation}
@@ -4587,7 +4616,7 @@ Using the mean difference (\(E[i-j]\)) instead of all of the i,j pair possibliti
     \PYG{n}{f\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Angular Co\PYGZhy{}occurence}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_99_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_104_0}.png}
 
 
 \section{Applying Texture analysis to Brain}
@@ -4608,7 +4637,7 @@ Using the mean difference (\(E[i-j]\)) instead of all of the i,j pair possibliti
 \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{n}{ax3}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Overlayed}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_101_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_106_0}.png}
 
 
 \section{Tiling the image}
@@ -4630,7 +4659,7 @@ Here we divide the image up into unique tiles for further processing. Each tile 
             \PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_103_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_108_0}.png}
 
 
 \section{Calculating Texture}
@@ -4694,7 +4723,7 @@ Here we calculate the texture by using a tool called the gray level co\sphinxhyp
     \PYG{n}{c\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ Image}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{c\PYGZus{}prop}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_107_0}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_112_0}.png}
 
 
 \subsection{Resulting gray level co\sphinxhyphen{}occurrence properties}
@@ -4742,7 +4771,7 @@ max       0.718922   0.651809     0.958805   0.424854
 Dataset has 0 variance; skipping density estimate.
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_111_1}.png}
+\noindent\sphinxincludegraphics{{06-AdvancedShapeAndTexture_116_1}.png}
 
 
 \chapter{Summary}

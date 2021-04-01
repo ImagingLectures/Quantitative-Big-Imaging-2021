@@ -414,6 +414,8 @@ plt.close('all')
 
 ### Animate the distances
 
+In this example we grow two objects and observe how the maximum distance changes compared to the area of labeled object. Initially, the two metrics behave similarly. It becomes interesting when the two objects grow into each other. Then the labeling only finds a single object and the area is double compared to before the merge. The distance, however, stay within the same magnitude thoughout the entire growing sequence.
+
 HTML(anim_code)
 
 # Distance Map of Real Images
@@ -474,6 +476,24 @@ Thickness is a metric for assessing the size and structure of objects in a very 
 For every point $\vec{x}$ in the image you find the largest sphere which:
 - contains that point
 - is entirely contained within the object
+
+The thickness map is quantifying the regional sizes compared to the distance map which describes distances from pixel to pixel. That is, in the thickness map all pixels belonging to a sphere that can be inscribed in the object will have the value of the sphere radius. There will be many overlapping spheres and it is always the largest radius that defines the pixel value.
+```{figure} figures/ThickOverview.png
+---
+scale: 60%
+---
+The largest sphere inscribed in the object.
+```
+
+In the comparison below, you can see that the distance map has a greater representation of short distances while the thickness map has large areas with great distances. 
+```{figure} figures/poremap.png
+---
+scale: 60%
+---
+Comparing the thickness map to the distance map.
+```
+The thickness map has many names. So, when you hear terms like pore radius map or pore size map, then it is all the same thing. One little difference would be that the thickness map indicates that you are measuring solid objects while the pore size map focuses on the voids between the objects.
+
 <table>
     <tr>
 <td><img src="figures/ThickOverview.png" style="height:300px" /></td>
@@ -531,6 +551,8 @@ ax4.hist(bg_th_map[bg_th_map > 0].ravel(), 20); ax4.set_title('Thickness Map - B
 - Beyond 3D requires serious thought about what the meaning of this distance is. 
 
 ## Let's load a 3D image 
+
+We need some dadta to demonstrate the distance transform of 3D images. This an image of oblatoid grains which are aligned with the major axis in the vertical direction.
 
 def montage_pad(x): return montage2d(
     np.pad(x, [(0, 0), (10, 10), (10, 10)], mode='constant', constant_values=0))

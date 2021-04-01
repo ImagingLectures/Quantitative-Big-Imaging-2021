@@ -213,7 +213,7 @@ When we apply the ```label``` operation on the car mask, we see the that each ca
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 8), dpi=100)
 ax1.imshow(seg_img, cmap='bone')
-ax1.set_title('Segmented Image')
+ax1.set_title('Segmented Image')  
 lab_img = label(seg_img)
 ax2.imshow(lab_img, cmap=plt.cm.tab10)
 ax2.set_title('Labeled Image');
