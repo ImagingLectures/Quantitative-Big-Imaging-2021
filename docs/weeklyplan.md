@@ -69,11 +69,12 @@
 
 - [Overview](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/06-Shapes/06-Overview.md)
 
+## 8th April - Easter break
+
 ---
 ---
 
-Last year's material - not yet updated
-## 8th April - Easter break
+__Last year's material - not yet updated__
 
 ## 15th April - Analyzing Complex Objects
 
