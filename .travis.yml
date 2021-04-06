@@ -13,6 +13,7 @@ addons:
     packages: 
       - texlive
       - texlive-fonts-recommended
+      - texlive-fonts-extra
       - texlive-latex-extra
       - texlive-science
       - texlive-xetex
