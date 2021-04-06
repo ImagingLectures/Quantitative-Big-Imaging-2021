@@ -15,6 +15,7 @@ addons:
       - texlive-fonts-recommended
       - texlive-latex-extra
       - texlive-science
+      - texlive-xetex
       - latexmk
 
 cache:

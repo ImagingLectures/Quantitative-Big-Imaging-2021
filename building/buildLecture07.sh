@@ -1,5 +1,6 @@
 unzip Lectures/Lecture-07/data/grains.npy.zip
 unzip Lectures/Lecture-07/data/ws_grains.npy.zip
+unzip Lectures/Lecture-07/data/Cropped_prediction_8bit.npy.zip
 
 jupyter-book build Lectures/Lecture-07 --builder pdflatex
 
