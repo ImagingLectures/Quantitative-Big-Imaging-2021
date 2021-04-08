@@ -11,7 +11,6 @@ addons:
   apt:
     update: true
     packages: 
-      - fonts-freefont-otf
       - texlive
       - texline-xetex
       - texlive-fonts-recommended
@@ -19,6 +18,7 @@ addons:
       - texlive-latex-extra
       - texlive-science
       - latexmk
+      - fonts-freefont-otf
 
 cache:
   directories:
