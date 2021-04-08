@@ -11,6 +11,7 @@ addons:
   apt:
     update: true
     packages: 
+      - fonts-freefont-otf
       - texlive
       - texline-xetex
       - texlive-fonts-recommended
