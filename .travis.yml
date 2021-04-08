@@ -12,7 +12,7 @@ addons:
     update: true
     packages: 
       - texlive
-      - texline-xetex
+      - texlive-xetex
       - texlive-fonts-recommended
       - texlive-fonts-extra
       - texlive-latex-extra
