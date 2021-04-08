@@ -12,11 +12,11 @@ addons:
     update: true
     packages: 
       - texlive
+      - texline-xetex
       - texlive-fonts-recommended
       - texlive-fonts-extra
       - texlive-latex-extra
       - texlive-science
-      - texlive-xetex
       - latexmk
 
 cache:
