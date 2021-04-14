@@ -82,6 +82,7 @@
  - [Part 2: Watershed segmentation](https://youtu.be/KjysMamJ-LA)
 
 #### Exercises
+- [![Exercises](https://img.shields.io/badge/Notebook-Exercises-green.svg)](http://github.com/imaginglectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/07-skeletons.ipynb)
 - [Overview](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/07-ComplexObjects/07-Overview.md)
 
 ---
