@@ -75,11 +75,7 @@
 
 | Downloads| Videos |
 |:---:|:---|
-| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture07-ComplexShape.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-07/07-ComplexObjects.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-07/07-ComplexObjects.ipynb)  | <a href="https://youtu.be/xyz">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/xyz">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
- 
- #### Lecture videos
- - [Part 1: Skeletons](https://youtu.be/nPfb-YInWyU)
- - [Part 2: Watershed segmentation](https://youtu.be/KjysMamJ-LA)
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture07-ComplexShape.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-07/07-ComplexObjects.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-07/07-ComplexObjects.ipynb)  | <a href="https://youtu.be/0MOBX1acqH0">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/wBW8zavr9kY">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
 
 #### Exercises
 - [![Exercises](https://img.shields.io/badge/Notebook-Exercises-green.svg)](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/07-ComplexObjects/07-Skeletons.ipynb)[![Interactive Exercises](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/main?filepath=Exercises/07-ComplexObjects/07-Skeletons.ipynb)
