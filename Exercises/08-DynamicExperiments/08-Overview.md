@@ -9,6 +9,3 @@ Look through the exercises. You would spend quite some time doing all but there 
 - [Kaggle X-Ray Scan Registration](https://www.kaggle.com/kmader/x-ray-patient-scan-registration)
 - [3D Sem Reconstruction (Under construction)](https://www.kaggle.com/kmader/3d-reconstruction-with-feature-extraction)
 - [Voxel Morph Paper](https://arxiv.org/pdf/1802.02604.pdf) and [Kaggle Example](https://www.kaggle.com/kmader/voxelmorph-demo)
-
-### KNIME
-- [KNIME Exercises](https://rawgithub.com/Quantitative-Big-Imaging/Quantitative-Big-Imaging-2016/master/Exercises/09-Description.html)

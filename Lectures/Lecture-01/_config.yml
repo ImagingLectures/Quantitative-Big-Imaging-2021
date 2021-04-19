@@ -3,6 +3,7 @@ title: Quantitative Big Imaging - Introduction
 
 author: Anders Kaestner
 #logo: 'images/logo.png'
+only_build_toc_files: true
 
 execute:
   timeout: -1
