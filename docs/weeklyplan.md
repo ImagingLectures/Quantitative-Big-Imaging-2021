@@ -81,14 +81,27 @@
 - [![Exercises](https://img.shields.io/badge/Notebook-Exercises-green.svg)](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/07-ComplexObjects/07-Skeletons.ipynb)[![Interactive Exercises](https://img.shields.io/badge/Interactive-Exercises-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2021/main?filepath=Exercises/07-ComplexObjects/07-Skeletons.ipynb)
 - [Further exercises](https://github.com/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Exercises/07-ComplexObjects/07-Overview.md)
 
----
----
 
-__Last year's material - not yet updated__
 
 ## 22nd April - Statistics, Prediction, and Reproducibility
 
- - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/09-Statistics.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/09-Statistics.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/09-Statistics.ipynb)
+| Downloads| Videos |
+|:---:|:---|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture08-Statistics.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-08/08-Statistics.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-08/08-Statistics.ipynb)  | <a href="https://youtu.be/0MOBX1acqH0">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/xyz">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
+
+#### Lecture videos
+- [Part 1: Statistics](https://youtu.be/Q5xLyNXrE4w)
+- [Part 2: Reproducible workflow and visualization](https://youtu.be/sctNzJ9tmQ8)
+
+#### Exercises
+- C. Elegans Dataset on Kaggle [R Notebook](https://www.kaggle.com/kmader/d/kmader/high-content-screening-celegans/qbi-statistics-and-reproducibility-in-r/) or [Python Notebook](https://www.kaggle.com/kmader/d/kmader/high-content-screening-celegans/image-overview)
+<!-- Lung Segmentation [https://www.kaggle.com/kmader/dsb-lung-segmentation-algorithm/notebook](Rule-based Image Processing) and [Simple Neural Network](https://www.kaggle.com/kmader/simple-nn-with-keras) -->
+
+- Will come later in python once we know more about Pandas: [KNIME Exercises](https://rawgithub.com/kmader/Quantitative-Big-Imaging-2016/master/Exercises/08-Description.html)
+
+---
+---
+__Last year's material - not yet updated__
 
 ## 29rd April - Dynamic Experiments
 
@@ -104,22 +117,7 @@ __Last year's material - not yet updated__
 - [Overview](../Exercises/08-DynamicExperiments/08-Overview.md)
 
 --- 
-## 6th May 
-
-#### Lecture videos
-- [Part 1: Statistics](https://youtu.be/Q5xLyNXrE4w)
-- [Part 2: Reproducible workflow and visualization](https://youtu.be/sctNzJ9tmQ8)
-
-#### Exercises
-- C. Elegans Dataset on Kaggle [R Notebook](https://www.kaggle.com/kmader/d/kmader/high-content-screening-celegans/qbi-statistics-and-reproducibility-in-r/) or [Python Notebook](https://www.kaggle.com/kmader/d/kmader/high-content-screening-celegans/image-overview)
-<!-- Lung Segmentation [https://www.kaggle.com/kmader/dsb-lung-segmentation-algorithm/notebook](Rule-based Image Processing) and [Simple Neural Network](https://www.kaggle.com/kmader/simple-nn-with-keras) -->
-
-- Will come later in python once we know more about Pandas: [KNIME Exercises](https://rawgithub.com/kmader/Quantitative-Big-Imaging-2016/master/Exercises/08-Description.html)
-
----
-## 13th May - Ascension (no lecture)
-
-## 20th May - Imaging with multiple modalities 
+## 6th May - Imaging with multiple modalities 
 - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/10-BimodalExperiments.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/10-BimodalExperiments.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/10-BimodalExperiments.ipynb)
 
 #### Lecture videos
@@ -130,8 +128,11 @@ __Last year's material - not yet updated__
 - [Exercises on statistics and data frames](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Exercises/10-Statistics_DataFrames/10-Statistics_DataFrames.ipynb)
 
 ---
+## 13th May - Ascension (no lecture)
 
-## 27th May - Scaling Up / Big Data
+---
+
+## 20th May - Scaling Up / Big Data
  - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/11-ScalingUp.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb)
 
 #### Lecture videos
