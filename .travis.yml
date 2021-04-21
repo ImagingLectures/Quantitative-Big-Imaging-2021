@@ -12,10 +12,13 @@ addons:
     update: true
     packages: 
       - texlive
+      - texlive-xetex
       - texlive-fonts-recommended
+      - texlive-fonts-extra
       - texlive-latex-extra
       - texlive-science
       - latexmk
+      - fonts-freefont-otf
 
 cache:
   directories:

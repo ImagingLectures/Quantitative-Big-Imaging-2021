@@ -29,6 +29,10 @@ dependencies:
   - itk
   - ffmpeg
   - tifffile
+<<<<<<< HEAD
+=======
+  - imagecodecs
+>>>>>>> main
   - scipy
   - scikit-image
   - dask-image
