@@ -87,11 +87,7 @@
 
 | Downloads| Videos |
 |:---:|:---|
-| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture08-Statistics.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-08/08-Statistics.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-08/08-Statistics.ipynb)  | <a href="https://youtu.be/0MOBX1acqH0">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/xyz">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
-
-#### Lecture videos
-- [Part 1: Statistics](https://youtu.be/Q5xLyNXrE4w)
-- [Part 2: Reproducible workflow and visualization](https://youtu.be/sctNzJ9tmQ8)
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture08-Statistics.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-08/08-Statistics.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-08/08-Statistics.ipynb)  | <a href="https://youtu.be/XqTNY0VMNHA">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/UzofcfW1bR8">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
 
 #### Exercises
 - C. Elegans Dataset on Kaggle [R Notebook](https://www.kaggle.com/kmader/d/kmader/high-content-screening-celegans/qbi-statistics-and-reproducibility-in-r/) or [Python Notebook](https://www.kaggle.com/kmader/d/kmader/high-content-screening-celegans/image-overview)
@@ -105,13 +101,9 @@ __Last year's material - not yet updated__
 
 ## 29th April - Dynamic Experiments
 
- - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/08-DynamicExperiments.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/08-DynamicExperiments.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/08-DynamicExperiments.ipynb)
-
-- [Feature Points Slides](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/08-FeaturePoints.ipynb)
-
-#### Lecture videos
-- [Part 1: Dynamic experiments and object tracking](https://youtu.be/_aCiYQ7ih8M)
-- [Part 2: Registration](https://youtu.be/h43lRG3ENYE)
+| Downloads| Videos |
+|:---:|:---|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture09-DynamicExperiments.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-09/09-DynamicExperiments.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-09/09-DynamicExperiments.ipynb)  | <a href="https://youtu.be/_aCiYQ7ih8M">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/h43lRG3ENYE">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
 
 #### Exercises
 - [Overview](../Exercises/08-DynamicExperiments/08-Overview.md)
