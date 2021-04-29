@@ -95,9 +95,7 @@
 
 - Will come later in python once we know more about Pandas: [KNIME Exercises](https://rawgithub.com/kmader/Quantitative-Big-Imaging-2016/master/Exercises/08-Description.html)
 
----
----
-__Last year's material - not yet updated__
+
 
 ## 29th April - Dynamic Experiments
 
@@ -108,7 +106,10 @@ __Last year's material - not yet updated__
 #### Exercises
 - [Overview](../Exercises/08-DynamicExperiments/08-Overview.md)
 
---- 
+---
+---
+__Last year's material - not yet updated__
+
 ## 6th May - Imaging with multiple modalities 
 - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/10-BimodalExperiments.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/10-BimodalExperiments.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/10-BimodalExperiments.ipynb)
 
