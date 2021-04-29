@@ -34,5 +34,6 @@ dependencies:
   - scikit-image
   - dask-image
   - pip
+  - simpleitk
 
   - prefix: /Users/kaestner/opt/anaconda3
