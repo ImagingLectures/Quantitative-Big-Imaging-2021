@@ -107,8 +107,6 @@
 - [Overview](../Exercises/08-DynamicExperiments/08-Overview.md)
 
 ## 6th May - Imaging with multiple modalities 
-- [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/10-BimodalExperiments.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/10-BimodalExperiments.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/10-BimodalExperiments.ipynb)
-
 | Downloads| Videos |
 |:---:|:---|
 | <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture10-BimodalExperiments.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-10/10-BimodalExperiments.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-10/10-BimodalExperiments.ipynb)  | <a href="https://youtu.be/xyz">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/xyz">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
