@@ -35,5 +35,13 @@ dependencies:
   - dask-image
   - pip
   - simpleitk
-
+  - colorcet
+  - ipympl
+  - itk
+  - itkwidgets
+  - param
+  - pyct
+  - pyct-core
+  - standard  
+  - dask-ndmorph
   - prefix: /Users/kaestner/opt/anaconda3
