@@ -117,19 +117,17 @@
 
 ## 13th May - Ascension (no lecture)
 
-
----
----
-__Last year's material - not yet updated__
-
 ## 20th May - Scaling Up / Big Data
- - [Slides (static)](http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb) [![slides](https://img.shields.io/badge/interactive-slides-green.svg)](http://mybinder.org/v2/gh/imaginglectures/quantitative-big-imaging-2020/master?filepath=Lectures/11-ScalingUp.ipynb) [Lecture Handout](http://nbviewer.jupyter.org/github/imaginglectures/Quantitative-Big-Imaging-2020/blob/master/Lectures/11-ScalingUp.ipynb)
 
-#### Lecture videos
+
+| Downloads| Videos |
+|:---:|:---|
+| <a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/QBI-Lecture11-ScalingUp.pdf"><img src="figures/downloadbook.svg" height="40px"/></a> &nbsp;&nbsp;&nbsp;[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" height="50px"/>](https://nbviewer.jupyter.org/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-11/11-ScalingUp.ipynb) &nbsp;&nbsp; [<img src="figures/np_presentation.svg" height="50px"/>](https://nbviewer.jupyter.org/format/slides/github/ImagingLectures/Quantitative-Big-Imaging-2021/blob/main/Lectures/Lecture-11/11-ScalingUp.ipynb)  | <a href="https://youtu.be/xyz">Part 1<img src="figures/np_video.svg" alt="Part 1" height="30px"/></a> <a href="https://youtu.be/xyz">Part 2<img src="figures/np_video.svg" alt="Part 2" height="30px"/></a>|
+
+#### Last year's Lecture videos
  - [Part 1: Parallel and distributed computing](https://youtu.be/HVAAtE7o8eI)
  - [Part 2: Databases and DAGs](https://youtu.be/F_zZ1Jeyh0I)
  
-
 #### Exercises
 - [Kaggle DAG Notebook for Filtering with Tensorflow](https://www.kaggle.com/kmader/simple-dags-in-tensorflow), this a walk-through exercise. You can play with the number of iterations in the last part to see if there is data transfer bottle neck for GPU compared to CPU.
 - [Block-based 3D Image Analysis in Dask](https://www.kaggle.com/kmader/3d-image-analysis-using-dask)
@@ -142,9 +140,5 @@ __Last year's material - not yet updated__
 | Presenter(s)  | Title.        | Recording OK |
 | ------------- | ------------- |--------------|
 |N.N.| TBA| yes|
-
-
-<a href="https://imaginglectures.github.io/Quantitative-Big-Imaging-2021/html/Lecture01/index.html"><img src="figures/np_presentation.svg" height="50px"/></a>
- <a href="http://nbviewer.jupyter.org/format/slides/github/imaginglectures/Quantitative-Big-Imaging-2021/blob/master/Lectures/Lecture-01/01-Introduction.ipynb"><img src="figures/Jupyter_logo.svg" height="50px"/></a>
 
 
